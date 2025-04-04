@@ -1,0 +1,166 @@
+m255
+K4
+z2
+Z0 !s99 nomlopt
+R0
+!s11e vcom 2022.1 2022.01, Jan 29 2022
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z1 dC:/Users/mjun868/Documents/COMPSYS 305
+T_opt
+!s110 1743732271
+VR>o`9j^PRbT`@G3e;`=AD2
+04 16 9 work test_bcd_counter testbench 1
+=1-cc96e530f199-67ef3e2e-2ed-5420
+R0
+Z2 !s124 OEM100
+Z3 o-quiet -auto_acc_if_foreign -work work
+Z4 tCvgOpt 0
+n@_opt
+Z5 OL;O;2022.1;75
+R1
+T_opt1
+!s110 1743732859
+VMNLY3XlFzG:a:k]^k[1dd1
+04 14 8 work tb_bcd_counter behavior 1
+=1-cc96e530f199-67ef407b-c-4fe8
+R0
+R2
+R3
+R4
+n@_opt1
+R5
+R1
+Ebcd_counter
+Z6 w1743734187
+Z7 DPx4 ieee 11 numeric_std 0 22 F8@]:i<mFK7<TjIzKcTGi0
+Z8 DPx3 std 6 textio 0 22 LS[?81n5ZHWBI9JkBZTV<2
+Z9 DPx4 ieee 14 std_logic_1164 0 22 6<US`=mgl_dFdCEFF7J=m1
+!i122 13
+R1
+Z10 8C:/Users/mjun868/Documents/COMPSYS 305/BCD_Counter.vhd
+Z11 FC:/Users/mjun868/Documents/COMPSYS 305/BCD_Counter.vhd
+l0
+L6 1
+VXeE_Un7IiVN^Q:^NRS15g3
+!s100 P?<?]>LUlYV?k6X]7fCXN1
+Z12 OL;C;2022.1;75
+32
+Z13 !s110 1743734192
+!i10b 1
+Z14 !s108 1743734192.000000
+Z15 !s90 -reportprogress|300|-work|work|C:/Users/mjun868/Documents/COMPSYS 305/BCD_Counter.vhd|
+Z16 !s107 C:/Users/mjun868/Documents/COMPSYS 305/BCD_Counter.vhd|
+!i113 0
+Z17 o-work work
+Z18 tExplicit 1 CvgOpt 0
+Abehavioral
+R7
+R8
+R9
+Z19 DEx4 work 11 bcd_counter 0 22 XeE_Un7IiVN^Q:^NRS15g3
+!i122 13
+l14
+Z20 L12 41
+ViCBlUViM^?6>TV7f;1fL`2
+!s100 _iLEaVUa6ENF:lPQJmWkH1
+R12
+32
+R13
+!i10b 1
+R14
+R15
+R16
+!i113 0
+R17
+R18
+Etb_bcd_counter
+Z21 w1743733134
+R7
+R8
+R9
+!i122 10
+R1
+Z22 8C:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd
+Z23 FC:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd
+l0
+L5 1
+V_KHbVcz2OnDTMf9f7be@R0
+!s100 lSd7gPXigCI=lNaPn?A;O3
+R12
+32
+Z24 !s110 1743733177
+!i10b 1
+Z25 !s108 1743733177.000000
+Z26 !s90 -reportprogress|300|-work|work|C:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd|
+Z27 !s107 C:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd|
+!i113 0
+R17
+R18
+Abehavior
+R7
+R8
+R9
+DEx4 work 14 tb_bcd_counter 0 22 _KHbVcz2OnDTMf9f7be@R0
+!i122 10
+l28
+L8 84
+VBF`dY:G07LFHRQ[3]Z`jR2
+!s100 f@]^`AaE=U?SS93^Zj@YO2
+R12
+32
+R24
+!i10b 1
+R25
+R26
+R27
+!i113 0
+R17
+R18
+Etest_bcd_counter
+Z28 w1743734110
+R7
+R8
+R9
+!i122 12
+R1
+R22
+R23
+l0
+L6 1
+VW<7d_54A;b<bZidBZL:Im3
+!s100 zG=llPS`h?LSg9cKm<OX^1
+R12
+32
+Z29 !s110 1743734118
+!i10b 1
+Z30 !s108 1743734118.000000
+R26
+R27
+!i113 0
+R17
+R18
+Atestbench
+R7
+R8
+R9
+DEx4 work 16 test_bcd_counter 0 22 W<7d_54A;b<bZidBZL:Im3
+!i122 12
+l18
+L9 64
+V7@PUm1F]DjUA>C:M1AeMG1
+!s100 5[?FK7UN]l`9Y_3An8H2X3
+R12
+32
+R29
+!i10b 1
+R30
+R26
+R27
+!i113 0
+R17
+R18
