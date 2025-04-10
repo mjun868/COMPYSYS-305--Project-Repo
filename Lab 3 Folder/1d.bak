@@ -1,0 +1,121 @@
+------------------------------------------------------------------
+-- Test Bench for Programmable_Timer
+------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity Programmable_Timer_tb is
+end Programmable_Timer_tb;
+
+architecture sim of Programmable_Timer_tb is
+
+   ----------------------------------------------------------------
+   -- Component declaration for DUT (Device Under Test)
+   ----------------------------------------------------------------
+   component Programmable_Timer is
+      Port ( 
+         Clk         : in std_logic;
+         GlobalReset : in std_logic;
+         Start       : in std_logic;
+         Data_In     : in std_logic_vector(9 downto 0);
+         Time_Out    : out std_logic;
+         SevenSeg_Min     : out std_logic_vector(6 downto 0);
+         SevenSeg_SecTens : out std_logic_vector(6 downto 0);
+         SevenSeg_SecOnes : out std_logic_vector(6 downto 0)
+      );
+   end component;
+
+   ----------------------------------------------------------------
+   -- Signals to connect to DUT ports.
+   ----------------------------------------------------------------
+   signal Clk         : std_logic := '0';
+   signal GlobalReset : std_logic := '0';
+   signal Start       : std_logic := '0';
+   signal Data_In     : std_logic_vector(9 downto 0) := (others => '0');
+   signal Time_Out    : std_logic;
+   signal SevenSeg_Min     : std_logic_vector(6 downto 0);
+   signal SevenSeg_SecTens : std_logic_vector(6 downto 0);
+   signal SevenSeg_SecOnes : std_logic_vector(6 downto 0);
+
+   -- Clock period for the 50 MHz board clock (20 ns period)
+   constant CLK_PERIOD : time := 20 ns;
+
+begin
+
+   ----------------------------------------------------------------
+   -- Instantiate the DUT
+   ----------------------------------------------------------------
+   DUT: Programmable_Timer
+      port map(
+         Clk         => Clk,
+         GlobalReset => GlobalReset,
+         Start       => Start,
+         Data_In     => Data_In,
+         Time_Out    => Time_Out,
+         SevenSeg_Min     => SevenSeg_Min,
+         SevenSeg_SecTens => SevenSeg_SecTens,
+         SevenSeg_SecOnes => SevenSeg_SecOnes
+      );
+
+   ----------------------------------------------------------------
+   -- Clock Generation Process
+   -- This process continuously generates a 50 MHz clock.
+   ----------------------------------------------------------------
+   Clk_Process: process
+   begin
+      while true loop
+         Clk <= '0';
+         wait for CLK_PERIOD/2;
+         Clk <= '1';
+         wait for CLK_PERIOD/2;
+      end loop;
+   end process;
+
+   ----------------------------------------------------------------
+   -- Stimulus Process
+   -- This process applies reset, loads a preset, pulses the Start,
+   -- and then waits long enough to observe the timer timeout.
+   ----------------------------------------------------------------
+   Stim_Process: process
+   begin
+      -- Assert GlobalReset for a short period
+      GlobalReset <= '1';
+      wait for 100 ns;  -- hold reset (adjust if needed)
+      GlobalReset <= '0';
+      wait for 100 ns;  -- allow the design to settle after reset
+
+      -- Load preset value into Data_In.
+      -- For a preset timeout of 3 seconds:
+      --   Minutes  = "00"  (0)
+      --   Sec_Tens = "0000" (0)
+      --   Sec_Ones = "0011" (3)
+      Data_In <= "0000000011";
+      wait for 20 ns;  -- small delay
+
+      -- Issue a pulse on the Start signal to load the preset
+      Start <= '1';
+      wait for CLK_PERIOD; -- one board clock cycle pulse
+      Start <= '0';
+
+      -- Wait for the timer to reach its preset (timeout)
+      -- CAUTION: For a full 50MHz board clock with a real clock divider,
+      -- the wait time might need to be on the order of seconds.
+      -- Here, for simulation purposes, we assume a simulation-friendly 
+      -- clock divider or a reduced division factor.
+      wait for 1000 ns;  -- adjust this wait time based on your simulation divider
+
+      -- Check for timeout. The Time_Out output should be '1' if the timer
+      -- reached the preset value.
+      assert (Time_Out = '1')
+         report "Timeout was not reached as expected."
+         severity error;
+
+      wait for 100 ns;
+      -- End simulation (you may also use an assert false or stop simulation method)
+      wait;
+   end process;
+
+end sim;
+
+
