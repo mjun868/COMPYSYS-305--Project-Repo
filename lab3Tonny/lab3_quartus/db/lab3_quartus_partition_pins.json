@@ -4,19 +4,91 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "Q_Out[0]",
+					"name" : "Time_Out",
 					"strict" : false
 				},
 				{
-					"name" : "Q_Out[1]",
+					"name" : "Minute_7Seg[0]",
 					"strict" : false
 				},
 				{
-					"name" : "Q_Out[2]",
+					"name" : "Minute_7Seg[1]",
 					"strict" : false
 				},
 				{
-					"name" : "Q_Out[3]",
+					"name" : "Minute_7Seg[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Minute_7Seg[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Minute_7Seg[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Minute_7Seg[5]",
+					"strict" : false
+				},
+				{
+					"name" : "Minute_7Seg[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SecTens_7Seg[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SecTens_7Seg[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SecTens_7Seg[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SecTens_7Seg[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SecTens_7Seg[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SecTens_7Seg[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SecTens_7Seg[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SecOnes_7Seg[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SecOnes_7Seg[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SecOnes_7Seg[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SecOnes_7Seg[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SecOnes_7Seg[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SecOnes_7Seg[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SecOnes_7Seg[6]",
 					"strict" : false
 				},
 				{
@@ -24,7 +96,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "Direction",
+					"name" : "Start",
 					"strict" : false
 				},
 				{
@@ -32,7 +104,43 @@
 					"strict" : false
 				},
 				{
-					"name" : "Enable",
+					"name" : "Data_In[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_In[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_In[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_In[7]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_In[6]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_In[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_In[8]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_In[9]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_In[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Data_In[5]",
 					"strict" : false
 				}
 			]

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for lab3_quartus
-Thu Apr 10 16:26:34 2025
+Thu Apr 10 20:41:44 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -13,11 +13,15 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Multiplexer Restructuring Statistics (Restructuring Performed)
- 10. Post-Synthesis Netlist Statistics for Top Partition
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Messages
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Port Connectivity Checks: "BCD_Counter:Min_Counter"
+ 12. Port Connectivity Checks: "BCD_Counter_Limit5:Sec10_Counter"
+ 13. Port Connectivity Checks: "BCD_Counter:Sec1_Counter"
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -44,14 +48,14 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Apr 10 16:26:34 2025           ;
+; Analysis & Synthesis Status     ; Successful - Thu Apr 10 20:41:44 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; lab3_quartus                                    ;
-; Top-level Entity Name           ; BCD_Counter                                     ;
+; Top-level Entity Name           ; Programmable_Timer                              ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 4                                               ;
-; Total pins                      ; 8                                               ;
+; Total registers                 ; 50                                              ;
+; Total pins                      ; 35                                              ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 0                                               ;
 ; Total DSP Blocks                ; 0                                               ;
@@ -70,7 +74,7 @@ on the Quartus Prime software download page.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CEBA4F23C7        ;                    ;
-; Top-level entity name                                                           ; BCD_Counter        ; lab3_quartus       ;
+; Top-level entity name                                                           ; Programmable_Timer ; lab3_quartus       ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -168,50 +172,73 @@ on the Quartus Prime software download page.
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                     ;
-+------------------------------------+-----------------+-----------------+-----------------------------------------+---------+
-; File Name with User-Entered Path   ; Used in Netlist ; File Type       ; File Name with Absolute Path            ; Library ;
-+------------------------------------+-----------------+-----------------+-----------------------------------------+---------+
-; ../lab3_VHDL_files/BCD_Counter.vhd ; yes             ; User VHDL File  ; C:/lab3/lab3_VHDL_files/BCD_Counter.vhd ;         ;
-+------------------------------------+-----------------+-----------------+-----------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                        ;
++-------------------------------------------+-----------------+-----------------+-----------------------------------------------------+---------+
+; File Name with User-Entered Path          ; Used in Netlist ; File Type       ; File Name with Absolute Path                        ; Library ;
++-------------------------------------------+-----------------+-----------------+-----------------------------------------------------+---------+
+; ../lab3_VHDL_files/Programmable_Timer.vhd ; yes             ; User VHDL File  ; C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd ;         ;
+; ../lab3_VHDL_files/ClockDivider_1Hz.vhd   ; yes             ; User VHDL File  ; C:/lab3Tonny/lab3_VHDL_files/ClockDivider_1Hz.vhd   ;         ;
+; ../lab3_VHDL_files/BCD_to_7Seg.vhd        ; yes             ; User VHDL File  ; C:/lab3Tonny/lab3_VHDL_files/BCD_to_7Seg.vhd        ;         ;
+; ../lab3_VHDL_files/BCD_Counter_Limit5.vhd ; yes             ; User VHDL File  ; C:/lab3Tonny/lab3_VHDL_files/BCD_Counter_Limit5.vhd ;         ;
+; ../lab3_VHDL_files/BCD_Counter.vhd        ; yes             ; User VHDL File  ; C:/lab3Tonny/lab3_VHDL_files/BCD_Counter.vhd        ;         ;
++-------------------------------------------+-----------------+-----------------+-----------------------------------------------------+---------+
 
 
-+--------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary            ;
-+---------------------------------------------+----------+
-; Resource                                    ; Usage    ;
-+---------------------------------------------+----------+
-; Estimate of Logic utilization (ALMs needed) ; 4        ;
-;                                             ;          ;
-; Combinational ALUT usage for logic          ; 5        ;
-;     -- 7 input functions                    ; 0        ;
-;     -- 6 input functions                    ; 3        ;
-;     -- 5 input functions                    ; 0        ;
-;     -- 4 input functions                    ; 0        ;
-;     -- <=3 input functions                  ; 2        ;
-;                                             ;          ;
-; Dedicated logic registers                   ; 4        ;
-;                                             ;          ;
-; I/O pins                                    ; 8        ;
-;                                             ;          ;
-; Total DSP Blocks                            ; 0        ;
-;                                             ;          ;
-; Maximum fan-out node                        ; count[0] ;
-; Maximum fan-out                             ; 5        ;
-; Total fan-out                               ; 47       ;
-; Average fan-out                             ; 1.88     ;
-+---------------------------------------------+----------+
++-----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary               ;
++---------------------------------------------+-------------+
+; Resource                                    ; Usage       ;
++---------------------------------------------+-------------+
+; Estimate of Logic utilization (ALMs needed) ; 47          ;
+;                                             ;             ;
+; Combinational ALUT usage for logic          ; 83          ;
+;     -- 7 input functions                    ; 0           ;
+;     -- 6 input functions                    ; 10          ;
+;     -- 5 input functions                    ; 8           ;
+;     -- 4 input functions                    ; 27          ;
+;     -- <=3 input functions                  ; 38          ;
+;                                             ;             ;
+; Dedicated logic registers                   ; 50          ;
+;                                             ;             ;
+; I/O pins                                    ; 35          ;
+;                                             ;             ;
+; Total DSP Blocks                            ; 0           ;
+;                                             ;             ;
+; Maximum fan-out node                        ; Reset~input ;
+; Maximum fan-out                             ; 53          ;
+; Total fan-out                               ; 522         ;
+; Average fan-out                             ; 2.57        ;
++---------------------------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; |BCD_Counter               ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 8    ; 0            ; |BCD_Counter        ; BCD_Counter ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                       ;
++---------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node            ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                  ; Entity Name        ; Library Name ;
++---------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------+--------------------+--------------+
+; |Programmable_Timer                   ; 83 (17)             ; 50 (11)                   ; 0                 ; 0          ; 35   ; 0            ; |Programmable_Timer                                  ; Programmable_Timer ; work         ;
+;    |BCD_Counter:Min_Counter|          ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_Counter:Min_Counter          ; BCD_Counter        ; work         ;
+;    |BCD_Counter:Sec1_Counter|         ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_Counter:Sec1_Counter         ; BCD_Counter        ; work         ;
+;    |BCD_Counter_Limit5:Sec10_Counter| ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_Counter_Limit5:Sec10_Counter ; BCD_Counter_Limit5 ; work         ;
+;    |BCD_to_SevenSeg:MinuteDisplay|    ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_to_SevenSeg:MinuteDisplay    ; BCD_to_SevenSeg    ; work         ;
+;    |BCD_to_SevenSeg:SecOnesDisplay|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_to_SevenSeg:SecOnesDisplay   ; BCD_to_SevenSeg    ; work         ;
+;    |BCD_to_SevenSeg:SecTensDisplay|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_to_SevenSeg:SecTensDisplay   ; BCD_to_SevenSeg    ; work         ;
+;    |ClockDivider_1Hz:Divider_inst|    ; 31 (31)             ; 27 (27)                   ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|ClockDivider_1Hz:Divider_inst    ; ClockDivider_1Hz   ; work         ;
++---------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------+--------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; tgt_min[3]                            ; Merged with tgt_min[2]                 ;
+; tgt_min[2]                            ; Stuck at GND due to stuck port data_in ;
+; tgt_sec10[3]                          ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 3 ;                                        ;
++---------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -219,24 +246,58 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 4     ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 50    ;
+; Number of registers using Synchronous Clear  ; 26    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Clear ; 31    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 4     ;
+; Number of registers using Clock Enable       ; 22    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BCD_Counter|count[0]      ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |BCD_Counter|count[1]      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |Programmable_Timer|tgt_min[1]                                     ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|BCD_Counter:Min_Counter|count[0]               ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|BCD_Counter:Sec1_Counter|count[1]              ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|running                                        ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|tgt_sec10[0]                                   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|tgt_sec1[0]                                    ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |Programmable_Timer|BCD_to_SevenSeg:MinuteDisplay|SevenSeg_out[3]  ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |Programmable_Timer|BCD_to_SevenSeg:SecTensDisplay|SevenSeg_out[5] ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |Programmable_Timer|BCD_to_SevenSeg:SecOnesDisplay|SevenSeg_out[5] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Port Connectivity Checks: "BCD_Counter:Min_Counter" ;
++-----------+-------+----------+----------------------+
+; Port      ; Type  ; Severity ; Details              ;
++-----------+-------+----------+----------------------+
+; direction ; Input ; Info     ; Stuck at VCC         ;
++-----------+-------+----------+----------------------+
+
+
++--------------------------------------------------------------+
+; Port Connectivity Checks: "BCD_Counter_Limit5:Sec10_Counter" ;
++-----------+-------+----------+-------------------------------+
+; Port      ; Type  ; Severity ; Details                       ;
++-----------+-------+----------+-------------------------------+
+; direction ; Input ; Info     ; Stuck at VCC                  ;
++-----------+-------+----------+-------------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "BCD_Counter:Sec1_Counter" ;
++-----------+-------+----------+-----------------------+
+; Port      ; Type  ; Severity ; Details               ;
++-----------+-------+----------+-----------------------+
+; direction ; Input ; Info     ; Stuck at VCC          ;
++-----------+-------+----------+-----------------------+
 
 
 +-----------------------------------------------------+
@@ -244,17 +305,25 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 4                           ;
-;     ENA               ; 4                           ;
-; arriav_lcell_comb     ; 5                           ;
-;     normal            ; 5                           ;
-;         2 data inputs ; 1                           ;
-;         3 data inputs ; 1                           ;
-;         6 data inputs ; 3                           ;
-; boundary_port         ; 8                           ;
+; arriav_ff             ; 50                          ;
+;     CLR               ; 2                           ;
+;     CLR SCLR          ; 26                          ;
+;     ENA               ; 19                          ;
+;     ENA CLR           ; 3                           ;
+; arriav_lcell_comb     ; 89                          ;
+;     arith             ; 26                          ;
+;         1 data inputs ; 26                          ;
+;     normal            ; 63                          ;
+;         1 data inputs ; 7                           ;
+;         2 data inputs ; 7                           ;
+;         3 data inputs ; 4                           ;
+;         4 data inputs ; 27                          ;
+;         5 data inputs ; 8                           ;
+;         6 data inputs ; 10                          ;
+; boundary_port         ; 35                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 1.00                        ;
-; Average LUT depth     ; 0.92                        ;
+; Max LUT depth         ; 3.50                        ;
+; Average LUT depth     ; 2.01                        ;
 +-----------------------+-----------------------------+
 
 
@@ -273,28 +342,51 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Thu Apr 10 16:26:24 2025
+    Info: Processing started: Thu Apr 10 20:41:37 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab3_quartus -c lab3_quartus
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
-Info (12021): Found 2 design units, including 1 entities, in source file /lab3/bcd_to_7seg.vhd
-    Info (12022): Found design unit 1: BCD_to_SevenSeg-arc1 File: C:/lab3/BCD_to_7Seg.vhd Line: 12
-    Info (12023): Found entity 1: BCD_to_SevenSeg File: C:/lab3/BCD_to_7Seg.vhd Line: 7
-Info (12021): Found 2 design units, including 1 entities, in source file /lab3/lab3_vhdl_files/bcd_counter.vhd
-    Info (12022): Found design unit 1: BCD_Counter-Behavioral File: C:/lab3/lab3_VHDL_files/BCD_Counter.vhd Line: 15
-    Info (12023): Found entity 1: BCD_Counter File: C:/lab3/lab3_VHDL_files/BCD_Counter.vhd Line: 5
-Info (12127): Elaborating entity "BCD_Counter" for the top level hierarchy
+Info (12021): Found 2 design units, including 1 entities, in source file /lab3tonny/lab3_vhdl_files/test_bcd_counter.vhd
+    Info (12022): Found design unit 1: test_bcd_counter-tb File: C:/lab3Tonny/lab3_VHDL_files/Test_BCD_Counter.vhd Line: 8
+    Info (12023): Found entity 1: test_bcd_counter File: C:/lab3Tonny/lab3_VHDL_files/Test_BCD_Counter.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file /lab3tonny/lab3_vhdl_files/tb_programmable_timer.vhd
+    Info (12022): Found design unit 1: TB_Programmable_Timer-test File: C:/lab3Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd Line: 8
+    Info (12023): Found entity 1: TB_Programmable_Timer File: C:/lab3Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file /lab3tonny/lab3_vhdl_files/programmable_timer.vhd
+    Info (12022): Found design unit 1: Programmable_Timer-Behavioral File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 18
+    Info (12023): Found entity 1: Programmable_Timer File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file /lab3tonny/lab3_vhdl_files/clockdivider_testbench.vhd
+    Info (12022): Found design unit 1: TB_ClockDivider_1Hz-test File: C:/lab3Tonny/lab3_VHDL_files/clockDivider_testbench.vhd Line: 8
+    Info (12023): Found entity 1: TB_ClockDivider_1Hz File: C:/lab3Tonny/lab3_VHDL_files/clockDivider_testbench.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file /lab3tonny/lab3_vhdl_files/clockdivider_1hz.vhd
+    Info (12022): Found design unit 1: ClockDivider_1Hz-Behavioral File: C:/lab3Tonny/lab3_VHDL_files/ClockDivider_1Hz.vhd Line: 13
+    Info (12023): Found entity 1: ClockDivider_1Hz File: C:/lab3Tonny/lab3_VHDL_files/ClockDivider_1Hz.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file /lab3tonny/lab3_vhdl_files/bcd_to_7seg.vhd
+    Info (12022): Found design unit 1: BCD_to_SevenSeg-arc1 File: C:/lab3Tonny/lab3_VHDL_files/BCD_to_7Seg.vhd Line: 12
+    Info (12023): Found entity 1: BCD_to_SevenSeg File: C:/lab3Tonny/lab3_VHDL_files/BCD_to_7Seg.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file /lab3tonny/lab3_vhdl_files/bcd_counter_limit5.vhd
+    Info (12022): Found design unit 1: BCD_Counter_Limit5-Behavioral File: C:/lab3Tonny/lab3_VHDL_files/BCD_Counter_Limit5.vhd Line: 15
+    Info (12023): Found entity 1: BCD_Counter_Limit5 File: C:/lab3Tonny/lab3_VHDL_files/BCD_Counter_Limit5.vhd Line: 5
+Warning (12019): Can't analyze file -- file ../BCD_to_7Seg.vhd is missing
+Info (12021): Found 2 design units, including 1 entities, in source file /lab3tonny/lab3_vhdl_files/bcd_counter.vhd
+    Info (12022): Found design unit 1: BCD_Counter-Behavioral File: C:/lab3Tonny/lab3_VHDL_files/BCD_Counter.vhd Line: 15
+    Info (12023): Found entity 1: BCD_Counter File: C:/lab3Tonny/lab3_VHDL_files/BCD_Counter.vhd Line: 5
+Info (12127): Elaborating entity "Programmable_Timer" for the top level hierarchy
+Info (12128): Elaborating entity "ClockDivider_1Hz" for hierarchy "ClockDivider_1Hz:Divider_inst" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 71
+Info (12128): Elaborating entity "BCD_Counter" for hierarchy "BCD_Counter:Sec1_Counter" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 131
+Info (12128): Elaborating entity "BCD_Counter_Limit5" for hierarchy "BCD_Counter_Limit5:Sec10_Counter" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 140
+Info (12128): Elaborating entity "BCD_to_SevenSeg" for hierarchy "BCD_to_SevenSeg:MinuteDisplay" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 161
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 13 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 4 input pins
-    Info (21059): Implemented 4 output pins
-    Info (21061): Implemented 5 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4968 megabytes
-    Info: Processing ended: Thu Apr 10 16:26:34 2025
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:21
+Info (21057): Implemented 120 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 13 input pins
+    Info (21059): Implemented 22 output pins
+    Info (21061): Implemented 85 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 4957 megabytes
+    Info: Processing ended: Thu Apr 10 20:41:44 2025
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:15
 
 
