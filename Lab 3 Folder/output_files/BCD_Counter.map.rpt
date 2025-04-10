@@ -1,5 +1,5 @@
 Analysis & Synthesis report for BCD_Counter
-Thu Apr 10 14:23:21 2025
+Thu Apr 10 16:30:03 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -13,11 +13,15 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Multiplexer Restructuring Statistics (Restructuring Performed)
- 10. Post-Synthesis Netlist Statistics for Top Partition
- 11. Elapsed Time Per Partition
- 12. Analysis & Synthesis Messages
+  8. Registers Removed During Synthesis
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Port Connectivity Checks: "BCD_Counter:Min_Cnt"
+ 12. Port Connectivity Checks: "BCD_Counter:Sec_Tens"
+ 13. Port Connectivity Checks: "BCD_Counter:Sec_Ones"
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -44,14 +48,14 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Apr 10 14:23:21 2025           ;
+; Analysis & Synthesis Status     ; Successful - Thu Apr 10 16:30:03 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; BCD_Counter                                     ;
-; Top-level Entity Name           ; BCD_Counter                                     ;
+; Top-level Entity Name           ; Programmable_Timer                              ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 4                                               ;
-; Total pins                      ; 8                                               ;
+; Total registers                 ; 24                                              ;
+; Total pins                      ; 35                                              ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 0                                               ;
 ; Total DSP Blocks                ; 0                                               ;
@@ -70,7 +74,7 @@ on the Quartus Prime software download page.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CGXFC7C7F23C8     ;                    ;
-; Top-level entity name                                                           ; BCD_Counter        ; BCD_Counter        ;
+; Top-level entity name                                                           ; Programmable_Timer ; BCD_Counter        ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -168,50 +172,68 @@ on the Quartus Prime software download page.
 +----------------------------+-------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                   ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                            ; Library ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
-; BCD_Counter.vhd                  ; yes             ; User VHDL File  ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/Lab_materials/Lab 3 Folder/BCD_Counter.vhd ;         ;
-+----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                       ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                                                ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------+---------+
+; Clock_Divider_1Hz.vhd            ; yes             ; User VHDL File  ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Clock_Divider_1Hz.vhd  ;         ;
+; BCD_to_SevenSeg.vhd              ; yes             ; User VHDL File  ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/BCD_to_SevenSeg.vhd    ;         ;
+; Programmable_Timer.vhd           ; yes             ; User VHDL File  ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd ;         ;
+; BCD_Counter.vhd                  ; yes             ; User VHDL File  ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/BCD_Counter.vhd        ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary            ;
-+---------------------------------------------+----------+
-; Resource                                    ; Usage    ;
-+---------------------------------------------+----------+
-; Estimate of Logic utilization (ALMs needed) ; 4        ;
-;                                             ;          ;
-; Combinational ALUT usage for logic          ; 5        ;
-;     -- 7 input functions                    ; 0        ;
-;     -- 6 input functions                    ; 3        ;
-;     -- 5 input functions                    ; 0        ;
-;     -- 4 input functions                    ; 0        ;
-;     -- <=3 input functions                  ; 2        ;
-;                                             ;          ;
-; Dedicated logic registers                   ; 4        ;
-;                                             ;          ;
-; I/O pins                                    ; 8        ;
-;                                             ;          ;
-; Total DSP Blocks                            ; 0        ;
-;                                             ;          ;
-; Maximum fan-out node                        ; count[0] ;
-; Maximum fan-out                             ; 5        ;
-; Total fan-out                               ; 47       ;
-; Average fan-out                             ; 1.88     ;
-+---------------------------------------------+----------+
++-----------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                     ;
++---------------------------------------------+-------------------+
+; Resource                                    ; Usage             ;
++---------------------------------------------+-------------------+
+; Estimate of Logic utilization (ALMs needed) ; 20                ;
+;                                             ;                   ;
+; Combinational ALUT usage for logic          ; 33                ;
+;     -- 7 input functions                    ; 0                 ;
+;     -- 6 input functions                    ; 6                 ;
+;     -- 5 input functions                    ; 8                 ;
+;     -- 4 input functions                    ; 9                 ;
+;     -- <=3 input functions                  ; 10                ;
+;                                             ;                   ;
+; Dedicated logic registers                   ; 24                ;
+;                                             ;                   ;
+; I/O pins                                    ; 35                ;
+;                                             ;                   ;
+; Total DSP Blocks                            ; 0                 ;
+;                                             ;                   ;
+; Maximum fan-out node                        ; GlobalReset~input ;
+; Maximum fan-out                             ; 25                ;
+; Total fan-out                               ; 237               ;
+; Average fan-out                             ; 1.87              ;
++---------------------------------------------+-------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                    ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; |BCD_Counter               ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 8    ; 0            ; |BCD_Counter        ; BCD_Counter ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                      ; Entity Name        ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+--------------------+--------------+
+; |Programmable_Timer        ; 33 (19)             ; 24 (12)                   ; 0                 ; 0          ; 35   ; 0            ; |Programmable_Timer                      ; Programmable_Timer ; work         ;
+;    |BCD_Counter:Min_Cnt|   ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_Counter:Min_Cnt  ; BCD_Counter        ; work         ;
+;    |BCD_Counter:Sec_Ones|  ; 6 (6)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_Counter:Sec_Ones ; BCD_Counter        ; work         ;
+;    |BCD_Counter:Sec_Tens|  ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_Counter:Sec_Tens ; BCD_Counter        ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+--------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; preset_min[3]                         ; Merged with preset_min[2]              ;
+; preset_min[2]                         ; Stuck at GND due to stuck port data_in ;
+; preset_sec_tens[3]                    ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 3 ;                                        ;
++---------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -219,24 +241,55 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 4     ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 24    ;
+; Number of registers using Synchronous Clear  ; 1     ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 4     ;
+; Number of registers using Clock Enable       ; 17    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |BCD_Counter|count[0]      ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |BCD_Counter|count[1]      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |Programmable_Timer|preset_min[0]                 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|preset_sec_tens[3]            ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|BCD_Counter:Sec_Tens|count[3] ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|preset_sec_ones[3]            ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|BCD_Counter:Sec_Ones|count[3] ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|BCD_Counter:Min_Cnt|count[2]  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
+
+
++-------------------------------------------------+
+; Port Connectivity Checks: "BCD_Counter:Min_Cnt" ;
++-----------+-------+----------+------------------+
+; Port      ; Type  ; Severity ; Details          ;
++-----------+-------+----------+------------------+
+; direction ; Input ; Info     ; Stuck at VCC     ;
++-----------+-------+----------+------------------+
+
+
++--------------------------------------------------+
+; Port Connectivity Checks: "BCD_Counter:Sec_Tens" ;
++-----------+-------+----------+-------------------+
+; Port      ; Type  ; Severity ; Details           ;
++-----------+-------+----------+-------------------+
+; direction ; Input ; Info     ; Stuck at VCC      ;
++-----------+-------+----------+-------------------+
+
+
++--------------------------------------------------+
+; Port Connectivity Checks: "BCD_Counter:Sec_Ones" ;
++-----------+-------+----------+-------------------+
+; Port      ; Type  ; Severity ; Details           ;
++-----------+-------+----------+-------------------+
+; direction ; Input ; Info     ; Stuck at VCC      ;
++-----------+-------+----------+-------------------+
 
 
 +-----------------------------------------------------+
@@ -244,17 +297,22 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 4                           ;
-;     ENA               ; 4                           ;
-; arriav_lcell_comb     ; 5                           ;
-;     normal            ; 5                           ;
-;         2 data inputs ; 1                           ;
-;         3 data inputs ; 1                           ;
-;         6 data inputs ; 3                           ;
-; boundary_port         ; 8                           ;
+; arriav_ff             ; 24                          ;
+;     ENA               ; 17                          ;
+;     SCLR              ; 1                           ;
+;     plain             ; 6                           ;
+; arriav_lcell_comb     ; 34                          ;
+;     normal            ; 34                          ;
+;         0 data inputs ; 1                           ;
+;         2 data inputs ; 7                           ;
+;         3 data inputs ; 3                           ;
+;         4 data inputs ; 9                           ;
+;         5 data inputs ; 8                           ;
+;         6 data inputs ; 6                           ;
+; boundary_port         ; 35                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 1.00                        ;
-; Average LUT depth     ; 0.92                        ;
+; Max LUT depth         ; 2.00                        ;
+; Average LUT depth     ; 1.45                        ;
 +-----------------------+-----------------------------+
 
 
@@ -273,15 +331,48 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Thu Apr 10 14:23:12 2025
+    Info: Processing started: Thu Apr 10 16:29:55 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Lab3 -c BCD_Counter
-Info (20034): Auto device selection is not supported for Cyclone V device family. The default device, 5CGXFC7C7F23C8, is set.
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file clock_divider_1hz.vhd
+    Info (12022): Found design unit 1: Clock_Divider_1Hz-Behavioral File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Clock_Divider_1Hz.vhd Line: 10
+    Info (12023): Found entity 1: Clock_Divider_1Hz File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Clock_Divider_1Hz.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file bcd_to_sevenseg.vhd
+    Info (12022): Found design unit 1: BCD_to_SevenSeg-Behavioral File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/BCD_to_SevenSeg.vhd Line: 10
+    Info (12023): Found entity 1: BCD_to_SevenSeg File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/BCD_to_SevenSeg.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file programmable_timer.vhd
+    Info (12022): Found design unit 1: Programmable_Timer-Behavioral File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 20
+    Info (12023): Found entity 1: Programmable_Timer File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 7
 Info (12021): Found 2 design units, including 1 entities, in source file bcd_counter.vhd
-    Info (12022): Found design unit 1: BCD_Counter-Behavioral File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/Lab_materials/Lab 3 Folder/BCD_Counter.vhd Line: 15
-    Info (12023): Found entity 1: BCD_Counter File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/Lab_materials/Lab 3 Folder/BCD_Counter.vhd Line: 5
-Info (12127): Elaborating entity "BCD_Counter" for the top level hierarchy
+    Info (12022): Found design unit 1: BCD_Counter-Behavioral File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/BCD_Counter.vhd Line: 15
+    Info (12023): Found entity 1: BCD_Counter File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/BCD_Counter.vhd Line: 5
+Info (12127): Elaborating entity "Programmable_Timer" for the top level hierarchy
+Info (12128): Elaborating entity "Clock_Divider_1Hz" for hierarchy "Clock_Divider_1Hz:clk_div_inst" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 81
+Info (12128): Elaborating entity "BCD_Counter" for hierarchy "BCD_Counter:Sec_Ones" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 153
+Info (12128): Elaborating entity "BCD_to_SevenSeg" for hierarchy "BCD_to_SevenSeg:Min_Display" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 197
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "SevenSeg_Min[0]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 14
+    Warning (13410): Pin "SevenSeg_Min[1]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 14
+    Warning (13410): Pin "SevenSeg_Min[2]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 14
+    Warning (13410): Pin "SevenSeg_Min[3]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 14
+    Warning (13410): Pin "SevenSeg_Min[4]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 14
+    Warning (13410): Pin "SevenSeg_Min[5]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 14
+    Warning (13410): Pin "SevenSeg_Min[6]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 14
+    Warning (13410): Pin "SevenSeg_SecTens[0]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 15
+    Warning (13410): Pin "SevenSeg_SecTens[1]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 15
+    Warning (13410): Pin "SevenSeg_SecTens[2]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 15
+    Warning (13410): Pin "SevenSeg_SecTens[3]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 15
+    Warning (13410): Pin "SevenSeg_SecTens[4]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 15
+    Warning (13410): Pin "SevenSeg_SecTens[5]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 15
+    Warning (13410): Pin "SevenSeg_SecTens[6]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 15
+    Warning (13410): Pin "SevenSeg_SecOnes[0]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 16
+    Warning (13410): Pin "SevenSeg_SecOnes[1]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 16
+    Warning (13410): Pin "SevenSeg_SecOnes[2]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 16
+    Warning (13410): Pin "SevenSeg_SecOnes[3]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 16
+    Warning (13410): Pin "SevenSeg_SecOnes[4]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 16
+    Warning (13410): Pin "SevenSeg_SecOnes[5]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 16
+    Warning (13410): Pin "SevenSeg_SecOnes[6]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/Programmable_Timer.vhd Line: 16
 Info (286030): Timing-Driven Synthesis is running
 Warning (20013): Ignored 24 assignments for entity "DE0_CV_Default" -- entity does not exist in design
     Warning (20014): Assignment for entity set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity DE0_CV_Default -section_id Top was ignored
@@ -310,14 +401,14 @@ Warning (20013): Ignored 24 assignments for entity "DE0_CV_Default" -- entity do
     Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ENABLE_STRICT_PRESERVATION OFF -entity DE0_CV_Default -section_id Top was ignored
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 13 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 4 input pins
-    Info (21059): Implemented 4 output pins
-    Info (21061): Implemented 5 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 26 warnings
-    Info: Peak virtual memory: 4965 megabytes
-    Info: Processing ended: Thu Apr 10 14:23:21 2025
-    Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:17
+Info (21057): Implemented 70 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 13 input pins
+    Info (21059): Implemented 22 output pins
+    Info (21061): Implemented 35 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 48 warnings
+    Info: Peak virtual memory: 4957 megabytes
+    Info: Processing ended: Thu Apr 10 16:30:03 2025
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:16
 
 

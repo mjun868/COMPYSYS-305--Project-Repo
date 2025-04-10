@@ -1,5 +1,5 @@
 Flow report for BCD_Counter
-Thu Apr 10 14:24:42 2025
+Thu Apr 10 16:31:55 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,16 +41,16 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Flow Summary                                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Flow Status                     ; Successful - Thu Apr 10 14:24:37 2025           ;
+; Flow Status                     ; Successful - Thu Apr 10 16:31:55 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; BCD_Counter                                     ;
-; Top-level Entity Name           ; BCD_Counter                                     ;
+; Top-level Entity Name           ; Programmable_Timer                              ;
 ; Family                          ; Cyclone V                                       ;
 ; Device                          ; 5CGXFC7C7F23C8                                  ;
 ; Timing Models                   ; Final                                           ;
-; Logic utilization (in ALMs)     ; 5 / 56,480 ( < 1 % )                            ;
-; Total registers                 ; 4                                               ;
-; Total pins                      ; 8 / 268 ( 3 % )                                 ;
+; Logic utilization (in ALMs)     ; 20 / 56,480 ( < 1 % )                           ;
+; Total registers                 ; 24                                              ;
+; Total pins                      ; 35 / 268 ( 13 % )                               ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 0 / 7,024,640 ( 0 % )                           ;
 ; Total DSP Blocks                ; 0 / 156 ( 0 % )                                 ;
@@ -68,27 +68,33 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/10/2025 14:23:13 ;
+; Start date & time ; 04/10/2025 16:29:55 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; BCD_Counter         ;
 +-------------------+---------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                           ;
-+-------------------------------------+----------------------------------------+---------------+----------------+------------+
-; Assignment Name                     ; Value                                  ; Default Value ; Entity Name    ; Section Id ;
-+-------------------------------------+----------------------------------------+---------------+----------------+------------+
-; COMPILER_SIGNATURE_ID               ; 165777689952595.174425179307924        ; --            ; --             ; --         ;
-; EDA_SIMULATION_TOOL                 ; Questa Intel FPGA (VHDL)               ; <None>        ; --             ; --         ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; --             ; Top        ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; DE0_CV_Default ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; --             ; Top        ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; DE0_CV_Default ; Top        ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; --             ; Top        ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; DE0_CV_Default ; Top        ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --             ; --         ;
-+-------------------------------------+----------------------------------------+---------------+----------------+------------+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                   ;
++-------------------------------------+----------------------------------------+---------------+--------------------+----------------+
+; Assignment Name                     ; Value                                  ; Default Value ; Entity Name        ; Section Id     ;
++-------------------------------------+----------------------------------------+---------------+--------------------+----------------+
+; COMPILER_SIGNATURE_ID               ; 165777689952595.174425939506448        ; --            ; --                 ; --             ;
+; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                                   ; --            ; --                 ; eda_simulation ;
+; EDA_SIMULATION_TOOL                 ; Questa Intel FPGA (VHDL)               ; <None>        ; --                 ; --             ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --                 ; --             ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --                 ; --             ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; DE0_CV_Default     ; Top            ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; Programmable_Timer ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; DE0_CV_Default     ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; Programmable_Timer ; Top            ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; DE0_CV_Default     ; Top            ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; Programmable_Timer ; Top            ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --                 ; --             ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --                 ; --             ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --                 ; --             ;
+; TOP_LEVEL_ENTITY                    ; Programmable_Timer                     ; BCD_Counter   ; --                 ; --             ;
++-------------------------------------+----------------------------------------+---------------+--------------------+----------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -96,11 +102,12 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:09     ; 1.0                     ; 4965 MB             ; 00:00:17                           ;
-; Fitter               ; 00:00:59     ; 1.0                     ; 7423 MB             ; 00:02:46                           ;
+; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 4957 MB             ; 00:00:16                           ;
+; Fitter               ; 00:01:25     ; 1.0                     ; 7408 MB             ; 00:04:07                           ;
 ; Assembler            ; 00:00:15     ; 1.0                     ; 5350 MB             ; 00:00:06                           ;
-; Timing Analyzer      ; 00:00:04     ; 1.0                     ; 5400 MB             ; 00:00:03                           ;
-; Total                ; 00:01:27     ; --                      ; --                  ; 00:03:12                           ;
+; Timing Analyzer      ; 00:00:05     ; 1.1                     ; 5415 MB             ; 00:00:05                           ;
+; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4775 MB             ; 00:00:01                           ;
+; Total                ; 00:01:54     ; --                      ; --                  ; 00:04:35                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -113,6 +120,7 @@ on the Quartus Prime software download page.
 ; Fitter               ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
 ; Assembler            ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
 ; Timing Analyzer      ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -123,6 +131,7 @@ quartus_map --read_settings_files=on --write_settings_files=off Lab3 -c BCD_Coun
 quartus_fit --read_settings_files=off --write_settings_files=off Lab3 -c BCD_Counter
 quartus_asm --read_settings_files=off --write_settings_files=off Lab3 -c BCD_Counter
 quartus_sta Lab3 -c BCD_Counter
+quartus_eda --read_settings_files=off --write_settings_files=off Lab3 -c BCD_Counter
 
 
 
