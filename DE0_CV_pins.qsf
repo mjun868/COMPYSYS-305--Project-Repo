@@ -29,7 +29,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK4_50
 #============================================================
 # CLOCK
 #============================================================
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to Clk
 
 #============================================================
 # DRAM
@@ -303,7 +303,7 @@ set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS R
 set_location_assignment PIN_H13 -to CLOCK2_50
 set_location_assignment PIN_E10 -to CLOCK3_50
 set_location_assignment PIN_V15 -to CLOCK4_50
-set_location_assignment PIN_M9 -to CLOCK_50
+set_location_assignment PIN_M9 -to Clk
 set_location_assignment PIN_W8 -to DRAM_ADDR[0]
 set_location_assignment PIN_T8 -to DRAM_ADDR[1]
 set_location_assignment PIN_U11 -to DRAM_ADDR[2]
