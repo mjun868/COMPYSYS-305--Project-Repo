@@ -1,5 +1,5 @@
 Analysis & Synthesis report for lab3_quartus
-Thu Apr 10 20:41:44 2025
+Fri Apr 11 14:25:22 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -16,9 +16,9 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   8. Registers Removed During Synthesis
   9. General Register Statistics
  10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Port Connectivity Checks: "BCD_Counter:Min_Counter"
- 12. Port Connectivity Checks: "BCD_Counter_Limit5:Sec10_Counter"
- 13. Port Connectivity Checks: "BCD_Counter:Sec1_Counter"
+ 11. Port Connectivity Checks: "Programmable_Timer:U1|BCD_Counter:Min_Counter"
+ 12. Port Connectivity Checks: "Programmable_Timer:U1|BCD_Counter_Limit5:Sec10_Counter"
+ 13. Port Connectivity Checks: "Programmable_Timer:U1|BCD_Counter:Sec1_Counter"
  14. Post-Synthesis Netlist Statistics for Top Partition
  15. Elapsed Time Per Partition
  16. Analysis & Synthesis Messages
@@ -48,10 +48,10 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Apr 10 20:41:44 2025           ;
+; Analysis & Synthesis Status     ; Successful - Fri Apr 11 14:25:22 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; lab3_quartus                                    ;
-; Top-level Entity Name           ; Programmable_Timer                              ;
+; Top-level Entity Name           ; lab3_top                                        ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
 ; Total registers                 ; 50                                              ;
@@ -74,7 +74,7 @@ on the Quartus Prime software download page.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CEBA4F23C7        ;                    ;
-; Top-level entity name                                                           ; Programmable_Timer ; lab3_quartus       ;
+; Top-level entity name                                                           ; lab3_top           ; lab3_quartus       ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -177,6 +177,7 @@ on the Quartus Prime software download page.
 +-------------------------------------------+-----------------+-----------------+-----------------------------------------------------+---------+
 ; File Name with User-Entered Path          ; Used in Netlist ; File Type       ; File Name with Absolute Path                        ; Library ;
 +-------------------------------------------+-----------------+-----------------+-----------------------------------------------------+---------+
+; ../lab3_VHDL_files/lab3_top.vhd           ; yes             ; User VHDL File  ; C:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd           ;         ;
 ; ../lab3_VHDL_files/Programmable_Timer.vhd ; yes             ; User VHDL File  ; C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd ;         ;
 ; ../lab3_VHDL_files/ClockDivider_1Hz.vhd   ; yes             ; User VHDL File  ; C:/lab3Tonny/lab3_VHDL_files/ClockDivider_1Hz.vhd   ;         ;
 ; ../lab3_VHDL_files/BCD_to_7Seg.vhd        ; yes             ; User VHDL File  ; C:/lab3Tonny/lab3_VHDL_files/BCD_to_7Seg.vhd        ;         ;
@@ -185,60 +186,61 @@ on the Quartus Prime software download page.
 +-------------------------------------------+-----------------+-----------------+-----------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary               ;
-+---------------------------------------------+-------------+
-; Resource                                    ; Usage       ;
-+---------------------------------------------+-------------+
-; Estimate of Logic utilization (ALMs needed) ; 47          ;
-;                                             ;             ;
-; Combinational ALUT usage for logic          ; 83          ;
-;     -- 7 input functions                    ; 0           ;
-;     -- 6 input functions                    ; 10          ;
-;     -- 5 input functions                    ; 8           ;
-;     -- 4 input functions                    ; 27          ;
-;     -- <=3 input functions                  ; 38          ;
-;                                             ;             ;
-; Dedicated logic registers                   ; 50          ;
-;                                             ;             ;
-; I/O pins                                    ; 35          ;
-;                                             ;             ;
-; Total DSP Blocks                            ; 0           ;
-;                                             ;             ;
-; Maximum fan-out node                        ; Reset~input ;
-; Maximum fan-out                             ; 53          ;
-; Total fan-out                               ; 522         ;
-; Average fan-out                             ; 2.57        ;
-+---------------------------------------------+-------------+
++----------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary              ;
++---------------------------------------------+------------+
+; Resource                                    ; Usage      ;
++---------------------------------------------+------------+
+; Estimate of Logic utilization (ALMs needed) ; 47         ;
+;                                             ;            ;
+; Combinational ALUT usage for logic          ; 83         ;
+;     -- 7 input functions                    ; 0          ;
+;     -- 6 input functions                    ; 10         ;
+;     -- 5 input functions                    ; 8          ;
+;     -- 4 input functions                    ; 27         ;
+;     -- <=3 input functions                  ; 38         ;
+;                                             ;            ;
+; Dedicated logic registers                   ; 50         ;
+;                                             ;            ;
+; I/O pins                                    ; 35         ;
+;                                             ;            ;
+; Total DSP Blocks                            ; 0          ;
+;                                             ;            ;
+; Maximum fan-out node                        ; KEY1~input ;
+; Maximum fan-out                             ; 53         ;
+; Total fan-out                               ; 522        ;
+; Average fan-out                             ; 2.57       ;
++---------------------------------------------+------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                       ;
-+---------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------+--------------------+--------------+
-; Compilation Hierarchy Node            ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                  ; Entity Name        ; Library Name ;
-+---------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------+--------------------+--------------+
-; |Programmable_Timer                   ; 83 (17)             ; 50 (11)                   ; 0                 ; 0          ; 35   ; 0            ; |Programmable_Timer                                  ; Programmable_Timer ; work         ;
-;    |BCD_Counter:Min_Counter|          ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_Counter:Min_Counter          ; BCD_Counter        ; work         ;
-;    |BCD_Counter:Sec1_Counter|         ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_Counter:Sec1_Counter         ; BCD_Counter        ; work         ;
-;    |BCD_Counter_Limit5:Sec10_Counter| ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_Counter_Limit5:Sec10_Counter ; BCD_Counter_Limit5 ; work         ;
-;    |BCD_to_SevenSeg:MinuteDisplay|    ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_to_SevenSeg:MinuteDisplay    ; BCD_to_SevenSeg    ; work         ;
-;    |BCD_to_SevenSeg:SecOnesDisplay|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_to_SevenSeg:SecOnesDisplay   ; BCD_to_SevenSeg    ; work         ;
-;    |BCD_to_SevenSeg:SecTensDisplay|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|BCD_to_SevenSeg:SecTensDisplay   ; BCD_to_SevenSeg    ; work         ;
-;    |ClockDivider_1Hz:Divider_inst|    ; 31 (31)             ; 27 (27)                   ; 0                 ; 0          ; 0    ; 0            ; |Programmable_Timer|ClockDivider_1Hz:Divider_inst    ; ClockDivider_1Hz   ; work         ;
-+---------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------+--------------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                      ;
++------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------+--------------------+--------------+
+; Compilation Hierarchy Node               ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                              ; Entity Name        ; Library Name ;
++------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------+--------------------+--------------+
+; |lab3_top                                ; 83 (0)              ; 50 (0)                    ; 0                 ; 0          ; 35   ; 0            ; |lab3_top                                                        ; lab3_top           ; work         ;
+;    |Programmable_Timer:U1|               ; 83 (17)             ; 50 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |lab3_top|Programmable_Timer:U1                                  ; Programmable_Timer ; work         ;
+;       |BCD_Counter:Min_Counter|          ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |lab3_top|Programmable_Timer:U1|BCD_Counter:Min_Counter          ; BCD_Counter        ; work         ;
+;       |BCD_Counter:Sec1_Counter|         ; 5 (5)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |lab3_top|Programmable_Timer:U1|BCD_Counter:Sec1_Counter         ; BCD_Counter        ; work         ;
+;       |BCD_Counter_Limit5:Sec10_Counter| ; 4 (4)               ; 4 (4)                     ; 0                 ; 0          ; 0    ; 0            ; |lab3_top|Programmable_Timer:U1|BCD_Counter_Limit5:Sec10_Counter ; BCD_Counter_Limit5 ; work         ;
+;       |BCD_to_SevenSeg:MinuteDisplay|    ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab3_top|Programmable_Timer:U1|BCD_to_SevenSeg:MinuteDisplay    ; BCD_to_SevenSeg    ; work         ;
+;       |BCD_to_SevenSeg:SecOnesDisplay|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab3_top|Programmable_Timer:U1|BCD_to_SevenSeg:SecOnesDisplay   ; BCD_to_SevenSeg    ; work         ;
+;       |BCD_to_SevenSeg:SecTensDisplay|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab3_top|Programmable_Timer:U1|BCD_to_SevenSeg:SecTensDisplay   ; BCD_to_SevenSeg    ; work         ;
+;       |ClockDivider_1Hz:Divider_inst|    ; 31 (31)             ; 27 (27)                   ; 0                 ; 0          ; 0    ; 0            ; |lab3_top|Programmable_Timer:U1|ClockDivider_1Hz:Divider_inst    ; ClockDivider_1Hz   ; work         ;
++------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------+--------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+--------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                             ;
-+---------------------------------------+----------------------------------------+
-; Register name                         ; Reason for Removal                     ;
-+---------------------------------------+----------------------------------------+
-; tgt_min[3]                            ; Merged with tgt_min[2]                 ;
-; tgt_min[2]                            ; Stuck at GND due to stuck port data_in ;
-; tgt_sec10[3]                          ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 3 ;                                        ;
-+---------------------------------------+----------------------------------------+
++--------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                   ;
++---------------------------------------+----------------------------------------------+
+; Register name                         ; Reason for Removal                           ;
++---------------------------------------+----------------------------------------------+
+; Programmable_Timer:U1|tgt_min[3]      ; Merged with Programmable_Timer:U1|tgt_min[2] ;
+; Programmable_Timer:U1|tgt_min[2]      ; Stuck at GND due to stuck port data_in       ;
+; Programmable_Timer:U1|tgt_sec10[3]    ; Stuck at GND due to stuck port data_in       ;
+; Total Number of Removed Registers = 3 ;                                              ;
++---------------------------------------+----------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -256,48 +258,48 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                   ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------+
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |Programmable_Timer|tgt_min[1]                                     ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|BCD_Counter:Min_Counter|count[0]               ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|BCD_Counter:Sec1_Counter|count[1]              ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|running                                        ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|tgt_sec10[0]                                   ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Programmable_Timer|tgt_sec1[0]                                    ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |Programmable_Timer|BCD_to_SevenSeg:MinuteDisplay|SevenSeg_out[3]  ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |Programmable_Timer|BCD_to_SevenSeg:SecTensDisplay|SevenSeg_out[5] ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |Programmable_Timer|BCD_to_SevenSeg:SecOnesDisplay|SevenSeg_out[5] ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |lab3_top|Programmable_Timer:U1|tgt_min[1]                                     ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |lab3_top|Programmable_Timer:U1|BCD_Counter:Sec1_Counter|count[1]              ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |lab3_top|Programmable_Timer:U1|BCD_Counter:Min_Counter|count[2]               ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |lab3_top|Programmable_Timer:U1|stop_count                                     ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |lab3_top|Programmable_Timer:U1|tgt_sec10[1]                                   ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |lab3_top|Programmable_Timer:U1|tgt_sec1[1]                                    ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |lab3_top|Programmable_Timer:U1|BCD_to_SevenSeg:SecOnesDisplay|SevenSeg_out[3] ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |lab3_top|Programmable_Timer:U1|BCD_to_SevenSeg:SecTensDisplay|SevenSeg_out[5] ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |lab3_top|Programmable_Timer:U1|BCD_to_SevenSeg:MinuteDisplay|SevenSeg_out[5]  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------+
-; Port Connectivity Checks: "BCD_Counter:Min_Counter" ;
-+-----------+-------+----------+----------------------+
-; Port      ; Type  ; Severity ; Details              ;
-+-----------+-------+----------+----------------------+
-; direction ; Input ; Info     ; Stuck at VCC         ;
-+-----------+-------+----------+----------------------+
++---------------------------------------------------------------------------+
+; Port Connectivity Checks: "Programmable_Timer:U1|BCD_Counter:Min_Counter" ;
++-----------+-------+----------+--------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                    ;
++-----------+-------+----------+--------------------------------------------+
+; direction ; Input ; Info     ; Stuck at VCC                               ;
++-----------+-------+----------+--------------------------------------------+
 
 
-+--------------------------------------------------------------+
-; Port Connectivity Checks: "BCD_Counter_Limit5:Sec10_Counter" ;
-+-----------+-------+----------+-------------------------------+
-; Port      ; Type  ; Severity ; Details                       ;
-+-----------+-------+----------+-------------------------------+
-; direction ; Input ; Info     ; Stuck at VCC                  ;
-+-----------+-------+----------+-------------------------------+
++------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Programmable_Timer:U1|BCD_Counter_Limit5:Sec10_Counter" ;
++-----------+-------+----------+-----------------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                             ;
++-----------+-------+----------+-----------------------------------------------------+
+; direction ; Input ; Info     ; Stuck at VCC                                        ;
++-----------+-------+----------+-----------------------------------------------------+
 
 
-+------------------------------------------------------+
-; Port Connectivity Checks: "BCD_Counter:Sec1_Counter" ;
-+-----------+-------+----------+-----------------------+
-; Port      ; Type  ; Severity ; Details               ;
-+-----------+-------+----------+-----------------------+
-; direction ; Input ; Info     ; Stuck at VCC          ;
-+-----------+-------+----------+-----------------------+
++----------------------------------------------------------------------------+
+; Port Connectivity Checks: "Programmable_Timer:U1|BCD_Counter:Sec1_Counter" ;
++-----------+-------+----------+---------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                     ;
++-----------+-------+----------+---------------------------------------------+
+; direction ; Input ; Info     ; Stuck at VCC                                ;
++-----------+-------+----------+---------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -342,10 +344,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Thu Apr 10 20:41:37 2025
+    Info: Processing started: Fri Apr 11 14:25:13 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab3_quartus -c lab3_quartus
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file /lab3tonny/lab3_vhdl_files/lab3_top.vhd
+    Info (12022): Found design unit 1: lab3_top-Behavioral File: C:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd Line: 17
+    Info (12023): Found entity 1: lab3_top File: C:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file /lab3tonny/lab3_vhdl_files/test_bcd_counter.vhd
     Info (12022): Found design unit 1: test_bcd_counter-tb File: C:/lab3Tonny/lab3_VHDL_files/Test_BCD_Counter.vhd Line: 8
     Info (12023): Found entity 1: test_bcd_counter File: C:/lab3Tonny/lab3_VHDL_files/Test_BCD_Counter.vhd Line: 5
@@ -371,22 +376,48 @@ Warning (12019): Can't analyze file -- file ../BCD_to_7Seg.vhd is missing
 Info (12021): Found 2 design units, including 1 entities, in source file /lab3tonny/lab3_vhdl_files/bcd_counter.vhd
     Info (12022): Found design unit 1: BCD_Counter-Behavioral File: C:/lab3Tonny/lab3_VHDL_files/BCD_Counter.vhd Line: 15
     Info (12023): Found entity 1: BCD_Counter File: C:/lab3Tonny/lab3_VHDL_files/BCD_Counter.vhd Line: 5
-Info (12127): Elaborating entity "Programmable_Timer" for the top level hierarchy
-Info (12128): Elaborating entity "ClockDivider_1Hz" for hierarchy "ClockDivider_1Hz:Divider_inst" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 71
-Info (12128): Elaborating entity "BCD_Counter" for hierarchy "BCD_Counter:Sec1_Counter" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 131
-Info (12128): Elaborating entity "BCD_Counter_Limit5" for hierarchy "BCD_Counter_Limit5:Sec10_Counter" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 140
-Info (12128): Elaborating entity "BCD_to_SevenSeg" for hierarchy "BCD_to_SevenSeg:MinuteDisplay" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 161
+Info (12127): Elaborating entity "lab3_top" for the top level hierarchy
+Info (12128): Elaborating entity "Programmable_Timer" for hierarchy "Programmable_Timer:U1" File: C:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd Line: 22
+Info (12128): Elaborating entity "ClockDivider_1Hz" for hierarchy "Programmable_Timer:U1|ClockDivider_1Hz:Divider_inst" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 71
+Info (12128): Elaborating entity "BCD_Counter" for hierarchy "Programmable_Timer:U1|BCD_Counter:Sec1_Counter" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 131
+Info (12128): Elaborating entity "BCD_Counter_Limit5" for hierarchy "Programmable_Timer:U1|BCD_Counter_Limit5:Sec10_Counter" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 140
+Info (12128): Elaborating entity "BCD_to_SevenSeg" for hierarchy "Programmable_Timer:U1|BCD_to_SevenSeg:MinuteDisplay" File: C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd Line: 161
 Info (286030): Timing-Driven Synthesis is running
+Warning (20013): Ignored 24 assignments for entity "DE0_CV_Default" -- entity does not exist in design
+    Warning (20014): Assignment for entity set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_PRESERVE_HIGH_SPEED_TILES ON -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IGNORE_SOURCE_FILE_CHANGES OFF -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ALWAYS_USE_QXP_NETLIST OFF -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_COLOR 16764057 -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_ASSIGNMENTS ON -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_ASSIGNMENTS REPLACE_CONFLICTING -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS UPDATE_CONFLICTING -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PIN_ASSIGNMENTS ON -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_IMPORT_PROMOTE_ASSIGNMENTS ON -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_TYPE STANDARD_PARTITION -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ALLOW_MULTIPLE_PERSONAS OFF -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ASD_REGION_ID 1 -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name CROSS_BOUNDARY_OPTIMIZATIONS OFF -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_CONSTANTS_ON_INPUTS ON -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PROPAGATE_INVERSIONS_ON_INPUTS ON -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS ON -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_INPUTS ON -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name MERGE_EQUIVALENT_BIDIRS ON -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS ON -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_EXTRACT_HARD_BLOCK_NODES ON -entity DE0_CV_Default -section_id Top was ignored
+    Warning (20014): Assignment for entity set_global_assignment -name PARTITION_ENABLE_STRICT_PRESERVATION OFF -entity DE0_CV_Default -section_id Top was ignored
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Info (21057): Implemented 120 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 13 input pins
     Info (21059): Implemented 22 output pins
     Info (21061): Implemented 85 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 2 warnings
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 27 warnings
     Info: Peak virtual memory: 4957 megabytes
-    Info: Processing ended: Thu Apr 10 20:41:44 2025
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:15
+    Info: Processing ended: Fri Apr 11 14:25:22 2025
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:21
 
 
