@@ -4,143 +4,139 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "HEX0[0]",
+					"name" : "Time_Out",
 					"strict" : false
 				},
 				{
-					"name" : "HEX0[1]",
+					"name" : "Minute_7Seg[0]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX0[2]",
+					"name" : "Minute_7Seg[1]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX0[3]",
+					"name" : "Minute_7Seg[2]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX0[4]",
+					"name" : "Minute_7Seg[3]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX0[5]",
+					"name" : "Minute_7Seg[4]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX0[6]",
+					"name" : "Minute_7Seg[5]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX1[0]",
+					"name" : "Minute_7Seg[6]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX1[1]",
+					"name" : "SecTens_7Seg[0]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX1[2]",
+					"name" : "SecTens_7Seg[1]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX1[3]",
+					"name" : "SecTens_7Seg[2]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX1[4]",
+					"name" : "SecTens_7Seg[3]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX1[5]",
+					"name" : "SecTens_7Seg[4]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX1[6]",
+					"name" : "SecTens_7Seg[5]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX2[0]",
+					"name" : "SecTens_7Seg[6]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX2[1]",
+					"name" : "SecOnes_7Seg[0]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX2[2]",
+					"name" : "SecOnes_7Seg[1]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX2[3]",
+					"name" : "SecOnes_7Seg[2]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX2[4]",
+					"name" : "SecOnes_7Seg[3]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX2[5]",
+					"name" : "SecOnes_7Seg[4]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX2[6]",
+					"name" : "SecOnes_7Seg[5]",
 					"strict" : false
 				},
 				{
-					"name" : "LEDR0",
+					"name" : "SecOnes_7Seg[6]",
 					"strict" : false
 				},
 				{
-					"name" : "KEY1",
+					"name" : "Start",
 					"strict" : false
 				},
 				{
-					"name" : "CLOCK_50",
+					"name" : "Clk",
 					"strict" : false
 				},
 				{
-					"name" : "KEY0",
+					"name" : "Data_In[3]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[3]",
+					"name" : "Data_In[2]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[1]",
+					"name" : "Data_In[7]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[2]",
+					"name" : "Data_In[6]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[7]",
+					"name" : "Data_In[0]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[6]",
+					"name" : "Data_In[1]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[0]",
+					"name" : "Data_In[8]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[8]",
+					"name" : "Data_In[9]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[9]",
+					"name" : "Data_In[4]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[4]",
-					"strict" : false
-				},
-				{
-					"name" : "SW[5]",
+					"name" : "Data_In[5]",
 					"strict" : false
 				}
 			]

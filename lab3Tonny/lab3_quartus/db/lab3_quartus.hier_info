@@ -1,42 +1,4 @@
-|lab3_top
-CLOCK_50 => programmable_timer:U1.Clk
-KEY0 => programmable_timer:U1.Start
-KEY1 => programmable_timer:U1.Reset
-SW[0] => programmable_timer:U1.Data_In[0]
-SW[1] => programmable_timer:U1.Data_In[1]
-SW[2] => programmable_timer:U1.Data_In[2]
-SW[3] => programmable_timer:U1.Data_In[3]
-SW[4] => programmable_timer:U1.Data_In[4]
-SW[5] => programmable_timer:U1.Data_In[5]
-SW[6] => programmable_timer:U1.Data_In[6]
-SW[7] => programmable_timer:U1.Data_In[7]
-SW[8] => programmable_timer:U1.Data_In[8]
-SW[9] => programmable_timer:U1.Data_In[9]
-HEX0[0] <= programmable_timer:U1.SecOnes_7Seg[0]
-HEX0[1] <= programmable_timer:U1.SecOnes_7Seg[1]
-HEX0[2] <= programmable_timer:U1.SecOnes_7Seg[2]
-HEX0[3] <= programmable_timer:U1.SecOnes_7Seg[3]
-HEX0[4] <= programmable_timer:U1.SecOnes_7Seg[4]
-HEX0[5] <= programmable_timer:U1.SecOnes_7Seg[5]
-HEX0[6] <= programmable_timer:U1.SecOnes_7Seg[6]
-HEX1[0] <= programmable_timer:U1.SecTens_7Seg[0]
-HEX1[1] <= programmable_timer:U1.SecTens_7Seg[1]
-HEX1[2] <= programmable_timer:U1.SecTens_7Seg[2]
-HEX1[3] <= programmable_timer:U1.SecTens_7Seg[3]
-HEX1[4] <= programmable_timer:U1.SecTens_7Seg[4]
-HEX1[5] <= programmable_timer:U1.SecTens_7Seg[5]
-HEX1[6] <= programmable_timer:U1.SecTens_7Seg[6]
-HEX2[0] <= programmable_timer:U1.Minute_7Seg[0]
-HEX2[1] <= programmable_timer:U1.Minute_7Seg[1]
-HEX2[2] <= programmable_timer:U1.Minute_7Seg[2]
-HEX2[3] <= programmable_timer:U1.Minute_7Seg[3]
-HEX2[4] <= programmable_timer:U1.Minute_7Seg[4]
-HEX2[5] <= programmable_timer:U1.Minute_7Seg[5]
-HEX2[6] <= programmable_timer:U1.Minute_7Seg[6]
-LEDR0 <= programmable_timer:U1.Time_Out
-
-
-|lab3_top|Programmable_Timer:U1
+|Programmable_Timer
 Clk => ClockDivider_1Hz:Divider_inst.Clk
 Clk => stop_count.CLK
 Clk => running.CLK
@@ -52,41 +14,12 @@ Clk => tgt_min[0].CLK
 Clk => tgt_min[1].CLK
 Clk => tgt_min[2].CLK
 Clk => tgt_min[3].CLK
+Clk => prev_start.CLK
 Clk => BCD_Counter:Sec1_Counter.Clk
 Clk => BCD_Counter_Limit5:Sec10_Counter.Clk
 Clk => BCD_Counter:Min_Counter.Clk
-Reset => tgt_min.OUTPUTSELECT
-Reset => tgt_min.OUTPUTSELECT
-Reset => tgt_min.OUTPUTSELECT
-Reset => tgt_min.OUTPUTSELECT
-Reset => tgt_sec10.OUTPUTSELECT
-Reset => tgt_sec10.OUTPUTSELECT
-Reset => tgt_sec10.OUTPUTSELECT
-Reset => tgt_sec10.OUTPUTSELECT
-Reset => tgt_sec1.OUTPUTSELECT
-Reset => tgt_sec1.OUTPUTSELECT
-Reset => tgt_sec1.OUTPUTSELECT
-Reset => tgt_sec1.OUTPUTSELECT
-Reset => running.OUTPUTSELECT
-Reset => stop_count.OUTPUTSELECT
-Reset => ClockDivider_1Hz:Divider_inst.Reset
-Reset => BCD_Counter:Sec1_Counter.Reset
-Reset => BCD_Counter_Limit5:Sec10_Counter.Reset
-Reset => BCD_Counter:Min_Counter.Reset
-Start => tgt_min.OUTPUTSELECT
-Start => tgt_min.OUTPUTSELECT
-Start => tgt_min.OUTPUTSELECT
-Start => tgt_min.OUTPUTSELECT
-Start => tgt_sec10.OUTPUTSELECT
-Start => tgt_sec10.OUTPUTSELECT
-Start => tgt_sec10.OUTPUTSELECT
-Start => tgt_sec10.OUTPUTSELECT
-Start => tgt_sec1.OUTPUTSELECT
-Start => tgt_sec1.OUTPUTSELECT
-Start => tgt_sec1.OUTPUTSELECT
-Start => tgt_sec1.OUTPUTSELECT
-Start => running.OUTPUTSELECT
-Start => stop_count.OUTPUTSELECT
+Start => prev_start.DATAIN
+Start => process_0.IN1
 Data_In[0] => LessThan2.IN8
 Data_In[0] => tgt_sec1.DATAA
 Data_In[1] => LessThan2.IN7
@@ -131,7 +64,7 @@ SecOnes_7Seg[5] <= BCD_to_SevenSeg:SecOnesDisplay.SevenSeg_out[5]
 SecOnes_7Seg[6] <= BCD_to_SevenSeg:SecOnesDisplay.SevenSeg_out[6]
 
 
-|lab3_top|Programmable_Timer:U1|ClockDivider_1Hz:Divider_inst
+|Programmable_Timer|ClockDivider_1Hz:Divider_inst
 Clk => pulse.CLK
 Clk => counter[0].CLK
 Clk => counter[1].CLK
@@ -189,7 +122,7 @@ Reset => counter[25].ACLR
 OneHzEn <= pulse.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|lab3_top|Programmable_Timer:U1|BCD_Counter:Sec1_Counter
+|Programmable_Timer|BCD_Counter:Sec1_Counter
 Clk => count[0].CLK
 Clk => count[1].CLK
 Clk => count[2].CLK
@@ -214,7 +147,7 @@ Q_Out[2] <= count[2].DB_MAX_OUTPUT_PORT_TYPE
 Q_Out[3] <= count[3].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|lab3_top|Programmable_Timer:U1|BCD_Counter_Limit5:Sec10_Counter
+|Programmable_Timer|BCD_Counter_Limit5:Sec10_Counter
 Clk => count[0].CLK
 Clk => count[1].CLK
 Clk => count[2].CLK
@@ -237,7 +170,7 @@ Q_Out[2] <= count[2].DB_MAX_OUTPUT_PORT_TYPE
 Q_Out[3] <= count[3].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|lab3_top|Programmable_Timer:U1|BCD_Counter:Min_Counter
+|Programmable_Timer|BCD_Counter:Min_Counter
 Clk => count[0].CLK
 Clk => count[1].CLK
 Clk => count[2].CLK
@@ -262,7 +195,7 @@ Q_Out[2] <= count[2].DB_MAX_OUTPUT_PORT_TYPE
 Q_Out[3] <= count[3].DB_MAX_OUTPUT_PORT_TYPE
 
 
-|lab3_top|Programmable_Timer:U1|BCD_to_SevenSeg:MinuteDisplay
+|Programmable_Timer|BCD_to_SevenSeg:MinuteDisplay
 BCD_digit[0] => Equal0.IN3
 BCD_digit[0] => Equal1.IN3
 BCD_digit[0] => Equal2.IN2
@@ -312,7 +245,7 @@ SevenSeg_out[5] <= SevenSeg_out.DB_MAX_OUTPUT_PORT_TYPE
 SevenSeg_out[6] <= SevenSeg_out.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|lab3_top|Programmable_Timer:U1|BCD_to_SevenSeg:SecTensDisplay
+|Programmable_Timer|BCD_to_SevenSeg:SecTensDisplay
 BCD_digit[0] => Equal0.IN3
 BCD_digit[0] => Equal1.IN3
 BCD_digit[0] => Equal2.IN2
@@ -362,7 +295,7 @@ SevenSeg_out[5] <= SevenSeg_out.DB_MAX_OUTPUT_PORT_TYPE
 SevenSeg_out[6] <= SevenSeg_out.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|lab3_top|Programmable_Timer:U1|BCD_to_SevenSeg:SecOnesDisplay
+|Programmable_Timer|BCD_to_SevenSeg:SecOnesDisplay
 BCD_digit[0] => Equal0.IN3
 BCD_digit[0] => Equal1.IN3
 BCD_digit[0] => Equal2.IN2

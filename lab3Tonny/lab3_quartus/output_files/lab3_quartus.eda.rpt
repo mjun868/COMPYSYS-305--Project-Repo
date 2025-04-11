@@ -1,5 +1,5 @@
 EDA Netlist Writer report for lab3_quartus
-Fri Apr 11 14:26:26 2025
+Fri Apr 11 16:05:40 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -37,9 +37,9 @@ on the Quartus Prime software download page.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Fri Apr 11 14:26:26 2025 ;
+; EDA Netlist Writer Status ; Successful - Fri Apr 11 16:05:40 2025 ;
 ; Revision Name             ; lab3_quartus                          ;
-; Top-level Entity Name     ; lab3_top                              ;
+; Top-level Entity Name     ; Programmable_Timer                    ;
 ; Family                    ; Cyclone V                             ;
 ; Simulation Files Creation ; Successful                            ;
 +---------------------------+---------------------------------------+
@@ -81,13 +81,13 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Fri Apr 11 14:26:26 2025
+    Info: Processing started: Fri Apr 11 16:05:39 2025
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off lab3_quartus -c lab3_quartus
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file lab3_quartus.vo in folder "C:/lab3Tonny/lab3_quartus/simulation/questa/" for EDA simulation tool
 Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4739 megabytes
-    Info: Processing ended: Fri Apr 11 14:26:27 2025
+    Info: Processing ended: Fri Apr 11 16:05:40 2025
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
