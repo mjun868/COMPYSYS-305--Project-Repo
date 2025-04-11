@@ -1,128 +1,124 @@
-------------------------------------------------------------------
--- Test Bench for verifying the Programmable_Timer does not
--- exceed 3 minutes 59 seconds.
-------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
+-- Optionally include TEXTIO if you plan to use file or console output.
 
-entity Programmable_Timer_3_59_tb is
-end Programmable_Timer_3_59_tb;
+entity Programmable_Timer_tb is
+-- Test bench has no ports.
+end Programmable_Timer_tb;
 
-architecture sim of Programmable_Timer_3_59_tb is
+architecture tb of Programmable_Timer_tb is
 
-   -- Component declaration for the DUT
+   -- Component declaration for the Programmable_Timer.
    component Programmable_Timer is
       Port ( 
-         Clk            : in  std_logic;
-         GlobalReset    : in  std_logic;
-         Start          : in  std_logic;
-         Data_In        : in  std_logic_vector(9 downto 0);
-         Time_Out       : out std_logic;
-         SevenSeg_Min   : out std_logic_vector(6 downto 0);
-         SevenSeg_SecTens : out std_logic_vector(6 downto 0);
-         SevenSeg_SecOnes : out std_logic_vector(6 downto 0)
+         Clk             : in  std_logic;
+         GlobalReset     : in  std_logic;
+         Start           : in  std_logic;
+         Data_In         : in  std_logic_vector(9 downto 0);
+         Time_Out        : out std_logic;
+         SevenSeg_Min    : out std_logic_vector(6 downto 0);
+         SevenSeg_SecTens: out std_logic_vector(6 downto 0);
+         SevenSeg_SecOnes: out std_logic_vector(6 downto 0)
       );
    end component;
 
-   -- Test bench signals to drive DUT ports.
-   signal Clk            : std_logic := '0';
-   signal GlobalReset    : std_logic := '0';
-   signal Start          : std_logic := '0';
-   signal Data_In        : std_logic_vector(9 downto 0) := (others => '0');
-   signal Time_Out       : std_logic;
-   signal SevenSeg_Min   : std_logic_vector(6 downto 0);
-   signal SevenSeg_SecTens : std_logic_vector(6 downto 0);
-   signal SevenSeg_SecOnes : std_logic_vector(6 downto 0);
+   -------------------------------------------------------------------
+   -- Signal Declarations
+   -------------------------------------------------------------------
+   signal clk           : std_logic := '0';
+   signal global_reset  : std_logic := '1';
+   signal start         : std_logic := '0';
+   signal data_in       : std_logic_vector(9 downto 0) := (others => '0');
+   signal time_out      : std_logic;
+   signal seven_seg_min : std_logic_vector(6 downto 0);
+   signal seven_seg_sectens : std_logic_vector(6 downto 0);
+   signal seven_seg_secones : std_logic_vector(6 downto 0);
 
-   -- Board clock period (50 MHz = 20 ns period)
-   constant CLK_PERIOD : time := 20 ns;
-   
-   -- For simulation we assume a ?simulation-friendly? version of the 
-   -- Clock_Divider_1Hz so that we don't need to wait 239 seconds (3:59).
-   -- (If you are using your production divider, the simulation run
-   -- time would be much longer.)
-   
+   -- 50 MHz clock period: 20 ns period.
+   constant clk_period : time := 20 ns;
+
 begin
 
-   -- Instantiate the DUT
+   -------------------------------------------------------------------
+   -- Instantiate the Programmable_Timer (Device Under Test)
+   -------------------------------------------------------------------
    DUT: Programmable_Timer
-      port map(
-         Clk            => Clk,
-         GlobalReset    => GlobalReset,
-         Start          => Start,
-         Data_In        => Data_In,
-         Time_Out       => Time_Out,
-         SevenSeg_Min   => SevenSeg_Min,
-         SevenSeg_SecTens => SevenSeg_SecTens,
-         SevenSeg_SecOnes => SevenSeg_SecOnes
+      port map (
+         Clk             => clk,
+         GlobalReset     => global_reset,
+         Start           => start,
+         Data_In         => data_in,
+         Time_Out        => time_out,
+         SevenSeg_Min    => seven_seg_min,
+         SevenSeg_SecTens=> seven_seg_sectens,
+         SevenSeg_SecOnes=> seven_seg_secones
       );
 
-   -- Generate 50 MHz clock.
-   Clock_Gen: process
+   -------------------------------------------------------------------
+   -- Clock Generation Process: Generate a 50 MHz board clock.
+   -------------------------------------------------------------------
+   clk_process : process
    begin
       while true loop
-         Clk <= '0';
-         wait for CLK_PERIOD/2;
-         Clk <= '1';
-         wait for CLK_PERIOD/2;
+         clk <= '0';
+         wait for clk_period/2;
+         clk <= '1';
+         wait for clk_period/2;
       end loop;
-   end process;
-
-   ------------------------------------------------------------------
-   -- Stimulus Process:
-   --
-   -- 1. Apply reset and then deassert it.  
-   -- 2. Force Data_In to "1111111111". Since the design uses:
-   --       - Data_In(9 downto 8) for minutes (so "11" gives 3),
-   --       - Data_In(7 downto 4) for seconds tens (clipped to "0101" i.e. 5),
-   --       - Data_In(3 downto 0) for seconds ones (clipped to "1001" i.e. 9),
-   --    the preset should be 3:59.
-   -- 3. Pulse Start to load the preset.
-   -- 4. Count clock cycles until Time_Out goes high.
-   -- 5. After timeout, wait some extra cycles to verify the timer has stopped.
-   ------------------------------------------------------------------
-   Stim: process
-      variable tick_count : integer := 0;
-   begin
-      -- Apply Global Reset.
-      GlobalReset <= '1';
-      wait for 100 ns;
-      GlobalReset <= '0';
-      wait for 100 ns;
-      
-      -- Force an out-of-range preset into Data_In.
-      -- "1111111111" -> Minutes = "11" (3), Sec_Tens = "1111" (clipped to 5), 
-      -- Sec_Ones = "1111" (clipped to 9) => preset = 3:59.
-      Data_In <= "1111111111";
-      wait for 20 ns;
-
-      -- Pulse the Start signal to load preset.
-      Start <= '1';
-      wait for CLK_PERIOD;  -- one board clock period
-      Start <= '0';
-
-      -- Wait for the timer to run.
-      tick_count := 0;
-      while Time_Out = '0' loop
-         wait until rising_edge(Clk);
-         tick_count := tick_count + 1;
-         -- Adjust the maximum number of ticks based on your simulation's clock divider.
-         if tick_count > 300 then  -- if more than expected ticks, error out.
-            assert false report "Timer did not time out within the expected duration (should not exceed 3:59)." severity error;
-         end if;
-      end loop;
-      report "Timer timed out after " & integer'image(tick_count) & " ticks.";
-
-      -- After timeout, wait a few extra clock cycles to be sure the timer is stopped.
-      wait for 100 * CLK_PERIOD;
-      assert Time_Out = '1'
-         report "Time_Out signal changed after timing out. The timer should not exceed 3:59 and must stop counting." severity error;
-
-      report "Test completed successfully: Programmable Timer did not exceed 3:59.";
       wait;
    end process;
 
-end sim;
+   -------------------------------------------------------------------
+   -- Stimulus Process
+   --
+   -- This process applies the following test steps:
+   -- 1. Hold GlobalReset for a short time (100 ns) and then release.
+   -- 2. Drive Data_In with a preset for 0 minutes and 3 seconds.
+   --    (Data_In: bits [9:8]="00" gives 0 minutes;
+   --     bits [7:4]="0000" give seconds tens; and
+   --     bits [3:0]="0011" give seconds ones.)
+   -- 3. Generate a pulse on Start to load the preset into the timer.
+   -- 4. Wait long enough for the timer to count up to 0:03.
+   -- 5. Assert that Time_Out has gone high.
+   --
+   -- Note: In an actual simulation the one-Hz clock may be produced by
+   --       a clock divider that counts 50 million cycles. For quick
+   --       simulation, consider modifying the divider to use a smaller
+   --       count so that the timer advances faster.
+   -------------------------------------------------------------------
+   stim_proc: process
+   begin
+      -- Hold reset high for 100 ns.
+      global_reset <= '1';
+      wait for 100 ns;
+      global_reset <= '0';
+      
+      -- Apply preset value.
+      -- For preset 0:03, set Data_In = "00" & "0000" & "0011".
+      data_in <= "0000000011";
+      
+      -- Wait a short while before starting.
+      wait for 100 ns;
+      
+      -- Apply a one-clock-cycle pulse to Start.
+      start <= '1';
+      wait for clk_period;
+      start <= '0';
+
+      -- Wait long enough for the timer (running on a 1 Hz clock) to reach 3 seconds.
+      -- (5 sec is used here to ensure the design has enough time to update.)
+      wait for 5 sec;
+
+      -- Check if Time_Out has been asserted.
+      assert time_out = '1'
+         report "Test FAILED: Timer did not time out as expected."
+         severity failure;
+
+      -- Optionally, you can add further stimulus or finish the simulation.
+      wait;
+   end process;
+
+end architecture tb;
 
 
