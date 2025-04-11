@@ -155,11 +155,11 @@ Abehavioral
 R1
 R2
 R3
-Z36 DEx4 work 16 clockdivider_1hz 0 22 S8W<9f>8oB8IM]3fNfPj=1
+DEx4 work 16 clockdivider_1hz 0 22 S8W<9f>8oB8IM]3fNfPj=1
 l19
 L13
-Z37 VNam`D[F;nUga8R^KjFAgz2
-Z38 !s100 FKjobFNg74DC_45`gN]4f2
+VNam`D[F;nUga8R^KjFAgz2
+!s100 FKjobFNg74DC_45`gN]4f2
 R7
 32
 R32
@@ -171,29 +171,29 @@ R35
 R12
 R13
 Elab3_top
-Z39 w1744337980
+Z36 w1744337980
 R2
 R3
 R15
-Z40 8C:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd
-Z41 FC:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd
+8C:\lab3Tonny\lab3_VHDL_files\lab3_top.vhd
+FC:\lab3Tonny\lab3_VHDL_files\lab3_top.vhd
 l0
 L4
 VRoB]0izf0>ZXFB5MJLR^M2
 !s100 34__=6MOzCFDGbRB?h02F3
 R7
 32
-Z42 !s110 1744337981
+!s110 1744342782
 !i10b 1
-Z43 !s108 1744337981.000000
-Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd|
-Z45 !s107 C:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd|
+!s108 1744342782.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\lab3Tonny\lab3_VHDL_files\lab3_top.vhd|
+!s107 C:\lab3Tonny\lab3_VHDL_files\lab3_top.vhd|
 !i113 1
 R12
 R13
 Abehavioral
 R1
-Z46 DEx4 work 18 programmable_timer 0 22 RY^N>7G3dPnTneJ`jzIQG3
+Z37 DEx4 work 18 programmable_timer 0 22 RY^N>7G3dPnTneJ`jzIQG3
 R2
 R3
 DEx4 work 8 lab3_top 0 22 RoB]0izf0>ZXFB5MJLR^M2
@@ -203,33 +203,35 @@ VhfejhZ91PbZZ;[kJ<o8=U2
 !s100 [U6c31e3L>0H;?j8m65DP0
 R7
 32
-R42
+!s110 1744337981
 !i10b 1
-R43
-R44
-R45
+!s108 1744337981.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd|
+!s107 C:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd|
 !i113 1
 R12
 R13
+FC:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd
+8C:/lab3Tonny/lab3_VHDL_files/lab3_top.vhd
 Eprogrammable_timer
-Z47 w1744271711
+w1744342744
 R1
 R2
 R3
 R15
-Z48 8C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd
-Z49 FC:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd
+8C:\lab3Tonny\lab3_VHDL_files\Programmable_Timer.vhd
+FC:\lab3Tonny\lab3_VHDL_files\Programmable_Timer.vhd
 l0
 L5
-VRY^N>7G3dPnTneJ`jzIQG3
-!s100 IbW29gjX5GMJ:Ekma3;jg0
+VidNe@6`E0FMFGoY;?:H4^3
+!s100 RGcOP``kdB]<:ZIXMHTge2
 R7
 32
-Z50 !s110 1744271719
+!s110 1744342746
 !i10b 1
-Z51 !s108 1744271719.000000
-Z52 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd|
-Z53 !s107 C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd|
+!s108 1744342746.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\lab3Tonny\lab3_VHDL_files\Programmable_Timer.vhd|
+!s107 C:\lab3Tonny\lab3_VHDL_files\Programmable_Timer.vhd|
 !i113 1
 R12
 R13
@@ -237,23 +239,26 @@ Abehavioral
 R1
 R2
 R3
-R46
+R37
 l68
 L18
 VI>fh]3ak@eQZ:gEhbcVNH2
 !s100 o2kZ@jYiDRZK^E6U=UP0Q0
 R7
 32
-R50
+!s110 1744271719
 !i10b 1
-R51
-R52
-R53
+!s108 1744271719.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd|
+!s107 C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd|
 !i113 1
 R12
 R13
+FC:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd
+w1744271711
+8C:/lab3Tonny/lab3_VHDL_files/Programmable_Timer.vhd
 Eseq_counter
-Z54 w1744255130
+Z38 w1744255130
 R1
 R2
 R3
@@ -266,9 +271,9 @@ Vo^P?hTI]jffFj0ik3eXo:3
 !s100 9RiT1mZz2mCCJ_IYNYB`40
 R7
 32
-Z55 !s110 1744255133
+Z39 !s110 1744255133
 !i10b 1
-Z56 !s108 1744255133.000000
+Z40 !s108 1744255133.000000
 R10
 R11
 !i113 1
@@ -285,33 +290,33 @@ VP4AFXo0d@:IJF^JPQeeH10
 !s100 F6T`gA6UG@bNgREYFomje3
 R7
 32
-R55
+R39
 !i10b 1
-R56
+R40
 R10
 R11
 !i113 1
 R12
 R13
 Etb_clockdivider_1hz
-Z57 w1744263819
+Z41 w1744263819
 R1
 R2
 R3
-Z58 dC:/lab3/lab3_VHDL_files
-Z59 8C:/lab3/lab3_VHDL_files/clockDivider_testbench.vhd
-Z60 FC:/lab3/lab3_VHDL_files/clockDivider_testbench.vhd
+Z42 dC:/lab3/lab3_VHDL_files
+Z43 8C:/lab3/lab3_VHDL_files/clockDivider_testbench.vhd
+Z44 FC:/lab3/lab3_VHDL_files/clockDivider_testbench.vhd
 l0
 L5
 VDci::N]Ql_fzXiPihz?QW3
 !s100 =d;:FBLb_h:XZ]2_1kh1J2
 R7
 32
-Z61 !s110 1744263824
+Z45 !s110 1744263824
 !i10b 1
-Z62 !s108 1744263824.000000
-Z63 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/lab3/lab3_VHDL_files/clockDivider_testbench.vhd|
-Z64 !s107 C:/lab3/lab3_VHDL_files/clockDivider_testbench.vhd|
+Z46 !s108 1744263824.000000
+Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/lab3/lab3_VHDL_files/clockDivider_testbench.vhd|
+Z48 !s107 C:/lab3/lab3_VHDL_files/clockDivider_testbench.vhd|
 !i113 1
 R12
 R13
@@ -326,33 +331,33 @@ VgB5PhRmKZB;gV?d]dK1fe3
 !s100 ;IP9DoNLMgE]Nkf]WFNA41
 R7
 32
-R61
+R45
 !i10b 1
-R62
-R63
-R64
+R46
+R47
+R48
 !i113 1
 R12
 R13
 Etb_programmable_timer
-Z65 w1744270275
+Z49 w1744270275
 R1
 R2
 R3
 R15
-Z66 8C:/lab3Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd
-Z67 FC:/lab3Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd
+Z50 8C:/lab3Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd
+Z51 FC:/lab3Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd
 l0
 L5
 V^M0[GOIa=oSd1A`RjInim3
 !s100 _IgPnZk?gdA@XAIgg4PYG1
 R7
 32
-Z68 !s110 1744270276
+Z52 !s110 1744270276
 !i10b 1
-Z69 !s108 1744270276.000000
-Z70 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/lab3Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd|
-Z71 !s107 C:/lab3Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd|
+Z53 !s108 1744270276.000000
+Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/lab3Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd|
+Z55 !s107 C:/lab3Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd|
 !i113 1
 R12
 R13
@@ -367,33 +372,33 @@ ViHm7Vjl=[V6_zzl@hVkAi2
 !s100 ;Y>4C4j8[?FigoN;@hG9c1
 R7
 32
-R68
+R52
 !i10b 1
-R69
-R70
-R71
+R53
+R54
+R55
 !i113 1
 R12
 R13
 Etest_bcd_counter
-Z72 w1744255410
+Z56 w1744255410
 R1
 R2
 R3
 R4
-Z73 8C:\Users\cta10\OneDrive\Desktop\part3\CS305\lab3\lab3_VHDL_files\Test_BCD_Counter.vhd
-Z74 FC:\Users\cta10\OneDrive\Desktop\part3\CS305\lab3\lab3_VHDL_files\Test_BCD_Counter.vhd
+Z57 8C:\Users\cta10\OneDrive\Desktop\part3\CS305\lab3\lab3_VHDL_files\Test_BCD_Counter.vhd
+Z58 FC:\Users\cta10\OneDrive\Desktop\part3\CS305\lab3\lab3_VHDL_files\Test_BCD_Counter.vhd
 l0
 L5
 Vz[EF:mhej71:<;ODajiVC3
 !s100 n1>h25@Pd:8WDW<Y9Q1J?1
 R7
 32
-Z75 !s110 1744255625
+Z59 !s110 1744255625
 !i10b 1
-Z76 !s108 1744255625.000000
-Z77 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\cta10\OneDrive\Desktop\part3\CS305\lab3\lab3_VHDL_files\Test_BCD_Counter.vhd|
-Z78 !s107 C:\Users\cta10\OneDrive\Desktop\part3\CS305\lab3\lab3_VHDL_files\Test_BCD_Counter.vhd|
+Z60 !s108 1744255625.000000
+Z61 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\cta10\OneDrive\Desktop\part3\CS305\lab3\lab3_VHDL_files\Test_BCD_Counter.vhd|
+Z62 !s107 C:\Users\cta10\OneDrive\Desktop\part3\CS305\lab3\lab3_VHDL_files\Test_BCD_Counter.vhd|
 !i113 1
 R12
 R13
@@ -408,32 +413,32 @@ V3?:<z4c0?VX@L1V79eRJ80
 !s100 Uz>8Pn]Wf[4I:>Z8oeNi43
 R7
 32
-R75
+R59
 !i10b 1
-R76
-R77
-R78
+R60
+R61
+R62
 !i113 1
 R12
 R13
 Etest_seq_counter
-Z79 w1744255210
+Z63 w1744255210
 R2
 R3
 R4
-R73
-R74
+R57
+R58
 l0
 L4
 VJAb7QVhWd^^h1l3K8fZDQ3
 !s100 JoNX<Y_VOYDOPOo53@Ta10
 R7
 32
-Z80 !s110 1744255214
+Z64 !s110 1744255214
 !i10b 1
-Z81 !s108 1744255214.000000
-R77
-R78
+Z65 !s108 1744255214.000000
+R61
+R62
 !i113 1
 R12
 R13
@@ -447,11 +452,11 @@ VK;i62OM33K@9=c5JiJBOh1
 !s100 lIDgD_6XHbEclPJV6dD]`1
 R7
 32
-R80
+R64
 !i10b 1
-R81
-R77
-R78
+R65
+R61
+R62
 !i113 1
 R12
 R13
