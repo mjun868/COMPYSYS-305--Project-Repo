@@ -1,9 +1,9 @@
 m255
 K4
 z2
+!s11e MIXED_VERSIONS
 Z0 !s99 nomlopt
 R0
-!s11e vcom 2022.1 2022.01, Jan 29 2022
 13
 !s112 1.1
 !i10d 8192
@@ -36,131 +36,411 @@ n@_opt1
 R5
 R1
 Ebcd_counter
-Z6 w1743734187
-Z7 DPx4 ieee 11 numeric_std 0 22 F8@]:i<mFK7<TjIzKcTGi0
-Z8 DPx3 std 6 textio 0 22 LS[?81n5ZHWBI9JkBZTV<2
-Z9 DPx4 ieee 14 std_logic_1164 0 22 6<US`=mgl_dFdCEFF7J=m1
-!i122 13
-R1
-Z10 8C:/Users/mjun868/Documents/COMPSYS 305/BCD_Counter.vhd
-Z11 FC:/Users/mjun868/Documents/COMPSYS 305/BCD_Counter.vhd
+Z6 w1744327524
+Z7 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z8 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z9 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 47
+Z10 dC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo
+Z11 8C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_Counter.vhd
+Z12 FC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_Counter.vhd
 l0
-L6 1
-VXeE_Un7IiVN^Q:^NRS15g3
-!s100 P?<?]>LUlYV?k6X]7fCXN1
-Z12 OL;C;2022.1;75
+L5 1
+ViKG`>V4]M`Ha=EBXji<PA2
+!s100 LPO]aoW>^mU:=HL]SI8TU0
+Z13 OV;C;2020.1;71
 32
-Z13 !s110 1743734192
+Z14 !s110 1744340995
 !i10b 1
-Z14 !s108 1743734192.000000
-Z15 !s90 -reportprogress|300|-work|work|C:/Users/mjun868/Documents/COMPSYS 305/BCD_Counter.vhd|
-Z16 !s107 C:/Users/mjun868/Documents/COMPSYS 305/BCD_Counter.vhd|
-!i113 0
-Z17 o-work work
-Z18 tExplicit 1 CvgOpt 0
+Z15 !s108 1744340995.000000
+Z16 !s90 -reportprogress|300|-work|work|C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_Counter.vhd|
+Z17 !s107 C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_Counter.vhd|
+!i113 1
+Z18 o-work work
+Z19 tExplicit 1 CvgOpt 0
 Abehavioral
 R7
 R8
 R9
-Z19 DEx4 work 11 bcd_counter 0 22 XeE_Un7IiVN^Q:^NRS15g3
-!i122 13
-l14
-Z20 L12 41
-ViCBlUViM^?6>TV7f;1fL`2
-!s100 _iLEaVUa6ENF:lPQJmWkH1
-R12
-32
+DEx4 work 11 bcd_counter 0 22 iKG`>V4]M`Ha=EBXji<PA2
+!i122 47
+l17
+L15 34
+VkUonLKYNJReT=P4<PQ?Q>2
+!s100 oFGVnnh`XBQ`hU6gHRO`?2
 R13
-!i10b 1
+32
 R14
+!i10b 1
 R15
 R16
-!i113 0
 R17
+!i113 1
 R18
-Etb_bcd_counter
-Z21 w1743733134
+R19
+Ebcd_counter_limit5
+R6
 R7
 R8
 R9
+!i122 48
+R10
+Z20 8C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_Counter_Limit5.vhd
+Z21 FC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_Counter_Limit5.vhd
+l0
+L5 1
+V30zYKHW519=A3?oFXm;N<0
+!s100 YVTG[jm8E7FVf`ecRT3bH1
+R13
+32
+Z22 !s110 1744340996
+!i10b 1
+R15
+Z23 !s90 -reportprogress|300|-work|work|C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_Counter_Limit5.vhd|
+Z24 !s107 C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_Counter_Limit5.vhd|
+!i113 1
+R18
+R19
+Abehavioral
+R7
+R8
+R9
+DEx4 work 18 bcd_counter_limit5 0 22 30zYKHW519=A3?oFXm;N<0
+!i122 48
+l17
+L15 31
+VkQPIS9>H8gNJCbc]4UlZD3
+!s100 1f2H];f;BV<BkF>Of`Q?o0
+R13
+32
+R22
+!i10b 1
+R15
+R23
+R24
+!i113 1
+R18
+R19
+Ebcd_to_sevenseg
+R6
+R8
+R9
+!i122 49
+R10
+Z25 8C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_to_7Seg.vhd
+Z26 FC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_to_7Seg.vhd
+l0
+L7 1
+V7bY1:N`AGbLAiX4>:8?ol3
+!s100 Y<RKO6oRmA6hZ4E3[T>]O3
+R13
+32
+R22
+!i10b 1
+Z27 !s108 1744340996.000000
+Z28 !s90 -reportprogress|300|-work|work|C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_to_7Seg.vhd|
+Z29 !s107 C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/BCD_to_7Seg.vhd|
+!i113 1
+R18
+R19
+Aarc1
+R8
+R9
+DEx4 work 15 bcd_to_sevenseg 0 22 7bY1:N`AGbLAiX4>:8?ol3
+!i122 49
+l13
+L12 14
+V6oDRL<BJUYF>GY];3UncB1
+!s100 NUT8ziEAK?Z7EIG;A6Z1[3
+R13
+32
+R22
+!i10b 1
+R27
+R28
+R29
+!i113 1
+R18
+R19
+Eclockdivider_1hz
+R6
+R7
+R8
+R9
+!i122 50
+R10
+Z30 8C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/ClockDivider_1Hz.vhd
+Z31 FC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/ClockDivider_1Hz.vhd
+l0
+L5 1
+V?fhmajOWNdD;LC@6>>WdS0
+!s100 a0ZAM6lCU5>j@e9iO^eEd0
+R13
+32
+R22
+!i10b 1
+R27
+Z32 !s90 -reportprogress|300|-work|work|C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/ClockDivider_1Hz.vhd|
+Z33 !s107 C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/ClockDivider_1Hz.vhd|
+!i113 1
+R18
+R19
+Abehavioral
+R7
+R8
+R9
+DEx4 work 16 clockdivider_1hz 0 22 ?fhmajOWNdD;LC@6>>WdS0
+!i122 50
+l19
+L13 27
+V:?`0`LE[30Bi0Sf8C9YDB3
+!s100 FKjobFNg74DC_45`gN]4f2
+R13
+32
+R22
+!i10b 1
+R27
+R32
+R33
+!i113 1
+R18
+R19
+Eprogrammable_timer
+R6
+R7
+R8
+R9
+!i122 52
+R10
+Z34 8C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/Programmable_Timer.vhd
+Z35 FC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/Programmable_Timer.vhd
+l0
+L5 1
+V19_923fg]QQWK9U;U9CU73
+!s100 IbW29gjX5GMJ:Ekma3;jg0
+R13
+32
+R22
+!i10b 1
+R27
+Z36 !s90 -reportprogress|300|-work|work|C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/Programmable_Timer.vhd|
+Z37 !s107 C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/Programmable_Timer.vhd|
+!i113 1
+R18
+R19
+Abehavioral
+R7
+R8
+R9
+DEx4 work 18 programmable_timer 0 22 19_923fg]QQWK9U;U9CU73
+!i122 52
+l68
+L18 165
+V]1_iPFY?VJGJP>2AmF@in2
+!s100 o2kZ@jYiDRZK^E6U=UP0Q0
+R13
+32
+R22
+!i10b 1
+R27
+R36
+R37
+!i113 1
+R18
+R19
+Etb_bcd_counter
+Z38 w1743733134
+Z39 DPx4 ieee 11 numeric_std 0 22 F8@]:i<mFK7<TjIzKcTGi0
+Z40 DPx3 std 6 textio 0 22 LS[?81n5ZHWBI9JkBZTV<2
+Z41 DPx4 ieee 14 std_logic_1164 0 22 6<US`=mgl_dFdCEFF7J=m1
 !i122 10
 R1
-Z22 8C:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd
-Z23 FC:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd
+Z42 8C:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd
+Z43 FC:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd
 l0
 L5 1
 V_KHbVcz2OnDTMf9f7be@R0
 !s100 lSd7gPXigCI=lNaPn?A;O3
-R12
+Z44 OL;C;2022.1;75
 32
-Z24 !s110 1743733177
+Z45 !s110 1743733177
 !i10b 1
-Z25 !s108 1743733177.000000
-Z26 !s90 -reportprogress|300|-work|work|C:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd|
-Z27 !s107 C:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd|
+Z46 !s108 1743733177.000000
+Z47 !s90 -reportprogress|300|-work|work|C:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd|
+Z48 !s107 C:/Users/mjun868/Documents/COMPSYS 305/tb_BCD_Counter.vhd|
 !i113 0
-R17
 R18
+R19
 Abehavior
-R7
-R8
-R9
+R39
+R40
+R41
 DEx4 work 14 tb_bcd_counter 0 22 _KHbVcz2OnDTMf9f7be@R0
 !i122 10
 l28
 L8 84
 VBF`dY:G07LFHRQ[3]Z`jR2
 !s100 f@]^`AaE=U?SS93^Zj@YO2
-R12
+R44
 32
-R24
+R45
 !i10b 1
-R25
-R26
-R27
+R46
+R47
+R48
 !i113 0
-R17
 R18
-Etest_bcd_counter
-Z28 w1743734110
+R19
+Etb_clockdivider_1hz
+R6
 R7
 R8
 R9
-!i122 12
-R1
-R22
-R23
+!i122 51
+R10
+Z49 8C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/clockDivider_testbench.vhd
+Z50 FC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/clockDivider_testbench.vhd
 l0
-L6 1
-VW<7d_54A;b<bZidBZL:Im3
-!s100 zG=llPS`h?LSg9cKm<OX^1
-R12
+L5 1
+V8NYiG^mjbQHRNl;6R9<O@2
+!s100 =d;:FBLb_h:XZ]2_1kh1J2
+R13
 32
-Z29 !s110 1743734118
+R22
 !i10b 1
-Z30 !s108 1743734118.000000
-R26
 R27
-!i113 0
-R17
+Z51 !s90 -reportprogress|300|-work|work|C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/clockDivider_testbench.vhd|
+Z52 !s107 C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/clockDivider_testbench.vhd|
+!i113 1
 R18
-Atestbench
+R19
+Atest
 R7
 R8
 R9
+DEx4 work 19 tb_clockdivider_1hz 0 22 8NYiG^mjbQHRNl;6R9<O@2
+!i122 51
+l24
+L8 53
+VM53Tl9;od@jf]XjMKedi=2
+!s100 ;IP9DoNLMgE]Nkf]WFNA41
+R13
+32
+R22
+!i10b 1
+R27
+R51
+R52
+!i113 1
+R18
+R19
+Etb_programmable_timer
+Z53 w1744340464
+R7
+R8
+R9
+!i122 53
+R10
+Z54 8C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd
+Z55 FC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd
+l0
+L5 1
+VVRV4DTARDk1CLQG`8LHe_2
+!s100 _IgPnZk?gdA@XAIgg4PYG1
+R13
+32
+R22
+!i10b 1
+R27
+Z56 !s90 -reportprogress|300|-work|work|C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd|
+Z57 !s107 C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/TB_Programmable_Timer.vhd|
+!i113 1
+R18
+R19
+Atest
+R7
+R8
+R9
+DEx4 work 21 tb_programmable_timer 0 22 VRV4DTARDk1CLQG`8LHe_2
+!i122 53
+l33
+L8 73
+V1FlIN?oPcO0=Bi5b4SzS[0
+!s100 HR7fWGh@^I2AHLE<AcC[53
+R13
+32
+R22
+!i10b 1
+R27
+R56
+R57
+!i113 1
+R18
+R19
+Etest_bcd_counter
+R6
+R7
+R8
+R9
+!i122 54
+R10
+Z58 8C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/Test_BCD_Counter.vhd
+Z59 FC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/Test_BCD_Counter.vhd
+l0
+L5 1
+V08RP:=h]E@1f7>hMiH2hl0
+!s100 n1>h25@Pd:8WDW<Y9Q1J?1
+R13
+32
+R22
+!i10b 1
+R27
+Z60 !s90 -reportprogress|300|-work|work|C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/Test_BCD_Counter.vhd|
+Z61 !s107 C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/lab3- Tonny/lab3_VHDL_files/Test_BCD_Counter.vhd|
+!i113 1
+R18
+R19
+Atb
+R7
+R8
+R9
+Z62 DEx4 work 16 test_bcd_counter 0 22 08RP:=h]E@1f7>hMiH2hl0
+!i122 54
+l27
+Z63 L8 70
+Z64 Vb=4L:QDBhV[JDHIJ<>im33
+Z65 !s100 Uz>8Pn]Wf[4I:>Z8oeNi43
+R13
+32
+R22
+!i10b 1
+R27
+R60
+R61
+!i113 1
+R18
+R19
+Atestbench
+R39
+R40
+R41
 DEx4 work 16 test_bcd_counter 0 22 W<7d_54A;b<bZidBZL:Im3
 !i122 12
 l18
 L9 64
 V7@PUm1F]DjUA>C:M1AeMG1
 !s100 5[?FK7UN]l`9Y_3An8H2X3
-R12
+R44
 32
-R29
+!s110 1743734118
 !i10b 1
-R30
-R26
-R27
+!s108 1743734118.000000
+R47
+R48
 !i113 0
-R17
 R18
+R19
+R1
+R43
+w1743734110
+R42
