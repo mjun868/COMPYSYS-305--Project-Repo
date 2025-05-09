@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Fri May  9 16:01:45 2025
+Analysis & Synthesis Status : Successful - Fri May  9 17:49:32 2025
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : de0_cv_top
 Top-level Entity Name : de0_cv_top
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 109
+Total registers : 175
 Total pins : 20
 Total virtual pins : 0
 Total block memory bits : 0

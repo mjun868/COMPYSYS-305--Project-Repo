@@ -76,11 +76,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "CLOCK_50",
+					"name" : "reset_n",
 					"strict" : false
 				},
 				{
-					"name" : "reset_n",
+					"name" : "CLOCK_50",
 					"strict" : false
 				}
 			]
