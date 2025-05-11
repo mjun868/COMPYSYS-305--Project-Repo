@@ -131,6 +131,7 @@ begin
       pb2          => PB2,  -- direct PB2 or similarly debounced
       clk          => clk25,
       vert_sync    => vsync_sig,
+		left_mouse_click => left_btn,
       pixel_row    => pix_row,
       pixel_column => pix_col,
       red          => color_r,

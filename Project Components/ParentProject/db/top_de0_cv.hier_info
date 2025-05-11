@@ -208,6 +208,7 @@ vert_sync => ball_y_motion[6].CLK
 vert_sync => ball_y_motion[7].CLK
 vert_sync => ball_y_motion[8].CLK
 vert_sync => ball_y_motion[9].CLK
+left_mouse_click => Free_Fall.IN1
 pixel_row[0] => Add2.IN20
 pixel_row[0] => LessThan3.IN22
 pixel_row[1] => Add2.IN19
