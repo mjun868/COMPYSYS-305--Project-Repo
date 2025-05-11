@@ -1,5 +1,5 @@
 Analysis & Synthesis report for FlappyQuartusWorkspace
-Sun May 11 13:18:34 2025
+Sun May 11 14:45:09 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -18,11 +18,10 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
  10. General Register Statistics
  11. Inverted Register Statistics
  12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Port Connectivity Checks: "falling_bird:u_bird"
- 14. Port Connectivity Checks: "MOUSE:u_mouse"
- 15. Post-Synthesis Netlist Statistics for Top Partition
- 16. Elapsed Time Per Partition
- 17. Analysis & Synthesis Messages
+ 13. Port Connectivity Checks: "MOUSE:u_mouse"
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
 
 
 
@@ -49,13 +48,13 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun May 11 13:18:34 2025           ;
+; Analysis & Synthesis Status     ; Successful - Sun May 11 14:45:09 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; FlappyQuartusWorkspace                          ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 200                                             ;
+; Total registers                 ; 175                                             ;
 ; Total pins                      ; 20                                              ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 0                                               ;
@@ -169,21 +168,21 @@ on the Quartus Prime software download page.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-16        ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                  ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                           ; Library ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------+---------+
-; vga_sync.vhd                     ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/vga_sync.vhd     ;         ;
-; mouse.vhd                        ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/mouse.vhd        ;         ;
-; falling_bird.vhd                 ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/falling_bird.vhd ;         ;
-; de0_cv_top.vhd                   ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd   ;         ;
-; bird_bitmap.vhd                  ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/bird_bitmap.vhd  ;         ;
-+----------------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------+---------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                 ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                          ; Library ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------+---------+
+; bouncy_ball.vhd                  ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/bouncy_ball.vhd ;         ;
+; vga_sync.vhd                     ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/vga_sync.vhd    ;         ;
+; mouse.vhd                        ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/mouse.vhd       ;         ;
+; de0_cv_top.vhd                   ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd  ;         ;
++----------------------------------+-----------------+-----------------+---------------------------------------------------------------------------------------+---------+
 
 
 +------------------------------------------------------------------------------+
@@ -191,16 +190,16 @@ on the Quartus Prime software download page.
 +---------------------------------------------+--------------------------------+
 ; Resource                                    ; Usage                          ;
 +---------------------------------------------+--------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 176                            ;
+; Estimate of Logic utilization (ALMs needed) ; 130                            ;
 ;                                             ;                                ;
-; Combinational ALUT usage for logic          ; 289                            ;
-;     -- 7 input functions                    ; 4                              ;
-;     -- 6 input functions                    ; 51                             ;
-;     -- 5 input functions                    ; 41                             ;
-;     -- 4 input functions                    ; 32                             ;
-;     -- <=3 input functions                  ; 161                            ;
+; Combinational ALUT usage for logic          ; 209                            ;
+;     -- 7 input functions                    ; 2                              ;
+;     -- 6 input functions                    ; 42                             ;
+;     -- 5 input functions                    ; 33                             ;
+;     -- 4 input functions                    ; 23                             ;
+;     -- <=3 input functions                  ; 109                            ;
 ;                                             ;                                ;
-; Dedicated logic registers                   ; 200                            ;
+; Dedicated logic registers                   ; 175                            ;
 ;                                             ;                                ;
 ; I/O pins                                    ; 20                             ;
 ;                                             ;                                ;
@@ -208,21 +207,21 @@ on the Quartus Prime software download page.
 ;                                             ;                                ;
 ; Maximum fan-out node                        ; MOUSE:u_mouse|MOUSE_CLK_FILTER ;
 ; Maximum fan-out                             ; 89                             ;
-; Total fan-out                               ; 1717                           ;
-; Average fan-out                             ; 3.23                           ;
+; Total fan-out                               ; 1390                           ;
+; Average fan-out                             ; 3.26                           ;
 +---------------------------------------------+--------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                 ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+--------------+--------------+
-; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name             ; Entity Name  ; Library Name ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+--------------+--------------+
-; |de0_cv_top                ; 289 (11)            ; 200 (1)                   ; 0                 ; 0          ; 20   ; 0            ; |de0_cv_top                     ; de0_cv_top   ; work         ;
-;    |MOUSE:u_mouse|         ; 106 (106)           ; 116 (116)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|MOUSE:u_mouse       ; MOUSE        ; work         ;
-;    |VGA_SYNC:u_vga_sync|   ; 42 (42)             ; 48 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync ; VGA_SYNC     ; work         ;
-;    |falling_bird:u_bird|   ; 130 (130)           ; 35 (35)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|falling_bird:u_bird ; falling_bird ; work         ;
-+----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+--------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name             ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
+; |de0_cv_top                ; 209 (11)            ; 175 (1)                   ; 0                 ; 0          ; 20   ; 0            ; |de0_cv_top                     ; de0_cv_top  ; work         ;
+;    |MOUSE:u_mouse|         ; 106 (106)           ; 116 (116)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|MOUSE:u_mouse       ; MOUSE       ; work         ;
+;    |VGA_SYNC:u_vga_sync|   ; 41 (41)             ; 48 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync ; VGA_SYNC    ; work         ;
+;    |bouncy_ball:u_ball|    ; 51 (51)             ; 10 (10)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball  ; bouncy_ball ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -241,20 +240,24 @@ Encoding Type:  One-Hot
 +-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
 
 
-+---------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                              ;
-+----------------------------------------+----------------------------------------+
-; Register name                          ; Reason for Removal                     ;
-+----------------------------------------+----------------------------------------+
-; MOUSE:u_mouse|CHAROUT[4..7]            ; Stuck at VCC due to stuck port data_in ;
-; MOUSE:u_mouse|CHAROUT[3]               ; Stuck at GND due to stuck port data_in ;
-; MOUSE:u_mouse|CHAROUT[2]               ; Stuck at VCC due to stuck port data_in ;
-; MOUSE:u_mouse|CHAROUT[0,1]             ; Stuck at GND due to stuck port data_in ;
-; MOUSE:u_mouse|SHIFTOUT[10]             ; Stuck at VCC due to stuck port data_in ;
-; MOUSE:u_mouse|cursor_row[9]            ; Stuck at GND due to stuck port data_in ;
-; VGA_SYNC:u_vga_sync|pixel_row[9]       ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 11 ;                                        ;
-+----------------------------------------+----------------------------------------+
++------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                       ;
++----------------------------------------+-------------------------------------------------+
+; Register name                          ; Reason for Removal                              ;
++----------------------------------------+-------------------------------------------------+
+; MOUSE:u_mouse|CHAROUT[4..7]            ; Stuck at VCC due to stuck port data_in          ;
+; MOUSE:u_mouse|CHAROUT[3]               ; Stuck at GND due to stuck port data_in          ;
+; MOUSE:u_mouse|CHAROUT[2]               ; Stuck at VCC due to stuck port data_in          ;
+; MOUSE:u_mouse|CHAROUT[0,1]             ; Stuck at GND due to stuck port data_in          ;
+; MOUSE:u_mouse|SHIFTOUT[10]             ; Stuck at VCC due to stuck port data_in          ;
+; bouncy_ball:u_ball|ball_y_motion[3..9] ; Merged with bouncy_ball:u_ball|ball_y_motion[2] ;
+; bouncy_ball:u_ball|ball_y_motion[0]    ; Stuck at GND due to stuck port data_in          ;
+; bouncy_ball:u_ball|ball_y_pos[0]       ; Stuck at GND due to stuck port data_in          ;
+; bouncy_ball:u_ball|ball_y_motion[1]    ; Stuck at VCC due to stuck port data_in          ;
+; MOUSE:u_mouse|cursor_row[9]            ; Stuck at GND due to stuck port data_in          ;
+; VGA_SYNC:u_vga_sync|pixel_row[9]       ; Stuck at GND due to stuck port data_in          ;
+; Total Number of Removed Registers = 21 ;                                                 ;
++----------------------------------------+-------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -262,12 +265,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 200   ;
+; Total registers                              ; 175   ;
 ; Number of registers using Synchronous Clear  ; 28    ;
 ; Number of registers using Synchronous Load   ; 20    ;
 ; Number of registers using Asynchronous Clear ; 42    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 160   ;
+; Number of registers using Clock Enable       ; 126   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -277,43 +280,29 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; falling_bird:u_bird|bird_y_pos[3]      ; 5       ;
-; falling_bird:u_bird|bird_y_pos[6]      ; 5       ;
-; falling_bird:u_bird|bird_y_pos[7]      ; 5       ;
 ; MOUSE:u_mouse|send_char                ; 3       ;
 ; MOUSE:u_mouse|SHIFTOUT[3]              ; 1       ;
 ; MOUSE:u_mouse|SHIFTOUT[5]              ; 1       ;
 ; MOUSE:u_mouse|SHIFTOUT[6]              ; 1       ;
 ; MOUSE:u_mouse|SHIFTOUT[7]              ; 1       ;
 ; MOUSE:u_mouse|SHIFTOUT[8]              ; 1       ;
-; Total number of inverted registers = 9 ;         ;
+; Total number of inverted registers = 6 ;         ;
 +----------------------------------------+---------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                               ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
-; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|new_cursor_column[7] ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|v_count[4]     ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[8]        ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[7]        ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[1]     ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[6]     ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|final_b[0]                         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "falling_bird:u_bird"                                                                       ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; red[3..1]   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; green[3..1] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; blue[3..1]  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|new_cursor_column[0]  ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|v_count[6]      ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |de0_cv_top|bouncy_ball:u_ball|ball_y_motion[2] ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[1]         ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[4]         ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[0]      ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[6]      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------+
@@ -331,36 +320,37 @@ Encoding Type:  One-Hot
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 200                         ;
+; arriav_ff             ; 175                         ;
 ;     CLR               ; 9                           ;
-;     ENA               ; 89                          ;
+;     ENA               ; 55                          ;
 ;     ENA CLR           ; 33                          ;
 ;     ENA SCLR          ; 18                          ;
 ;     ENA SLD           ; 20                          ;
 ;     SCLR              ; 10                          ;
-;     plain             ; 21                          ;
+;     plain             ; 30                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 289                         ;
-;     arith             ; 100                         ;
-;         1 data inputs ; 87                          ;
-;         2 data inputs ; 13                          ;
-;     extend            ; 4                           ;
-;         7 data inputs ; 4                           ;
-;     normal            ; 170                         ;
+; arriav_lcell_comb     ; 209                         ;
+;     arith             ; 63                          ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 10                          ;
-;         2 data inputs ; 16                          ;
-;         3 data inputs ; 19                          ;
-;         4 data inputs ; 32                          ;
-;         5 data inputs ; 41                          ;
-;         6 data inputs ; 51                          ;
-;     shared            ; 15                          ;
-;         1 data inputs ; 2                           ;
-;         2 data inputs ; 13                          ;
+;         1 data inputs ; 41                          ;
+;         2 data inputs ; 21                          ;
+;     extend            ; 2                           ;
+;         7 data inputs ; 2                           ;
+;     normal            ; 134                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 6                           ;
+;         2 data inputs ; 12                          ;
+;         3 data inputs ; 17                          ;
+;         4 data inputs ; 23                          ;
+;         5 data inputs ; 33                          ;
+;         6 data inputs ; 42                          ;
+;     shared            ; 10                          ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 9                           ;
 ; boundary_port         ; 20                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 6.40                        ;
-; Average LUT depth     ; 2.79                        ;
+; Max LUT depth         ; 4.30                        ;
+; Average LUT depth     ; 2.19                        ;
 +-----------------------+-----------------------------+
 
 
@@ -379,7 +369,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Sun May 11 13:18:15 2025
+    Info: Processing started: Sun May 11 14:44:59 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off FlappyQuartusWorkspace -c FlappyQuartusWorkspace
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
@@ -396,6 +386,9 @@ Warning (12019): Can't analyze file -- file V/vga_controller.v is missing
 Warning (12019): Can't analyze file -- file V/SEG7_LUT_6.v is missing
 Warning (12019): Can't analyze file -- file V/SEG7_LUT.v is missing
 Warning (12019): Can't analyze file -- file V/Reset_Delay.v is missing
+Info (12021): Found 2 design units, including 1 entities, in source file bouncy_ball.vhd
+    Info (12022): Found design unit 1: bouncy_ball-behavior File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/bouncy_ball.vhd Line: 14
+    Info (12023): Found entity 1: bouncy_ball File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/bouncy_ball.vhd Line: 7
 Info (12021): Found 2 design units, including 1 entities, in source file vga_sync.vhd
     Info (12022): Found design unit 1: VGA_SYNC-a File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/vga_sync.vhd Line: 13
     Info (12023): Found entity 1: VGA_SYNC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/vga_sync.vhd Line: 7
@@ -406,38 +399,35 @@ Info (12021): Found 2 design units, including 1 entities, in source file falling
     Info (12022): Found design unit 1: falling_bird-behavior File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/falling_bird.vhd Line: 17
     Info (12023): Found entity 1: falling_bird File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/falling_bird.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file de0_cv_top.vhd
-    Info (12022): Found design unit 1: de0_cv_top-rtl File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 23
-    Info (12023): Found entity 1: de0_cv_top File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 6
+    Info (12022): Found design unit 1: de0_cv_top-rtl File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 22
+    Info (12023): Found entity 1: de0_cv_top File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 5
 Info (12021): Found 1 design units, including 0 entities, in source file bird_bitmap.vhd
     Info (12022): Found design unit 1: bird_bitmap File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/bird_bitmap.vhd Line: 4
 Info (12127): Elaborating entity "de0_cv_top" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(31): object "left_btn" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 31
-Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(31): object "right_btn" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 31
-Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 51
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(36): object "left_btn" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 36
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(36): object "right_btn" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 36
+Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 61
 Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/mouse.vhd Line: 25
 Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/mouse.vhd Line: 151
 Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/mouse.vhd Line: 155
 Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/mouse.vhd Line: 156
 Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/mouse.vhd Line: 157
-Info (12128): Elaborating entity "falling_bird" for hierarchy "falling_bird:u_bird" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 64
-Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 86
+Info (12128): Elaborating entity "bouncy_ball" for hierarchy "bouncy_ball:u_ball" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 74
+Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 99
 Info (13000): Registers with preset signals will power-up high File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/mouse.vhd Line: 146
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 2 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "PB1" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 12
-    Warning (15610): No output dependent on input pin "PB2" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 13
-Info (21057): Implemented 375 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 294 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 4 input pins
     Info (21059): Implemented 14 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 355 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info (21061): Implemented 274 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 17 warnings
     Info: Peak virtual memory: 4997 megabytes
-    Info: Processing ended: Sun May 11 13:18:34 2025
-    Info: Elapsed time: 00:00:19
-    Info: Total CPU time (on all processors): 00:00:16
+    Info: Processing ended: Sun May 11 14:45:09 2025
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:22
 
 
