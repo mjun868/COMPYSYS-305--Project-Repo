@@ -1,0 +1,96 @@
+{C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/falling_bird.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/falling_bird.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package bird_bitmap
+-- Compiling entity falling_bird
+-- Compiling architecture behavior of falling_bird
+
+} {} {}} {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/in_game_pushed_buttons.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/in_game_pushed_buttons.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity in_game_pushed_buttons
+-- Compiling architecture behaviour of in_game_pushed_buttons
+
+} {} {}} {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/vga_sync.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/vga_sync.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity VGA_SYNC
+-- Compiling architecture a of VGA_SYNC
+
+} {} {}} {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/bouncy_ball.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/bouncy_ball.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_SIGNED
+-- Compiling entity bouncy_ball
+-- Compiling architecture behavior of bouncy_ball
+
+} {} {}} {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/game_mode_selection_DIP.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/game_mode_selection_DIP.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity game_mode_selection_DIP
+-- Compiling architecture behaviour of game_mode_selection_DIP
+
+} {} {}} {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/ball.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/ball.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity ball
+-- Compiling architecture behavior of ball
+
+} {} {}} {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/de0_cv_top.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/de0_cv_top.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity de0_cv_top
+-- Compiling architecture rtl of de0_cv_top
+-- Loading entity MOUSE
+-- Loading package STD_LOGIC_SIGNED
+-- Loading entity bouncy_ball
+-- Loading entity VGA_SYNC
+
+} {} {}} {C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Loading package bird_bitmap
+-- Compiling entity de0_cv_top
+-- Compiling architecture rtl of de0_cv_top
+-- Loading entity MOUSE
+-- Loading package NUMERIC_STD
+-- Loading entity falling_bird
+-- Loading entity VGA_SYNC
+
+} {} {}} {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/mouse.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/workspace/mouse.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity MOUSE
+-- Compiling architecture behavior of MOUSE
+
+} {} {}}
