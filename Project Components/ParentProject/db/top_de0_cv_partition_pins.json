@@ -60,15 +60,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "LEDR0",
+					"strict" : false
+				},
+				{
 					"name" : "PS2_CLK",
 					"strict" : false
 				},
 				{
 					"name" : "PS2_DAT",
-					"strict" : false
-				},
-				{
-					"name" : "PB1",
 					"strict" : false
 				},
 				{
@@ -81,6 +81,14 @@
 				},
 				{
 					"name" : "CLOCK_50",
+					"strict" : false
+				},
+				{
+					"name" : "SW0",
+					"strict" : false
+				},
+				{
+					"name" : "PB1",
 					"strict" : false
 				}
 			]

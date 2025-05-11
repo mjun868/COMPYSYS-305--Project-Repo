@@ -220,14 +220,14 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5[6]
 # KEY
 #============================================================
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PB1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PB2
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[3]
 
 #============================================================
 # LEDR
 #============================================================
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR0
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[3]
@@ -264,7 +264,7 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD_DATA[3]
 #============================================================
 # SW
 #============================================================
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW0
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[2]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[3]
@@ -458,10 +458,10 @@ set_location_assignment PIN_C1 -to HEX5[4]
 set_location_assignment PIN_C2 -to HEX5[5]
 set_location_assignment PIN_W19 -to HEX5[6]
 set_location_assignment PIN_U7 -to KEY[0]
-set_location_assignment PIN_W9 -to KEY[1]
-set_location_assignment PIN_M7 -to KEY[2]
+set_location_assignment PIN_W9 -to PB1
+set_location_assignment PIN_M7 -to PB2
 set_location_assignment PIN_M6 -to KEY[3]
-set_location_assignment PIN_AA2 -to LEDR[0]
+set_location_assignment PIN_AA2 -to LEDR0
 set_location_assignment PIN_AA1 -to LEDR[1]
 set_location_assignment PIN_W2 -to LEDR[2]
 set_location_assignment PIN_Y3 -to LEDR[3]
@@ -482,7 +482,7 @@ set_location_assignment PIN_K9 -to SD_DATA[0]
 set_location_assignment PIN_D12 -to SD_DATA[1]
 set_location_assignment PIN_E12 -to SD_DATA[2]
 set_location_assignment PIN_C11 -to SD_DATA[3]
-set_location_assignment PIN_U13 -to SW[0]
+set_location_assignment PIN_U13 -to SW0
 set_location_assignment PIN_V13 -to SW[1]
 set_location_assignment PIN_T13 -to SW[2]
 set_location_assignment PIN_T12 -to SW[3]

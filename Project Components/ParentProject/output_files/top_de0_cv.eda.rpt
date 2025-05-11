@@ -1,5 +1,5 @@
 EDA Netlist Writer report for top_de0_cv
-Sun May 11 15:24:19 2025
+Sun May 11 17:16:58 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -37,7 +37,7 @@ on the Quartus Prime software download page.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Sun May 11 15:24:19 2025 ;
+; EDA Netlist Writer Status ; Successful - Sun May 11 17:16:58 2025 ;
 ; Revision Name             ; top_de0_cv                            ;
 ; Top-level Entity Name     ; de0_cv_top                            ;
 ; Family                    ; Cyclone V                             ;
@@ -81,8 +81,16 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime EDA Netlist Writer
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Sun May 11 15:24:18 2025
+    Info: Processing started: Sun May 11 17:16:57 2025
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off ParentProject -c top_de0_cv
+Warning (125092): Tcl Script File V/img_index.qip not found
+    Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
+Warning (125092): Tcl Script File V/img_data.qip not found
+    Info (125063): set_global_assignment -name QIP_FILE V/img_data.qip
+Warning (125092): Tcl Script File V/vga_pll.qip not found
+    Info (125063): set_global_assignment -name QIP_FILE V/vga_pll.qip
+Warning (125092): Tcl Script File V/vga_pll.sip not found
+    Info (125063): set_global_assignment -name SIP_FILE V/vga_pll.sip
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
 Warning (125092): Tcl Script File V/img_data.qip not found
@@ -93,9 +101,9 @@ Warning (125092): Tcl Script File V/vga_pll.sip not found
     Info (125063): set_global_assignment -name SIP_FILE V/vga_pll.sip
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (204019): Generated file top_de0_cv.vho in folder "C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/simulation/questa/" for EDA simulation tool
-Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 5 warnings
+Info: Quartus Prime EDA Netlist Writer was successful. 0 errors, 9 warnings
     Info: Peak virtual memory: 4755 megabytes
-    Info: Processing ended: Sun May 11 15:24:19 2025
+    Info: Processing ended: Sun May 11 17:16:58 2025
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 

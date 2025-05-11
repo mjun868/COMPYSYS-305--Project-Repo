@@ -1,10 +1,15 @@
 |de0_cv_top
 CLOCK_50 => clk25.CLK
+reset_n => sw0_sync_1.ACLR
+reset_n => sw0_sync_0.ACLR
+reset_n => pb1_sync_1.PRESET
+reset_n => pb1_sync_0.PRESET
 reset_n => mouse:u_mouse.reset
 PS2_CLK <> mouse:u_mouse.mouse_clk
 PS2_DAT <> mouse:u_mouse.mouse_data
-PB1 => bouncy_ball:u_ball.pb1
+PB1 => pb1_sync_0.DATAIN
 PB2 => bouncy_ball:u_ball.pb2
+SW0 => sw0_sync_0.DATAIN
 VGA_R[0] <= vga_sync:u_vga_sync.red_out
 VGA_R[1] <= vga_sync:u_vga_sync.red_out
 VGA_R[2] <= vga_sync:u_vga_sync.red_out
@@ -19,6 +24,7 @@ VGA_B[2] <= vga_sync:u_vga_sync.blue_out
 VGA_B[3] <= vga_sync:u_vga_sync.blue_out
 VGA_HS <= vga_sync:u_vga_sync.horiz_sync_out
 VGA_VS <= vga_sync:u_vga_sync.vert_sync_out
+LEDR0 <= sw0_sync_1.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |de0_cv_top|MOUSE:u_mouse
