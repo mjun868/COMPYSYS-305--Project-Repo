@@ -62,6 +62,12 @@ architecture rtl of de0_cv_top is
   -- ─── Wrapped colour signals ───
   signal bg_r_const, bg_g_const, bg_b_const : std_logic;
   signal wrapped_r, wrapped_g, wrapped_b    : std_logic;
+  
+      -- Character signals
+  signal char_address : std_logic_vector(5 downto 0);
+  signal font_row : std_logic_vector(2 downto 0);
+  signal font_col : std_logic_vector(2 downto 0);
+  signal rom_output : std_logic;
 
 begin
 
@@ -155,12 +161,7 @@ begin
     end if;
   end process;
 
-  -- Mouse overlay
-  mouse_pixel <= '1' when (pix_row=mouse_row and pix_col=mouse_col)
-                 else '0';
-  final_r <= '1' when mouse_pixel='1' else wrapped_r;
-  final_g <= '1' when mouse_pixel='1' else wrapped_g;
-  final_b <= '1' when mouse_pixel='1' else wrapped_b;
+
 
   -- VGA sync + output
   u_vga_sync : entity work.VGA_SYNC
@@ -177,6 +178,35 @@ begin
       pixel_row       => pix_row,
       pixel_column    => pix_col
     );
+
+u_char_rom: entity work.char_rom
+	port map (
+	character_address => char_address,
+	font_row => font_row,
+	font_col => font_col,
+	clock => clk25,
+	rom_mux_output => rom_output
+);
+
+--contain this to only when inside bounding box
+font_row <= pix_row(2 downto 0) when pix_row > 48 and pix_row < 64 else "000" ;
+font_col <= pix_col(2 downto 0) when pix_col > 48 and pix_col < 64 else "000" ;
+
+
+
+--eg row 2 col 4 (origin), frow 0 fcol 0 
+--row 3 col 4,  frow 1 fcol 0 
+--row 2 col 5, frow 0 fcol 1
+
+
+char_address <= "010011";
+
+  -- Mouse overlay
+  mouse_pixel <= '1' when (pix_row=mouse_row and pix_col=mouse_col)
+                 else '0';
+  final_r <= '1' when mouse_pixel='1' else rom_output;
+  final_g <= '1' when mouse_pixel='1' else rom_output;
+  final_b <= '1' when mouse_pixel='1' else rom_output;
 
   VGA_VS <= vsync_sig;
   VGA_R  <= (others => vga_r_sig);
