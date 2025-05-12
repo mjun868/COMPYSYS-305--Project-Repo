@@ -35,8 +35,8 @@ architecture rtl of de0_cv_top is
 
   -- 4) PS/2 mouse outputs
   signal mouse_row, mouse_col       : std_logic_vector(9 downto 0);
-  signal left_btn, right_btn        : std_logic;
-
+  signal right_btn        : std_logic;
+  signal current_left_btn, previous_left_btn: std_logic; -- keep track of rising edge
   -- 5) Single-bit colour from bouncy_ball
   signal color_r, color_g, color_b  : std_logic;
 
@@ -118,7 +118,7 @@ begin
       reset               => reset_i,
       mouse_data          => PS2_DAT,
       mouse_clk           => PS2_CLK,
-      left_button         => left_btn,
+      left_button         => current_left_btn,
       right_button        => right_btn,
       mouse_cursor_row    => mouse_row,
       mouse_cursor_column => mouse_col
@@ -131,7 +131,8 @@ begin
       pb2          => PB2,  -- direct PB2 or similarly debounced
       clk          => clk25,
       vert_sync    => vsync_sig,
-		left_mouse_click => left_btn,
+		current_left_btn_status => current_left_btn,
+		--previous_left_btn_status => previous_left_btn,
       pixel_row    => pix_row,
       pixel_column => pix_col,
       red          => color_r,

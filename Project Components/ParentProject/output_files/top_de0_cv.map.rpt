@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_de0_cv
-Mon May 12 12:21:41 2025
+Mon May 12 13:36:01 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -48,13 +48,13 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon May 12 12:21:41 2025           ;
+; Analysis & Synthesis Status     ; Successful - Mon May 12 13:36:01 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 182                                             ;
+; Total registers                 ; 184                                             ;
 ; Total pins                      ; 22                                              ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 0                                               ;
@@ -168,8 +168,7 @@ on the Quartus Prime software download page.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-16        ;   0.0%      ;
+;     Processors 2-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -190,16 +189,16 @@ on the Quartus Prime software download page.
 +---------------------------------------------+--------------------------------+
 ; Resource                                    ; Usage                          ;
 +---------------------------------------------+--------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 139                            ;
+; Estimate of Logic utilization (ALMs needed) ; 143                            ;
 ;                                             ;                                ;
-; Combinational ALUT usage for logic          ; 224                            ;
+; Combinational ALUT usage for logic          ; 233                            ;
 ;     -- 7 input functions                    ; 1                              ;
 ;     -- 6 input functions                    ; 44                             ;
-;     -- 5 input functions                    ; 38                             ;
-;     -- 4 input functions                    ; 22                             ;
-;     -- <=3 input functions                  ; 119                            ;
+;     -- 5 input functions                    ; 36                             ;
+;     -- 4 input functions                    ; 29                             ;
+;     -- <=3 input functions                  ; 123                            ;
 ;                                             ;                                ;
-; Dedicated logic registers                   ; 182                            ;
+; Dedicated logic registers                   ; 184                            ;
 ;                                             ;                                ;
 ; I/O pins                                    ; 22                             ;
 ;                                             ;                                ;
@@ -207,8 +206,8 @@ on the Quartus Prime software download page.
 ;                                             ;                                ;
 ; Maximum fan-out node                        ; MOUSE:u_mouse|MOUSE_CLK_FILTER ;
 ; Maximum fan-out                             ; 91                             ;
-; Total fan-out                               ; 1462                           ;
-; Average fan-out                             ; 3.23                           ;
+; Total fan-out                               ; 1493                           ;
+; Average fan-out                             ; 3.22                           ;
 +---------------------------------------------+--------------------------------+
 
 
@@ -217,10 +216,10 @@ on the Quartus Prime software download page.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name             ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
-; |de0_cv_top                ; 224 (13)            ; 182 (5)                   ; 0                 ; 0          ; 22   ; 0            ; |de0_cv_top                     ; de0_cv_top  ; work         ;
+; |de0_cv_top                ; 233 (13)            ; 184 (5)                   ; 0                 ; 0          ; 22   ; 0            ; |de0_cv_top                     ; de0_cv_top  ; work         ;
 ;    |MOUSE:u_mouse|         ; 110 (110)           ; 118 (118)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|MOUSE:u_mouse       ; MOUSE       ; work         ;
-;    |VGA_SYNC:u_vga_sync|   ; 45 (45)             ; 48 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync ; VGA_SYNC    ; work         ;
-;    |bouncy_ball:u_ball|    ; 56 (56)             ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball  ; bouncy_ball ; work         ;
+;    |VGA_SYNC:u_vga_sync|   ; 43 (43)             ; 48 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync ; VGA_SYNC    ; work         ;
+;    |bouncy_ball:u_ball|    ; 67 (67)             ; 13 (13)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball  ; bouncy_ball ; work         ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -240,23 +239,22 @@ Encoding Type:  One-Hot
 +-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
 
 
-+------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                       ;
-+----------------------------------------+-------------------------------------------------+
-; Register name                          ; Reason for Removal                              ;
-+----------------------------------------+-------------------------------------------------+
-; bouncy_ball:u_ball|ball_y_motion[0]    ; Stuck at GND due to stuck port data_in          ;
-; MOUSE:u_mouse|CHAROUT[4..7]            ; Stuck at VCC due to stuck port data_in          ;
-; MOUSE:u_mouse|CHAROUT[3]               ; Stuck at GND due to stuck port data_in          ;
-; MOUSE:u_mouse|CHAROUT[2]               ; Stuck at VCC due to stuck port data_in          ;
-; MOUSE:u_mouse|CHAROUT[0,1]             ; Stuck at GND due to stuck port data_in          ;
-; MOUSE:u_mouse|SHIFTOUT[10]             ; Stuck at VCC due to stuck port data_in          ;
-; bouncy_ball:u_ball|ball_y_motion[3..9] ; Merged with bouncy_ball:u_ball|ball_y_motion[2] ;
-; bouncy_ball:u_ball|ball_y_pos[0]       ; Stuck at GND due to stuck port data_in          ;
-; MOUSE:u_mouse|cursor_row[9]            ; Stuck at GND due to stuck port data_in          ;
-; VGA_SYNC:u_vga_sync|pixel_row[9]       ; Stuck at GND due to stuck port data_in          ;
-; Total Number of Removed Registers = 20 ;                                                 ;
-+----------------------------------------+-------------------------------------------------+
++----------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                           ;
++--------------------------------------------+-------------------------------------------------+
+; Register name                              ; Reason for Removal                              ;
++--------------------------------------------+-------------------------------------------------+
+; bouncy_ball:u_ball|ball_y_motion[4,5]      ; Stuck at GND due to stuck port data_in          ;
+; MOUSE:u_mouse|CHAROUT[4..7]                ; Stuck at VCC due to stuck port data_in          ;
+; MOUSE:u_mouse|CHAROUT[3]                   ; Stuck at GND due to stuck port data_in          ;
+; MOUSE:u_mouse|CHAROUT[2]                   ; Stuck at VCC due to stuck port data_in          ;
+; MOUSE:u_mouse|CHAROUT[0,1]                 ; Stuck at GND due to stuck port data_in          ;
+; MOUSE:u_mouse|SHIFTOUT[10]                 ; Stuck at VCC due to stuck port data_in          ;
+; bouncy_ball:u_ball|ball_y_motion[2,3,6..9] ; Merged with bouncy_ball:u_ball|ball_y_motion[1] ;
+; MOUSE:u_mouse|cursor_row[9]                ; Stuck at GND due to stuck port data_in          ;
+; VGA_SYNC:u_vga_sync|pixel_row[9]           ; Stuck at GND due to stuck port data_in          ;
+; Total Number of Removed Registers = 19     ;                                                 ;
++--------------------------------------------+-------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -264,7 +262,7 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 182   ;
+; Total registers                              ; 184   ;
 ; Number of registers using Synchronous Clear  ; 28    ;
 ; Number of registers using Synchronous Load   ; 20    ;
 ; Number of registers using Asynchronous Clear ; 47    ;
@@ -274,36 +272,37 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 
 
-+--------------------------------------------------+
-; Inverted Register Statistics                     ;
-+----------------------------------------+---------+
-; Inverted Register                      ; Fan out ;
-+----------------------------------------+---------+
-; pb1_sync_1                             ; 4       ;
-; pb1_sync_0                             ; 1       ;
-; MOUSE:u_mouse|send_char                ; 3       ;
-; MOUSE:u_mouse|SHIFTOUT[3]              ; 1       ;
-; MOUSE:u_mouse|SHIFTOUT[5]              ; 1       ;
-; MOUSE:u_mouse|SHIFTOUT[6]              ; 1       ;
-; MOUSE:u_mouse|SHIFTOUT[7]              ; 1       ;
-; MOUSE:u_mouse|SHIFTOUT[8]              ; 1       ;
-; Total number of inverted registers = 8 ;         ;
-+----------------------------------------+---------+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; pb1_sync_1                              ; 4       ;
+; pb1_sync_0                              ; 1       ;
+; MOUSE:u_mouse|send_char                 ; 3       ;
+; bouncy_ball:u_ball|previous_left_status ; 1       ;
+; MOUSE:u_mouse|SHIFTOUT[3]               ; 1       ;
+; MOUSE:u_mouse|SHIFTOUT[5]               ; 1       ;
+; MOUSE:u_mouse|SHIFTOUT[6]               ; 1       ;
+; MOUSE:u_mouse|SHIFTOUT[7]               ; 1       ;
+; MOUSE:u_mouse|SHIFTOUT[8]               ; 1       ;
+; Total number of inverted registers = 9  ;         ;
++-----------------------------------------+---------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                               ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
-; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|new_cursor_column[9] ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|v_count[5]     ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[1]        ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[4]        ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[0]     ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[8]     ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|final_g                            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|new_cursor_row[7] ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|v_count[7]  ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[1]     ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[4]     ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[0]  ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[8]  ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|final_g                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------------------+
@@ -320,37 +319,37 @@ Encoding Type:  One-Hot
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 182                         ;
+; arriav_ff             ; 184                         ;
 ;     CLR               ; 14                          ;
 ;     ENA               ; 55                          ;
 ;     ENA CLR           ; 33                          ;
 ;     ENA SCLR          ; 18                          ;
 ;     ENA SLD           ; 20                          ;
 ;     SCLR              ; 10                          ;
-;     plain             ; 32                          ;
+;     plain             ; 34                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 224                         ;
-;     arith             ; 63                          ;
+; arriav_lcell_comb     ; 233                         ;
+;     arith             ; 64                          ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 40                          ;
-;         2 data inputs ; 22                          ;
+;         1 data inputs ; 42                          ;
+;         2 data inputs ; 21                          ;
 ;     extend            ; 1                           ;
 ;         7 data inputs ; 1                           ;
-;     normal            ; 150                         ;
+;     normal            ; 158                         ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 7                           ;
-;         2 data inputs ; 17                          ;
-;         3 data inputs ; 21                          ;
-;         4 data inputs ; 22                          ;
-;         5 data inputs ; 38                          ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 16                          ;
+;         3 data inputs ; 24                          ;
+;         4 data inputs ; 29                          ;
+;         5 data inputs ; 36                          ;
 ;         6 data inputs ; 44                          ;
 ;     shared            ; 10                          ;
 ;         1 data inputs ; 1                           ;
 ;         2 data inputs ; 9                           ;
 ; boundary_port         ; 22                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 5.00                        ;
-; Average LUT depth     ; 2.33                        ;
+; Max LUT depth         ; 5.30                        ;
+; Average LUT depth     ; 2.41                        ;
 +-----------------------+-----------------------------+
 
 
@@ -369,7 +368,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Mon May 12 12:21:32 2025
+    Info: Processing started: Mon May 12 13:35:53 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ParentProject -c top_de0_cv
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
@@ -410,21 +409,21 @@ Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHARO
 Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 156
 Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 157
 Info (12128): Elaborating entity "bouncy_ball" for hierarchy "bouncy_ball:u_ball" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 128
-Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 165
+Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 166
 Info (13000): Registers with preset signals will power-up high File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 146
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 315 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 324 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 15 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 293 logic cells
+    Info (21061): Implemented 302 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 16 warnings
-    Info: Peak virtual memory: 5002 megabytes
-    Info: Processing ended: Mon May 12 12:21:41 2025
-    Info: Elapsed time: 00:00:09
+    Info: Peak virtual memory: 4981 megabytes
+    Info: Processing ended: Mon May 12 13:36:01 2025
+    Info: Elapsed time: 00:00:08
     Info: Total CPU time (on all processors): 00:00:20
 
 

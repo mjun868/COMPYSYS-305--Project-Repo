@@ -7,8 +7,8 @@ USE  IEEE.STD_LOGIC_SIGNED.all;
 ENTITY bouncy_ball IS
 	PORT
 		( pb1, pb2, clk, vert_sync	: IN std_logic;
-			left_mouse_click : IN std_logic;
-          pixel_row, pixel_column	: IN std_logic_vector(9 DOWNTO 0);
+		  current_left_btn_status : IN std_logic;
+        pixel_row, pixel_column	: IN std_logic_vector(9 DOWNTO 0);
 		  red, green, blue 			: OUT std_logic);		
 END bouncy_ball;
 
@@ -19,7 +19,7 @@ SIGNAL size 					: std_logic_vector(9 DOWNTO 0);
 SIGNAL ball_y_pos				: std_logic_vector(9 DOWNTO 0);
 SiGNAL ball_x_pos				: std_logic_vector(10 DOWNTO 0);
 SIGNAL ball_y_motion			: std_logic_vector(9 DOWNTO 0);
-
+SIGNAL previous_left_status : std_logic := '1';
 BEGIN           
 
 size <= CONV_STD_LOGIC_VECTOR(8,10);
@@ -45,16 +45,26 @@ begin
 		if ( ('0' & ball_y_pos >= CONV_STD_LOGIC_VECTOR(479,10) - size) ) then
 			ball_y_motion <= CONV_STD_LOGIC_VECTOR(0,10); --freeze at the bottom
 		else
-			ball_y_motion <= CONV_STD_LOGIC_VECTOR(2,10);
+			ball_y_motion <= CONV_STD_LOGIC_VECTOR(1,10);
 		end if;
-		--mouse click detection
-		if (left_mouse_click = '1' and ball_y_pos > size) then
+		--mouse click detection,
+		if (previous_left_status = '0'and current_left_btn_status = '1' and ball_y_pos > size) then
 			
-			ball_y_motion <=  -CONV_STD_LOGIC_VECTOR(2,10);
+			
+			--not jump out of the celing
+			if (ball_y_pos<(size+50)) then
+			--freeze at the ceiling
+				ball_y_motion <= CONV_STD_LOGIC_VECTOR(0,10);
+			else
+			--move upward by 50 pixels
+				ball_y_motion <=  -CONV_STD_LOGIC_VECTOR(50,10);
+			end if;
 			
 		end if;
 		-- Compute next ball Y position
 		ball_y_pos <= ball_y_pos + ball_y_motion;
+		--update prevous_left_btn_status
+		previous_left_status <= current_left_btn_status;
 	end if;
 end process Free_Fall;
 
