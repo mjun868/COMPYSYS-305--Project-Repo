@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_de0_cv
-Sun May 11 17:35:09 2025
+Mon May 12 12:21:41 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -48,7 +48,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sun May 11 17:35:09 2025           ;
+; Analysis & Synthesis Status     ; Successful - Mon May 12 12:21:41 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
@@ -173,16 +173,16 @@ on the Quartus Prime software download page.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                  ;
-+----------------------------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path                   ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                         ; Library ;
-+----------------------------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------+---------+
-; ../../Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd ;         ;
-; ../../MiniprojectResources/vga_sync.vhd            ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/vga_sync.vhd            ;         ;
-; ../../MiniprojectResources/mouse.vhd               ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/mouse.vhd               ;         ;
-; ../../MiniprojectResources/bouncy_ball.vhd         ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/bouncy_ball.vhd         ;         ;
-+----------------------------------------------------+-----------------+-----------------+--------------------------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                               ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                                                        ; Library ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------+---------+
+; VHDL_files/vga_sync.vhd          ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd    ;         ;
+; VHDL_files/mouse.vhd             ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd       ;         ;
+; VHDL_files/de0_cv_top.vhd        ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd  ;         ;
+; VHDL_files/bouncy_ball.vhd       ; yes             ; User VHDL File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd ;         ;
++----------------------------------+-----------------+-----------------+-----------------------------------------------------------------------------------------------------+---------+
 
 
 +------------------------------------------------------------------------------+
@@ -190,14 +190,14 @@ on the Quartus Prime software download page.
 +---------------------------------------------+--------------------------------+
 ; Resource                                    ; Usage                          ;
 +---------------------------------------------+--------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 137                            ;
+; Estimate of Logic utilization (ALMs needed) ; 139                            ;
 ;                                             ;                                ;
-; Combinational ALUT usage for logic          ; 222                            ;
+; Combinational ALUT usage for logic          ; 224                            ;
 ;     -- 7 input functions                    ; 1                              ;
-;     -- 6 input functions                    ; 43                             ;
-;     -- 5 input functions                    ; 39                             ;
-;     -- 4 input functions                    ; 23                             ;
-;     -- <=3 input functions                  ; 116                            ;
+;     -- 6 input functions                    ; 44                             ;
+;     -- 5 input functions                    ; 38                             ;
+;     -- 4 input functions                    ; 22                             ;
+;     -- <=3 input functions                  ; 119                            ;
 ;                                             ;                                ;
 ; Dedicated logic registers                   ; 182                            ;
 ;                                             ;                                ;
@@ -207,8 +207,8 @@ on the Quartus Prime software download page.
 ;                                             ;                                ;
 ; Maximum fan-out node                        ; MOUSE:u_mouse|MOUSE_CLK_FILTER ;
 ; Maximum fan-out                             ; 91                             ;
-; Total fan-out                               ; 1459                           ;
-; Average fan-out                             ; 3.24                           ;
+; Total fan-out                               ; 1462                           ;
+; Average fan-out                             ; 3.23                           ;
 +---------------------------------------------+--------------------------------+
 
 
@@ -217,10 +217,10 @@ on the Quartus Prime software download page.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name             ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
-; |de0_cv_top                ; 222 (12)            ; 182 (5)                   ; 0                 ; 0          ; 22   ; 0            ; |de0_cv_top                     ; de0_cv_top  ; work         ;
+; |de0_cv_top                ; 224 (13)            ; 182 (5)                   ; 0                 ; 0          ; 22   ; 0            ; |de0_cv_top                     ; de0_cv_top  ; work         ;
 ;    |MOUSE:u_mouse|         ; 110 (110)           ; 118 (118)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|MOUSE:u_mouse       ; MOUSE       ; work         ;
-;    |VGA_SYNC:u_vga_sync|   ; 46 (46)             ; 48 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync ; VGA_SYNC    ; work         ;
-;    |bouncy_ball:u_ball|    ; 54 (54)             ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball  ; bouncy_ball ; work         ;
+;    |VGA_SYNC:u_vga_sync|   ; 45 (45)             ; 48 (48)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync ; VGA_SYNC    ; work         ;
+;    |bouncy_ball:u_ball|    ; 56 (56)             ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball  ; bouncy_ball ; work         ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -329,21 +329,21 @@ Encoding Type:  One-Hot
 ;     SCLR              ; 10                          ;
 ;     plain             ; 32                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 222                         ;
+; arriav_lcell_comb     ; 224                         ;
 ;     arith             ; 63                          ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 40                          ;
 ;         2 data inputs ; 22                          ;
 ;     extend            ; 1                           ;
 ;         7 data inputs ; 1                           ;
-;     normal            ; 148                         ;
+;     normal            ; 150                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 7                           ;
-;         2 data inputs ; 14                          ;
+;         2 data inputs ; 17                          ;
 ;         3 data inputs ; 21                          ;
-;         4 data inputs ; 23                          ;
-;         5 data inputs ; 39                          ;
-;         6 data inputs ; 43                          ;
+;         4 data inputs ; 22                          ;
+;         5 data inputs ; 38                          ;
+;         6 data inputs ; 44                          ;
 ;     shared            ; 10                          ;
 ;         1 data inputs ; 1                           ;
 ;         2 data inputs ; 9                           ;
@@ -369,16 +369,8 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Sun May 11 17:35:00 2025
+    Info: Processing started: Mon May 12 12:21:32 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ParentProject -c top_de0_cv
-Warning (125092): Tcl Script File V/img_index.qip not found
-    Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
-Warning (125092): Tcl Script File V/img_data.qip not found
-    Info (125063): set_global_assignment -name QIP_FILE V/img_data.qip
-Warning (125092): Tcl Script File V/vga_pll.qip not found
-    Info (125063): set_global_assignment -name QIP_FILE V/vga_pll.qip
-Warning (125092): Tcl Script File V/vga_pll.sip not found
-    Info (125063): set_global_assignment -name SIP_FILE V/vga_pll.sip
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
 Warning (125092): Tcl Script File V/img_data.qip not found
@@ -394,48 +386,45 @@ Warning (12019): Can't analyze file -- file V/vga_controller.v is missing
 Warning (12019): Can't analyze file -- file V/SEG7_LUT_6.v is missing
 Warning (12019): Can't analyze file -- file V/SEG7_LUT.v is missing
 Warning (12019): Can't analyze file -- file V/Reset_Delay.v is missing
-Info (12021): Found 2 design units, including 1 entities, in source file /localcode/compysys-305--project-repo/lab files/miniprojecttonnylab/de0_cv_top.vhd
-    Info (12022): Found design unit 1: de0_cv_top-rtl File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 24
-    Info (12023): Found entity 1: de0_cv_top File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 5
-Info (12021): Found 2 design units, including 1 entities, in source file /localcode/compysys-305--project-repo/miniprojectresources/vga_sync.vhd
-    Info (12022): Found design unit 1: VGA_SYNC-a File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/vga_sync.vhd Line: 13
-    Info (12023): Found entity 1: VGA_SYNC File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/vga_sync.vhd Line: 7
-Info (12021): Found 2 design units, including 1 entities, in source file /localcode/compysys-305--project-repo/miniprojectresources/mouse.vhd
-    Info (12022): Found design unit 1: MOUSE-behavior File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/mouse.vhd Line: 18
-    Info (12023): Found entity 1: MOUSE File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/mouse.vhd Line: 9
-Info (12021): Found 2 design units, including 1 entities, in source file /localcode/compysys-305--project-repo/miniprojectresources/char_rom.vhd
-    Info (12022): Found design unit 1: char_rom-SYN File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/char_rom.vhd Line: 20
-    Info (12023): Found entity 1: char_rom File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/char_rom.vhd Line: 9
-Info (12021): Found 2 design units, including 1 entities, in source file /localcode/compysys-305--project-repo/miniprojectresources/bouncy_ball.vhd
-    Info (12022): Found design unit 1: bouncy_ball-behavior File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/bouncy_ball.vhd Line: 15
-    Info (12023): Found entity 1: bouncy_ball File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/bouncy_ball.vhd Line: 7
-Info (12021): Found 2 design units, including 1 entities, in source file /localcode/compysys-305--project-repo/miniprojectresources/ball.vhd
-    Info (12022): Found design unit 1: ball-behavior File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/ball.vhd Line: 14
-    Info (12023): Found entity 1: ball File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/ball.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/vga_sync.vhd
+    Info (12022): Found design unit 1: VGA_SYNC-a File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 13
+    Info (12023): Found entity 1: VGA_SYNC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/mouse.vhd
+    Info (12022): Found design unit 1: MOUSE-behavior File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 18
+    Info (12023): Found entity 1: MOUSE File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/de0_cv_top.vhd
+    Info (12022): Found design unit 1: de0_cv_top-rtl File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
+    Info (12023): Found entity 1: de0_cv_top File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/char_rom.vhd
+    Info (12022): Found design unit 1: char_rom-SYN File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 20
+    Info (12023): Found entity 1: char_rom File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/bouncy_ball.vhd
+    Info (12022): Found design unit 1: bouncy_ball-behavior File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 15
+    Info (12023): Found entity 1: bouncy_ball File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 7
 Info (12127): Elaborating entity "de0_cv_top" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(38): object "right_btn" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 38
-Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 115
-Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/mouse.vhd Line: 25
-Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/mouse.vhd Line: 151
-Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/mouse.vhd Line: 155
-Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/mouse.vhd Line: 156
-Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/mouse.vhd Line: 157
-Info (12128): Elaborating entity "bouncy_ball" for hierarchy "bouncy_ball:u_ball" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 128
-Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd Line: 165
-Info (13000): Registers with preset signals will power-up high File: C:/LocalCode/COMPYSYS-305--Project-Repo/MiniprojectResources/mouse.vhd Line: 146
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(38): object "right_btn" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 38
+Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 115
+Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 25
+Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 151
+Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 155
+Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 156
+Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 157
+Info (12128): Elaborating entity "bouncy_ball" for hierarchy "bouncy_ball:u_ball" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 128
+Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 165
+Info (13000): Registers with preset signals will power-up high File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 146
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 313 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 315 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 15 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 291 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info (21061): Implemented 293 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 16 warnings
     Info: Peak virtual memory: 5002 megabytes
-    Info: Processing ended: Sun May 11 17:35:09 2025
+    Info: Processing ended: Mon May 12 12:21:41 2025
     Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:21
+    Info: Total CPU time (on all processors): 00:00:20
 
 

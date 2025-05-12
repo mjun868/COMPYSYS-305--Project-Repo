@@ -486,23 +486,6 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name SOURCE_FILE DE0_CV_pins.qsf
-set_global_assignment -name VERILOG_FILE V/video_sync_generator.v
-set_global_assignment -name VERILOG_FILE V/vga_controller.v
-set_global_assignment -name VERILOG_FILE V/SEG7_LUT_6.v
-set_global_assignment -name VERILOG_FILE V/SEG7_LUT.v
-set_global_assignment -name VERILOG_FILE V/Reset_Delay.v
-set_global_assignment -name QIP_FILE V/img_index.qip
-set_global_assignment -name QIP_FILE V/img_data.qip
-set_global_assignment -name QIP_FILE V/vga_pll.qip
-set_global_assignment -name SIP_FILE V/vga_pll.sip
-set_global_assignment -name SDC_FILE DE0_CV_Default.sdc
-set_global_assignment -name VHDL_FILE "../../Lab Files/MiniProjectTonnyLab/de0_cv_top.vhd"
-set_global_assignment -name VHDL_FILE ../../MiniprojectResources/vga_sync.vhd
-set_global_assignment -name VHDL_FILE ../../MiniprojectResources/mouse.vhd
-set_global_assignment -name VHDL_FILE ../../MiniprojectResources/char_rom.vhd
-set_global_assignment -name VHDL_FILE ../../MiniprojectResources/bouncy_ball.vhd
-set_global_assignment -name VHDL_FILE ../../MiniprojectResources/ball.vhd
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PB1
@@ -511,4 +494,9 @@ set_location_assignment PIN_W9 -to PB1
 set_location_assignment PIN_M7 -to PB2
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW0
 set_location_assignment PIN_U13 -to SW0
+set_global_assignment -name VHDL_FILE VHDL_files/vga_sync.vhd
+set_global_assignment -name VHDL_FILE VHDL_files/mouse.vhd
+set_global_assignment -name VHDL_FILE VHDL_files/de0_cv_top.vhd
+set_global_assignment -name VHDL_FILE VHDL_files/char_rom.vhd
+set_global_assignment -name VHDL_FILE VHDL_files/bouncy_ball.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
