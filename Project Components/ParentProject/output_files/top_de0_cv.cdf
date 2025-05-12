@@ -1,10 +1,10 @@
-/* Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition */
+/* Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition */
 JedecChain;
 	FileRevision(JESD32A);
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(5CEBA4F23) Path("C:/TEMP/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/") File("top_de0_cv.sof") MfrSpec(OpMask(1));
+		Device PartName(5CEBA4F23) Path("C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/") File("top_de0_cv.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

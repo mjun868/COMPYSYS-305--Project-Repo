@@ -35,39 +35,54 @@ architecture rtl of de0_cv_top is
 
   -- 4) PS/2 mouse outputs
   signal mouse_row, mouse_col       : std_logic_vector(9 downto 0);
-  signal right_btn        : std_logic;
-  signal current_left_btn, previous_left_btn: std_logic; -- keep track of rising edge
+  signal right_btn                  : std_logic;
+  signal current_left_btn, previous_left_btn: std_logic;
   -- 5) Single-bit colour from bouncy_ball
   signal color_r, color_g, color_b  : std_logic;
 
   -- Internal VSYNC signal
   signal vsync_sig                  : std_logic;
 
-  -- Mouse overlay
-  signal mouse_pixel                : std_logic;
-  signal final_r, final_g, final_b  : std_logic;
-
-  -- ─── Button synchronizer / debounce signals ───
-  signal pb1_sync_0, pb1_sync_1      : std_logic := '1';
-  signal btn1_stable                 : std_logic;
-  signal btn1                        : std_logic;
-
-  -- ─── SW0 synchronizer ───
-  signal sw0_sync_0, sw0_sync_1      : std_logic := '0';
-  signal sw0_stable                  : std_logic;
-
-  -- ─── Background-toggle state ───
-  signal bg_mode                     : std_logic;
-
-  -- ─── Wrapped colour signals ───
-  signal bg_r_const, bg_g_const, bg_b_const : std_logic;
+  -- Background wrapping signals
   signal wrapped_r, wrapped_g, wrapped_b    : std_logic;
-  
-      -- Character signals
+
+  -- Character signals
   signal char_address : std_logic_vector(5 downto 0);
-  signal font_row : std_logic_vector(2 downto 0);
-  signal font_col : std_logic_vector(2 downto 0);
-  signal rom_output : std_logic;
+  signal font_row     : std_logic_vector(2 downto 0);
+  signal font_col     : std_logic_vector(2 downto 0);
+  signal rom_output   : std_logic;
+
+  -- Pipeline register for char pixel bit
+  signal char_pixel_reg : std_logic := '0';
+
+  -- Region indicator
+  signal in_char_region : std_logic := '0';
+
+  -- Mouse overlay
+  signal mouse_pixel : std_logic;
+
+  -- Constant index for 'A' (ASCII 65 – base 32 = 33)
+  constant A_ADDR : std_logic_vector(5 downto 0) := "100001";
+  
+  -- Debounce signals
+  signal pb1_sync_0 : std_logic := '0';
+  signal pb1_sync_1 : std_logic := '0';
+
+  -- NEW SIGNAL DECLARATIONS
+  signal btn1_stable : std_logic;
+  signal btn1        : std_logic;
+  signal sw0_sync_0  : std_logic;
+  signal sw0_sync_1  : std_logic;
+  signal sw0_stable  : std_logic;
+  signal bg_mode     : std_logic;
+  signal bg_r_const  : std_logic;
+  signal bg_g_const  : std_logic;
+  signal bg_b_const  : std_logic;
+  signal final_r     : std_logic;
+  signal final_g     : std_logic;
+  signal final_b     : std_logic;
+
+  constant S : integer := 8; --scale factor 
 
 begin
 
@@ -108,11 +123,9 @@ begin
   LEDR0      <= sw0_stable;  -- debug LED
 
   -- ─── Final bg_mode = SW0_baseline XOR btn1 (push-and-hold) ───
-  bg_mode <= sw0_stable xor btn1;
+  bg_mode    <= sw0_stable xor btn1;
 
   -- ─── Background colour constants ───
-  -- bg_mode='1' → pink  (1,0,1)
-  -- bg_mode='0' → light-blue (0,1,1)
   bg_r_const <= '1' when bg_mode = '1' else '0';
   bg_g_const <= '0' when bg_mode = '1' else '1';
   bg_b_const <= '1';
@@ -134,11 +147,10 @@ begin
   u_ball : entity work.bouncy_ball
     port map(
       pb1          => btn1,
-      pb2          => PB2,  -- direct PB2 or similarly debounced
+      pb2          => PB2,
       clk          => clk25,
       vert_sync    => vsync_sig,
-		current_left_btn_status => current_left_btn,
-		--previous_left_btn_status => previous_left_btn,
+      current_left_btn_status => current_left_btn,
       pixel_row    => pix_row,
       pixel_column => pix_col,
       red          => color_r,
@@ -161,8 +173,6 @@ begin
     end if;
   end process;
 
-
-
   -- VGA sync + output
   u_vga_sync : entity work.VGA_SYNC
     port map(
@@ -178,35 +188,52 @@ begin
       pixel_row       => pix_row,
       pixel_column    => pix_col
     );
-
-u_char_rom: entity work.char_rom
-	port map (
-	character_address => char_address,
-	font_row => font_row,
-	font_col => font_col,
-	clock => clk25,
-	rom_mux_output => rom_output
-);
-
---contain this to only when inside bounding box
-font_row <= pix_row(2 downto 0) when pix_row > 48 and pix_row < 64 else "000" ;
-font_col <= pix_col(2 downto 0) when pix_col > 48 and pix_col < 64 else "000" ;
+    
+  -- Char ROM instantiation
+  u_char_rom: entity work.char_rom
+    port map (
+      character_address => char_address,
+      font_row          => font_row,
+      font_col          => font_col,
+      clock             => clk25,
+      rom_mux_output    => rom_output
+    );
 
 
 
---eg row 2 col 4 (origin), frow 0 fcol 0 
---row 3 col 4,  frow 1 fcol 0 
---row 2 col 5, frow 0 fcol 1
 
+  in_char_region <= '1'
+    when (to_integer(unsigned(pix_row)) < S*8
+       and to_integer(unsigned(pix_col)) < S*8)
+    else '0';
 
-char_address <= "010011";
+  -- map each group of S pixels back down to 0–7
+  font_row <= std_logic_vector(
+                to_unsigned(to_integer(unsigned(pix_row)) / S, 3)
+              ) when in_char_region = '1' else "000";
+
+  font_col <= std_logic_vector(
+                to_unsigned(to_integer(unsigned(pix_col)) / S, 3)
+              ) when in_char_region = '1' else "000";
+
+  -- Always select 'A'
+  char_address   <= A_ADDR;
+
+  -- Pipeline the ROM output
+  process(clk25)
+  begin
+    if rising_edge(clk25) then
+      char_pixel_reg <= rom_output;
+    end if;
+  end process;
 
   -- Mouse overlay
-  mouse_pixel <= '1' when (pix_row=mouse_row and pix_col=mouse_col)
-                 else '0';
-  final_r <= '1' when mouse_pixel='1' else rom_output;
-  final_g <= '1' when mouse_pixel='1' else rom_output;
-  final_b <= '1' when mouse_pixel='1' else rom_output;
+  mouse_pixel <= '1' when (pix_row = mouse_row and pix_col = mouse_col) else '0';
+
+  -- Overlay priority: mouse > character > background/ball
+  final_r <= mouse_pixel or char_pixel_reg or wrapped_r;
+  final_g <= mouse_pixel or char_pixel_reg or wrapped_g;
+  final_b <= mouse_pixel or char_pixel_reg or wrapped_b;
 
   VGA_VS <= vsync_sig;
   VGA_R  <= (others => vga_r_sig);
