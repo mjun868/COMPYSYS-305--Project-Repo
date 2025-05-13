@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_de0_cv
-Mon May 12 18:00:53 2025
+Tue May 13 14:37:58 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -10,7 +10,23 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |de0_cv_top|MOUSE:u_mouse|mouse_state
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Source assignments for char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated
+ 15. Parameter Settings for User Entity Instance: char_rom:u_char_rom|altsyncram:altsyncram_component
+ 16. altsyncram Parameter Settings by Entity Instance
+ 17. Port Connectivity Checks: "char_rom:u_char_rom"
+ 18. Port Connectivity Checks: "MOUSE:u_mouse"
+ 19. Post-Synthesis Netlist Statistics for Top Partition
+ 20. Elapsed Time Per Partition
+ 21. Analysis & Synthesis Messages
 
 
 
@@ -34,22 +50,27 @@ on the Quartus Prime software download page.
 
 
 
-+-------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                  ;
-+-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Mon May 12 18:00:53 2025               ;
-; Quartus Prime Version       ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
-; Revision Name               ; top_de0_cv                                      ;
-; Top-level Entity Name       ; de0_cv_top                                      ;
-; Family                      ; Cyclone V                                       ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                       ;
-; Total registers             ; N/A until Partition Merge                       ;
-; Total pins                  ; N/A until Partition Merge                       ;
-; Total virtual pins          ; N/A until Partition Merge                       ;
-; Total block memory bits     ; N/A until Partition Merge                       ;
-; Total PLLs                  ; N/A until Partition Merge                       ;
-; Total DLLs                  ; N/A until Partition Merge                       ;
-+-----------------------------+-------------------------------------------------+
++-----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                      ;
++---------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Tue May 13 14:37:58 2025           ;
+; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
+; Revision Name                   ; top_de0_cv                                      ;
+; Top-level Entity Name           ; de0_cv_top                                      ;
+; Family                          ; Cyclone V                                       ;
+; Logic utilization (in ALMs)     ; N/A                                             ;
+; Total registers                 ; 185                                             ;
+; Total pins                      ; 22                                              ;
+; Total virtual pins              ; 0                                               ;
+; Total block memory bits         ; 64                                              ;
+; Total DSP Blocks                ; 0                                               ;
+; Total HSSI RX PCSs              ; 0                                               ;
+; Total HSSI PMA RX Deserializers ; 0                                               ;
+; Total HSSI TX PCSs              ; 0                                               ;
+; Total HSSI PMA TX Serializers   ; 0                                               ;
+; Total PLLs                      ; 0                                               ;
+; Total DLLs                      ; 0                                               ;
++---------------------------------+-------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -148,11 +169,328 @@ on the Quartus Prime software download page.
 ; Maximum allowed            ; 10          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 10          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-10        ;   0.0%      ;
 +----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                      ;
++----------------------------------+-----------------+----------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                                                                                        ; Library ;
++----------------------------------+-----------------+----------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; VHDL_files/vga_sync.vhd          ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd    ;         ;
+; VHDL_files/mouse.vhd             ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd       ;         ;
+; VHDL_files/de0_cv_top.vhd        ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd  ;         ;
+; VHDL_files/char_rom.vhd          ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd    ;         ;
+; VHDL_files/bouncy_ball.vhd       ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf                                                                            ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratix_ram_block.inc                                                                     ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_mux.inc                                                                               ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_decode.inc                                                                            ;         ;
+; aglobal241.inc                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/aglobal241.inc                                                                            ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/a_rdenreg.inc                                                                             ;         ;
+; altrom.inc                       ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altrom.inc                                                                                ;         ;
+; altram.inc                       ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altram.inc                                                                                ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altdpram.inc                                                                              ;         ;
+; db/altsyncram_d5g1.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf     ;         ;
+; tcgrom.mif                       ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/tcgrom.mif                 ;         ;
++----------------------------------+-----------------+----------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                  ;
++---------------------------------------------+--------------------------------+
+; Resource                                    ; Usage                          ;
++---------------------------------------------+--------------------------------+
+; Estimate of Logic utilization (ALMs needed) ; 149                            ;
+;                                             ;                                ;
+; Combinational ALUT usage for logic          ; 241                            ;
+;     -- 7 input functions                    ; 3                              ;
+;     -- 6 input functions                    ; 46                             ;
+;     -- 5 input functions                    ; 36                             ;
+;     -- 4 input functions                    ; 28                             ;
+;     -- <=3 input functions                  ; 128                            ;
+;                                             ;                                ;
+; Dedicated logic registers                   ; 185                            ;
+;                                             ;                                ;
+; I/O pins                                    ; 22                             ;
+; Total MLAB memory bits                      ; 0                              ;
+; Total block memory bits                     ; 64                             ;
+;                                             ;                                ;
+; Total DSP Blocks                            ; 0                              ;
+;                                             ;                                ;
+; Maximum fan-out node                        ; MOUSE:u_mouse|MOUSE_CLK_FILTER ;
+; Maximum fan-out                             ; 91                             ;
+; Total fan-out                               ; 1540                           ;
+; Average fan-out                             ; 3.21                           ;
++---------------------------------------------+--------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                  ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                            ; Entity Name     ; Library Name ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------+-----------------+--------------+
+; |de0_cv_top                               ; 241 (23)            ; 185 (5)                   ; 64                ; 0          ; 22   ; 0            ; |de0_cv_top                                                                                    ; de0_cv_top      ; work         ;
+;    |MOUSE:u_mouse|                        ; 110 (110)           ; 118 (118)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|MOUSE:u_mouse                                                                      ; MOUSE           ; work         ;
+;    |VGA_SYNC:u_vga_sync|                  ; 41 (41)             ; 49 (49)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync                                                                ; VGA_SYNC        ; work         ;
+;    |bouncy_ball:u_ball|                   ; 65 (65)             ; 13 (13)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball                                                                 ; bouncy_ball     ; work         ;
+;    |char_rom:u_char_rom|                  ; 2 (2)               ; 0 (0)                     ; 64                ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom                                                                ; char_rom        ; work         ;
+;       |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 64                ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component                                ; altsyncram      ; work         ;
+;          |altsyncram_d5g1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 64                ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated ; altsyncram_d5g1 ; work         ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                            ;
++-----------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+------------+
+; Name                                                                                          ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF        ;
++-----------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+------------+
+; char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 512          ; 8            ; --           ; --           ; 4096 ; tcgrom.mif ;
++-----------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |de0_cv_top|MOUSE:u_mouse|mouse_state                                                                                                                                                   ;
++-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
+; Name                          ; mouse_state.INPUT_PACKETS ; mouse_state.WAIT_CMD_ACK ; mouse_state.WAIT_OUTPUT_READY ; mouse_state.LOAD_COMMAND2 ; mouse_state.LOAD_COMMAND ; mouse_state.INHIBIT_TRANS ;
++-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
+; mouse_state.INHIBIT_TRANS     ; 0                         ; 0                        ; 0                             ; 0                         ; 0                        ; 0                         ;
+; mouse_state.LOAD_COMMAND      ; 0                         ; 0                        ; 0                             ; 0                         ; 1                        ; 1                         ;
+; mouse_state.LOAD_COMMAND2     ; 0                         ; 0                        ; 0                             ; 1                         ; 0                        ; 1                         ;
+; mouse_state.WAIT_OUTPUT_READY ; 0                         ; 0                        ; 1                             ; 0                         ; 0                        ; 1                         ;
+; mouse_state.WAIT_CMD_ACK      ; 0                         ; 1                        ; 0                             ; 0                         ; 0                        ; 1                         ;
+; mouse_state.INPUT_PACKETS     ; 1                         ; 0                        ; 0                             ; 0                         ; 0                        ; 1                         ;
++-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
+
+
++----------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                           ;
++--------------------------------------------+-------------------------------------------------+
+; Register name                              ; Reason for Removal                              ;
++--------------------------------------------+-------------------------------------------------+
+; bouncy_ball:u_ball|ball_y_motion[4,5]      ; Stuck at GND due to stuck port data_in          ;
+; MOUSE:u_mouse|CHAROUT[4..7]                ; Stuck at VCC due to stuck port data_in          ;
+; MOUSE:u_mouse|CHAROUT[3]                   ; Stuck at GND due to stuck port data_in          ;
+; MOUSE:u_mouse|CHAROUT[2]                   ; Stuck at VCC due to stuck port data_in          ;
+; MOUSE:u_mouse|CHAROUT[0,1]                 ; Stuck at GND due to stuck port data_in          ;
+; MOUSE:u_mouse|SHIFTOUT[10]                 ; Stuck at VCC due to stuck port data_in          ;
+; bouncy_ball:u_ball|ball_y_motion[2,3,6..9] ; Merged with bouncy_ball:u_ball|ball_y_motion[1] ;
+; MOUSE:u_mouse|cursor_row[9]                ; Stuck at GND due to stuck port data_in          ;
+; Total Number of Removed Registers = 18     ;                                                 ;
++--------------------------------------------+-------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 185   ;
+; Number of registers using Synchronous Clear  ; 28    ;
+; Number of registers using Synchronous Load   ; 20    ;
+; Number of registers using Asynchronous Clear ; 47    ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 107   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; pb1_sync_1                              ; 4       ;
+; pb1_sync_0                              ; 1       ;
+; MOUSE:u_mouse|send_char                 ; 3       ;
+; bouncy_ball:u_ball|previous_left_status ; 1       ;
+; MOUSE:u_mouse|SHIFTOUT[3]               ; 1       ;
+; MOUSE:u_mouse|SHIFTOUT[5]               ; 1       ;
+; MOUSE:u_mouse|SHIFTOUT[6]               ; 1       ;
+; MOUSE:u_mouse|SHIFTOUT[7]               ; 1       ;
+; MOUSE:u_mouse|SHIFTOUT[8]               ; 1       ;
+; Total number of inverted registers = 9  ;         ;
++-----------------------------------------+---------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|new_cursor_row[4] ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|red_out     ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[9]     ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[7]     ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[5]  ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[6]  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------+
+; Source assignments for char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated ;
++---------------------------------+--------------------+------+---------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                          ;
++---------------------------------+--------------------+------+---------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                           ;
++---------------------------------+--------------------+------+---------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: char_rom:u_char_rom|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+--------------------------------------+
+; Parameter Name                     ; Value                ; Type                                 ;
++------------------------------------+----------------------+--------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                              ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                           ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                         ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                         ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                       ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                              ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                              ;
+; WIDTH_A                            ; 8                    ; Signed Integer                       ;
+; WIDTHAD_A                          ; 9                    ; Signed Integer                       ;
+; NUMWORDS_A                         ; 512                  ; Signed Integer                       ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                              ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                              ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                              ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                              ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                              ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                              ;
+; WIDTH_B                            ; 1                    ; Untyped                              ;
+; WIDTHAD_B                          ; 1                    ; Untyped                              ;
+; NUMWORDS_B                         ; 1                    ; Untyped                              ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                              ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                              ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                              ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                              ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                              ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                              ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                              ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                              ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                              ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                              ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                              ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                              ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                       ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                              ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                              ;
+; BYTE_SIZE                          ; 8                    ; Untyped                              ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                              ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                              ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                              ;
+; INIT_FILE                          ; tcgrom.mif           ; Untyped                              ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                              ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                              ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                              ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                              ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                              ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                              ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                              ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                              ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                              ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                              ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                              ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                              ;
+; CBXI_PARAMETER                     ; altsyncram_d5g1      ; Untyped                              ;
++------------------------------------+----------------------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                ;
++-------------------------------------------+-----------------------------------------------------+
+; Name                                      ; Value                                               ;
++-------------------------------------------+-----------------------------------------------------+
+; Number of entity instances                ; 1                                                   ;
+; Entity Instance                           ; char_rom:u_char_rom|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; ROM                                                 ;
+;     -- WIDTH_A                            ; 8                                                   ;
+;     -- NUMWORDS_A                         ; 512                                                 ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                        ;
+;     -- WIDTH_B                            ; 1                                                   ;
+;     -- NUMWORDS_B                         ; 1                                                   ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                              ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                        ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                           ;
++-------------------------------------------+-----------------------------------------------------+
+
+
++-----------------------------------------------------------+
+; Port Connectivity Checks: "char_rom:u_char_rom"           ;
++-------------------------+-------+----------+--------------+
+; Port                    ; Type  ; Severity ; Details      ;
++-------------------------+-------+----------+--------------+
+; character_address[5..1] ; Input ; Info     ; Stuck at GND ;
+; character_address[0]    ; Input ; Info     ; Stuck at VCC ;
++-------------------------+-------+----------+--------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MOUSE:u_mouse"                                                                              ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; right_button ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 185                         ;
+;     CLR               ; 14                          ;
+;     ENA               ; 36                          ;
+;     ENA CLR           ; 33                          ;
+;     ENA SCLR          ; 18                          ;
+;     ENA SLD           ; 20                          ;
+;     SCLR              ; 10                          ;
+;     plain             ; 54                          ;
+; arriav_io_obuf        ; 2                           ;
+; arriav_lcell_comb     ; 241                         ;
+;     arith             ; 70                          ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 47                          ;
+;         2 data inputs ; 22                          ;
+;     extend            ; 3                           ;
+;         7 data inputs ; 3                           ;
+;     normal            ; 158                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 15                          ;
+;         3 data inputs ; 24                          ;
+;         4 data inputs ; 28                          ;
+;         5 data inputs ; 36                          ;
+;         6 data inputs ; 46                          ;
+;     shared            ; 10                          ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 9                           ;
+; boundary_port         ; 22                          ;
+; stratixv_ram_block    ; 8                           ;
+;                       ;                             ;
+; Max LUT depth         ; 5.40                        ;
+; Average LUT depth     ; 2.49                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
 
 
 +-------------------------------+
@@ -161,7 +499,7 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Mon May 12 18:00:46 2025
+    Info: Processing started: Tue May 13 14:37:50 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ParentProject -c top_de0_cv
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
@@ -179,26 +517,71 @@ Warning (12019): Can't analyze file -- file V/SEG7_LUT_6.v is missing
 Warning (12019): Can't analyze file -- file V/SEG7_LUT.v is missing
 Warning (12019): Can't analyze file -- file V/Reset_Delay.v is missing
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/vga_sync.vhd
-    Info (12022): Found design unit 1: VGA_SYNC-a File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 13
-    Info (12023): Found entity 1: VGA_SYNC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 7
+    Info (12022): Found design unit 1: VGA_SYNC-a File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 20
+    Info (12023): Found entity 1: VGA_SYNC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/mouse.vhd
     Info (12022): Found design unit 1: MOUSE-behavior File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 18
     Info (12023): Found entity 1: MOUSE File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/de0_cv_top.vhd
-    Info (12022): Found design unit 1: de0_cv_top-rtl File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
-    Info (12023): Found entity 1: de0_cv_top File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 5
+    Info (12022): Found design unit 1: de0_cv_top-rtl File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
+    Info (12023): Found entity 1: de0_cv_top File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/char_rom.vhd
     Info (12022): Found design unit 1: char_rom-SYN File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 20
     Info (12023): Found entity 1: char_rom File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/bouncy_ball.vhd
     Info (12022): Found design unit 1: bouncy_ball-behavior File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 15
     Info (12023): Found entity 1: bouncy_ball File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 7
-Error (10482): VHDL error at de0_cv_top.vhd(206): object "to_integer" is used but not declared File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 206
-Error (10482): VHDL error at de0_cv_top.vhd(207): object "to_integer" is used but not declared File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 207
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 10 warnings
-    Error: Peak virtual memory: 4870 megabytes
-    Error: Processing ended: Mon May 12 18:00:53 2025
-    Error: Elapsed time: 00:00:07
-    Error: Total CPU time (on all processors): 00:00:15
+Info (12127): Elaborating entity "de0_cv_top" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(38): object "right_btn" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 38
+Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(51): used explicit default value for signal "char_address" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 51
+Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 108
+Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 25
+Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 151
+Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 155
+Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 156
+Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 157
+Info (12128): Elaborating entity "bouncy_ball" for hierarchy "bouncy_ball:u_ball" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 121
+Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 150
+Info (12128): Elaborating entity "char_rom" for hierarchy "char_rom:u_char_rom" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 167
+Info (12128): Elaborating entity "altsyncram" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
+Info (12130): Elaborated megafunction instantiation "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
+Info (12133): Instantiated megafunction "char_rom:u_char_rom|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
+    Info (12134): Parameter "address_aclr_a" = "NONE"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "tcgrom.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone III"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "512"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "widthad_a" = "9"
+    Info (12134): Parameter "width_a" = "8"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_d5g1.tdf
+    Info (12023): Found entity 1: altsyncram_d5g1 File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_d5g1" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated" File: c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (13000): Registers with preset signals will power-up high File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 146
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (286030): Timing-Driven Synthesis is running
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register pb1_sync_1 will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 64
+    Critical Warning (18010): Register pb1_sync_0 will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 64
+Info (17036): Removed 6 MSB VCC or GND address nodes from RAM block "char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated|ALTSYNCRAM" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf Line: 32
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 339 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 5 input pins
+    Info (21059): Implemented 15 output pins
+    Info (21060): Implemented 2 bidirectional pins
+    Info (21061): Implemented 309 logic cells
+    Info (21064): Implemented 8 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 4990 megabytes
+    Info: Processing ended: Tue May 13 14:37:58 2025
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:17
 
 
