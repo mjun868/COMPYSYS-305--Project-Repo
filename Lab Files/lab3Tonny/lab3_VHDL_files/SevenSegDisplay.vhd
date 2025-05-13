@@ -17,9 +17,6 @@ entity SevenSegDisplay is
     );
 end entity;
 architecture Behavioral of SevenSegDisplay is
-<<<<<<< Updated upstream
-
-=======
     type string_array is array (0 to 5) of std_logic_vector(5 downto 0);
     constant TEXT_START  : string_array := (
         "100011", -- S
@@ -65,7 +62,6 @@ architecture Behavioral of SevenSegDisplay is
         "010111", -- N
         "100100"  -- _
     );
->>>>>>> Stashed changes
     -- Internal signals
     signal display_mode : std_logic_vector(2 downto 0) := "000"; -- 000: none, 001:train,010:game,011:start,100:pause,101:resume
     --keep track of the previous DIP switch state
@@ -123,46 +119,6 @@ begin
                 digit_six_value   <= "1111111";
 
             when "001" => -- Train mode
-<<<<<<< Updated upstream
-                digit_one_value   <= "0000000"; -- Display 'N'
-                digit_two_value   <= "0000000"; -- Display 'I'
-                digit_three_value <= "0000000"; -- Display 'A'
-                digit_four_value  <= "0000000"; -- Display 'R'
-                digit_five_value  <= "0000000"; -- Display 'T'
-                digit_six_value   <= "0000000"; -- Display 'none'
-
-            when "010" => -- Game mode
-                digit_one_value   <= "0001000"; -- Display 'E'
-                digit_two_value   <= "0011001"; -- Display 'M'
-                digit_three_value <= "0010010"; -- Display 'A'
-                digit_four_value  <= "0110111"; -- Display 'G'
-                digit_five_value  <= "0101011"; -- Display 'none'
-                digit_six_value   <= "0111101"; -- Display 'none'
-
-            when "011" => -- Start mode
-                digit_one_value   <= "0000000"; -- Display 'T'
-                digit_two_value   <= "0000000"; -- Display 'R'
-                digit_three_value <= "0000000"; -- Display 'A'
-                digit_four_value  <= "0000000"; -- Display 'T'
-                digit_five_value  <= "0000000"; -- Display 'S'
-                digit_six_value   <= "0000000"; -- Display 'none'
-
-            when "100" => -- Pause mode
-                digit_one_value   <= "0011001"; -- Display 'E'
-                digit_two_value   <= "0110111"; -- Display 'S'
-                digit_three_value <= "0101011"; -- Display 'U'
-                digit_four_value  <= "0111101"; -- Display 'A'
-                digit_five_value  <= "1111111"; -- Display 'P'
-                digit_six_value   <= "1111111"; -- Display 'none'
-
-            when "101" => -- Resume mode
-                digit_one_value   <= "0011001"; -- Display 'E'
-                digit_two_value   <= "0110111"; -- Display 'M'
-                digit_three_value <= "0101011"; -- Display 'U'
-                digit_four_value  <= "0111101"; -- Display 'S'
-                digit_five_value  <= "1111111"; -- Display 'E'
-                digit_six_value   <= "1111111"; -- Display 'R'
-=======
                 digit_one_value   <= TEXT_TRAIN(5); -- Display 'N'
                 digit_two_value   <= TEXT_TRAIN(4); -- Display 'I'
                 digit_three_value <= TEXT_TRAIN(3); -- Display 'A'
@@ -201,7 +157,6 @@ begin
                 digit_four_value  <= TEXT_RESUME(2); -- Display 'S'
                 digit_five_value  <= TEXT_RESUME(1); -- Display 'E'
                 digit_six_value   <= TEXT_RESUME(0); -- Display 'R'
->>>>>>> Stashed changes
 
             when others =>
                 digit_one_value   <= "1111111"; -- All segments off
@@ -242,8 +197,4 @@ begin
             BCD_digit    => digit_six_value,
             SevenSeg_out => digit_six
         );
-<<<<<<< Updated upstream
 end architecture Behavioral;
-=======
-end architecture Behavioral;
->>>>>>> Stashed changes

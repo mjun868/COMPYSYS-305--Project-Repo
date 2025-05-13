@@ -1,5 +1,9 @@
 Timing Analyzer report for top_de0_cv
+<<<<<<< Updated upstream
 Tue May 13 16:28:37 2025
+=======
+Tue May 13 17:40:15 2025
+>>>>>>> Stashed changes
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -102,11 +106,16 @@ on the Quartus Prime software download page.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 16          ;
 ;                            ;             ;
+<<<<<<< Updated upstream
 ; Average used               ; 1.44        ;
+=======
+; Average used               ; 1.51        ;
+>>>>>>> Stashed changes
 ; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+<<<<<<< Updated upstream
 ;     Processor 2            ;   3.8%      ;
 ;     Processor 3            ;   3.7%      ;
 ;     Processor 4            ;   3.5%      ;
@@ -122,6 +131,23 @@ on the Quartus Prime software download page.
 ;     Processor 14           ;   2.7%      ;
 ;     Processor 15           ;   2.7%      ;
 ;     Processor 16           ;   2.7%      ;
+=======
+;     Processor 2            ;   4.0%      ;
+;     Processor 3            ;   3.9%      ;
+;     Processor 4            ;   3.8%      ;
+;     Processor 5            ;   3.3%      ;
+;     Processor 6            ;   3.3%      ;
+;     Processor 7            ;   3.3%      ;
+;     Processor 8            ;   3.3%      ;
+;     Processor 9            ;   3.3%      ;
+;     Processor 10           ;   3.2%      ;
+;     Processor 11           ;   3.2%      ;
+;     Processor 12           ;   3.2%      ;
+;     Processor 13           ;   3.2%      ;
+;     Processor 14           ;   3.2%      ;
+;     Processor 15           ;   3.2%      ;
+;     Processor 16           ;   3.2%      ;
+>>>>>>> Stashed changes
 +----------------------------+-------------+
 
 
@@ -745,7 +771,11 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+<<<<<<< Updated upstream
     Info: Processing started: Tue May 13 16:28:31 2025
+=======
+    Info: Processing started: Tue May 13 17:40:10 2025
+>>>>>>> Stashed changes
 Info: Command: quartus_sta ParentProject -c top_de0_cv
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -909,8 +939,14 @@ Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 14 warnings
     Info: Peak virtual memory: 5351 megabytes
+<<<<<<< Updated upstream
     Info: Processing ended: Tue May 13 16:28:37 2025
     Info: Elapsed time: 00:00:06
     Info: Total CPU time (on all processors): 00:00:05
+=======
+    Info: Processing ended: Tue May 13 17:40:15 2025
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:06
+>>>>>>> Stashed changes
 
 
