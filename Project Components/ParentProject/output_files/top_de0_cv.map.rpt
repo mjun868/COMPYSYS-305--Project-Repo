@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_de0_cv
-Mon May 12 13:36:01 2025
+Tue May 13 16:26:59 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -48,7 +48,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Mon May 12 13:36:01 2025           ;
+; Analysis & Synthesis Status     ; Successful - Tue May 13 16:26:59 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
@@ -168,7 +168,8 @@ on the Quartus Prime software download page.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-16        ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -368,8 +369,16 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Mon May 12 13:35:53 2025
+    Info: Processing started: Tue May 13 16:26:49 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ParentProject -c top_de0_cv
+Warning (125092): Tcl Script File V/img_index.qip not found
+    Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
+Warning (125092): Tcl Script File V/img_data.qip not found
+    Info (125063): set_global_assignment -name QIP_FILE V/img_data.qip
+Warning (125092): Tcl Script File V/vga_pll.qip not found
+    Info (125063): set_global_assignment -name QIP_FILE V/vga_pll.qip
+Warning (125092): Tcl Script File V/vga_pll.sip not found
+    Info (125063): set_global_assignment -name SIP_FILE V/vga_pll.sip
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
 Warning (125092): Tcl Script File V/img_data.qip not found
@@ -380,6 +389,12 @@ Warning (125092): Tcl Script File V/vga_pll.sip not found
     Info (125063): set_global_assignment -name SIP_FILE V/vga_pll.sip
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/sevensegdisplay.vhd
+    Info (12022): Found design unit 1: SevenSegDisplay-Behavioral File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 19
+    Info (12023): Found entity 1: SevenSegDisplay File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/alphanumeric_to_7seg.vhd
+    Info (12022): Found design unit 1: Alphanumeric_to_SevenSeg-arc1 File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_7Seg.vhd Line: 11
+    Info (12023): Found entity 1: Alphanumeric_to_SevenSeg File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_7Seg.vhd Line: 4
 Warning (12019): Can't analyze file -- file V/video_sync_generator.v is missing
 Warning (12019): Can't analyze file -- file V/vga_controller.v is missing
 Warning (12019): Can't analyze file -- file V/SEG7_LUT_6.v is missing
@@ -420,10 +435,10 @@ Info (21057): Implemented 324 device resources after synthesis - the final resou
     Info (21059): Implemented 15 output pins
     Info (21060): Implemented 2 bidirectional pins
     Info (21061): Implemented 302 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 16 warnings
-    Info: Peak virtual memory: 4981 megabytes
-    Info: Processing ended: Mon May 12 13:36:01 2025
-    Info: Elapsed time: 00:00:08
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
+    Info: Peak virtual memory: 5002 megabytes
+    Info: Processing ended: Tue May 13 16:26:59 2025
+    Info: Elapsed time: 00:00:10
     Info: Total CPU time (on all processors): 00:00:20
 
 

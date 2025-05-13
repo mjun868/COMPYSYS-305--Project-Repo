@@ -63,8 +63,8 @@ architecture Behavioral of Programmable_Timer is
 
     component BCD_to_SevenSeg is
         Port (
-            BCD_digit    : in std_logic_vector(3 downto 0);
-            SevenSeg_out : out std_logic_vector(6 downto 0)
+        BCD_digit     : in  std_logic_vector(5 downto 0); -- supports 0?9 (000000 to 001001) and A?Z (001010 to 100011)
+        SevenSeg_out  : out std_logic_vector(6 downto 0)  -- a-g, active-low segment logic
         );
     end component;
 

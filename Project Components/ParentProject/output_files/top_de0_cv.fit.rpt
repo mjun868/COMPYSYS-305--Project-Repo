@@ -1,5 +1,5 @@
 Fitter report for top_de0_cv
-Mon May 12 13:37:17 2025
+Tue May 13 16:28:23 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -64,7 +64,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Fitter Summary                                                                    ;
 +---------------------------------+-------------------------------------------------+
-; Fitter Status                   ; Successful - Mon May 12 13:37:17 2025           ;
+; Fitter Status                   ; Successful - Tue May 13 16:28:23 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
@@ -161,20 +161,20 @@ on the Quartus Prime software download page.
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
 ;     Processor 2            ;   0.4%      ;
-;     Processor 3            ;   0.3%      ;
+;     Processor 3            ;   0.4%      ;
 ;     Processor 4            ;   0.3%      ;
 ;     Processor 5            ;   0.3%      ;
 ;     Processor 6            ;   0.3%      ;
 ;     Processor 7            ;   0.3%      ;
 ;     Processor 8            ;   0.3%      ;
-;     Processor 9            ;   0.2%      ;
-;     Processor 10           ;   0.2%      ;
-;     Processor 11           ;   0.2%      ;
-;     Processor 12           ;   0.2%      ;
-;     Processor 13           ;   0.2%      ;
-;     Processor 14           ;   0.2%      ;
-;     Processor 15           ;   0.2%      ;
-;     Processor 16           ;   0.2%      ;
+;     Processor 9            ;   0.3%      ;
+;     Processor 10           ;   0.3%      ;
+;     Processor 11           ;   0.3%      ;
+;     Processor 12           ;   0.3%      ;
+;     Processor 13           ;   0.3%      ;
+;     Processor 14           ;   0.3%      ;
+;     Processor 15           ;   0.3%      ;
+;     Processor 16           ;   0.3%      ;
 +----------------------------+-------------+
 
 
@@ -2021,19 +2021,19 @@ Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
     Info (170196): Router estimated peak interconnect usage is 2% of the available device resources in the region that extends from location X11_Y11 to location X21_Y22
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:03
-Info (11888): Total time spent on timing analysis during the Fitter is 1.10 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 1.16 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:03
+Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:04
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Info (144001): Generated suppressed messages file C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.fit.smsg
-Info: Quartus Prime Fitter was successful. 0 errors, 199 warnings
+Info: Quartus Prime Fitter was successful. 0 errors, 203 warnings
     Info: Peak virtual memory: 7601 megabytes
-    Info: Processing ended: Mon May 12 13:37:17 2025
-    Info: Elapsed time: 00:01:15
-    Info: Total CPU time (on all processors): 00:07:30
+    Info: Processing ended: Tue May 13 16:28:23 2025
+    Info: Elapsed time: 00:01:23
+    Info: Total CPU time (on all processors): 00:07:28
 
 
 +----------------------------+

@@ -10,21 +10,21 @@ PS2_DAT <> mouse:u_mouse.mouse_data
 PB1 => pb1_sync_0.DATAIN
 PB2 => bouncy_ball:u_ball.pb2
 SW0 => sw0_sync_0.DATAIN
-VGA_R[0] <= vga_sync:u_vga_sync.red_out
-VGA_R[1] <= vga_sync:u_vga_sync.red_out
-VGA_R[2] <= vga_sync:u_vga_sync.red_out
-VGA_R[3] <= vga_sync:u_vga_sync.red_out
-VGA_G[0] <= vga_sync:u_vga_sync.green_out
-VGA_G[1] <= vga_sync:u_vga_sync.green_out
-VGA_G[2] <= vga_sync:u_vga_sync.green_out
-VGA_G[3] <= vga_sync:u_vga_sync.green_out
-VGA_B[0] <= vga_sync:u_vga_sync.blue_out
-VGA_B[1] <= vga_sync:u_vga_sync.blue_out
-VGA_B[2] <= vga_sync:u_vga_sync.blue_out
-VGA_B[3] <= vga_sync:u_vga_sync.blue_out
-VGA_HS <= vga_sync:u_vga_sync.horiz_sync_out
-VGA_VS <= vga_sync:u_vga_sync.vert_sync_out
-LEDR0 <= sw0_sync_1.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[0] << vga_sync:u_vga_sync.red_out
+VGA_R[1] << vga_sync:u_vga_sync.red_out
+VGA_R[2] << vga_sync:u_vga_sync.red_out
+VGA_R[3] << vga_sync:u_vga_sync.red_out
+VGA_G[0] << vga_sync:u_vga_sync.green_out
+VGA_G[1] << vga_sync:u_vga_sync.green_out
+VGA_G[2] << vga_sync:u_vga_sync.green_out
+VGA_G[3] << vga_sync:u_vga_sync.green_out
+VGA_B[0] << vga_sync:u_vga_sync.blue_out
+VGA_B[1] << vga_sync:u_vga_sync.blue_out
+VGA_B[2] << vga_sync:u_vga_sync.blue_out
+VGA_B[3] << vga_sync:u_vga_sync.blue_out
+VGA_HS << vga_sync:u_vga_sync.horiz_sync_out
+VGA_VS << vga_sync:u_vga_sync.vert_sync_out
+LEDR0 << sw0_sync_1.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |de0_cv_top|MOUSE:u_mouse
