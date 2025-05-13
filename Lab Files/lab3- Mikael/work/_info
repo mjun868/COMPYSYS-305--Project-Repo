@@ -1,0 +1,118 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder
+Ebcd_to_sevenseg
+Z1 w1744263755
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 10
+R0
+Z4 8C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/BCD_to_SevenSeg.vhd
+Z5 FC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/BCD_to_SevenSeg.vhd
+l0
+L4 1
+VFT6>`z9CMcA6TXCH?3W<f0
+!s100 _<<0kAA_o5Xj02P`YS4Bh1
+Z6 OV;C;2020.1;71
+32
+Z7 !s110 1744263762
+!i10b 1
+Z8 !s108 1744263762.000000
+Z9 !s90 -reportprogress|300|-work|work|C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/BCD_to_SevenSeg.vhd|
+Z10 !s107 C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/BCD_to_SevenSeg.vhd|
+!i113 1
+Z11 o-work work
+Z12 tExplicit 1 CvgOpt 0
+Abehavioral
+R2
+R3
+DEx4 work 15 bcd_to_sevenseg 0 22 FT6>`z9CMcA6TXCH?3W<f0
+!i122 10
+l12
+L11 19
+V@81@P0Qz>EZg7;=2iHGBJ1
+!s100 ^S10J_nBU_l5I_mm[]Da?2
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Eprogrammable_timer_tb
+Z13 w1744263805
+Z14 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+R2
+R3
+!i122 11
+R0
+Z15 8C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/1d
+Z16 FC:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/1d
+l0
+L6 1
+VI9O:=R1g<d;CBJRJBBAdW2
+!s100 cUSln<oGJS4ajN;C3F??g3
+R6
+32
+Z17 !s110 1744263818
+!i10b 1
+Z18 !s108 1744263818.000000
+Z19 !s90 -reportprogress|300|-work|work|C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/1d|
+Z20 !s107 C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Lab 3 Folder/1d|
+!i113 1
+R11
+R12
+Atb
+R14
+R2
+R3
+Z21 DEx4 work 21 programmable_timer_tb 0 22 I9O:=R1g<d;CBJRJBBAdW2
+!i122 11
+l41
+Z22 L10 113
+Z23 VPWUK;[1>cQRhDY;J5<dKi1
+Z24 !s100 1C0>^kz8P]9`EP`Uj:L2Y2
+R6
+32
+R17
+!i10b 1
+R18
+R19
+R20
+!i113 1
+R11
+R12
+Etb_programmable_timer
+w1744260098
+R14
+R2
+R3
+!i122 5
+R0
+R15
+R16
+l0
+L6 1
+VQQ5D=bTjnAMb8X9<Hi6da2
+!s100 Nb=Glh8R0fNQPgln8;fM43
+R6
+32
+!s110 1744260101
+!i10b 1
+!s108 1744260101.000000
+R19
+R20
+!i113 1
+R11
+R12

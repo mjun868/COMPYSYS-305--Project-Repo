@@ -1,0 +1,90 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity test_seq_counter is
+end entity;
+
+architecture behavior of test_seq_counter is
+    -- Input signals for DUT
+    signal t_Clk    : std_logic := '0';
+    signal t_Reset  : std_logic := '0';
+    signal t_Enable : std_logic := '0';
+    signal t_Mode   : std_logic_vector(1 downto 0) := "00";
+
+    -- Output signal from DUT
+    signal t_Q : std_logic_vector(4 downto 0);
+
+    -- DUT declaration
+    component seq_counter
+        port (
+            Clk     : in  std_logic;
+            Reset   : in  std_logic;
+            Enable  : in  std_logic;
+            Mode    : in  std_logic_vector(1 downto 0);
+            Q       : out std_logic_vector(4 downto 0)
+        );
+    end component;
+
+begin
+    -- Instantiate DUT
+    DUT: seq_counter
+        port map (
+            Clk    => t_Clk,
+            Reset  => t_Reset,
+            Enable => t_Enable,
+            Mode   => t_Mode,
+            Q      => t_Q
+        );
+
+    -- Clock generation: 100 MHz (10 ns period)
+    clk_process: process
+    begin
+        while true loop
+            t_Clk <= '0';
+            wait for 5 ns;
+            t_Clk <= '1';
+            wait for 5 ns;
+        end loop;
+    end process;
+
+    -- Test sequence
+    stim_process: process
+    begin
+        -- 1. Apply reset
+        t_Reset <= '1';
+        t_Enable <= '0';
+        wait for 10 ns;
+
+        t_Reset <= '0';
+        wait for 10 ns;
+
+        -- 2. Enable counter in Mode "00" (odd up)
+        t_Enable <= '1';
+        wait for 70 ns;
+
+        -- 3. Switch to Mode "01" (even down)
+        t_Mode <= "01";
+        wait for 70 ns;
+
+        -- 4. Switch to Mode "10" (custom sequence)
+        t_Mode <= "10";
+        wait for 70 ns;
+
+        -- 5. Switch to Mode "11" (constant output)
+        t_Mode <= "11";
+        wait for 30 ns;
+
+        -- 6. Toggle Enable off and back on
+        t_Enable <= '0';
+        wait for 30 ns;
+
+        t_Enable <= '1';
+        t_Mode <= "00";
+        wait for 50 ns;
+
+        -- Stop simulation
+        wait;
+    end process;
+
+end architecture;
+
