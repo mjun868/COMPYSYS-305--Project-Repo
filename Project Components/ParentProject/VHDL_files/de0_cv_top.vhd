@@ -71,6 +71,10 @@ architecture rtl of de0_cv_top is
   signal btn1_stable, btn1           : std_logic;
   signal sw0_sync_0, sw0_sync_1, sw0_stable : std_logic;
   signal bg_mode, bg_r_const, bg_g_const, bg_b_const : std_logic;
+  
+  -- 7 seg text choice
+  signal display_mode : std_logic_vector(2 downto 0);
+  
 begin
   -- Clock divide
   clk_div : process(CLOCK_50) begin
@@ -103,6 +107,8 @@ begin
   end process;
   sw0_stable <= sw0_sync_1;
   LEDR0      <= sw0_stable;
+  
+  display_mode <= "010" when sw0_stable = '1' else "001";
 
   -- Background color
   bg_mode    <= sw0_stable xor btn1;
@@ -172,9 +178,10 @@ begin
   u_seven_seg : entity work.SevenSegDisplay
     port map(
         clk         => clk25,       
-        PB1         =>  btn1,
-        PB2         =>  PB2,
-        SW0         =>  sw0_stable,
+        --PB1         =>  btn1,
+        --PB2         =>  PB2,
+        --SW0         =>  sw0_stable,
+		  display_mode => display_mode,
         digit_one   =>  seven_seg_one,
         digit_two   =>  seven_seg_two,
         digit_three =>  seven_seg_three,
@@ -217,6 +224,8 @@ begin
 
   -- Mouse overlay
   mouse_pixel <= '1' when pix_row = mouse_row and pix_col = mouse_col else '0';
+  
+  seven_seg_one <=
 
   -- Final overlay using rom_output directly
   final_r <= '1' when mouse_pixel = '1' else

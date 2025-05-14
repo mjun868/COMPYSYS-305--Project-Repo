@@ -5,9 +5,10 @@ use IEEE.NUMERIC_STD.ALL;
 entity SevenSegDisplay is
     Port (
         clk         : in  std_logic;  -- Clock signal
-        PB1         : in  std_logic;  -- KEY1 (start)
-        PB2         : in  std_logic;  -- KEY2 (pause/resume)
-        SW0         : in  std_logic;  -- DIP switch 0 (game/train)
+      --  PB1         : in  std_logic;  -- KEY1 (start)
+      --  PB2         : in  std_logic;  -- KEY2 (pause/resume)
+      --  SW0         : in  std_logic;  -- DIP switch 0 (game/train)
+		  display_mode : in std_logic_vector(2 downto 0);
         digit_one   : out std_logic_vector(6 downto 0);
         digit_two   : out std_logic_vector(6 downto 0);
         digit_three : out std_logic_vector(6 downto 0);
@@ -17,7 +18,9 @@ entity SevenSegDisplay is
     );
 end entity;
 architecture Behavioral of SevenSegDisplay is
+
     type string_array is array (0 to 5) of std_logic_vector(5 downto 0);
+	 
     constant TEXT_START  : string_array := (
         "100011", -- S
         "011101", -- T
@@ -63,18 +66,19 @@ architecture Behavioral of SevenSegDisplay is
         "100100"  -- _
     );
     -- Internal signals
-    signal display_mode : std_logic_vector(2 downto 0) := "000"; -- 000: none, 001:train,010:game,011:start,100:pause,101:resume
+    --signal display_mode : std_logic_vector(2 downto 0) := "000"; -- 000: none, 001:train,010:game,011:start,100:pause,101:resume
     --keep track of the previous DIP switch state
-    signal prev_SW0 : std_logic := '0';
+    --signal prev_SW0 : std_logic := '0';
     --Keep track of the previous PB1 state
-    signal prev_PB1 : std_logic := '0';
+    --signal prev_PB1 : std_logic := '0';
     --keep track of the previous PB2 state
-    signal prev_PB2 : std_logic := '0';
+    --signal prev_PB2 : std_logic := '0';
     -- keep track of the previous mode of the game,either pause or resume
-    signal pause_resume : std_logic := '0'; -- 0: pause, 1: resume
+    --signal pause_resume : std_logic := '0'; -- 0: pause, 1: resume
     -- 7-segment display signals
-    signal digit_one_value,digit_two_value,digit_three_value,digit_four_value,digit_five_value,digit_six_value: std_logic_vector(5 downto 0);
+    --signal digit_one_value,digit_two_value,digit_three_value,digit_four_value,digit_five_value,digit_six_value: std_logic_vector(5 downto 0);
     --compent declared for the 7-segment display
+	 
     component Alphanumeric_to_SevenSeg is
         Port (
             BCD_digit    : in std_logic_vector(5 downto 0);

@@ -1,6 +1,6 @@
 Flow report for top_de0_cv
-Wed May 14 12:53:20 2025
-Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+Wed May 14 23:13:36 2025
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
 ---------------------
@@ -21,46 +21,45 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2025  Altera Corporation. All rights reserved.
-Your use of Altera Corporation's design tools, logic functions 
-and other software and tools, and any partner logic 
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Altera Program License 
-Subscription Agreement, the Altera Quartus Prime License Agreement,
-the Altera IP License Agreement, or other applicable license
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
-Altera and sold by Altera or its authorized distributors.  Please
-refer to the Altera Software License Subscription Agreements 
-on the Quartus Prime software download page.
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
 
 
 
-+-----------------------------------------------------------------------------------+
-; Flow Summary                                                                      ;
-+---------------------------------+-------------------------------------------------+
-; Flow Status                     ; Successful - Wed May 14 12:53:14 2025           ;
-; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
-; Revision Name                   ; top_de0_cv                                      ;
-; Top-level Entity Name           ; de0_cv_top                                      ;
-; Family                          ; Cyclone V                                       ;
-; Device                          ; 5CEBA4F23C7                                     ;
-; Timing Models                   ; Final                                           ;
-; Logic utilization (in ALMs)     ; 157 / 18,480 ( < 1 % )                          ;
-; Total registers                 ; 206                                             ;
-; Total pins                      ; 64 / 224 ( 29 % )                               ;
-; Total virtual pins              ; 0                                               ;
-; Total block memory bits         ; 64 / 3,153,920 ( < 1 % )                        ;
-; Total DSP Blocks                ; 0 / 66 ( 0 % )                                  ;
-; Total HSSI RX PCSs              ; 0                                               ;
-; Total HSSI PMA RX Deserializers ; 0                                               ;
-; Total HSSI TX PCSs              ; 0                                               ;
-; Total HSSI PMA TX Serializers   ; 0                                               ;
-; Total PLLs                      ; 0 / 4 ( 0 % )                                   ;
-; Total DLLs                      ; 0 / 4 ( 0 % )                                   ;
-+---------------------------------+-------------------------------------------------+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++---------------------------------+---------------------------------------------+
+; Flow Status                     ; Successful - Wed May 14 23:13:30 2025       ;
+; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                   ; top_de0_cv                                  ;
+; Top-level Entity Name           ; de0_cv_top                                  ;
+; Family                          ; Cyclone V                                   ;
+; Device                          ; 5CEBA4F23C7                                 ;
+; Timing Models                   ; Final                                       ;
+; Logic utilization (in ALMs)     ; 156 / 18,480 ( < 1 % )                      ;
+; Total registers                 ; 214                                         ;
+; Total pins                      ; 64 / 224 ( 29 % )                           ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 64 / 3,153,920 ( < 1 % )                    ;
+; Total DSP Blocks                ; 0 / 66 ( 0 % )                              ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0 / 4 ( 0 % )                               ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
++---------------------------------+---------------------------------------------+
 
 
 +-----------------------------------------+
@@ -68,7 +67,7 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/14/2025 12:51:54 ;
+; Start date & time ; 05/14/2025 23:12:40 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; top_de0_cv          ;
 +-------------------+---------------------+
@@ -79,7 +78,7 @@ on the Quartus Prime software download page.
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id                        ;
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 200871867728211.174718391406968        ; --            ; --          ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 171983376094837.174722115902812        ; --            ; --          ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_signal_integrity ;
@@ -107,11 +106,11 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:09     ; 1.0                     ; 5006 MB             ; 00:00:20                           ;
-; Fitter               ; 00:01:06     ; 1.0                     ; 7724 MB             ; 00:06:14                           ;
-; Assembler            ; 00:00:04     ; 1.0                     ; 4987 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:05     ; 1.5                     ; 5350 MB             ; 00:00:06                           ;
-; Total                ; 00:01:24     ; --                      ; --                  ; 00:06:43                           ;
+; Analysis & Synthesis ; 00:00:09     ; 1.0                     ; 4932 MB             ; 00:00:15                           ;
+; Fitter               ; 00:00:36     ; 1.1                     ; 6896 MB             ; 00:02:34                           ;
+; Assembler            ; 00:00:03     ; 1.0                     ; 4820 MB             ; 00:00:03                           ;
+; Timing Analyzer      ; 00:00:05     ; 1.3                     ; 5168 MB             ; 00:00:05                           ;
+; Total                ; 00:00:53     ; --                      ; --                  ; 00:02:57                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -120,10 +119,10 @@ on the Quartus Prime software download page.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; GGPC             ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; GGPC             ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; GGPC             ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; GGPC             ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
