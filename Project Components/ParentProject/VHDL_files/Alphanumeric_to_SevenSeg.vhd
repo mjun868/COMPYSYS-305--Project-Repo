@@ -36,12 +36,12 @@ begin
         "1110001" when BCD_digit = "010011" else -- J
         "0001011" when BCD_digit = "010100" else -- K (? H)
         "1000111" when BCD_digit = "010101" else -- L
-        "1010100" when BCD_digit = "010110" else -- M (poor approximation)
+        "1101010" when BCD_digit = "010110" else -- M (poor approximation)
         "0101011" when BCD_digit = "010111" else -- N (? H)
         "1000000" when BCD_digit = "011000" else -- O (? 0)
         "0001100" when BCD_digit = "011001" else -- P
         "0011000" when BCD_digit = "011010" else -- Q
-        "0001100" when BCD_digit = "011011" else -- R
+        "0101111" when BCD_digit = "011011" else -- R
         "0010010" when BCD_digit = "011100" else -- S
         "0000111" when BCD_digit = "011101" else -- T
         "1000001" when BCD_digit = "011110" else -- U

@@ -59,11 +59,12 @@ architecture Behavioral of SevenSegDisplay is
 
     constant TEXT_TRAIN  : string_array := (
         "011101", -- T
-        "100010", -- R
+        "011011", -- R
         "001010", -- A
         "010010", -- I
         "010111", -- N
         "100100"  -- _
+		  
     );
     -- Internal signals
     --signal display_mode : std_logic_vector(2 downto 0) := "000"; -- 000: none, 001:train,010:game,011:start,100:pause,101:resume
@@ -76,7 +77,7 @@ architecture Behavioral of SevenSegDisplay is
     -- keep track of the previous mode of the game,either pause or resume
     --signal pause_resume : std_logic := '0'; -- 0: pause, 1: resume
     -- 7-segment display signals
-    --signal digit_one_value,digit_two_value,digit_three_value,digit_four_value,digit_five_value,digit_six_value: std_logic_vector(5 downto 0);
+    signal digit_one_value,digit_two_value,digit_three_value,digit_four_value,digit_five_value,digit_six_value: std_logic_vector(5 downto 0);
     --compent declared for the 7-segment display
 	 
     component Alphanumeric_to_SevenSeg is
@@ -86,33 +87,11 @@ architecture Behavioral of SevenSegDisplay is
         );
     end component;
 begin
+
+    -- Display logic based on the display_mode signal
     process(clk)
     begin
-        if rising_edge(clk) then
-            display_mode <= "000"; -- Default to none at the start of each iteration
-            if (prev_SW0 = '0' and SW0 = '1') then
-                display_mode <= "011"; -- Game mode
-            elsif (prev_SW0 = '1' and SW0 = '0') then
-                display_mode <= "010"; -- Train mode
-            elsif (prev_PB1 = '0' and PB1 = '1') then
-                display_mode <= "011"; -- Start mode
-            elsif (prev_PB2 = '0' and PB2 = '1') then
-                if (pause_resume = '0') then
-                    display_mode <= "100"; -- Pause mode
-                    pause_resume <= '1'; -- Set to pause
-                else
-                    display_mode <= "101"; -- Resume mode
-                    pause_resume <= '0'; -- Set to resume
-                end if;
-            end if;
-            prev_SW0 <= SW0; -- Store the previous state of SW0
-            prev_PB1 <= PB1; -- Store the previous state of PB1
-            prev_PB2 <= PB2; -- Store the previous state of PB2
-        end if;
-    end process;
-    -- Display logic based on the display_mode signal
-    process(display_mode)
-    begin
+			if rising_edge(clk) then
         case display_mode is
             when "000" => -- None
                 digit_one_value   <= "111111"; -- All segments off
@@ -170,7 +149,9 @@ begin
                 digit_five_value  <= "111111";
                 digit_six_value   <= "111111";
         end case;
+		  end if;
     end process;
+	 
     digit_one_Counter: Alphanumeric_to_SevenSeg
         port map (
             BCD_digit    => digit_one_value,

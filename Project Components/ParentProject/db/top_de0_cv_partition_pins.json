@@ -64,163 +64,87 @@
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_one[0]",
+					"name" : "HEX1[2]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_one[3]",
+					"name" : "HEX1[4]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_one[4]",
+					"name" : "HEX1[6]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_one[5]",
+					"name" : "HEX2[0]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_one[6]",
+					"name" : "HEX2[1]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_two[0]",
+					"name" : "HEX2[2]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_two[1]",
+					"name" : "HEX2[3]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_two[2]",
+					"name" : "HEX2[4]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_two[3]",
+					"name" : "HEX2[5]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_two[4]",
+					"name" : "HEX2[6]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_two[5]",
+					"name" : "HEX3[1]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_two[6]",
+					"name" : "HEX3[5]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_three[0]",
+					"name" : "HEX3[6]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_three[1]",
+					"name" : "HEX4[0]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_three[2]",
+					"name" : "HEX4[1]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_three[3]",
+					"name" : "HEX4[2]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_three[4]",
+					"name" : "HEX4[5]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_three[5]",
+					"name" : "HEX5[0]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_three[6]",
+					"name" : "HEX5[1]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_four[0]",
+					"name" : "HEX5[2]",
 					"strict" : false
 				},
 				{
-					"name" : "seven_seg_four[1]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_four[2]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_four[3]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_four[4]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_four[5]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_four[6]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_five[0]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_five[1]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_five[2]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_five[3]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_five[4]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_five[5]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_five[6]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_six[0]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_six[1]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_six[2]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_six[3]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_six[4]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_six[5]",
-					"strict" : false
-				},
-				{
-					"name" : "seven_seg_six[6]",
+					"name" : "HEX5[4]",
 					"strict" : false
 				},
 				{
