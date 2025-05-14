@@ -64,6 +64,166 @@
 					"strict" : false
 				},
 				{
+					"name" : "seven_seg_one[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_one[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_one[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_one[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_one[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_two[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_two[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_two[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_two[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_two[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_two[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_two[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_three[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_three[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_three[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_three[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_three[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_three[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_three[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_four[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_four[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_four[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_four[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_four[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_four[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_four[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_five[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_five[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_five[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_five[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_five[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_five[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_five[6]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_six[0]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_six[1]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_six[2]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_six[3]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_six[4]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_six[5]",
+					"strict" : false
+				},
+				{
+					"name" : "seven_seg_six[6]",
+					"strict" : false
+				},
+				{
 					"name" : "PS2_CLK",
 					"strict" : false
 				},

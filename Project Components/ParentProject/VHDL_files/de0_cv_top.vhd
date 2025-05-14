@@ -18,7 +18,13 @@ entity de0_cv_top is
     VGA_B    : out std_logic_vector(3 downto 0);
     VGA_HS   : out std_logic;
     VGA_VS   : out std_logic;
-    LEDR0    : out std_logic
+    LEDR0    : out std_logic;
+    seven_seg_one : out std_logic_vector(6 downto 0);
+    seven_seg_two : out std_logic_vector(6 downto 0);
+    seven_seg_three : out std_logic_vector(6 downto 0);
+    seven_seg_four : out std_logic_vector(6 downto 0);
+    seven_seg_five : out std_logic_vector(6 downto 0);
+    seven_seg_six : out std_logic_vector(6 downto 0)
   );
 end entity de0_cv_top;
 
@@ -162,7 +168,20 @@ begin
       pixel_column     => pix_col,
       video_on_out     => video_on
     );
-
+  -- seven segment display
+  u_seven_seg : entity work.SevenSegDisplay
+    port map(
+        clk         => clk25,       
+        PB1         =>  btn1,
+        PB2         =>  PB2,
+        SW0         =>  sw0_stable,
+        digit_one   =>  seven_seg_one,
+        digit_two   =>  seven_seg_two,
+        digit_three =>  seven_seg_three,
+        digit_four  =>  seven_seg_four,
+        digit_five  =>  seven_seg_five,
+        digit_six  =>  seven_seg_six
+    );
   -- Char ROM
   u_char_rom : entity work.char_rom
     port map(

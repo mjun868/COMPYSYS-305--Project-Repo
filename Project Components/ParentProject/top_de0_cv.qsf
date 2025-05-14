@@ -492,6 +492,18 @@ set_location_assignment PIN_W9 -to PB1
 set_location_assignment PIN_M7 -to PB2
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW0
 set_location_assignment PIN_U13 -to SW0
+set_global_assignment -name VHDL_FILE VHDL_files/SevenSegDisplay.vhd
+set_global_assignment -name VHDL_FILE VHDL_files/Alphanumeric_to_SevenSeg.vhd
+set_global_assignment -name VERILOG_FILE V/video_sync_generator.v
+set_global_assignment -name VERILOG_FILE V/vga_controller.v
+set_global_assignment -name VERILOG_FILE V/SEG7_LUT_6.v
+set_global_assignment -name VERILOG_FILE V/SEG7_LUT.v
+set_global_assignment -name VERILOG_FILE V/Reset_Delay.v
+set_global_assignment -name QIP_FILE V/img_index.qip
+set_global_assignment -name QIP_FILE V/img_data.qip
+set_global_assignment -name QIP_FILE V/vga_pll.qip
+set_global_assignment -name SIP_FILE V/vga_pll.sip
+set_global_assignment -name SDC_FILE DE0_CV_Default.sdc
 set_global_assignment -name VHDL_FILE VHDL_files/vga_sync.vhd
 set_global_assignment -name VHDL_FILE VHDL_files/mouse.vhd
 set_global_assignment -name VHDL_FILE VHDL_files/de0_cv_top.vhd

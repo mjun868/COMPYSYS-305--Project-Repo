@@ -73,11 +73,11 @@ architecture Behavioral of SevenSegDisplay is
     -- keep track of the previous mode of the game,either pause or resume
     signal pause_resume : std_logic := '0'; -- 0: pause, 1: resume
     -- 7-segment display signals
-    signal digit_one_value,digit_two_value,digit_three_value,digit_four_value,digit_five_value,digit_six_value: std_logic_vector(3 downto 0);
+    signal digit_one_value,digit_two_value,digit_three_value,digit_four_value,digit_five_value,digit_six_value: std_logic_vector(5 downto 0);
     --compent declared for the 7-segment display
     component Alphanumeric_to_SevenSeg is
         Port (
-            BCD_digit    : in std_logic_vector(3 downto 0);
+            BCD_digit    : in std_logic_vector(5 downto 0);
             SevenSeg_out : out std_logic_vector(6 downto 0)
         );
     end component;
@@ -111,12 +111,12 @@ begin
     begin
         case display_mode is
             when "000" => -- None
-                digit_one_value   <= "1111111"; -- All segments off
-                digit_two_value   <= "1111111";
-                digit_three_value <= "1111111";
-                digit_four_value  <= "1111111";
-                digit_five_value  <= "1111111";
-                digit_six_value   <= "1111111";
+                digit_one_value   <= "111111"; -- All segments off
+                digit_two_value   <= "111111";
+                digit_three_value <= "111111";
+                digit_four_value  <= "111111";
+                digit_five_value  <= "111111";
+                digit_six_value   <= "111111";
 
             when "001" => -- Train mode
                 digit_one_value   <= TEXT_TRAIN(5); -- Display 'N'
@@ -159,12 +159,12 @@ begin
                 digit_six_value   <= TEXT_RESUME(0); -- Display 'R'
 
             when others =>
-                digit_one_value   <= "1111111"; -- All segments off
-                digit_two_value   <= "1111111";
-                digit_three_value <= "1111111";
-                digit_four_value  <= "1111111";
-                digit_five_value  <= "1111111";
-                digit_six_value   <= "1111111";
+                digit_one_value   <= "111111"; -- All segments off
+                digit_two_value   <= "111111";
+                digit_three_value <= "111111";
+                digit_four_value  <= "111111";
+                digit_five_value  <= "111111";
+                digit_six_value   <= "111111";
         end case;
     end process;
     digit_one_Counter: Alphanumeric_to_SevenSeg
