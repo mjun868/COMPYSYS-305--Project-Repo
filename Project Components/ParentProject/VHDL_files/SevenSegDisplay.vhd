@@ -30,6 +30,15 @@ architecture Behavioral of SevenSegDisplay is
         "100100"  -- _
     );
 
+    constant TEXT_SELECT : string_array := (
+        "100011", -- S
+        "001110", -- E
+        "010101", -- L
+        "001110", -- E
+        "100011", -- C
+        "011101" -- T
+    );
+
     constant TEXT_PAUSE  : string_array := (
         "011001", -- P
         "001010", -- A
@@ -110,14 +119,14 @@ begin
                 digit_six_value   <= "111111";
 
             when "001" => -- Train mode
-                digit_one_value   <= TEXT_TRAIN(5); -- Display 'N'
-                digit_two_value   <= TEXT_TRAIN(4); -- Display 'I'
-                digit_three_value <= TEXT_TRAIN(3); -- Display 'A'
-                digit_four_value  <= TEXT_TRAIN(2); -- Display 'R'
-                digit_five_value  <= TEXT_TRAIN(1); -- Display 'T'
-                digit_six_value   <= TEXT_TRAIN(0); -- Display 'none'
+                digit_one_value   <= TEXT_SELECT(5); -- Display 'T'
+                digit_two_value   <= TEXT_SELECT(4); -- Display 'C'
+                digit_three_value <= TEXT_SELECT(3); -- Display 'E'
+                digit_four_value  <= TEXT_SELECT(2); -- Display 'L'
+                digit_five_value  <= TEXT_SELECT(1); -- Display 'E'
+                digit_six_value   <= TEXT_SELECT(0); -- Display 'S'
 
-            when "010" => -- Game mode, change to display the text play instead of game
+            when "010" => -- Game mode, change to display the text 'PLAY'
                 digit_one_value   <= TEXT_PLAY(5); -- Display '_'
                 digit_two_value   <= TEXT_PLAY(4); -- Display '_'
                 digit_three_value <= TEXT_PLAY(3); -- Display 'Y'
