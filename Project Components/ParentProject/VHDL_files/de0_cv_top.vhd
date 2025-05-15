@@ -52,30 +52,27 @@ architecture rtl of de0_cv_top is
   -- Character ROM message Death By Pipe 
   type char_array is array(0 to 12) of std_logic_vector(5 downto 0);
   constant TEXT_DEATH_BY_PIPE : char_array := (
-  "000100", 
-  "000101",
-  "000001",  
-  "010100", 
-  "001000", 
-  "100000", 
-  "000010", 
-  "011001", 
-  "100000", 
-  "010000", 
-  "001001", 
-  "010000", 
-  "000101"  
-);
-  -- constant A_ADDR : std_logic_vector(5 downto 0) := "000001";  -- correct index 33 for 'A'
+    "000100", 
+    "000101",
+    "000001",  
+    "010100", 
+    "001000", 
+    "100000", 
+    "000010", 
+    "011001", 
+    "100000", 
+    "010000", 
+    "001001", 
+    "010000", 
+    "000101"  
+  );
+
   constant S      : integer := 4;
-  --constant Y_OFF  : integer := 48;    -- <<<<<<<<<<<<<<<<<<<< shift up 1px
   constant CHAR_W : integer := S * 8;
   constant CHAR_H : integer := S * 8;
   constant NUM_CHARS : integer := 13;
-  
   constant MSG_WIDTH  : integer := NUM_CHARS * CHAR_W;
   constant MSG_HEIGHT : integer := CHAR_H;
-  
   constant H_OFF : integer := (640 - MSG_WIDTH) / 2;
   constant V_OFF : integer := (480 - MSG_HEIGHT) / 2;
 
@@ -86,7 +83,7 @@ architecture rtl of de0_cv_top is
   signal rom_output      : std_logic;
   signal in_text_region  : std_logic;
 
-  -- Mouse overlay
+  -- Mouse overlay signal
   signal mouse_pixel     : std_logic;
 
   -- Final RGB
@@ -100,7 +97,10 @@ architecture rtl of de0_cv_top is
   
   -- 7 seg text choice
   signal display_mode : std_logic_vector(2 downto 0);
-  
+
+  -- Cursor half-size: for a (2*CURSOR_HALF+1)x(2*CURSOR_HALF+1) square
+  constant CURSOR_HALF : integer := 5;
+
 begin
   -- Clock divide
   clk_div : process(CLOCK_50) begin
@@ -200,21 +200,20 @@ begin
       pixel_column     => pix_col,
       video_on_out     => video_on
     );
+
   -- seven segment display
   u_seven_seg : entity work.SevenSegDisplay
     port map(
         clk         => clk25,       
-        --PB1         =>  btn1,
-        --PB2         =>  PB2,
-        --SW0         =>  sw0_stable,
-		  display_mode => display_mode,
-        digit_one   =>  HEX0,
-        digit_two   =>  HEX1,
-        digit_three =>  HEX2,
-        digit_four  =>  HEX3,
-        digit_five  =>  HEX4,
-        digit_six  =>   HEX5
+        display_mode => display_mode,
+        digit_one   => HEX0,
+        digit_two   => HEX1,
+        digit_three => HEX2,
+        digit_four  => HEX3,
+        digit_five  => HEX4,
+        digit_six   => HEX5
     );
+
   -- Char ROM
   u_char_rom : entity work.char_rom
     port map(
@@ -225,71 +224,52 @@ begin
       rom_mux_output    => rom_output
     );
 
---  -- Region test: start at Y_OFF to include the very first glyph row
---  in_char_region <= '1'
---    when video_on = '1' and
---         to_integer(unsigned(pix_row)) >= Y_OFF and
---         to_integer(unsigned(pix_row)) < Y_OFF + S*8 and
---         to_integer(unsigned(pix_col)) < S*8
---    else '0';
---
---  -- Compute font row/col with correct vertical origin
---  font_row <= std_logic_vector(
---                to_unsigned(
---                  (to_integer(unsigned(pix_row)) - Y_OFF) / S,
---                  3
---                )
---              ) when in_char_region = '1' else "000";
---
---  font_col <= std_logic_vector(
---                to_unsigned(
---                  to_integer(unsigned(pix_col)) / S,
---                  3
---                )
---              ) when in_char_region = '1' else "000";
---				  
+  -- Determine if pixel is in text region
+  in_text_region <= '1'
+    when video_on = '1' and
+         to_integer(unsigned(pix_row)) >= V_OFF and
+         to_integer(unsigned(pix_row)) < V_OFF + CHAR_H and
+         to_integer(unsigned(pix_col)) >= H_OFF and
+         to_integer(unsigned(pix_col)) < H_OFF + NUM_CHARS * CHAR_W
+    else '0';
 
--- Determine if pixel is in text region
-in_text_region <= '1'
-  when video_on = '1' and
-       to_integer(unsigned(pix_row)) >= V_OFF and
-       to_integer(unsigned(pix_row)) < V_OFF + CHAR_H and
-       to_integer(unsigned(pix_col)) >= H_OFF and
-       to_integer(unsigned(pix_col)) < H_OFF + NUM_CHARS * CHAR_W
-  else '0';
+  -- Compute character index and font coordinates
+  char_index <= (to_integer(unsigned(pix_col)) - H_OFF) / CHAR_W;
 
--- Compute character index and font coordinates
-char_index <= (to_integer(unsigned(pix_col)) - H_OFF) / CHAR_W;
+  font_col <= std_logic_vector(to_unsigned(
+    ((to_integer(unsigned(pix_col)) - H_OFF) mod CHAR_W) / S, 3
+  )) when in_text_region = '1' else "000";
 
-font_col <= std_logic_vector(to_unsigned(
-  ((to_integer(unsigned(pix_col)) - H_OFF) mod CHAR_W) / S, 3
-)) when in_text_region = '1' else "000";
+  font_row <= std_logic_vector(to_unsigned(
+    (to_integer(unsigned(pix_row)) - V_OFF) / S, 3
+  )) when in_text_region = '1' else "000";
 
-font_row <= std_logic_vector(to_unsigned(
-  (to_integer(unsigned(pix_row)) - V_OFF) / S, 3
-)) when in_text_region = '1' else "000";
+  -- Map character index to address
+  with char_index select
+    char_address <= TEXT_DEATH_BY_PIPE(0)  when 0,
+                    TEXT_DEATH_BY_PIPE(1)  when 1,
+                    TEXT_DEATH_BY_PIPE(2)  when 2,
+                    TEXT_DEATH_BY_PIPE(3)  when 3,
+                    TEXT_DEATH_BY_PIPE(4)  when 4,
+                    TEXT_DEATH_BY_PIPE(5)  when 5,
+                    TEXT_DEATH_BY_PIPE(6)  when 6,
+                    TEXT_DEATH_BY_PIPE(7)  when 7,
+                    TEXT_DEATH_BY_PIPE(8)  when 8,
+                    TEXT_DEATH_By_PIPE(9)  when 9,
+                    TEXT_DEATH_BY_PIPE(10) when 10,
+                    TEXT_DEATH_BY_PIPE(11) when 11,
+                    TEXT_DEATH_BY_PIPE(12) when others;
 
--- Map character index to address
-with char_index select
-  char_address <= TEXT_DEATH_BY_PIPE(0)  when 0,
-                  TEXT_DEATH_BY_PIPE(1)  when 1,
-                  TEXT_DEATH_BY_PIPE(2)  when 2,
-                  TEXT_DEATH_BY_PIPE(3)  when 3,
-                  TEXT_DEATH_BY_PIPE(4)  when 4,
-                  TEXT_DEATH_BY_PIPE(5)  when 5,
-                  TEXT_DEATH_BY_PIPE(6)  when 6,
-                  TEXT_DEATH_BY_PIPE(7)  when 7,
-                  TEXT_DEATH_BY_PIPE(8)  when 8,
-                  TEXT_DEATH_BY_PIPE(9)  when 9,
-                  TEXT_DEATH_BY_PIPE(10) when 10,
-                  TEXT_DEATH_BY_PIPE(11) when 11,
-                  TEXT_DEATH_BY_PIPE(12) when others;
- 
+  -- Mouse overlay (enlarged square)
+  mouse_pixel <= '1' when
+       video_on = '1' and
+       to_integer(unsigned(pix_row)) >= to_integer(unsigned(mouse_row)) - CURSOR_HALF and
+       to_integer(unsigned(pix_row)) <= to_integer(unsigned(mouse_row)) + CURSOR_HALF and
+       to_integer(unsigned(pix_col)) >= to_integer(unsigned(mouse_col)) - CURSOR_HALF and
+       to_integer(unsigned(pix_col)) <= to_integer(unsigned(mouse_col)) + CURSOR_HALF
+    else '0';
 
-  -- Mouse overlay
-  mouse_pixel <= '1' when pix_row = mouse_row and pix_col = mouse_col else '0';
-  
-  -- Final overlay using rom_output directly
+  -- Final overlay using rom_output and mouse_pixel
   final_r <= '1' when mouse_pixel = '1' else
              '1' when in_text_region = '1' and rom_output = '1' else wrapped_r;
   final_g <= '1' when mouse_pixel = '1' else
@@ -302,4 +282,5 @@ with char_index select
   VGA_R  <= (others => vga_r_sig);
   VGA_G  <= (others => vga_g_sig);
   VGA_B  <= (others => vga_b_sig);
+
 end architecture rtl;
