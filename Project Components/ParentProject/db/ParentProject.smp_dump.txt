@@ -1,4 +1,11 @@
 
+State Machine - |de0_cv_top|game_state
+Name game_state.S_PLAY game_state.S_TRAIN game_state.S_GS game_state.S_TITLE 
+game_state.S_TITLE 0 0 0 0 
+game_state.S_GS 0 0 1 1 
+game_state.S_TRAIN 0 1 0 1 
+game_state.S_PLAY 1 0 0 1 
+
 State Machine - |de0_cv_top|MOUSE:u_mouse|mouse_state
 Name mouse_state.INPUT_PACKETS mouse_state.WAIT_CMD_ACK mouse_state.WAIT_OUTPUT_READY mouse_state.LOAD_COMMAND2 mouse_state.LOAD_COMMAND mouse_state.INHIBIT_TRANS 
 mouse_state.INHIBIT_TRANS 0 0 0 0 0 0 

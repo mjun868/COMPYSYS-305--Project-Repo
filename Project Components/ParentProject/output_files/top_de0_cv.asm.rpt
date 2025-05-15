@@ -1,5 +1,5 @@
 Assembler report for top_de0_cv
-Thu May 15 15:04:09 2025
+Thu May 15 16:30:58 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -10,8 +10,8 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.sof
-  6. Assembler Device Options: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.pof
+  5. Assembler Device Options: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.sof
+  6. Assembler Device Options: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.pof
   7. Assembler Messages
 
 
@@ -39,7 +39,7 @@ on the Quartus Prime software download page.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu May 15 15:04:09 2025 ;
+; Assembler Status      ; Successful - Thu May 15 16:30:58 2025 ;
 ; Revision Name         ; top_de0_cv                            ;
 ; Top-level Entity Name ; de0_cv_top                            ;
 ; Family                ; Cyclone V                             ;
@@ -54,35 +54,35 @@ on the Quartus Prime software download page.
 +--------+---------+---------------+
 
 
-+------------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                            ;
-+------------------------------------------------------------------------------------------------------+
-; File Name                                                                                            ;
-+------------------------------------------------------------------------------------------------------+
-; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.sof ;
-; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.pof ;
-+------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                                                            ;
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                                                            ;
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.sof ;
+; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.pof ;
++------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.sof ;
-+----------------+---------------------------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                                       ;
-+----------------+---------------------------------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x00594DF4                                                                                                    ;
-; Checksum       ; 0x00594DF4                                                                                                    ;
-+----------------+---------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.sof ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                                                                                       ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x005B2E5D                                                                                                                                                    ;
+; Checksum       ; 0x005B2E5D                                                                                                                                                    ;
++----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.pof ;
-+--------------------+-----------------------------------------------------------------------------------------------------------+
-; Option             ; Setting                                                                                                   ;
-+--------------------+-----------------------------------------------------------------------------------------------------------+
-; JTAG usercode      ; 0x00000000                                                                                                ;
-; Checksum           ; 0x749B62E0                                                                                                ;
-; Compression Ratio  ; 3                                                                                                         ;
-+--------------------+-----------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/top_de0_cv.pof ;
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Option             ; Setting                                                                                                                                                   ;
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; JTAG usercode      ; 0x00000000                                                                                                                                                ;
+; Checksum           ; 0x74959678                                                                                                                                                ;
+; Compression Ratio  ; 3                                                                                                                                                         ;
++--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -91,7 +91,7 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Thu May 15 15:04:06 2025
+    Info: Processing started: Thu May 15 16:30:55 2025
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off ParentProject -c top_de0_cv
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
@@ -113,7 +113,7 @@ Warning (18236): Number of processors has not been specified which may cause ove
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 9 warnings
     Info: Peak virtual memory: 4988 megabytes
-    Info: Processing ended: Thu May 15 15:04:09 2025
+    Info: Processing ended: Thu May 15 16:30:58 2025
     Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:03
 

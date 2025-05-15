@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_de0_cv
-Thu May 15 15:02:28 2025
+Thu May 15 16:29:19 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -14,19 +14,20 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis RAM Summary
-  9. State Machine - |de0_cv_top|MOUSE:u_mouse|mouse_state
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Source assignments for char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated
- 15. Parameter Settings for User Entity Instance: char_rom:u_char_rom|altsyncram:altsyncram_component
- 16. altsyncram Parameter Settings by Entity Instance
- 17. Port Connectivity Checks: "SevenSegDisplay:u_seven_seg"
- 18. Port Connectivity Checks: "MOUSE:u_mouse"
- 19. Post-Synthesis Netlist Statistics for Top Partition
- 20. Elapsed Time Per Partition
- 21. Analysis & Synthesis Messages
+  9. State Machine - |de0_cv_top|game_state
+ 10. State Machine - |de0_cv_top|MOUSE:u_mouse|mouse_state
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Source assignments for char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated
+ 16. Parameter Settings for User Entity Instance: char_rom:u_char_rom|altsyncram:altsyncram_component
+ 17. altsyncram Parameter Settings by Entity Instance
+ 18. Port Connectivity Checks: "SevenSegDisplay:u_seven_seg"
+ 19. Port Connectivity Checks: "MOUSE:u_mouse"
+ 20. Post-Synthesis Netlist Statistics for Top Partition
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
 
 
 
@@ -53,13 +54,13 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu May 15 15:02:28 2025           ;
+; Analysis & Synthesis Status     ; Successful - Thu May 15 16:29:19 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 186                                             ;
+; Total registers                 ; 196                                             ;
 ; Total pins                      ; 64                                              ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 4,096                                           ;
@@ -165,42 +166,42 @@ on the Quartus Prime software download page.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 16          ;
-; Maximum allowed            ; 16          ;
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 10          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 16          ;
+; Maximum used               ; 10          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-16        ;   0.0%      ;
+;     Processors 2-10        ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                                          ;
-+-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path        ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                                                     ; Library ;
-+-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------+---------+
-; VHDL_files/SevenSegDisplay.vhd          ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd          ;         ;
-; VHDL_files/Alphanumeric_to_SevenSeg.vhd ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd ;         ;
-; VHDL_files/vga_sync.vhd                 ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd                 ;         ;
-; VHDL_files/mouse.vhd                    ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd                    ;         ;
-; VHDL_files/de0_cv_top.vhd               ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd               ;         ;
-; VHDL_files/char_rom.vhd                 ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd                 ;         ;
-; VHDL_files/bouncy_ball.vhd              ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd              ;         ;
-; altsyncram.tdf                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf                                         ;         ;
-; stratix_ram_block.inc                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratix_ram_block.inc                                  ;         ;
-; lpm_mux.inc                             ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_mux.inc                                            ;         ;
-; lpm_decode.inc                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_decode.inc                                         ;         ;
-; aglobal241.inc                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/aglobal241.inc                                         ;         ;
-; a_rdenreg.inc                           ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/a_rdenreg.inc                                          ;         ;
-; altrom.inc                              ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altrom.inc                                             ;         ;
-; altram.inc                              ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altram.inc                                             ;         ;
-; altdpram.inc                            ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altdpram.inc                                           ;         ;
-; db/altsyncram_d5g1.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf                  ;         ;
-; tcgrom.mif                              ; yes             ; Auto-Found Memory Initialization File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/tcgrom.mif                              ;         ;
-+-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                          ;
++-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path        ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                                                                                                     ; Library ;
++-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; VHDL_files/SevenSegDisplay.vhd          ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd          ;         ;
+; VHDL_files/Alphanumeric_to_SevenSeg.vhd ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd ;         ;
+; VHDL_files/vga_sync.vhd                 ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd                 ;         ;
+; VHDL_files/mouse.vhd                    ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd                    ;         ;
+; VHDL_files/de0_cv_top.vhd               ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd               ;         ;
+; VHDL_files/char_rom.vhd                 ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd                 ;         ;
+; VHDL_files/bouncy_ball.vhd              ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd              ;         ;
+; altsyncram.tdf                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf                                                                                         ;         ;
+; stratix_ram_block.inc                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratix_ram_block.inc                                                                                  ;         ;
+; lpm_mux.inc                             ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_mux.inc                                                                                            ;         ;
+; lpm_decode.inc                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_decode.inc                                                                                         ;         ;
+; aglobal241.inc                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/aglobal241.inc                                                                                         ;         ;
+; a_rdenreg.inc                           ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/a_rdenreg.inc                                                                                          ;         ;
+; altrom.inc                              ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altrom.inc                                                                                             ;         ;
+; altram.inc                              ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altram.inc                                                                                             ;         ;
+; altdpram.inc                            ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altdpram.inc                                                                                           ;         ;
+; db/altsyncram_d5g1.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf                  ;         ;
+; tcgrom.mif                              ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/tcgrom.mif                              ;         ;
++-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -208,16 +209,16 @@ on the Quartus Prime software download page.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Estimate of Logic utilization (ALMs needed) ; 195   ;
+; Estimate of Logic utilization (ALMs needed) ; 247   ;
 ;                                             ;       ;
-; Combinational ALUT usage for logic          ; 316   ;
+; Combinational ALUT usage for logic          ; 406   ;
 ;     -- 7 input functions                    ; 3     ;
-;     -- 6 input functions                    ; 62    ;
-;     -- 5 input functions                    ; 37    ;
-;     -- 4 input functions                    ; 44    ;
-;     -- <=3 input functions                  ; 170   ;
+;     -- 6 input functions                    ; 76    ;
+;     -- 5 input functions                    ; 52    ;
+;     -- 4 input functions                    ; 59    ;
+;     -- <=3 input functions                  ; 216   ;
 ;                                             ;       ;
-; Dedicated logic registers                   ; 186   ;
+; Dedicated logic registers                   ; 196   ;
 ;                                             ;       ;
 ; I/O pins                                    ; 64    ;
 ; Total MLAB memory bits                      ; 0     ;
@@ -226,26 +227,30 @@ on the Quartus Prime software download page.
 ; Total DSP Blocks                            ; 0     ;
 ;                                             ;       ;
 ; Maximum fan-out node                        ; clk25 ;
-; Maximum fan-out                             ; 91    ;
-; Total fan-out                               ; 1882  ;
-; Average fan-out                             ; 2.94  ;
+; Maximum fan-out                             ; 101   ;
+; Total fan-out                               ; 2262  ;
+; Average fan-out                             ; 3.06  ;
 +---------------------------------------------+-------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                  ;
-+-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------+-----------------+--------------+
-; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                            ; Entity Name     ; Library Name ;
-+-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------+-----------------+--------------+
-; |de0_cv_top                               ; 316 (105)           ; 186 (5)                   ; 4096              ; 0          ; 64   ; 0            ; |de0_cv_top                                                                                    ; de0_cv_top      ; work         ;
-;    |MOUSE:u_mouse|                        ; 109 (109)           ; 118 (118)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|MOUSE:u_mouse                                                                      ; MOUSE           ; work         ;
-;    |SevenSegDisplay:u_seven_seg|          ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg                                                        ; SevenSegDisplay ; work         ;
-;    |VGA_SYNC:u_vga_sync|                  ; 38 (38)             ; 49 (49)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync                                                                ; VGA_SYNC        ; work         ;
-;    |bouncy_ball:u_ball|                   ; 61 (61)             ; 13 (13)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball                                                                 ; bouncy_ball     ; work         ;
-;    |char_rom:u_char_rom|                  ; 2 (2)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom                                                                ; char_rom        ; work         ;
-;       |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component                                ; altsyncram      ; work         ;
-;          |altsyncram_d5g1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated ; altsyncram_d5g1 ; work         ;
-+-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------+-----------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                      ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------+--------------------------+--------------+
+; Compilation Hierarchy Node                           ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                            ; Entity Name              ; Library Name ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------+--------------------------+--------------+
+; |de0_cv_top                                          ; 406 (156)           ; 196 (9)                   ; 4096              ; 0          ; 64   ; 0            ; |de0_cv_top                                                                                    ; de0_cv_top               ; work         ;
+;    |MOUSE:u_mouse|                                   ; 109 (109)           ; 118 (118)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|MOUSE:u_mouse                                                                      ; MOUSE                    ; work         ;
+;    |SevenSegDisplay:u_seven_seg|                     ; 33 (5)              ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg                                                        ; SevenSegDisplay          ; work         ;
+;       |Alphanumeric_to_SevenSeg:digit_five_Counter|  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter            ; Alphanumeric_to_SevenSeg ; work         ;
+;       |Alphanumeric_to_SevenSeg:digit_six_Counter|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_six_Counter             ; Alphanumeric_to_SevenSeg ; work         ;
+;       |Alphanumeric_to_SevenSeg:digit_three_Counter| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_three_Counter           ; Alphanumeric_to_SevenSeg ; work         ;
+;       |Alphanumeric_to_SevenSeg:digit_two_Counter|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_two_Counter             ; Alphanumeric_to_SevenSeg ; work         ;
+;    |VGA_SYNC:u_vga_sync|                             ; 40 (40)             ; 49 (49)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync                                                                ; VGA_SYNC                 ; work         ;
+;    |bouncy_ball:u_ball|                              ; 66 (66)             ; 13 (13)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball                                                                 ; bouncy_ball              ; work         ;
+;    |char_rom:u_char_rom|                             ; 2 (2)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom                                                                ; char_rom                 ; work         ;
+;       |altsyncram:altsyncram_component|              ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component                                ; altsyncram               ; work         ;
+;          |altsyncram_d5g1:auto_generated|            ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated ; altsyncram_d5g1          ; work         ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------+--------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -256,6 +261,19 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+------------+
 ; char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 512          ; 8            ; --           ; --           ; 4096 ; tcgrom.mif ;
 +-----------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------+
+; State Machine - |de0_cv_top|game_state                                                             ;
++--------------------+-------------------+--------------------+-----------------+--------------------+
+; Name               ; game_state.S_PLAY ; game_state.S_TRAIN ; game_state.S_GS ; game_state.S_TITLE ;
++--------------------+-------------------+--------------------+-----------------+--------------------+
+; game_state.S_TITLE ; 0                 ; 0                  ; 0               ; 0                  ;
+; game_state.S_GS    ; 0                 ; 0                  ; 1               ; 1                  ;
+; game_state.S_TRAIN ; 0                 ; 1                  ; 0               ; 1                  ;
+; game_state.S_PLAY  ; 1                 ; 0                  ; 0               ; 1                  ;
++--------------------+-------------------+--------------------+-----------------+--------------------+
 
 
 Encoding Type:  One-Hot
@@ -273,48 +291,46 @@ Encoding Type:  One-Hot
 +-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                               ;
-+----------------------------------------------------+-------------------------------------------------------------+
-; Register name                                      ; Reason for Removal                                          ;
-+----------------------------------------------------+-------------------------------------------------------------+
-; SevenSegDisplay:u_seven_seg|digit_four_value[1]    ; Stuck at VCC due to stuck port data_in                      ;
-; SevenSegDisplay:u_seven_seg|digit_three_value[1]   ; Stuck at VCC due to stuck port data_in                      ;
-; SevenSegDisplay:u_seven_seg|digit_two_value[2]     ; Stuck at VCC due to stuck port data_in                      ;
-; SevenSegDisplay:u_seven_seg|digit_one_value[2]     ; Stuck at VCC due to stuck port data_in                      ;
-; bouncy_ball:u_ball|ball_y_motion[4,5]              ; Stuck at GND due to stuck port data_in                      ;
-; MOUSE:u_mouse|CHAROUT[4..7]                        ; Stuck at VCC due to stuck port data_in                      ;
-; MOUSE:u_mouse|CHAROUT[3]                           ; Stuck at GND due to stuck port data_in                      ;
-; MOUSE:u_mouse|CHAROUT[2]                           ; Stuck at VCC due to stuck port data_in                      ;
-; MOUSE:u_mouse|CHAROUT[0,1]                         ; Stuck at GND due to stuck port data_in                      ;
-; MOUSE:u_mouse|SHIFTOUT[10]                         ; Stuck at VCC due to stuck port data_in                      ;
-; SevenSegDisplay:u_seven_seg|digit_four_value[3]    ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]  ;
-; SevenSegDisplay:u_seven_seg|digit_one_value[5]     ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]  ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[5]     ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[1]  ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[4]     ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[3]  ;
-; SevenSegDisplay:u_seven_seg|digit_five_value[4]    ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[0] ;
-; SevenSegDisplay:u_seven_seg|digit_two_value[1]     ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[1] ;
-; SevenSegDisplay:u_seven_seg|digit_one_value[0,4]   ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[5] ;
-; SevenSegDisplay:u_seven_seg|digit_four_value[5]    ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0] ;
-; SevenSegDisplay:u_seven_seg|digit_three_value[2,3] ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0] ;
-; SevenSegDisplay:u_seven_seg|digit_one_value[1,3]   ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0] ;
-; SevenSegDisplay:u_seven_seg|digit_four_value[4]    ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[2] ;
-; SevenSegDisplay:u_seven_seg|digit_three_value[0]   ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[2] ;
-; SevenSegDisplay:u_seven_seg|digit_four_value[2]    ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[5] ;
-; bouncy_ball:u_ball|ball_y_motion[2,3,6..9]         ; Merged with bouncy_ball:u_ball|ball_y_motion[1]             ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[0]     ; Stuck at VCC due to stuck port data_in                      ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[1]     ; Stuck at GND due to stuck port data_in                      ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[3]     ; Stuck at VCC due to stuck port data_in                      ;
-; SevenSegDisplay:u_seven_seg|digit_five_value[0]    ; Stuck at VCC due to stuck port data_in                      ;
-; SevenSegDisplay:u_seven_seg|digit_five_value[5]    ; Stuck at GND due to stuck port data_in                      ;
-; SevenSegDisplay:u_seven_seg|digit_four_value[0]    ; Stuck at GND due to stuck port data_in                      ;
-; SevenSegDisplay:u_seven_seg|digit_two_value[3]     ; Stuck at GND due to stuck port data_in                      ;
-; SevenSegDisplay:u_seven_seg|digit_two_value[0,4,5] ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[2]  ;
-; SevenSegDisplay:u_seven_seg|digit_three_value[4,5] ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[2]  ;
-; SevenSegDisplay:u_seven_seg|digit_five_value[1..3] ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[2]  ;
-; MOUSE:u_mouse|cursor_row[9]                        ; Stuck at GND due to stuck port data_in                      ;
-; Total Number of Removed Registers = 53             ;                                                             ;
-+----------------------------------------------------+-------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                ;
++----------------------------------------------------+--------------------------------------------------------------+
+; Register name                                      ; Reason for Removal                                           ;
++----------------------------------------------------+--------------------------------------------------------------+
+; SevenSegDisplay:u_seven_seg|digit_four_value[1]    ; Stuck at VCC due to stuck port data_in                       ;
+; SevenSegDisplay:u_seven_seg|digit_three_value[1]   ; Stuck at VCC due to stuck port data_in                       ;
+; SevenSegDisplay:u_seven_seg|digit_two_value[2]     ; Stuck at VCC due to stuck port data_in                       ;
+; SevenSegDisplay:u_seven_seg|digit_one_value[2]     ; Stuck at VCC due to stuck port data_in                       ;
+; bouncy_ball:u_ball|ball_y_motion[4,5]              ; Stuck at GND due to stuck port data_in                       ;
+; MOUSE:u_mouse|CHAROUT[4..7]                        ; Stuck at VCC due to stuck port data_in                       ;
+; MOUSE:u_mouse|CHAROUT[3]                           ; Stuck at GND due to stuck port data_in                       ;
+; MOUSE:u_mouse|CHAROUT[2]                           ; Stuck at VCC due to stuck port data_in                       ;
+; MOUSE:u_mouse|CHAROUT[0,1]                         ; Stuck at GND due to stuck port data_in                       ;
+; MOUSE:u_mouse|SHIFTOUT[10]                         ; Stuck at VCC due to stuck port data_in                       ;
+; SevenSegDisplay:u_seven_seg|digit_four_value[3]    ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]   ;
+; SevenSegDisplay:u_seven_seg|digit_one_value[5]     ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]   ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[5]     ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[1]   ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[4]     ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[3]   ;
+; SevenSegDisplay:u_seven_seg|digit_five_value[4]    ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[0]  ;
+; SevenSegDisplay:u_seven_seg|digit_two_value[1]     ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[1]  ;
+; SevenSegDisplay:u_seven_seg|digit_one_value[0,4]   ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[5]  ;
+; SevenSegDisplay:u_seven_seg|digit_four_value[5]    ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0]  ;
+; SevenSegDisplay:u_seven_seg|digit_three_value[2,3] ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0]  ;
+; SevenSegDisplay:u_seven_seg|digit_one_value[1,3]   ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0]  ;
+; SevenSegDisplay:u_seven_seg|digit_four_value[4]    ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[2]  ;
+; SevenSegDisplay:u_seven_seg|digit_three_value[0]   ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[2]  ;
+; bouncy_ball:u_ball|ball_y_motion[2,3,6..9]         ; Merged with bouncy_ball:u_ball|ball_y_motion[1]              ;
+; SevenSegDisplay:u_seven_seg|digit_five_value[0]    ; Stuck at VCC due to stuck port data_in                       ;
+; SevenSegDisplay:u_seven_seg|digit_five_value[1]    ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[2]   ;
+; SevenSegDisplay:u_seven_seg|digit_three_value[4]   ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[2]   ;
+; MOUSE:u_mouse|cursor_row[9]                        ; Stuck at GND due to stuck port data_in                       ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[0]     ; Stuck at VCC due to stuck port data_in                       ;
+; SevenSegDisplay:u_seven_seg|digit_four_value[0,2]  ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[5]  ;
+; SevenSegDisplay:u_seven_seg|digit_two_value[4]     ; Merged with SevenSegDisplay:u_seven_seg|digit_two_value[0]   ;
+; SevenSegDisplay:u_seven_seg|digit_five_value[3]    ; Merged with SevenSegDisplay:u_seven_seg|digit_two_value[0]   ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[1]     ; Merged with SevenSegDisplay:u_seven_seg|digit_two_value[3]   ;
+; SevenSegDisplay:u_seven_seg|digit_five_value[2]    ; Merged with SevenSegDisplay:u_seven_seg|digit_three_value[5] ;
+; Total Number of Removed Registers = 47             ;                                                              ;
++----------------------------------------------------+--------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -322,12 +338,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 186   ;
+; Total registers                              ; 196   ;
 ; Number of registers using Synchronous Clear  ; 28    ;
 ; Number of registers using Synchronous Load   ; 20    ;
-; Number of registers using Asynchronous Clear ; 47    ;
+; Number of registers using Asynchronous Clear ; 51    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 107   ;
+; Number of registers using Clock Enable       ; 109   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -337,7 +353,7 @@ Encoding Type:  One-Hot
 +-----------------------------------------+---------+
 ; Inverted Register                       ; Fan out ;
 +-----------------------------------------+---------+
-; pb1_sync_1                              ; 2       ;
+; pb1_sync_1                              ; 4       ;
 ; pb1_sync_0                              ; 1       ;
 ; MOUSE:u_mouse|send_char                 ; 3       ;
 ; bouncy_ball:u_ball|previous_left_status ; 1       ;
@@ -350,18 +366,31 @@ Encoding Type:  One-Hot
 +-----------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
-; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|new_cursor_row[5] ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|red_out     ;
-; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[1]     ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[4]     ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[3]  ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[6]  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------+
+; 3:1                ; 20 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|new_cursor_row[8]                                                        ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 9 LEs                ; 0 LEs                  ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|blue_out                                                           ;
+; 5:1                ; 6 bits    ; 18 LEs        ; 12 LEs               ; 6 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[3]                                                            ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_row[7]                                                            ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[2]                                                         ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; Yes        ; |de0_cv_top|MOUSE:u_mouse|cursor_column[8]                                                         ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_four_Counter|SevenSeg_out   ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|sel_font_col[0]                                                                        ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|display_mode[0]                                                                        ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter|SevenSeg_out    ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_four_Counter|SevenSeg_out   ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter|SevenSeg_out   ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |de0_cv_top|Selector3                                                                              ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_three_Counter|SevenSeg_out  ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter|SevenSeg_out   ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_six_Counter|SevenSeg_out[3] ;
+; 9:1                ; 5 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_three_Counter|SevenSeg_out  ;
+; 9:1                ; 5 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_six_Counter|SevenSeg_out[2] ;
+; 14:1               ; 5 bits    ; 45 LEs        ; 45 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_two_Counter|SevenSeg_out    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------+
@@ -477,38 +506,39 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 186                         ;
-;     CLR               ; 14                          ;
+; arriav_ff             ; 196                         ;
+;     CLR               ; 16                          ;
 ;     ENA               ; 36                          ;
-;     ENA CLR           ; 33                          ;
+;     ENA CLR           ; 35                          ;
 ;     ENA SCLR          ; 18                          ;
 ;     ENA SLD           ; 20                          ;
 ;     SCLR              ; 10                          ;
-;     plain             ; 55                          ;
+;     plain             ; 61                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 318                         ;
-;     arith             ; 111                         ;
-;         0 data inputs ; 6                           ;
-;         1 data inputs ; 81                          ;
-;         2 data inputs ; 24                          ;
+; arriav_lcell_comb     ; 410                         ;
+;     arith             ; 126                         ;
+;         0 data inputs ; 7                           ;
+;         1 data inputs ; 90                          ;
+;         2 data inputs ; 28                          ;
+;         3 data inputs ; 1                           ;
 ;     extend            ; 3                           ;
 ;         7 data inputs ; 3                           ;
-;     normal            ; 194                         ;
+;     normal            ; 271                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 10                          ;
-;         2 data inputs ; 17                          ;
-;         3 data inputs ; 22                          ;
-;         4 data inputs ; 44                          ;
-;         5 data inputs ; 37                          ;
-;         6 data inputs ; 62                          ;
+;         1 data inputs ; 13                          ;
+;         2 data inputs ; 29                          ;
+;         3 data inputs ; 40                          ;
+;         4 data inputs ; 59                          ;
+;         5 data inputs ; 52                          ;
+;         6 data inputs ; 76                          ;
 ;     shared            ; 10                          ;
 ;         1 data inputs ; 1                           ;
 ;         2 data inputs ; 9                           ;
 ; boundary_port         ; 64                          ;
 ; stratixv_ram_block    ; 8                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 5.80                        ;
-; Average LUT depth     ; 2.98                        ;
+; Max LUT depth         ; 6.00                        ;
+; Average LUT depth     ; 3.09                        ;
 +-----------------------+-----------------------------+
 
 
@@ -527,7 +557,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Thu May 15 15:02:19 2025
+    Info: Processing started: Thu May 15 16:29:11 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ParentProject -c top_de0_cv
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
@@ -546,50 +576,51 @@ Warning (125092): Tcl Script File V/vga_pll.qip not found
 Warning (125092): Tcl Script File V/vga_pll.sip not found
     Info (125063): set_global_assignment -name SIP_FILE V/vga_pll.sip
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
 Info (12021): Found 0 design units, including 0 entities, in source file vhdl_files/screen_ram.vhd
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/sevensegdisplay.vhd
-    Info (12022): Found design unit 1: SevenSegDisplay-Behavioral File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 20
-    Info (12023): Found entity 1: SevenSegDisplay File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 5
+    Info (12022): Found design unit 1: SevenSegDisplay-Behavioral File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 20
+    Info (12023): Found entity 1: SevenSegDisplay File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/alphanumeric_to_sevenseg.vhd
-    Info (12022): Found design unit 1: Alphanumeric_to_SevenSeg-arc1 File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd Line: 11
-    Info (12023): Found entity 1: Alphanumeric_to_SevenSeg File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd Line: 4
+    Info (12022): Found design unit 1: Alphanumeric_to_SevenSeg-arc1 File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd Line: 11
+    Info (12023): Found entity 1: Alphanumeric_to_SevenSeg File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd Line: 4
 Warning (12019): Can't analyze file -- file V/video_sync_generator.v is missing
 Warning (12019): Can't analyze file -- file V/vga_controller.v is missing
 Warning (12019): Can't analyze file -- file V/SEG7_LUT_6.v is missing
 Warning (12019): Can't analyze file -- file V/SEG7_LUT.v is missing
 Warning (12019): Can't analyze file -- file V/Reset_Delay.v is missing
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/vga_sync.vhd
-    Info (12022): Found design unit 1: VGA_SYNC-a File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 20
-    Info (12023): Found entity 1: VGA_SYNC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 5
+    Info (12022): Found design unit 1: VGA_SYNC-a File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 20
+    Info (12023): Found entity 1: VGA_SYNC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/mouse.vhd
-    Info (12022): Found design unit 1: MOUSE-behavior File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 18
-    Info (12023): Found entity 1: MOUSE File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 9
+    Info (12022): Found design unit 1: MOUSE-behavior File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 18
+    Info (12023): Found entity 1: MOUSE File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/de0_cv_top.vhd
-    Info (12022): Found design unit 1: de0_cv_top-rtl File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 31
-    Info (12023): Found entity 1: de0_cv_top File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 6
+    Info (12022): Found design unit 1: de0_cv_top-rtl File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 31
+    Info (12023): Found entity 1: de0_cv_top File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/char_rom.vhd
-    Info (12022): Found design unit 1: char_rom-SYN File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 20
-    Info (12023): Found entity 1: char_rom File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 9
+    Info (12022): Found design unit 1: char_rom-SYN File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 20
+    Info (12023): Found entity 1: char_rom File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/bouncy_ball.vhd
-    Info (12022): Found design unit 1: bouncy_ball-behavior File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 15
-    Info (12023): Found entity 1: bouncy_ball File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 7
+    Info (12022): Found design unit 1: bouncy_ball-behavior File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 15
+    Info (12023): Found entity 1: bouncy_ball File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 7
 Info (12127): Elaborating entity "de0_cv_top" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(44): object "right_btn" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 44
-Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 146
-Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 25
-Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 151
-Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 155
-Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 156
-Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 157
-Info (12128): Elaborating entity "bouncy_ball" for hierarchy "bouncy_ball:u_ball" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 159
-Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 188
-Info (12128): Elaborating entity "SevenSegDisplay" for hierarchy "SevenSegDisplay:u_seven_seg" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 205
-Info (12128): Elaborating entity "Alphanumeric_to_SevenSeg" for hierarchy "SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 163
-Info (12128): Elaborating entity "char_rom" for hierarchy "char_rom:u_char_rom" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 218
-Info (12128): Elaborating entity "altsyncram" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
-Info (12130): Elaborated megafunction instantiation "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
-Info (12133): Instantiated megafunction "char_rom:u_char_rom|altsyncram:altsyncram_component" with the following parameter: File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(136): object "right_btn" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 136
+Warning (10492): VHDL Process Statement warning at de0_cv_top.vhd(258): signal "game_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 258
+Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 228
+Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 25
+Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 151
+Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 155
+Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 156
+Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 157
+Info (12128): Elaborating entity "bouncy_ball" for hierarchy "bouncy_ball:u_ball" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 241
+Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 270
+Info (12128): Elaborating entity "SevenSegDisplay" for hierarchy "SevenSegDisplay:u_seven_seg" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 287
+Info (12128): Elaborating entity "Alphanumeric_to_SevenSeg" for hierarchy "SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 163
+Info (12128): Elaborating entity "char_rom" for hierarchy "char_rom:u_char_rom" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 304
+Info (12128): Elaborating entity "altsyncram" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
+Info (12130): Elaborated megafunction instantiation "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
+Info (12133): Instantiated megafunction "char_rom:u_char_rom|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
     Info (12134): Parameter "address_aclr_a" = "NONE"
     Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
     Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
@@ -605,58 +636,35 @@ Info (12133): Instantiated megafunction "char_rom:u_char_rom|altsyncram:altsyncr
     Info (12134): Parameter "width_a" = "8"
     Info (12134): Parameter "width_byteena_a" = "1"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_d5g1.tdf
-    Info (12023): Found entity 1: altsyncram_d5g1 File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf Line: 28
+    Info (12023): Found entity 1: altsyncram_d5g1 File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_d5g1" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated" File: c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (13000): Registers with preset signals will power-up high File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 146
+Info (13000): Registers with preset signals will power-up high File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 146
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX0[0]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[1]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[2]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[3]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[4]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[5]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[6]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX1[0]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
-    Warning (13410): Pin "HEX1[1]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
-    Warning (13410): Pin "HEX1[3]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
-    Warning (13410): Pin "HEX1[5]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
-    Warning (13410): Pin "HEX2[0]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
-    Warning (13410): Pin "HEX2[1]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
-    Warning (13410): Pin "HEX2[2]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
-    Warning (13410): Pin "HEX2[3]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
-    Warning (13410): Pin "HEX2[4]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
-    Warning (13410): Pin "HEX3[0]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
-    Warning (13410): Pin "HEX3[1]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
-    Warning (13410): Pin "HEX3[2]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
-    Warning (13410): Pin "HEX3[3]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
-    Warning (13410): Pin "HEX3[4]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
-    Warning (13410): Pin "HEX3[5]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
-    Warning (13410): Pin "HEX3[6]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
-    Warning (13410): Pin "HEX4[0]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 26
-    Warning (13410): Pin "HEX4[1]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 26
-    Warning (13410): Pin "HEX4[2]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 26
-    Warning (13410): Pin "HEX4[4]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 26
-    Warning (13410): Pin "HEX5[2]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 27
-    Warning (13410): Pin "HEX5[4]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 27
-    Warning (13410): Pin "HEX5[5]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 27
-    Warning (13410): Pin "HEX5[6]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 27
+    Warning (13410): Pin "HEX0[0]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[1]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[2]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[3]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[4]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[5]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[6]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX3[3]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
 Info (286030): Timing-Driven Synthesis is running
 Critical Warning (18061): Ignored Power-Up Level option on the following registers
-    Critical Warning (18010): Register pb1_sync_1 will power up to High File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 93
-    Critical Warning (18010): Register pb1_sync_0 will power up to High File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 93
+    Critical Warning (18010): Register pb1_sync_1 will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 154
+    Critical Warning (18010): Register pb1_sync_0 will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 154
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 456 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 549 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 57 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 384 logic cells
+    Info (21061): Implemented 477 logic cells
     Info (21064): Implemented 8 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 55 warnings
-    Info: Peak virtual memory: 5006 megabytes
-    Info: Processing ended: Thu May 15 15:02:28 2025
-    Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:22
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 33 warnings
+    Info: Peak virtual memory: 4982 megabytes
+    Info: Processing ended: Thu May 15 16:29:19 2025
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:16
 
 

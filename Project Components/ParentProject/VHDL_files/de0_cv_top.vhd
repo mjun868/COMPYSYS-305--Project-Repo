@@ -1,4 +1,4 @@
--- File: de0_cv_top.vhd (ROM output register removed, correct A index, region shifted to include top row)
+-- File: de0_cv_top.vhd (with integrated FSM and text overlay)
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
@@ -19,28 +19,120 @@ entity de0_cv_top is
     VGA_HS   : out std_logic;
     VGA_VS   : out std_logic;
     LEDR0    : out std_logic;
-    HEX0 : out std_logic_vector(6 downto 0);
-    HEX1 : out std_logic_vector(6 downto 0);
-    HEX2 : out std_logic_vector(6 downto 0);
-    HEX3 : out std_logic_vector(6 downto 0);
-    HEX4 : out std_logic_vector(6 downto 0);
-    HEX5 : out std_logic_vector(6 downto 0)
+    HEX0     : out std_logic_vector(6 downto 0);
+    HEX1     : out std_logic_vector(6 downto 0);
+    HEX2     : out std_logic_vector(6 downto 0);
+    HEX3     : out std_logic_vector(6 downto 0);
+    HEX4     : out std_logic_vector(6 downto 0);
+    HEX5     : out std_logic_vector(6 downto 0)
   );
 end entity de0_cv_top;
 
 architecture rtl of de0_cv_top is
+  -- Final VGA overlay signals
+  signal final_r, final_g, final_b : std_logic;
+  -- Mouse cursor pixel signal
+  signal mouse_pixel              : std_logic;
+  -- Font multiplexer signals
+  signal sel_font_row, sel_font_col : std_logic_vector(2 downto 0);
   -- Clock & reset
   signal clk25      : std_logic := '0';
   signal reset_i    : std_logic;
 
-  -- VGA interface + video enable
-  signal pix_row, pix_col     : std_logic_vector(9 downto 0);
-  signal video_on             : std_logic;
+  -- Game states
+  type game_state_t is (S_TITLE, S_GS, S_TRAIN, S_PLAY);
+  signal game_state : game_state_t := S_TITLE;
+
+  -- Text scales
+  constant S        : integer := 4;
+  constant S_PUSH   : integer := 2;
+
+  -- Character dimensions
+  constant CHAR_W   : integer := S * 8;
+  constant CHAR_H   : integer := S * 8;
+  constant PUSH_CHAR_W : integer := S_PUSH * 8;
+  constant PUSH_CHAR_H : integer := S_PUSH * 8;
+
+  -- Title text constants
+  constant NUM_CHARS      : integer := 13;  -- "Death By Pipe"
+  constant MSG_WIDTH      : integer := NUM_CHARS * CHAR_W;
+  constant H_OFF          : integer := (640 - MSG_WIDTH) / 2;
+  constant V_OFF          : integer := (480 - CHAR_H) / 2;
+
+  -- Push prompt constants
+  constant NUM_CHARS_PUSH : integer := 22;  -- "Push Button 1 to start"
+  constant PUSH_MSG_WIDTH : integer := NUM_CHARS_PUSH * PUSH_CHAR_W;
+  constant PUSH_H_OFF     : integer := (640 - PUSH_MSG_WIDTH) / 2;
+  constant PUSH_V_OFF     : integer := V_OFF + CHAR_H + 20;
+
+  -- Placeholder text arrays (fill with real 6-bit ROM codes)
+  type char_array is array(0 to NUM_CHARS-1) of std_logic_vector(5 downto 0);
+  constant TEXT_DEATH_BY_PIPE : char_array := (
+    "000100", "000101", "000001", "010100", "001000", "100000",
+    "000010", "011001", "100000", "010000", "001001", "010000", "000101"
+  );
+
+  type char_array_push is array(0 to NUM_CHARS_PUSH-1) of std_logic_vector(5 downto 0);
+  constant TEXT_PUSH1_START : char_array_push := (
+    "010000", -- P
+    "010101", -- U
+    "010011", -- S
+    "001000", -- H
+    "100000", -- space
+    "000010", -- B
+    "010101", -- U
+    "010100", -- T
+    "010100", -- T
+    "001111", -- O
+    "001110", -- N
+    "100000", -- space
+    "110001", -- 1
+    "100000", -- space
+    "010100", -- T
+    "001111", -- O
+    "100000", -- space
+    "010011", -- S
+    "010100", -- T
+    "000001", -- A
+    "010010", -- R
+    "010100"  -- T
+  );
+
+
+  -- TODO: define TEXT_GS_LINE1, TEXT_GS_LINE2, TEXT_GS_LINE3
+  -- TODO: define TEXT_TRAIN_WELCOME, TEXT_PLAY_LETS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  -- VGA and video signals
+  signal pix_row, pix_col      : std_logic_vector(9 downto 0);
+  signal video_on              : std_logic;
   signal vga_r_sig, vga_g_sig, vga_b_sig : std_logic;
-  signal vsync_sig            : std_logic;
+  signal vsync_sig             : std_logic;
 
   -- Mouse
-  signal mouse_row, mouse_col : std_logic_vector(9 downto 0);
+  signal mouse_row, mouse_col  : std_logic_vector(9 downto 0);
   signal current_left_btn, right_btn : std_logic;
 
   -- Ball color
@@ -49,57 +141,22 @@ architecture rtl of de0_cv_top is
   -- Background wrap
   signal wrapped_r, wrapped_g, wrapped_b : std_logic;
 
-  -- Character ROM message Death By Pipe 
-  type char_array is array(0 to 12) of std_logic_vector(5 downto 0);
-  constant TEXT_DEATH_BY_PIPE : char_array := (
-    "000100", 
-    "000101",
-    "000001",  
-    "010100", 
-    "001000", 
-    "100000", 
-    "000010", 
-    "011001", 
-    "100000", 
-    "010000", 
-    "001001", 
-    "010000", 
-    "000101"  
-  );
+  -- Text overlay signals
+  signal in_title, in_push     : std_logic;
+  signal char_index_title      : integer range 0 to NUM_CHARS-1;
+  signal char_index_push       : integer range 0 to NUM_CHARS_PUSH-1;
+  signal font_row_title, font_col_title : std_logic_vector(2 downto 0);
+  signal font_row_push, font_col_push   : std_logic_vector(2 downto 0);
+  signal char_address          : std_logic_vector(5 downto 0);
+  signal rom_output            : std_logic;
 
-  constant S      : integer := 4;
-  constant CHAR_W : integer := S * 8;
-  constant CHAR_H : integer := S * 8;
-  constant NUM_CHARS : integer := 13;
-  constant MSG_WIDTH  : integer := NUM_CHARS * CHAR_W;
-  constant MSG_HEIGHT : integer := CHAR_H;
-  constant H_OFF : integer := (640 - MSG_WIDTH) / 2;
-  constant V_OFF : integer := (480 - MSG_HEIGHT) / 2;
-
-  signal char_address   : std_logic_vector(5 downto 0);
-  signal char_index     : integer range 0 to NUM_CHARS-1;
-  signal font_row       : std_logic_vector(2 downto 0);
-  signal font_col       : std_logic_vector(2 downto 0);
-  signal rom_output      : std_logic;
-  signal in_text_region  : std_logic;
-
-  -- Mouse overlay signal
-  signal mouse_pixel     : std_logic;
-
-  -- Final RGB
-  signal final_r, final_g, final_b : std_logic;
-
-  -- Debounce & BG state
-  signal pb1_sync_0, pb1_sync_1       : std_logic := '0';
-  signal btn1_stable, btn1           : std_logic;
+  -- Debounce & switches
+  signal pb1_sync_0, pb1_sync_1 : std_logic := '0';
+  signal btn1_stable, btn1     : std_logic;
   signal sw0_sync_0, sw0_sync_1, sw0_stable : std_logic;
-  signal bg_mode, bg_r_const, bg_g_const, bg_b_const : std_logic;
-  
-  -- 7 seg text choice
-  signal display_mode : std_logic_vector(2 downto 0);
 
-  -- Cursor half-size: for a (2*CURSOR_HALF+1)x(2*CURSOR_HALF+1) square
-  constant CURSOR_HALF : integer := 5;
+  -- Seven-segment display
+  signal display_mode          : std_logic_vector(2 downto 0);
 
 begin
   -- Clock divide
@@ -109,6 +166,32 @@ begin
     end if;
   end process;
   reset_i <= not reset_n;
+
+  -- FSM process
+  fsm_proc : process(clk25, reset_i) begin
+    if reset_i = '1' then
+      game_state <= S_TITLE;
+    elsif rising_edge(clk25) then
+      case game_state is
+        when S_TITLE =>
+          if btn1 = '1' then
+            game_state <= S_GS;
+          end if;
+        when S_GS =>
+          if btn1 = '1' then
+            if sw0_stable = '0' then
+              game_state <= S_TRAIN;
+            else
+              game_state <= S_PLAY;
+            end if;
+          end if;
+        when S_TRAIN =>
+          -- remain until reset
+        when S_PLAY =>
+          -- remain until reset
+      end case;
+    end if;
+  end process;
 
   -- Debounce PB1
   sync_btn : process(clk25, reset_i) begin
@@ -133,16 +216,15 @@ begin
   end process;
   sw0_stable <= sw0_sync_1;
   LEDR0      <= sw0_stable;
-  
-  display_mode <= "010" when sw0_stable = '1' else "001";
 
-  -- Background color
-  bg_mode    <= sw0_stable xor btn1;
-  bg_r_const <= '1' when bg_mode='1' else '0';
-  bg_g_const <= '0' when bg_mode='1' else '1';
-  bg_b_const <= '1';
+  -- Display mode for seven-segment
+  display_mode <= "000" when game_state = S_TITLE else
+                  "001" when game_state = S_GS    else
+                  "010" when game_state = S_TRAIN else
+                  "011" when game_state = S_PLAY  else
+                  "000";
 
-  -- PS/2 mouse
+  -- PS/2 mouse instantiation
   u_mouse : entity work.MOUSE
     port map(
       clock_25Mhz         => clk25,
@@ -155,7 +237,7 @@ begin
       mouse_cursor_column => mouse_col
     );
 
-  -- Bouncy ball
+  -- Bouncy ball instantiation
   u_ball : entity work.bouncy_ball
     port map(
       pb1                     => btn1,
@@ -170,17 +252,17 @@ begin
       blue                    => color_b
     );
 
-  -- Wrap background
-  wrap_bg : process(color_r, color_g, color_b,
-                    bg_r_const, bg_g_const, bg_b_const) begin
-    if color_r='0' and color_g='0' and color_b='1' then
-      wrapped_r <= bg_r_const;
-      wrapped_g <= bg_g_const;
-      wrapped_b <= bg_b_const;
-    else
+  -- Background wrap: always cyan when no ball
+  wrap_bg : process(color_r, color_g, color_b)
+  begin
+    if game_state = S_PLAY or game_state = S_TRAIN then
       wrapped_r <= color_r;
       wrapped_g <= color_g;
       wrapped_b <= color_b;
+    else
+      wrapped_r <= '0'; -- cyan
+      wrapped_g <= '1';
+      wrapped_b <= '1';
     end if;
   end process;
 
@@ -201,81 +283,77 @@ begin
       video_on_out     => video_on
     );
 
-  -- seven segment display
+  -- Seven segment display
   u_seven_seg : entity work.SevenSegDisplay
     port map(
-        clk         => clk25,       
-        display_mode => display_mode,
-        digit_one   => HEX0,
-        digit_two   => HEX1,
-        digit_three => HEX2,
-        digit_four  => HEX3,
-        digit_five  => HEX4,
-        digit_six   => HEX5
+      clk          => clk25,
+      display_mode => display_mode,
+      digit_one    => HEX0,
+      digit_two    => HEX1,
+      digit_three  => HEX2,
+      digit_four   => HEX3,
+      digit_five   => HEX4,
+      digit_six    => HEX5
     );
 
-  -- Char ROM
+  -- Multiplex font position based on title or push region
+  sel_font_row <= font_row_title when in_title = '1' else font_row_push;
+  sel_font_col <= font_col_title when in_title = '1' else font_col_push;
+
+  -- Character ROM instantiation
   u_char_rom : entity work.char_rom
     port map(
       character_address => char_address,
-      font_row          => font_row,
-      font_col          => font_col,
+      font_row          => sel_font_row,
+      font_col          => sel_font_col,
       clock             => clk25,
       rom_mux_output    => rom_output
     );
 
-  -- Determine if pixel is in text region
-  in_text_region <= '1'
-    when video_on = '1' and
-         to_integer(unsigned(pix_row)) >= V_OFF and
-         to_integer(unsigned(pix_row)) < V_OFF + CHAR_H and
-         to_integer(unsigned(pix_col)) >= H_OFF and
-         to_integer(unsigned(pix_col)) < H_OFF + NUM_CHARS * CHAR_W
-    else '0';
+  -- Text region detection and indexing
+  in_title <= '1' when video_on='1' and game_state = S_TITLE and
+                     to_integer(unsigned(pix_row)) >= V_OFF and
+                     to_integer(unsigned(pix_row)) < V_OFF + CHAR_H and
+                     to_integer(unsigned(pix_col)) >= H_OFF and
+                     to_integer(unsigned(pix_col)) < H_OFF + MSG_WIDTH
+               else '0';
 
-  -- Compute character index and font coordinates
-  char_index <= (to_integer(unsigned(pix_col)) - H_OFF) / CHAR_W;
+  char_index_title <= (to_integer(unsigned(pix_col)) - H_OFF) / CHAR_W;
+  font_col_title <= std_logic_vector(to_unsigned(((to_integer(unsigned(pix_col)) - H_OFF) mod CHAR_W) / S,3)) when in_title='1' else "000";
+  font_row_title <= std_logic_vector(to_unsigned((to_integer(unsigned(pix_row)) - V_OFF) / S,3)) when in_title='1' else "000";
 
-  font_col <= std_logic_vector(to_unsigned(
-    ((to_integer(unsigned(pix_col)) - H_OFF) mod CHAR_W) / S, 3
-  )) when in_text_region = '1' else "000";
+  in_push <= '1' when video_on='1' and game_state = S_TITLE and
+                    to_integer(unsigned(pix_row)) >= PUSH_V_OFF and
+                    to_integer(unsigned(pix_row)) < PUSH_V_OFF + PUSH_CHAR_H and
+                    to_integer(unsigned(pix_col)) >= PUSH_H_OFF and
+                    to_integer(unsigned(pix_col)) < PUSH_H_OFF + PUSH_MSG_WIDTH
+              else '0';
 
-  font_row <= std_logic_vector(to_unsigned(
-    (to_integer(unsigned(pix_row)) - V_OFF) / S, 3
-  )) when in_text_region = '1' else "000";
+  char_index_push <= (to_integer(unsigned(pix_col)) - PUSH_H_OFF) / PUSH_CHAR_W;
+  font_col_push <= std_logic_vector(to_unsigned(((to_integer(unsigned(pix_col)) - PUSH_H_OFF) mod PUSH_CHAR_W) / S_PUSH,3)) when in_push='1' else "000";
+  font_row_push <= std_logic_vector(to_unsigned((to_integer(unsigned(pix_row)) - PUSH_V_OFF) / S_PUSH,3)) when in_push='1' else "000";
 
-  -- Map character index to address
-  with char_index select
-    char_address <= TEXT_DEATH_BY_PIPE(0)  when 0,
-                    TEXT_DEATH_BY_PIPE(1)  when 1,
-                    TEXT_DEATH_BY_PIPE(2)  when 2,
-                    TEXT_DEATH_BY_PIPE(3)  when 3,
-                    TEXT_DEATH_BY_PIPE(4)  when 4,
-                    TEXT_DEATH_BY_PIPE(5)  when 5,
-                    TEXT_DEATH_BY_PIPE(6)  when 6,
-                    TEXT_DEATH_BY_PIPE(7)  when 7,
-                    TEXT_DEATH_BY_PIPE(8)  when 8,
-                    TEXT_DEATH_By_PIPE(9)  when 9,
-                    TEXT_DEATH_BY_PIPE(10) when 10,
-                    TEXT_DEATH_BY_PIPE(11) when 11,
-                    TEXT_DEATH_BY_PIPE(12) when others;
+  -- Select character address based on region
+  char_address <= TEXT_DEATH_BY_PIPE(char_index_title) when in_title='1' else
+                  TEXT_PUSH1_START(char_index_push) when in_push='1' else
+                  (others => '0');
 
-  -- Mouse overlay (enlarged square)
+  -- Mouse overlay (cursor)
   mouse_pixel <= '1' when
        video_on = '1' and
-       to_integer(unsigned(pix_row)) >= to_integer(unsigned(mouse_row)) - CURSOR_HALF and
-       to_integer(unsigned(pix_row)) <= to_integer(unsigned(mouse_row)) + CURSOR_HALF and
-       to_integer(unsigned(pix_col)) >= to_integer(unsigned(mouse_col)) - CURSOR_HALF and
-       to_integer(unsigned(pix_col)) <= to_integer(unsigned(mouse_col)) + CURSOR_HALF
+       to_integer(unsigned(pix_row)) >= to_integer(unsigned(mouse_row)) - 5 and
+       to_integer(unsigned(pix_row)) <= to_integer(unsigned(mouse_row)) + 5 and
+       to_integer(unsigned(pix_col)) >= to_integer(unsigned(mouse_col)) - 5 and
+       to_integer(unsigned(pix_col)) <= to_integer(unsigned(mouse_col)) + 5
     else '0';
 
-  -- Final overlay using rom_output and mouse_pixel
-  final_r <= '1' when mouse_pixel = '1' else
-             '1' when in_text_region = '1' and rom_output = '1' else wrapped_r;
-  final_g <= '1' when mouse_pixel = '1' else
-             '1' when in_text_region = '1' and rom_output = '1' else wrapped_g;
-  final_b <= '1' when mouse_pixel = '1' else
-             '1' when in_text_region = '1' and rom_output = '1' else wrapped_b;
+  -- Final overlay: text (white) and cursor
+  final_r <= '1' when mouse_pixel='1' else
+             '1' when (in_title='1' or in_push='1') and rom_output='1' else wrapped_r;
+  final_g <= '1' when mouse_pixel='1' else
+             '1' when (in_title='1' or in_push='1') and rom_output='1' else wrapped_g;
+  final_b <= '1' when mouse_pixel='1' else
+             '1' when (in_title='1' or in_push='1') and rom_output='1' else wrapped_b;
 
   -- Drive VGA outputs
   VGA_VS <= vsync_sig;

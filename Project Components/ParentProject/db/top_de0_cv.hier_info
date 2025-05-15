@@ -5,6 +5,7 @@ reset_n => sw0_sync_0.ACLR
 reset_n => pb1_sync_1.PRESET
 reset_n => pb1_sync_0.PRESET
 reset_n => mouse:u_mouse.reset
+reset_n => game_state~7.DATAIN
 PS2_CLK <> mouse:u_mouse.mouse_clk
 PS2_DAT <> mouse:u_mouse.mouse_data
 PB1 => pb1_sync_0.DATAIN
