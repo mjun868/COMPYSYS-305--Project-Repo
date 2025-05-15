@@ -66,6 +66,14 @@ architecture Behavioral of SevenSegDisplay is
         "100100"  -- _
 		  
     );
+	 constant TEXT_PLAY	 : string_array := (
+			"011001", -- P
+			"010101", -- L
+			"001010", -- A
+			"100010", -- Y
+			"100100", -- _
+			"100100" -- _
+	 );
     -- Internal signals
     --signal display_mode : std_logic_vector(2 downto 0) := "000"; -- 000: none, 001:train,010:game,011:start,100:pause,101:resume
     --keep track of the previous DIP switch state
@@ -109,13 +117,13 @@ begin
                 digit_five_value  <= TEXT_TRAIN(1); -- Display 'T'
                 digit_six_value   <= TEXT_TRAIN(0); -- Display 'none'
 
-            when "010" => -- Game mode
-                digit_one_value   <= TEXT_GAME(5); -- Display 'E'
-                digit_two_value   <= TEXT_GAME(4); -- Display 'M'
-                digit_three_value <= TEXT_GAME(3); -- Display 'A'
-                digit_four_value  <= TEXT_GAME(2); -- Display 'G'
-                digit_five_value  <= TEXT_GAME(1); -- Display 'none'
-                digit_six_value   <= TEXT_GAME(0); -- Display 'none'
+            when "010" => -- Game mode, change to display the text play instead of game
+                digit_one_value   <= TEXT_PLAY(5); -- Display '_'
+                digit_two_value   <= TEXT_PLAY(4); -- Display '_'
+                digit_three_value <= TEXT_PLAY(3); -- Display 'Y'
+                digit_four_value  <= TEXT_PLAY(2); -- Display 'A'
+                digit_five_value  <= TEXT_PLAY(1); -- Display 'L'
+                digit_six_value   <= TEXT_PLAY(0); -- Display 'P'
 
             when "011" => -- Start mode
                 digit_one_value   <= TEXT_START(5); -- Display 'T'

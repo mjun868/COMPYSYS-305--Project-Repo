@@ -492,6 +492,7 @@ set_location_assignment PIN_W9 -to PB1
 set_location_assignment PIN_M7 -to PB2
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW0
 set_location_assignment PIN_U13 -to SW0
+set_global_assignment -name VHDL_FILE VHDL_files/screen_ram.vhd
 set_global_assignment -name VHDL_FILE VHDL_files/SevenSegDisplay.vhd
 set_global_assignment -name VHDL_FILE VHDL_files/Alphanumeric_to_SevenSeg.vhd
 set_global_assignment -name VERILOG_FILE V/video_sync_generator.v

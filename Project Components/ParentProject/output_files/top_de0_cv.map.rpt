@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_de0_cv
-Thu May 15 14:16:07 2025
+Thu May 15 15:02:28 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -53,7 +53,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu May 15 14:16:07 2025           ;
+; Analysis & Synthesis Status     ; Successful - Thu May 15 15:02:28 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
@@ -165,43 +165,42 @@ on the Quartus Prime software download page.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 12          ;
-; Maximum allowed            ; 10          ;
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 10          ;
+; Maximum used               ; 16          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-10        ;   0.0%      ;
+;     Processors 2-16        ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                          ;
-+-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path        ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                                                                                                     ; Library ;
-+-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; VHDL_files/SevenSegDisplay.vhd          ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd          ;         ;
-; VHDL_files/Alphanumeric_to_SevenSeg.vhd ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd ;         ;
-; VHDL_files/vga_sync.vhd                 ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd                 ;         ;
-; VHDL_files/mouse.vhd                    ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd                    ;         ;
-; VHDL_files/de0_cv_top.vhd               ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd               ;         ;
-; VHDL_files/char_rom.vhd                 ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd                 ;         ;
-; VHDL_files/bouncy_ball.vhd              ; yes             ; User VHDL File                         ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd              ;         ;
-; altsyncram.tdf                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf                                                                                         ;         ;
-; stratix_ram_block.inc                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratix_ram_block.inc                                                                                  ;         ;
-; lpm_mux.inc                             ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_mux.inc                                                                                            ;         ;
-; lpm_decode.inc                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_decode.inc                                                                                         ;         ;
-; aglobal241.inc                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/aglobal241.inc                                                                                         ;         ;
-; a_rdenreg.inc                           ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/a_rdenreg.inc                                                                                          ;         ;
-; altrom.inc                              ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altrom.inc                                                                                             ;         ;
-; altram.inc                              ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altram.inc                                                                                             ;         ;
-; altdpram.inc                            ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altdpram.inc                                                                                           ;         ;
-; db/altsyncram_d5g1.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf                  ;         ;
-; tcgrom.mif                              ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/tcgrom.mif                              ;         ;
-+-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                          ;
++-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path        ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                                                     ; Library ;
++-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------+---------+
+; VHDL_files/SevenSegDisplay.vhd          ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd          ;         ;
+; VHDL_files/Alphanumeric_to_SevenSeg.vhd ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd ;         ;
+; VHDL_files/vga_sync.vhd                 ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd                 ;         ;
+; VHDL_files/mouse.vhd                    ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd                    ;         ;
+; VHDL_files/de0_cv_top.vhd               ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd               ;         ;
+; VHDL_files/char_rom.vhd                 ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd                 ;         ;
+; VHDL_files/bouncy_ball.vhd              ; yes             ; User VHDL File                         ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd              ;         ;
+; altsyncram.tdf                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf                                         ;         ;
+; stratix_ram_block.inc                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratix_ram_block.inc                                  ;         ;
+; lpm_mux.inc                             ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_mux.inc                                            ;         ;
+; lpm_decode.inc                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_decode.inc                                         ;         ;
+; aglobal241.inc                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/aglobal241.inc                                         ;         ;
+; a_rdenreg.inc                           ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/a_rdenreg.inc                                          ;         ;
+; altrom.inc                              ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altrom.inc                                             ;         ;
+; altram.inc                              ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altram.inc                                             ;         ;
+; altdpram.inc                            ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altdpram.inc                                           ;         ;
+; db/altsyncram_d5g1.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf                  ;         ;
+; tcgrom.mif                              ; yes             ; Auto-Found Memory Initialization File  ; C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/tcgrom.mif                              ;         ;
++-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -228,8 +227,8 @@ on the Quartus Prime software download page.
 ;                                             ;       ;
 ; Maximum fan-out node                        ; clk25 ;
 ; Maximum fan-out                             ; 91    ;
-; Total fan-out                               ; 1892  ;
-; Average fan-out                             ; 2.96  ;
+; Total fan-out                               ; 1882  ;
+; Average fan-out                             ; 2.94  ;
 +---------------------------------------------+-------+
 
 
@@ -274,52 +273,48 @@ Encoding Type:  One-Hot
 +-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                              ;
-+--------------------------------------------------+--------------------------------------------------------------+
-; Register name                                    ; Reason for Removal                                           ;
-+--------------------------------------------------+--------------------------------------------------------------+
-; SevenSegDisplay:u_seven_seg|digit_five_value[3]  ; Stuck at VCC due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_four_value[1]  ; Stuck at VCC due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_three_value[1] ; Stuck at VCC due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_two_value[2]   ; Stuck at VCC due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_one_value[2]   ; Stuck at VCC due to stuck port data_in                       ;
-; bouncy_ball:u_ball|ball_y_motion[4,5]            ; Stuck at GND due to stuck port data_in                       ;
-; MOUSE:u_mouse|CHAROUT[4..7]                      ; Stuck at VCC due to stuck port data_in                       ;
-; MOUSE:u_mouse|CHAROUT[3]                         ; Stuck at GND due to stuck port data_in                       ;
-; MOUSE:u_mouse|CHAROUT[2]                         ; Stuck at VCC due to stuck port data_in                       ;
-; MOUSE:u_mouse|CHAROUT[0,1]                       ; Stuck at GND due to stuck port data_in                       ;
-; MOUSE:u_mouse|SHIFTOUT[10]                       ; Stuck at VCC due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_four_value[3]  ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]   ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[5]   ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[1]   ;
-; SevenSegDisplay:u_seven_seg|digit_five_value[2]  ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[1]   ;
-; SevenSegDisplay:u_seven_seg|digit_five_value[4]  ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[0]  ;
-; SevenSegDisplay:u_seven_seg|digit_two_value[0]   ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[0]  ;
-; SevenSegDisplay:u_seven_seg|digit_one_value[0,4] ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[5]  ;
-; SevenSegDisplay:u_seven_seg|digit_four_value[5]  ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0]  ;
-; SevenSegDisplay:u_seven_seg|digit_one_value[1,3] ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0]  ;
-; SevenSegDisplay:u_seven_seg|digit_four_value[4]  ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[2]  ;
-; SevenSegDisplay:u_seven_seg|digit_three_value[3] ; Merged with SevenSegDisplay:u_seven_seg|digit_three_value[2] ;
-; SevenSegDisplay:u_seven_seg|digit_two_value[3]   ; Merged with SevenSegDisplay:u_seven_seg|digit_three_value[5] ;
-; SevenSegDisplay:u_seven_seg|digit_three_value[0] ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[5]  ;
-; SevenSegDisplay:u_seven_seg|digit_two_value[4]   ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]   ;
-; SevenSegDisplay:u_seven_seg|digit_three_value[4] ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[3]   ;
-; bouncy_ball:u_ball|ball_y_motion[2,3,6..9]       ; Merged with bouncy_ball:u_ball|ball_y_motion[1]              ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[1]   ; Stuck at GND due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[4]   ; Stuck at VCC due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_five_value[1]  ; Stuck at VCC due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_five_value[5]  ; Stuck at GND due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_four_value[0]  ; Stuck at GND due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_three_value[5] ; Stuck at GND due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_one_value[5]   ; Stuck at VCC due to stuck port data_in                       ;
-; SevenSegDisplay:u_seven_seg|digit_two_value[1,5] ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]   ;
-; SevenSegDisplay:u_seven_seg|digit_three_value[2] ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]   ;
-; SevenSegDisplay:u_seven_seg|digit_four_value[2]  ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]   ;
-; SevenSegDisplay:u_seven_seg|digit_five_value[0]  ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]   ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[2,3] ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]   ;
-; MOUSE:u_mouse|cursor_row[9]                      ; Stuck at GND due to stuck port data_in                       ;
-; Total Number of Removed Registers = 53           ;                                                              ;
-+--------------------------------------------------+--------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                               ;
++----------------------------------------------------+-------------------------------------------------------------+
+; Register name                                      ; Reason for Removal                                          ;
++----------------------------------------------------+-------------------------------------------------------------+
+; SevenSegDisplay:u_seven_seg|digit_four_value[1]    ; Stuck at VCC due to stuck port data_in                      ;
+; SevenSegDisplay:u_seven_seg|digit_three_value[1]   ; Stuck at VCC due to stuck port data_in                      ;
+; SevenSegDisplay:u_seven_seg|digit_two_value[2]     ; Stuck at VCC due to stuck port data_in                      ;
+; SevenSegDisplay:u_seven_seg|digit_one_value[2]     ; Stuck at VCC due to stuck port data_in                      ;
+; bouncy_ball:u_ball|ball_y_motion[4,5]              ; Stuck at GND due to stuck port data_in                      ;
+; MOUSE:u_mouse|CHAROUT[4..7]                        ; Stuck at VCC due to stuck port data_in                      ;
+; MOUSE:u_mouse|CHAROUT[3]                           ; Stuck at GND due to stuck port data_in                      ;
+; MOUSE:u_mouse|CHAROUT[2]                           ; Stuck at VCC due to stuck port data_in                      ;
+; MOUSE:u_mouse|CHAROUT[0,1]                         ; Stuck at GND due to stuck port data_in                      ;
+; MOUSE:u_mouse|SHIFTOUT[10]                         ; Stuck at VCC due to stuck port data_in                      ;
+; SevenSegDisplay:u_seven_seg|digit_four_value[3]    ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]  ;
+; SevenSegDisplay:u_seven_seg|digit_one_value[5]     ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]  ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[5]     ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[1]  ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[4]     ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[3]  ;
+; SevenSegDisplay:u_seven_seg|digit_five_value[4]    ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[0] ;
+; SevenSegDisplay:u_seven_seg|digit_two_value[1]     ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[1] ;
+; SevenSegDisplay:u_seven_seg|digit_one_value[0,4]   ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[5] ;
+; SevenSegDisplay:u_seven_seg|digit_four_value[5]    ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0] ;
+; SevenSegDisplay:u_seven_seg|digit_three_value[2,3] ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0] ;
+; SevenSegDisplay:u_seven_seg|digit_one_value[1,3]   ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0] ;
+; SevenSegDisplay:u_seven_seg|digit_four_value[4]    ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[2] ;
+; SevenSegDisplay:u_seven_seg|digit_three_value[0]   ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[2] ;
+; SevenSegDisplay:u_seven_seg|digit_four_value[2]    ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[5] ;
+; bouncy_ball:u_ball|ball_y_motion[2,3,6..9]         ; Merged with bouncy_ball:u_ball|ball_y_motion[1]             ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[0]     ; Stuck at VCC due to stuck port data_in                      ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[1]     ; Stuck at GND due to stuck port data_in                      ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[3]     ; Stuck at VCC due to stuck port data_in                      ;
+; SevenSegDisplay:u_seven_seg|digit_five_value[0]    ; Stuck at VCC due to stuck port data_in                      ;
+; SevenSegDisplay:u_seven_seg|digit_five_value[5]    ; Stuck at GND due to stuck port data_in                      ;
+; SevenSegDisplay:u_seven_seg|digit_four_value[0]    ; Stuck at GND due to stuck port data_in                      ;
+; SevenSegDisplay:u_seven_seg|digit_two_value[3]     ; Stuck at GND due to stuck port data_in                      ;
+; SevenSegDisplay:u_seven_seg|digit_two_value[0,4,5] ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[2]  ;
+; SevenSegDisplay:u_seven_seg|digit_three_value[4,5] ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[2]  ;
+; SevenSegDisplay:u_seven_seg|digit_five_value[1..3] ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[2]  ;
+; MOUSE:u_mouse|cursor_row[9]                        ; Stuck at GND due to stuck port data_in                      ;
+; Total Number of Removed Registers = 53             ;                                                             ;
++----------------------------------------------------+-------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -532,7 +527,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Thu May 15 14:15:55 2025
+    Info: Processing started: Thu May 15 15:02:19 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ParentProject -c top_de0_cv
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
@@ -551,49 +546,50 @@ Warning (125092): Tcl Script File V/vga_pll.qip not found
 Warning (125092): Tcl Script File V/vga_pll.sip not found
     Info (125063): set_global_assignment -name SIP_FILE V/vga_pll.sip
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 10 of the 10 processors detected
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 0 design units, including 0 entities, in source file vhdl_files/screen_ram.vhd
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/sevensegdisplay.vhd
-    Info (12022): Found design unit 1: SevenSegDisplay-Behavioral File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 20
-    Info (12023): Found entity 1: SevenSegDisplay File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 5
+    Info (12022): Found design unit 1: SevenSegDisplay-Behavioral File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 20
+    Info (12023): Found entity 1: SevenSegDisplay File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/alphanumeric_to_sevenseg.vhd
-    Info (12022): Found design unit 1: Alphanumeric_to_SevenSeg-arc1 File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd Line: 11
-    Info (12023): Found entity 1: Alphanumeric_to_SevenSeg File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd Line: 4
+    Info (12022): Found design unit 1: Alphanumeric_to_SevenSeg-arc1 File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd Line: 11
+    Info (12023): Found entity 1: Alphanumeric_to_SevenSeg File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd Line: 4
 Warning (12019): Can't analyze file -- file V/video_sync_generator.v is missing
 Warning (12019): Can't analyze file -- file V/vga_controller.v is missing
 Warning (12019): Can't analyze file -- file V/SEG7_LUT_6.v is missing
 Warning (12019): Can't analyze file -- file V/SEG7_LUT.v is missing
 Warning (12019): Can't analyze file -- file V/Reset_Delay.v is missing
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/vga_sync.vhd
-    Info (12022): Found design unit 1: VGA_SYNC-a File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 20
-    Info (12023): Found entity 1: VGA_SYNC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 5
+    Info (12022): Found design unit 1: VGA_SYNC-a File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 20
+    Info (12023): Found entity 1: VGA_SYNC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/vga_sync.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/mouse.vhd
-    Info (12022): Found design unit 1: MOUSE-behavior File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 18
-    Info (12023): Found entity 1: MOUSE File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 9
+    Info (12022): Found design unit 1: MOUSE-behavior File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 18
+    Info (12023): Found entity 1: MOUSE File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/de0_cv_top.vhd
-    Info (12022): Found design unit 1: de0_cv_top-rtl File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 31
-    Info (12023): Found entity 1: de0_cv_top File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 6
+    Info (12022): Found design unit 1: de0_cv_top-rtl File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 31
+    Info (12023): Found entity 1: de0_cv_top File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/char_rom.vhd
-    Info (12022): Found design unit 1: char_rom-SYN File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 20
-    Info (12023): Found entity 1: char_rom File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 9
+    Info (12022): Found design unit 1: char_rom-SYN File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 20
+    Info (12023): Found entity 1: char_rom File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/bouncy_ball.vhd
-    Info (12022): Found design unit 1: bouncy_ball-behavior File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 15
-    Info (12023): Found entity 1: bouncy_ball File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 7
+    Info (12022): Found design unit 1: bouncy_ball-behavior File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 15
+    Info (12023): Found entity 1: bouncy_ball File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 7
 Info (12127): Elaborating entity "de0_cv_top" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(44): object "right_btn" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 44
-Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 146
-Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 25
-Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 151
-Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 155
-Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 156
-Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 157
-Info (12128): Elaborating entity "bouncy_ball" for hierarchy "bouncy_ball:u_ball" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 159
-Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 188
-Info (12128): Elaborating entity "SevenSegDisplay" for hierarchy "SevenSegDisplay:u_seven_seg" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 205
-Info (12128): Elaborating entity "Alphanumeric_to_SevenSeg" for hierarchy "SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 155
-Info (12128): Elaborating entity "char_rom" for hierarchy "char_rom:u_char_rom" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 218
-Info (12128): Elaborating entity "altsyncram" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
-Info (12130): Elaborated megafunction instantiation "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
-Info (12133): Instantiated megafunction "char_rom:u_char_rom|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(44): object "right_btn" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 44
+Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 146
+Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 25
+Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 151
+Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 155
+Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 156
+Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 157
+Info (12128): Elaborating entity "bouncy_ball" for hierarchy "bouncy_ball:u_ball" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 159
+Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 188
+Info (12128): Elaborating entity "SevenSegDisplay" for hierarchy "SevenSegDisplay:u_seven_seg" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 205
+Info (12128): Elaborating entity "Alphanumeric_to_SevenSeg" for hierarchy "SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 163
+Info (12128): Elaborating entity "char_rom" for hierarchy "char_rom:u_char_rom" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 218
+Info (12128): Elaborating entity "altsyncram" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
+Info (12130): Elaborated megafunction instantiation "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
+Info (12133): Instantiated megafunction "char_rom:u_char_rom|altsyncram:altsyncram_component" with the following parameter: File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
     Info (12134): Parameter "address_aclr_a" = "NONE"
     Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
     Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
@@ -609,36 +605,46 @@ Info (12133): Instantiated megafunction "char_rom:u_char_rom|altsyncram:altsyncr
     Info (12134): Parameter "width_a" = "8"
     Info (12134): Parameter "width_byteena_a" = "1"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_d5g1.tdf
-    Info (12023): Found entity 1: altsyncram_d5g1 File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf Line: 28
+    Info (12023): Found entity 1: altsyncram_d5g1 File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_d5g1" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated" File: c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (13000): Registers with preset signals will power-up high File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 146
+Info (13000): Registers with preset signals will power-up high File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 146
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX0[0]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[1]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[2]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[3]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[4]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[5]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX0[6]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
-    Warning (13410): Pin "HEX1[0]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
-    Warning (13410): Pin "HEX1[1]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
-    Warning (13410): Pin "HEX1[3]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
-    Warning (13410): Pin "HEX1[5]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
-    Warning (13410): Pin "HEX3[0]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
-    Warning (13410): Pin "HEX3[2]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
-    Warning (13410): Pin "HEX3[3]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
-    Warning (13410): Pin "HEX3[4]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
-    Warning (13410): Pin "HEX4[3]" is stuck at VCC File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 26
-    Warning (13410): Pin "HEX4[4]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 26
-    Warning (13410): Pin "HEX4[6]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 26
-    Warning (13410): Pin "HEX5[3]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 27
-    Warning (13410): Pin "HEX5[5]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 27
-    Warning (13410): Pin "HEX5[6]" is stuck at GND File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 27
+    Warning (13410): Pin "HEX0[0]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[1]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[2]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[3]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[4]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[5]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX0[6]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 22
+    Warning (13410): Pin "HEX1[0]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
+    Warning (13410): Pin "HEX1[1]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
+    Warning (13410): Pin "HEX1[3]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
+    Warning (13410): Pin "HEX1[5]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 23
+    Warning (13410): Pin "HEX2[0]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
+    Warning (13410): Pin "HEX2[1]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
+    Warning (13410): Pin "HEX2[2]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
+    Warning (13410): Pin "HEX2[3]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
+    Warning (13410): Pin "HEX2[4]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 24
+    Warning (13410): Pin "HEX3[0]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
+    Warning (13410): Pin "HEX3[1]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
+    Warning (13410): Pin "HEX3[2]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
+    Warning (13410): Pin "HEX3[3]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
+    Warning (13410): Pin "HEX3[4]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
+    Warning (13410): Pin "HEX3[5]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
+    Warning (13410): Pin "HEX3[6]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 25
+    Warning (13410): Pin "HEX4[0]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 26
+    Warning (13410): Pin "HEX4[1]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 26
+    Warning (13410): Pin "HEX4[2]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 26
+    Warning (13410): Pin "HEX4[4]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 26
+    Warning (13410): Pin "HEX5[2]" is stuck at VCC File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 27
+    Warning (13410): Pin "HEX5[4]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 27
+    Warning (13410): Pin "HEX5[5]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 27
+    Warning (13410): Pin "HEX5[6]" is stuck at GND File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 27
 Info (286030): Timing-Driven Synthesis is running
 Critical Warning (18061): Ignored Power-Up Level option on the following registers
-    Critical Warning (18010): Register pb1_sync_1 will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 93
-    Critical Warning (18010): Register pb1_sync_0 will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 93
+    Critical Warning (18010): Register pb1_sync_1 will power up to High File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 93
+    Critical Warning (18010): Register pb1_sync_0 will power up to High File: C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 93
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Info (21057): Implemented 456 device resources after synthesis - the final resource count might be different
@@ -647,10 +653,10 @@ Info (21057): Implemented 456 device resources after synthesis - the final resou
     Info (21060): Implemented 2 bidirectional pins
     Info (21061): Implemented 384 logic cells
     Info (21064): Implemented 8 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 45 warnings
-    Info: Peak virtual memory: 4990 megabytes
-    Info: Processing ended: Thu May 15 14:16:07 2025
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:21
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 55 warnings
+    Info: Peak virtual memory: 5006 megabytes
+    Info: Processing ended: Thu May 15 15:02:28 2025
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:22
 
 
