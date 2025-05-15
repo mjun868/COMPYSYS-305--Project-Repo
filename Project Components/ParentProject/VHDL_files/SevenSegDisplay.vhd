@@ -36,7 +36,7 @@ architecture Behavioral of SevenSegDisplay is
         "010101", -- L
         "001110", -- E
         "100011", -- C
-        "011101" -- T
+        "011101"  -- T
     );
 
     constant TEXT_PAUSE  : string_array := (
