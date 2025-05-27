@@ -60,7 +60,9 @@ architecture rtl of de0_cv_top is
       red                     : out std_logic_vector(3 downto 0);
       green                   : out std_logic_vector(3 downto 0);
       blue                    : out std_logic_vector(3 downto 0);
-      ball_on                 : out std_logic
+      ball_on                 : out std_logic;
+      bird_row   : out std_logic_vector(9 downto 0);
+      bird_col   : out std_logic_vector(9 downto 0)
     );
   end component;
 
@@ -184,6 +186,13 @@ architecture rtl of de0_cv_top is
 
   signal ball_on_sig : std_logic;
 
+
+  signal collision : std_logic := '0';
+  signal bird_row             : std_logic_vector(9 downto 0);
+  signal bird_col             : std_logic_vector(9 downto 0);
+
+  
+
   -- Constants
   constant S      : integer := 4;
   constant CHAR_W : integer := S*8;
@@ -199,7 +208,7 @@ architecture rtl of de0_cv_top is
 
   constant SELECT_STR1 : string(1 to 11) := "SELECT MODE";
   constant OPT1_STR    : string(1 to 22) := "SW0 HIGH FOR PLAY MODE";
-  constant OPT2_STR    : string(1 to 22) := "SWO LOW FOR TRAIN MODE";
+  constant OPT2_STR    : string(1 to 22) := "SW0 LOW FOR TRAIN MODE";
 
   constant S1_H_OFF      : integer := (640 - TITLE_STR'length*CHAR_W)/2;
   constant S1_V_OFF      : integer := (480 - CHAR_H)/2;
@@ -215,6 +224,11 @@ architecture rtl of de0_cv_top is
 
   constant OPT1_V_OFF : integer := S2_V_OFF + CHAR_H + 10;
   constant OPT2_V_OFF : integer := OPT1_V_OFF + (CHAR_H/2) + 10;
+
+  constant PIPE_WIDTH : integer := 50;
+  constant GAP_HEIGHT : integer := 100;
+  constant NUM_PIPES : integer := 4;
+
 
 begin
   -- Clock div & reset
@@ -301,7 +315,9 @@ begin
     red                     => color_r,
     green                   => color_g,
     blue                    => color_b,
-    ball_on                 => ball_on_sig
+    ball_on                 => ball_on_sig,
+    bird_row  => bird_row,
+    bird_col  => bird_col
   );
 
   u_vga_sync: VGA_SYNC port map(
@@ -548,6 +564,47 @@ font_row <=
     clock             => clk25,
     rom_mux_output    => rom_output
   );
+
+
+ 
+collision_check : process(clk25)
+  variable bird_r_int : integer;
+  variable bird_c_int : integer;
+  variable pipe_x_int : integer;
+  variable pipe_y_int : integer;
+begin
+  if rising_edge(clk25) then
+    collision <= '0';  -- default
+
+    bird_r_int := to_integer(unsigned(bird_row));
+    bird_c_int := to_integer(unsigned(bird_col));
+
+    if ball_on_sig = '1' then
+      for i in 0 to NUM_PIPES-1 loop
+        pipe_x_int := to_integer(unsigned(pipe_x_array(i)));
+        pipe_y_int := to_integer(unsigned(pipe_y_array(i)));
+
+        -- Is the bird within this pipe’s horizontal span?
+        if bird_c_int >= pipe_x_int
+           and bird_c_int <  pipe_x_int + PIPE_WIDTH then
+
+          -- Did it hit the top pipe?
+          if bird_r_int < pipe_y_int then
+            collision <= '1';
+          end if;
+
+          -- Or did it hit the bottom pipe?
+          if bird_r_int > pipe_y_int + GAP_HEIGHT then
+            collision <= '1';
+          end if;
+
+        end if;
+      end loop;
+    end if;
+  end if;
+end process;
+
+
  -- final_r: pink (R=1) for SW0 hints, yellow (R=1) for all other text, pipe, or wrapped
   final_r <=
        "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
