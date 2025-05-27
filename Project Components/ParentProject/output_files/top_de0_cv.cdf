@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(5CEBA4F23) Path("C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/") File("top_de0_cv.sof") MfrSpec(OpMask(1));
+		Device PartName(5CEBA4F23) Path("C:/LocalCode/COMPYSYS-305--Project-Repo/Project Components/ParentProject/output_files/") File("top_de0_cv.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

@@ -57,21 +57,22 @@ architecture rtl of de0_cv_top is
       current_left_btn_status : in  std_logic;
       pixel_row               : in  std_logic_vector(9 downto 0);
       pixel_column            : in  std_logic_vector(9 downto 0);
-      red                     : out std_logic;
-      green                   : out std_logic;
-      blue                    : out std_logic
+      red                     : out std_logic_vector(3 downto 0);
+      green                   : out std_logic_vector(3 downto 0);
+      blue                    : out std_logic_vector(3 downto 0);
+      ball_on                 : out std_logic
     );
   end component;
 
   component VGA_SYNC
     port(
       clock_25Mhz    : in  std_logic;
-      red            : in  std_logic;
-      green          : in  std_logic;
-      blue           : in  std_logic;
-      red_out        : out std_logic;
-      green_out      : out std_logic;
-      blue_out       : out std_logic;
+      red            : in  std_logic_vector(3 downto 0);
+      green          : in  std_logic_vector(3 downto 0);
+      blue           : in  std_logic_vector(3 downto 0);
+      red_out        : out std_logic_vector(3 downto 0);
+      green_out      : out std_logic_vector(3 downto 0);
+      blue_out       : out std_logic_vector(3 downto 0);
       horiz_sync_out : out std_logic;
       vert_sync_out  : out std_logic;
       pixel_row      : out std_logic_vector(9 downto 0);
@@ -133,17 +134,17 @@ architecture rtl of de0_cv_top is
 
   signal pix_row, pix_col             : std_logic_vector(9 downto 0);
   signal video_on, vsync_sig          : std_logic;
-  signal vga_r_sig, vga_g_sig, vga_b_sig : std_logic;
+  signal vga_r_sig, vga_g_sig, vga_b_sig : std_logic_vector(3 downto 0);
 
   signal mouse_row, mouse_col : std_logic_vector(9 downto 0);
 
   signal current_left_btn, right_btn  : std_logic;
-  signal color_r, color_g, color_b    : std_logic;
+  signal color_r, color_g, color_b    : std_logic_vector(3 downto 0);
 
   signal wrapped_r : std_logic := '0';
   signal wrapped_g : std_logic := '1';
   signal wrapped_b : std_logic := '1';
-  signal final_r, final_g, final_b    : std_logic;
+  signal final_r, final_g, final_b    : std_logic_vector(3 downto 0);
 
   signal in_title, in_push            : std_logic;
   signal in_select1, in_select2, in_select3 : std_logic;
@@ -157,7 +158,7 @@ architecture rtl of de0_cv_top is
   signal font_row_select3, font_col_select3 : std_logic_vector(2 downto 0);
   signal font_row, font_col           : std_logic_vector(2 downto 0);
 
-  -- for the “PUSH BUTTON 1 TO START” half-scale overlay
+  -- for the "PUSH BUTTON 1 TO START" half-scale overlay
   signal char_index_push  : integer range 0 to 31 := 0;
   signal font_row_push    : std_logic_vector(2 downto 0);
   signal font_col_push    : std_logic_vector(2 downto 0);
@@ -181,6 +182,7 @@ architecture rtl of de0_cv_top is
   signal pipe_gap                     : std_logic_vector(9 downto 0) := std_logic_vector(to_unsigned(100,10));
   signal pipe_green                   : std_logic;
 
+  signal ball_on_sig : std_logic;
 
   -- Constants
   constant S      : integer := 4;
@@ -298,7 +300,8 @@ begin
     pixel_column            => pix_col,
     red                     => color_r,
     green                   => color_g,
-    blue                    => color_b
+    blue                    => color_b,
+    ball_on                 => ball_on_sig
   );
 
   u_vga_sync: VGA_SYNC port map(
@@ -457,7 +460,7 @@ begin
   ) when in_select3='1' else (others=>'0');
 
 
-  -- SW0‐HIGH (PLAY hint)
+  -- SW0-HIGH (PLAY hint)
 in_sw0_high <= '1' when
   video_on = '1' and game_state = S_GS and sw0_stable = '1' and
   to_integer(unsigned(pix_row))  >= OPT1_V_OFF    and
@@ -480,7 +483,7 @@ ascii_code_sw0_high <= ascii_map(
   OPT1_STR(char_index_sw0_high + OPT1_STR'low)
 ) when in_sw0_high = '1' else (others => '0');
 
--- SW0‐LOW (TRAIN hint)
+-- SW0-LOW (TRAIN hint)
 in_sw0_low <= '1' when
   video_on = '1' and game_state = S_GS and sw0_stable = '0' and
   to_integer(unsigned(pix_row))  >= OPT2_V_OFF    and
@@ -547,34 +550,37 @@ font_row <=
   );
  -- final_r: pink (R=1) for SW0 hints, yellow (R=1) for all other text, pipe, or wrapped
   final_r <=
-       '1' when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
-       '1' when (rom_output = '1' and (in_title = '1' or in_push = '1'
+       "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
+       "1111" when (rom_output = '1' and (in_title = '1' or in_push = '1'
                                        or in_select1 = '1' or in_select2 = '1'
                                        or in_select3 = '1')) else
-       '0' when (pipe_green = '1' and show_pipes = '1') else
-       wrapped_r;
+       color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
+       "0000" when (pipe_green = '1' and show_pipes = '1') else
+       (others => wrapped_r);
 
   -- final_g: pink (G=0) for SW0 hints, yellow (G=1) for all other text, pipe, or wrapped
   final_g <=
-       '0' when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
-       '1' when (rom_output = '1' and (in_title = '1' or in_push = '1'
+       "0000" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
+       "1111" when (rom_output = '1' and (in_title = '1' or in_push = '1'
                                        or in_select1 = '1' or in_select2 = '1'
                                        or in_select3 = '1')) else
-       '1' when (pipe_green = '1' and show_pipes = '1') else
-       wrapped_g;
+       color_g when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
+       "1111" when (pipe_green = '1' and show_pipes = '1') else
+       (others => wrapped_g);
 
   -- final_b: pink (B=1) for SW0 hints, yellow (B=0) for all other text, pipe, or wrapped
   final_b <=
-       '1' when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
-       '0' when (rom_output = '1' and (in_title = '1' or in_push = '1'
+       "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
+       "0000" when (rom_output = '1' and (in_title = '1' or in_push = '1'
                                        or in_select1 = '1' or in_select2 = '1'
                                        or in_select3 = '1')) else
-       '0' when (pipe_green = '1' and show_pipes = '1') else
-       wrapped_b;
+       color_b when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
+       "0000" when (pipe_green = '1' and show_pipes = '1') else
+       (others => wrapped_b);
   -- Drive VGA pins
   VGA_VS <= vsync_sig;
-  VGA_R  <= (others => vga_r_sig);
-  VGA_G  <= (others => vga_g_sig);
-  VGA_B  <= (others => vga_b_sig);
+  VGA_R  <= vga_r_sig;
+  VGA_G  <= vga_g_sig;
+  VGA_B  <= vga_b_sig;
 
 end architecture rtl;
