@@ -57,9 +57,10 @@ architecture rtl of de0_cv_top is
       current_left_btn_status : in  std_logic;
       pixel_row               : in  std_logic_vector(9 downto 0);
       pixel_column            : in  std_logic_vector(9 downto 0);
-      red                     : out std_logic;
-      green                   : out std_logic;
-      blue                    : out std_logic
+      red                     : out std_logic_vector(3 downto 0);
+      green                   : out std_logic_vector(3 downto 0);
+      blue                    : out std_logic_vector(3 downto 0);
+      ball_on                 : out std_logic
     );
   end component;
 
@@ -181,6 +182,7 @@ architecture rtl of de0_cv_top is
   signal pipe_gap                     : std_logic_vector(9 downto 0) := std_logic_vector(to_unsigned(100,10));
   signal pipe_green                   : std_logic;
 
+  signal ball_on_sig : std_logic;
 
   -- Constants
   constant S      : integer := 4;
@@ -296,9 +298,10 @@ begin
     current_left_btn_status => current_left_btn,
     pixel_row               => pix_row,
     pixel_column            => pix_col,
-    red                     => color_r(0),
-    green                   => color_g(0),
-    blue                    => color_b(0)
+    red                     => color_r,
+    green                   => color_g,
+    blue                    => color_b,
+    ball_on                 => ball_on_sig
   );
 
   u_vga_sync: VGA_SYNC port map(
@@ -551,6 +554,7 @@ font_row <=
        "1111" when (rom_output = '1' and (in_title = '1' or in_push = '1'
                                        or in_select1 = '1' or in_select2 = '1'
                                        or in_select3 = '1')) else
+       color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
        "0000" when (pipe_green = '1' and show_pipes = '1') else
        (others => wrapped_r);
 
@@ -560,6 +564,7 @@ font_row <=
        "1111" when (rom_output = '1' and (in_title = '1' or in_push = '1'
                                        or in_select1 = '1' or in_select2 = '1'
                                        or in_select3 = '1')) else
+       color_g when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
        "1111" when (pipe_green = '1' and show_pipes = '1') else
        (others => wrapped_g);
 
@@ -569,6 +574,7 @@ font_row <=
        "0000" when (rom_output = '1' and (in_title = '1' or in_push = '1'
                                        or in_select1 = '1' or in_select2 = '1'
                                        or in_select3 = '1')) else
+       color_b when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
        "0000" when (pipe_green = '1' and show_pipes = '1') else
        (others => wrapped_b);
   -- Drive VGA pins

@@ -230,8 +230,8 @@ mouse_cursor_column[9] <= cursor_column[9].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |de0_cv_top|bouncy_ball:u_ball
-pb1 => red.DATAIN
-pb2 => green.IN1
+pb1 => ~NO_FANOUT~
+pb2 => ~NO_FANOUT~
 clk => ~NO_FANOUT~
 vert_sync => previous_left_status.CLK
 vert_sync => ball_y_pos[0].CLK
@@ -296,9 +296,19 @@ pixel_column[8] => Add0.IN14
 pixel_column[8] => LessThan1.IN16
 pixel_column[9] => Add0.IN13
 pixel_column[9] => LessThan1.IN15
-red <= pb1.DB_MAX_OUTPUT_PORT_TYPE
-green <= green.DB_MAX_OUTPUT_PORT_TYPE
-blue <= ball_on.DB_MAX_OUTPUT_PORT_TYPE
+red[0] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+red[1] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+red[2] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+red[3] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+green[0] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+green[1] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+green[2] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+green[3] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+blue[0] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+blue[1] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+blue[2] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+blue[3] <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
+ball_on <= internal_ball_on.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |de0_cv_top|VGA_SYNC:u_vga_sync
