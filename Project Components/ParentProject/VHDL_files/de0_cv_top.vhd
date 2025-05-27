@@ -1,38 +1,39 @@
-
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use work.ascii_codes.all;  -- ascii_map: character → std_logic_vector(6 downto 0)
-use work.pipe_types.all;
+use work.pipe_types.all;   -- pipe_array_type
 
 entity de0_cv_top is
   port (
-    CLOCK_50 : in  std_logic;
-    reset_n  : in  std_logic;
-    PS2_CLK  : inout  std_logic;
-    PS2_DAT  : inout  std_logic;
-    PB1      : in  std_logic;
-    PB2      : in  std_logic;
-    SW0      : in  std_logic;
-
-    VGA_R    : out std_logic_vector(3 downto 0);
-    VGA_G    : out std_logic_vector(3 downto 0);
-    VGA_B    : out std_logic_vector(3 downto 0);
-    VGA_HS   : out std_logic;
-    VGA_VS   : out std_logic;
-    LEDR0    : out std_logic;
-    HEX0     : out std_logic_vector(6 downto 0);
-    HEX1     : out std_logic_vector(6 downto 0);
-    HEX2     : out std_logic_vector(6 downto 0);
-    HEX3     : out std_logic_vector(6 downto 0);
-    HEX4     : out std_logic_vector(6 downto 0);
-    HEX5     : out std_logic_vector(6 downto 0)
+    -- Clock & Reset
+    CLOCK_50  : in  std_logic;
+    reset_n   : in  std_logic;
+    -- PS/2 Mouse Interface
+    PS2_CLK   : inout std_logic;
+    PS2_DAT   : inout std_logic;
+    -- Buttons & Switch
+    PB1       : in  std_logic;
+    PB2       : in  std_logic;
+    SW0       : in  std_logic;
+    -- VGA Output
+    VGA_R     : out std_logic_vector(3 downto 0);
+    VGA_G     : out std_logic_vector(3 downto 0);
+    VGA_B     : out std_logic_vector(3 downto 0);
+    VGA_HS    : out std_logic;
+    VGA_VS    : out std_logic;
+    -- LED and Seven-Segment
+    LEDR0     : out std_logic;
+    HEX0      : out std_logic_vector(6 downto 0);
+    HEX1      : out std_logic_vector(6 downto 0);
+    HEX2      : out std_logic_vector(6 downto 0);
+    HEX3      : out std_logic_vector(6 downto 0);
+    HEX4      : out std_logic_vector(6 downto 0);
+    HEX5      : out std_logic_vector(6 downto 0)
   );
 end entity de0_cv_top;
 
 architecture rtl of de0_cv_top is
-
-  ----------------------------------------------------------------
   -- Component declarations
   component MOUSE
     port(
@@ -101,14 +102,13 @@ architecture rtl of de0_cv_top is
       rom_mux_output    : out std_logic
     );
   end component;
-  
-  
+
   component pipe_generator is
-    generic (
+    generic(
       NUM_PIPES    : integer := 4;
       PIPE_SPACING : integer := 150
     );
-    port (
+    port(
       clk           : in  std_logic;
       reset         : in  std_logic;
       pix_row       : in  std_logic_vector(9 downto 0);
@@ -119,147 +119,164 @@ architecture rtl of de0_cv_top is
       green_out     : out std_logic
     );
   end component;
-  ----------------------------------------------------------------
 
-  -- Clock & reset
-  signal clk25, reset_i                 : std_logic := '0';
-
-  -- FSM
+  -- Signals
+  signal clk25, reset_i               : std_logic := '0';
+  signal pb1_sync_0, pb1_sync_1       : std_logic := '1';
+  signal btn1_stable, btn1            : std_logic;
+  signal btn1_prev, btn1_rising       : std_logic := '0';
+  signal sw0_sync_0, sw0_sync_1       : std_logic := '0';
+  signal sw0_stable                   : std_logic;
   type game_state_t is (S_TITLE, S_GS, S_TRAIN, S_PLAY);
-  signal game_state                     : game_state_t := S_TITLE;
+  signal game_state                   : game_state_t := S_TITLE;
+  signal show_pipes                   : std_logic;
 
-  -- VGA timing
-  signal pix_row, pix_col               : std_logic_vector(9 downto 0);
-  signal video_on, vsync_sig            : std_logic;
-  signal vga_r_sig, vga_g_sig, vga_b_sig: std_logic;
+  signal pix_row, pix_col             : std_logic_vector(9 downto 0);
+  signal video_on, vsync_sig          : std_logic;
+  signal vga_r_sig, vga_g_sig, vga_b_sig : std_logic;
 
-  -- Mouse
-  signal mouse_row, mouse_col           : std_logic_vector(9 downto 0);
-  signal current_left_btn, right_btn    : std_logic;
+  signal mouse_row, mouse_col : std_logic_vector(9 downto 0);
 
-  -- Ball
-  signal color_r, color_g, color_b      : std_logic;
+  signal current_left_btn, right_btn  : std_logic;
+  signal color_r, color_g, color_b    : std_logic;
 
-  -- Background always cyan
   signal wrapped_r : std_logic := '0';
   signal wrapped_g : std_logic := '1';
   signal wrapped_b : std_logic := '1';
+  signal final_r, final_g, final_b    : std_logic;
 
-  signal final_r, final_g, final_b      : std_logic;
+  signal in_title, in_push            : std_logic;
+  signal in_select1, in_select2, in_select3 : std_logic;
 
-  -- Text overlay
-  signal in_title, in_push              : std_logic;
-  signal char_index_title               : integer range 0 to 31 := 0;
-  signal char_index_push                : integer range 0 to 31 := 0;
+  signal char_index_title             : integer range 0 to 31 := 0;
+  signal char_index_select1, char_index_select2, char_index_select3 : integer range 0 to 31 := 0;
 
-  -- Font row/col for each region
   signal font_row_title, font_col_title : std_logic_vector(2 downto 0);
-  signal font_row_push,  font_col_push  : std_logic_vector(2 downto 0);
-  signal font_row,       font_col       : std_logic_vector(2 downto 0);
+  signal font_row_select1, font_col_select1 : std_logic_vector(2 downto 0);
+  signal font_row_select2, font_col_select2 : std_logic_vector(2 downto 0);
+  signal font_row_select3, font_col_select3 : std_logic_vector(2 downto 0);
+  signal font_row, font_col           : std_logic_vector(2 downto 0);
 
-  signal rom_output                     : std_logic;
+  -- for the “PUSH BUTTON 1 TO START” half-scale overlay
+  signal char_index_push  : integer range 0 to 31 := 0;
+  signal font_row_push    : std_logic_vector(2 downto 0);
+  signal font_col_push    : std_logic_vector(2 downto 0);
+  signal ascii_code_push  : std_logic_vector(6 downto 0);
 
-  -- ASCII→font
-  signal ascii_code_title               : std_logic_vector(6 downto 0);
-  signal ascii_code_push                : std_logic_vector(6 downto 0);
-  signal ascii_code_final               : std_logic_vector(6 downto 0);
-  signal char_address                   : std_logic_vector(5 downto 0);
+  signal in_sw0_high, in_sw0_low                        : std_logic;
+  signal char_index_sw0_high, char_index_sw0_low      : integer range 0 to 31 := 0;
+  signal font_row_sw0_high, font_col_sw0_high         : std_logic_vector(2 downto 0);
+  signal font_row_sw0_low,  font_col_sw0_low          : std_logic_vector(2 downto 0);
+  signal ascii_code_sw0_high, ascii_code_sw0_low      : std_logic_vector(6 downto 0);
 
-  -- Debounce
-  signal pb1_sync_0, pb1_sync_1         : std_logic := '1';
-  signal btn1_stable, btn1              : std_logic;
-  signal sw0_sync_0, sw0_sync_1         : std_logic := '0';
-  signal sw0_stable                     : std_logic;
+  signal ascii_code_title             : std_logic_vector(6 downto 0);
+  signal ascii_code_select1, ascii_code_select2, ascii_code_select3 : std_logic_vector(6 downto 0);
+  signal ascii_code_final             : std_logic_vector(6 downto 0);
+  signal char_address                 : std_logic_vector(5 downto 0);
 
-  -- Seven‐segment
-  signal display_mode                   : std_logic_vector(2 downto 0);
+  signal rom_output                   : std_logic;
+  signal display_mode                 : std_logic_vector(2 downto 0);
 
-  -- Title‐screen text layout
-  constant S        : integer := 4;
-  constant CHAR_W   : integer := S * 8;
-  constant CHAR_H   : integer := S * 8;
+  signal pipe_x_array, pipe_y_array   : pipe_array_type;
+  signal pipe_gap                     : std_logic_vector(9 downto 0) := std_logic_vector(to_unsigned(100,10));
+  signal pipe_green                   : std_logic;
 
-  constant TITLE_STR      : string(1 to 13) := "DEATH BY PIPE";
-  constant S1_NUM_CHARS   : integer := TITLE_STR'length;
-  constant S1_MSG_WIDTH   : integer := S1_NUM_CHARS * CHAR_W;
-  constant S1_H_OFF       : integer := (640 - S1_MSG_WIDTH) / 2;
-  constant S1_V_OFF       : integer := (480 - CHAR_H) / 2;
 
-  constant PUSH_STR       : string(1 to 22) := "PUSH BUTTON 1 TO START";
-  constant S1_PUSH_CHARS  : integer := PUSH_STR'length;
-  constant S1_PUSH_WIDTH  : integer := S1_PUSH_CHARS * (CHAR_W/2);
-  constant S1_PUSH_H_OFF  : integer := (640 - S1_PUSH_WIDTH) / 2;
-  constant S1_PUSH_V_OFF  : integer := S1_V_OFF + CHAR_H + 20;
-  
-  -- Pipe Generation
-    -- Pipes
+  -- Constants
+  constant S      : integer := 4;
+  constant CHAR_W : integer := S*8;
+  constant CHAR_H : integer := S*8;
 
-signal pipe_x_array : pipe_array_type;
-signal pipe_y_array : pipe_array_type;
-  signal pipe_gap     : std_logic_vector(9 downto 0) := std_logic_vector(to_unsigned(100, 10)); -- Fixed gap
-  signal pipe_green   : std_logic;
+
+  constant TITLE_STR : string(1 to 13) := "DEATH BY PIPE";
+  constant PUSH_STR  : string(1 to 22) := "PUSH BUTTON 1 TO START";
+
+  -- width of the title string in pixels
+  constant S1_MSG_WIDTH  : integer := TITLE_STR'length * CHAR_W;
+  constant S1_PUSH_WIDTH : integer := PUSH_STR'length * (CHAR_W/2);
+
+  constant SELECT_STR1 : string(1 to 11) := "SELECT MODE";
+  constant OPT1_STR    : string(1 to 22) := "SW0 HIGH FOR PLAY MODE";
+  constant OPT2_STR    : string(1 to 22) := "SWO LOW FOR TRAIN MODE";
+
+  constant S1_H_OFF      : integer := (640 - TITLE_STR'length*CHAR_W)/2;
+  constant S1_V_OFF      : integer := (480 - CHAR_H)/2;
+
+  constant S1_PUSH_H_OFF : integer := (640 - PUSH_STR'length*(CHAR_W/2))/2;
+  constant S1_PUSH_V_OFF : integer := S1_V_OFF + CHAR_H + 20;
+
+  constant S2_H_OFF      : integer := (640 - SELECT_STR1'length*CHAR_W)/2;
+  constant S2_V_OFF      : integer := S1_V_OFF;
+
+  constant OPT1_H_OFF    : integer := (640 - OPT1_STR'length*(CHAR_W/2))/2;
+  constant OPT2_H_OFF    : integer := (640 - OPT2_STR'length*(CHAR_W/2))/2;
+
+  constant OPT1_V_OFF : integer := S2_V_OFF + CHAR_H + 10;
+  constant OPT2_V_OFF : integer := OPT1_V_OFF + (CHAR_H/2) + 10;
 
 begin
-  ----------------------------------------------------------------
-  -- Clock divide
+  -- Clock div & reset
   clk_div: process(CLOCK_50) begin
-    if rising_edge(CLOCK_50) then
-      clk25 <= not clk25;
-    end if;
+    if rising_edge(CLOCK_50) then clk25 <= not clk25; end if;
   end process;
   reset_i <= not reset_n;
 
-  ----------------------------------------------------------------
-  -- FSM: advance on PB1
-  fsm_proc: process(clk25, reset_i) begin
-    if reset_i='1' then
-      game_state <= S_TITLE;
+  -- PB1 debounce & edge
+  sync_pb1: process(clk25, reset_i) begin
+    if reset_i='1' then pb1_sync_0<='1'; pb1_sync_1<='1';
+    elsif rising_edge(clk25) then pb1_sync_0<=PB1; pb1_sync_1<=pb1_sync_0; end if;
+  end process;
+  btn1_stable<=pb1_sync_1; btn1<=not btn1_stable;
+  edge_pb1: process(clk25, reset_i) begin
+    if reset_i='1' then btn1_prev<='0'; elsif rising_edge(clk25) then btn1_prev<=btn1; end if;
+  end process;
+  btn1_rising<='1' when (btn1='1' and btn1_prev='0') else '0';
+
+  -- SW0 debounce
+  sync_sw0: process(clk25, reset_i) begin
+    if reset_i='1' then sw0_sync_0<='0'; sw0_sync_1<='0';
+    elsif rising_edge(clk25) then sw0_sync_0<=SW0; sw0_sync_1<=sw0_sync_0; end if;
+  end process;
+  sw0_stable<=sw0_sync_1; LEDR0<=sw0_stable;
+
+  -- FSM
+  fsm: process(clk25, reset_i) begin
+    if reset_i='1' then game_state<=S_TITLE;
     elsif rising_edge(clk25) then
       case game_state is
-        when S_TITLE =>
-          if btn1='1' then game_state <= S_GS; end if;
-        when S_GS =>
-          if btn1='1' then game_state <= S_TRAIN; end if;
-        when S_TRAIN =>
-          if btn1='1' then game_state <= S_PLAY; end if;
-        when S_PLAY =>
-          null;
+        when S_TITLE => if btn1_rising='1' then game_state<=S_GS; end if;
+        when S_GS    => if btn1_rising='1' then
+                           if sw0_stable='1' then game_state<=S_PLAY;
+                           else game_state<=S_TRAIN; end if; end if;
+        when others => null;
       end case;
     end if;
   end process;
 
-  -- Debounce PB1
-  sync_pb1: process(clk25, reset_i) begin
-    if reset_i='1' then
-      pb1_sync_0 <= '1'; 
-      pb1_sync_1 <= '1';
-    elsif rising_edge(clk25) then
-      pb1_sync_0 <= PB1;
-      pb1_sync_1 <= pb1_sync_0;
-    end if;
+  show_pipes<= '1' when (game_state=S_PLAY or game_state=S_TRAIN) else '0';
+
+  -- Seven segment mapping
+  sevenseg: process(game_state, sw0_stable) begin
+    case game_state is
+      when S_TITLE =>
+        display_mode <= "011";
+      when S_GS =>
+        if sw0_stable = '1' then
+    display_mode <= "010";
+  else
+    display_mode <= "110";
+  end if;
+      when S_PLAY =>
+        display_mode <= "010";
+      when S_TRAIN =>
+        display_mode <= "110";
+      when others =>
+        display_mode <= "000";
+    end case;
   end process;
-  btn1_stable <= pb1_sync_1;
-  btn1        <= not btn1_stable;
 
-  -- Debounce SW0
-  sync_sw0: process(clk25, reset_i) begin
-    if reset_i='1' then
-      sw0_sync_0 <= '0'; 
-      sw0_sync_1 <= '0';
-    elsif rising_edge(clk25) then
-      sw0_sync_0 <= SW0;
-      sw0_sync_1 <= sw0_sync_0;
-    end if;
-  end process;
-  sw0_stable <= sw0_sync_1;
-  LEDR0      <= sw0_stable;
-
-  -- Seven‐seg = binary state
-  display_mode <= std_logic_vector(to_unsigned(game_state'pos(game_state), 3));
-
-  ----------------------------------------------------------------
-  -- Peripherals
-  u_mouse: MOUSE
+ -- Instantiate all peripherals
+   u_mouse: MOUSE
     port map(
       clock_25Mhz         => clk25,
       reset               => reset_i,
@@ -271,148 +288,290 @@ begin
       mouse_cursor_column => mouse_col
     );
 
-  u_ball: bouncy_ball
-    port map(
-      pb1                     => btn1,
-      pb2                     => PB2,
-      clk                     => clk25,
-      vert_sync               => vsync_sig,
-      current_left_btn_status => current_left_btn,
-      pixel_row               => pix_row,
-      pixel_column            => pix_col,
-      red                     => color_r,
-      green                   => color_g,
-      blue                    => color_b
-    );
+  u_ball: bouncy_ball port map(
+    pb1                     => btn1,
+    pb2                     => PB2,
+    clk                     => clk25,
+    vert_sync               => vsync_sig,
+    current_left_btn_status => current_left_btn,
+    pixel_row               => pix_row,
+    pixel_column            => pix_col,
+    red                     => color_r,
+    green                   => color_g,
+    blue                    => color_b
+  );
 
-  u_vga_sync: VGA_SYNC
-    port map(
-      clock_25Mhz    => clk25,
-      red            => final_r,
-      green          => final_g,
-      blue           => final_b,
-      red_out        => vga_r_sig,
-      green_out      => vga_g_sig,
-      blue_out       => vga_b_sig,
-      horiz_sync_out => VGA_HS,
-      vert_sync_out  => vsync_sig,
-      pixel_row      => pix_row,
-      pixel_column   => pix_col,
-      video_on_out   => video_on
-    );
+  u_vga_sync: VGA_SYNC port map(
+    clock_25Mhz    => clk25,
+    red            => final_r,
+    green          => final_g,
+    blue           => final_b,
+    red_out        => vga_r_sig,
+    green_out      => vga_g_sig,
+    blue_out       => vga_b_sig,
+    horiz_sync_out => VGA_HS,
+    vert_sync_out  => vsync_sig,
+    pixel_row      => pix_row,
+    pixel_column   => pix_col,
+    video_on_out   => video_on
+  );
 
-  u_seven_seg: SevenSegDisplay
-    port map(
-      clk          => clk25,
-      display_mode => display_mode,
-      digit_one    => HEX0,
-      digit_two    => HEX1,
-      digit_three  => HEX2,
-      digit_four   => HEX3,
-      digit_five   => HEX4,
-      digit_six    => HEX5
-    );
-	 
-  u_pipe: pipe_generator
-    port map(
-      clk         => clk25,
-      reset       => reset_i,
-      pix_row     => pix_row,
-      pix_col     => pix_col,
-      pipe_x_array => pipe_x_array,
-      pipe_y_array => pipe_y_array,
-      pipe_gap    => pipe_gap,
-      green_out   => pipe_green
-    );
+  u_seven_seg: SevenSegDisplay port map(
+    clk          => clk25,
+    display_mode => display_mode,
+    digit_one    => HEX0,
+    digit_two    => HEX1,
+    digit_three  => HEX2,
+    digit_four   => HEX3,
+    digit_five   => HEX4,
+    digit_six    => HEX5
+  );
 
+  u_pipe: pipe_generator port map(
+    clk          => clk25,
+    reset        => reset_i,
+    pix_row      => pix_row,
+    pix_col      => pix_col,
+    pipe_gap     => pipe_gap,
+    pipe_x_array => pipe_x_array,
+    pipe_y_array => pipe_y_array,
+    green_out    => pipe_green
+  );
 
   ----------------------------------------------------------------
-  -- TITLE region
+  -- TITLE overlay region
   in_title <= '1' when
      video_on='1' and game_state=S_TITLE and
      to_integer(unsigned(pix_row)) >= S1_V_OFF and
-     to_integer(unsigned(pix_row)) <  S1_V_OFF + CHAR_H and
+     to_integer(unsigned(pix_row)) <  S1_V_OFF+CHAR_H and
      to_integer(unsigned(pix_col)) >= S1_H_OFF and
-     to_integer(unsigned(pix_col)) <  S1_H_OFF + S1_MSG_WIDTH
-    else '0';
+     to_integer(unsigned(pix_col)) <  S1_H_OFF+S1_MSG_WIDTH
+  else '0';
 
   char_index_title <= (to_integer(unsigned(pix_col)) - S1_H_OFF) / CHAR_W;
 
-  -- font coords for title
   font_col_title <= std_logic_vector(to_unsigned(
-                    ((to_integer(unsigned(pix_col)) - S1_H_OFF) mod CHAR_W) / S,3))
-                  when in_title='1' else (others=>'0');
-  font_row_title <= std_logic_vector(to_unsigned(
-                    (to_integer(unsigned(pix_row)) - S1_V_OFF) / S,3))
-                  when in_title='1' else (others=>'0');
+    ((to_integer(unsigned(pix_col)) - S1_H_OFF) mod CHAR_W) / S, 3))
+    when in_title = '1' else (others=>'0');
 
-  -- ASCII→6-bit for title
+  font_row_title <= std_logic_vector(to_unsigned(
+    (to_integer(unsigned(pix_row)) - S1_V_OFF) / S, 3))
+    when in_title = '1' else (others=>'0');
+
   ascii_code_title <= ascii_map(
-                        TITLE_STR(char_index_title + TITLE_STR'low)
-                      ) when in_title='1'
-                   else (others=>'0');
+    TITLE_STR(char_index_title + TITLE_STR'low)
+  ) when in_title = '1' else (others=>'0');
 
   ----------------------------------------------------------------
-  -- PUSH region (half scale)
+  -- PUSH overlay (half-scale)
   in_push <= '1' when
-     video_on='1' and game_state=S_TITLE and
-     to_integer(unsigned(pix_row)) >= S1_PUSH_V_OFF and
-     to_integer(unsigned(pix_row)) <  S1_PUSH_V_OFF + (CHAR_H/2) and
-     to_integer(unsigned(pix_col)) >= S1_PUSH_H_OFF and
-     to_integer(unsigned(pix_col)) <  S1_PUSH_H_OFF + S1_PUSH_WIDTH
-    else '0';
+    video_on='1' and game_state=S_TITLE and
+    to_integer(unsigned(pix_row)) >= S1_PUSH_V_OFF and
+    to_integer(unsigned(pix_row)) <  S1_PUSH_V_OFF+(CHAR_H/2) and
+    to_integer(unsigned(pix_col)) >= S1_PUSH_H_OFF and
+    to_integer(unsigned(pix_col)) <  S1_PUSH_H_OFF+S1_PUSH_WIDTH
+  else '0';
 
   char_index_push <= (to_integer(unsigned(pix_col)) - S1_PUSH_H_OFF) / (CHAR_W/2);
 
   font_col_push <= std_logic_vector(to_unsigned(
-                    ((to_integer(unsigned(pix_col)) - S1_PUSH_H_OFF) mod (CHAR_W/2)) / (S/2),3))
-                  when in_push='1' else (others=>'0');
+    ((to_integer(unsigned(pix_col)) - S1_PUSH_H_OFF) mod (CHAR_W/2)) / (S/2), 3))
+    when in_push='1' else (others=>'0');
+
   font_row_push <= std_logic_vector(to_unsigned(
-                    (to_integer(unsigned(pix_row)) - S1_PUSH_V_OFF) / (S/2),3))
-                  when in_push='1' else (others=>'0');
+    (to_integer(unsigned(pix_row)) - S1_PUSH_V_OFF) / (S/2), 3))
+    when in_push='1' else (others=>'0');
 
   ascii_code_push <= ascii_map(
-                       PUSH_STR(char_index_push + PUSH_STR'low)
-                     ) when in_push='1'
-                  else (others=>'0');
+    PUSH_STR(char_index_push + PUSH_STR'low)
+  ) when in_push = '1' else (others=>'0');
 
   ----------------------------------------------------------------
-  -- Final mux into single font row/col and ascii_code
-  font_row       <= font_row_title when in_title='1' else
-                    font_row_push  when in_push = '1' else
-                    (others=>'0');
-  font_col       <= font_col_title when in_title='1' else
-                    font_col_push  when in_push = '1' else
-                    (others=>'0');
+  -- SELECT header + options overlay
+  in_select1 <= '1' when
+    video_on='1' and game_state=S_GS and
+    to_integer(unsigned(pix_row)) >= S2_V_OFF and
+    to_integer(unsigned(pix_row)) <  S2_V_OFF+CHAR_H and
+    to_integer(unsigned(pix_col)) >= S2_H_OFF and
+    to_integer(unsigned(pix_col)) <  (S2_H_OFF + SELECT_STR1'length * CHAR_W)
+  else '0';
 
-  ascii_code_final <= ascii_code_title when in_title='1' else
-                      ascii_code_push  when in_push  = '1' else
-                      (others=>'0');
+  char_index_select1 <= (to_integer(unsigned(pix_col)) - S2_H_OFF) / CHAR_W;
+
+  font_col_select1 <= std_logic_vector(to_unsigned(
+    ((to_integer(unsigned(pix_col)) - S2_H_OFF) mod CHAR_W) / S, 3))
+    when in_select1='1' else (others=>'0');
+
+  font_row_select1 <= std_logic_vector(to_unsigned(
+    (to_integer(unsigned(pix_row)) - S2_V_OFF) / S, 3))
+    when in_select1='1' else (others=>'0');
+
+  ascii_code_select1 <= ascii_map(
+    SELECT_STR1(char_index_select1 + SELECT_STR1'low)
+  ) when in_select1='1' else (others=>'0');
+
+  -- PLAY MODE
+  in_select2 <= '1' when
+    video_on='1' and game_state=S_GS and
+    to_integer(unsigned(pix_row)) >= OPT1_V_OFF and
+    to_integer(unsigned(pix_row)) <  OPT1_V_OFF+(CHAR_H/2) and
+    to_integer(unsigned(pix_col)) >= OPT1_H_OFF and
+    to_integer(unsigned(pix_col)) <  (OPT1_H_OFF + OPT1_STR'length*(CHAR_W/2))
+  else '0';
+
+  char_index_select2 <= (to_integer(unsigned(pix_col)) - OPT1_H_OFF) / (CHAR_W/2);
+
+  font_col_select2 <= std_logic_vector(to_unsigned(
+    ((to_integer(unsigned(pix_col)) - OPT1_H_OFF) mod (CHAR_W/2)) / (S/2), 3))
+    when in_select2='1' else (others=>'0');
+
+  font_row_select2 <= std_logic_vector(to_unsigned(
+    (to_integer(unsigned(pix_row)) - OPT1_V_OFF) / (S/2), 3))
+    when in_select2='1' else (others=>'0');
+
+  ascii_code_select2 <= ascii_map(
+    OPT1_STR(char_index_select2 + OPT1_STR'low)
+  ) when in_select2='1' else (others=>'0');
+
+  -- TRAIN MODE
+  in_select3 <= '1' when
+    video_on='1' and game_state=S_GS and
+    to_integer(unsigned(pix_row)) >= OPT2_V_OFF and
+    to_integer(unsigned(pix_row)) <  OPT2_V_OFF+(CHAR_H/2) and
+    to_integer(unsigned(pix_col)) >= OPT2_H_OFF and
+    to_integer(unsigned(pix_col)) <  (OPT2_H_OFF + OPT2_STR'length*(CHAR_W/2))
+  else '0';
+
+  char_index_select3 <= (to_integer(unsigned(pix_col)) - OPT2_H_OFF) / (CHAR_W/2);
+
+  font_col_select3 <= std_logic_vector(to_unsigned(
+    ((to_integer(unsigned(pix_col)) - OPT2_H_OFF) mod (CHAR_W/2)) / (S/2), 3))
+    when in_select3='1' else (others=>'0');
+
+  font_row_select3 <= std_logic_vector(to_unsigned(
+    (to_integer(unsigned(pix_row)) - OPT2_V_OFF) / (S/2), 3))
+    when in_select3='1' else (others=>'0');
+
+  ascii_code_select3 <= ascii_map(
+    OPT2_STR(char_index_select3 + OPT2_STR'low)
+  ) when in_select3='1' else (others=>'0');
+
+
+  -- SW0‐HIGH (PLAY hint)
+in_sw0_high <= '1' when
+  video_on = '1' and game_state = S_GS and sw0_stable = '1' and
+  to_integer(unsigned(pix_row))  >= OPT1_V_OFF    and
+  to_integer(unsigned(pix_row))  <  OPT1_V_OFF + (CHAR_H/2) and
+  to_integer(unsigned(pix_col))  >= OPT1_H_OFF    and
+  to_integer(unsigned(pix_col))  <  OPT1_H_OFF + OPT1_STR'length*(CHAR_W/2)
+else '0';
+
+char_index_sw0_high <= (to_integer(unsigned(pix_col)) - OPT1_H_OFF) / (CHAR_W/2);
+
+font_col_sw0_high <= std_logic_vector(to_unsigned(
+  ((to_integer(unsigned(pix_col)) - OPT1_H_OFF) mod (CHAR_W/2)) / (S/2), 3))
+  when in_sw0_high = '1' else (others => '0');
+
+font_row_sw0_high <= std_logic_vector(to_unsigned(
+  (to_integer(unsigned(pix_row)) - OPT1_V_OFF) / (S/2), 3))
+  when in_sw0_high = '1' else (others => '0');
+
+ascii_code_sw0_high <= ascii_map(
+  OPT1_STR(char_index_sw0_high + OPT1_STR'low)
+) when in_sw0_high = '1' else (others => '0');
+
+-- SW0‐LOW (TRAIN hint)
+in_sw0_low <= '1' when
+  video_on = '1' and game_state = S_GS and sw0_stable = '0' and
+  to_integer(unsigned(pix_row))  >= OPT2_V_OFF    and
+  to_integer(unsigned(pix_row))  <  OPT2_V_OFF + (CHAR_H/2) and
+  to_integer(unsigned(pix_col))  >= OPT2_H_OFF    and
+  to_integer(unsigned(pix_col))  <  OPT2_H_OFF + OPT2_STR'length*(CHAR_W/2)
+else '0';
+
+char_index_sw0_low <= (to_integer(unsigned(pix_col)) - OPT2_H_OFF) / (CHAR_W/2);
+
+font_col_sw0_low <= std_logic_vector(to_unsigned(
+  ((to_integer(unsigned(pix_col)) - OPT2_H_OFF) mod (CHAR_W/2)) / (S/2), 3))
+  when in_sw0_low = '1' else (others => '0');
+
+font_row_sw0_low <= std_logic_vector(to_unsigned(
+  (to_integer(unsigned(pix_row)) - OPT2_V_OFF) / (S/2), 3))
+  when in_sw0_low = '1' else (others => '0');
+
+ascii_code_sw0_low <= ascii_map(
+  OPT2_STR(char_index_sw0_low + OPT2_STR'low)
+) when in_sw0_low = '1' else (others => '0');
+
+  ----------------------------------------------------------------
+font_row <= 
+        font_row_title    when in_title    = '1' else
+        font_row_push     when in_push     = '1' else
+        font_row_select1  when in_select1  = '1' else
+        font_row_select2  when in_select2  = '1' else
+        font_row_select3  when in_select3  = '1' else
+        font_row_sw0_high when in_sw0_high = '1' else
+        font_row_sw0_low  when in_sw0_low  = '1' else
+        (others => '0');
+
+  font_col <= 
+        font_col_title    when in_title    = '1' else
+        font_col_push     when in_push     = '1' else
+        font_col_select1  when in_select1  = '1' else
+        font_col_select2  when in_select2  = '1' else
+        font_col_select3  when in_select3  = '1' else
+        font_col_sw0_high when in_sw0_high = '1' else
+        font_col_sw0_low  when in_sw0_low  = '1' else
+        (others => '0');
+
+  ascii_code_final <= 
+        ascii_code_title    when in_title    = '1' else
+        ascii_code_push     when in_push     = '1' else
+        ascii_code_select1  when in_select1  = '1' else
+        ascii_code_select2  when in_select2  = '1' else
+        ascii_code_select3  when in_select3  = '1' else
+        ascii_code_sw0_high when in_sw0_high = '1' else
+        ascii_code_sw0_low  when in_sw0_low  = '1' else
+        (others => '0');
 
   char_address <= ascii_code_final(5 downto 0);
 
   ----------------------------------------------------------------
-  -- CHAR ROM → overlay
-  u_char_rom: char_rom
-    port map(
-      character_address => char_address,
-      font_row          => font_row,
-      font_col          => font_col,
-      clock             => clk25,
-      rom_mux_output    => rom_output
-    );
+  -- Char-ROM → overlay → final RGB
+  u_char_rom: char_rom port map(
+    character_address => char_address,
+    font_row          => font_row,
+    font_col          => font_col,
+    clock             => clk25,
+    rom_mux_output    => rom_output
+  );
+ -- final_r: pink (R=1) for SW0 hints, yellow (R=1) for all other text, pipe, or wrapped
+  final_r <=
+       '1' when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
+       '1' when (rom_output = '1' and (in_title = '1' or in_push = '1'
+                                       or in_select1 = '1' or in_select2 = '1'
+                                       or in_select3 = '1')) else
+       '0' when (pipe_green = '1' and show_pipes = '1') else
+       wrapped_r;
 
-  -- white text over cyan
-  final_r <= '1' when rom_output='1' and (in_title='1' or in_push='1') else
-             '0' when pipe_green='1' else wrapped_r;
+  -- final_g: pink (G=0) for SW0 hints, yellow (G=1) for all other text, pipe, or wrapped
+  final_g <=
+       '0' when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
+       '1' when (rom_output = '1' and (in_title = '1' or in_push = '1'
+                                       or in_select1 = '1' or in_select2 = '1'
+                                       or in_select3 = '1')) else
+       '1' when (pipe_green = '1' and show_pipes = '1') else
+       wrapped_g;
 
-  final_g <= '1' when rom_output='1' and (in_title='1' or in_push='1') else
-             '1' when pipe_green='1' else wrapped_g; -- Pipes are green!
-
-  final_b <= '1' when rom_output='1' and (in_title='1' or in_push='1') else
-             '0' when pipe_green='1' else wrapped_b;
-
-  -- drive VGA pins
+  -- final_b: pink (B=1) for SW0 hints, yellow (B=0) for all other text, pipe, or wrapped
+  final_b <=
+       '1' when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
+       '0' when (rom_output = '1' and (in_title = '1' or in_push = '1'
+                                       or in_select1 = '1' or in_select2 = '1'
+                                       or in_select3 = '1')) else
+       '0' when (pipe_green = '1' and show_pipes = '1') else
+       wrapped_b;
+  -- Drive VGA pins
   VGA_VS <= vsync_sig;
   VGA_R  <= (others => vga_r_sig);
   VGA_G  <= (others => vga_g_sig);
