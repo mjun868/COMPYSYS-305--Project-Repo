@@ -30,6 +30,24 @@ architecture rtl of pipe_generator is
   -- Internal storage of pipe positions
   signal pipe_x_internal : pipe_array_type;
   signal pipe_y_internal : pipe_array_type;
+  
+    constant screen_width : integer := 640;
+  constant pipe_width : integer := 40; 
+  
+  constant SPACING_VARIATION : integer := 50;  -- max extra random gap
+  
+    -- Random value from LFSR
+  signal random_val : std_logic_vector(9 downto 0);
+
+  -- LFSR component declaration
+  component lfsr is
+    port(
+      clk        : in  std_logic;
+      reset      : in  std_logic;
+      enable     : in  std_logic;
+      random_out : out std_logic_vector(9 downto 0)
+    );
+  end component;
 
 begin
 
@@ -51,14 +69,25 @@ begin
     end if;
   end process;
 
-
+  -- Instantiate LFSR component
+  u_lfsr: lfsr
+    port map(
+      clk        => clk,
+      reset      => reset,
+      enable     => move_enable,
+      random_out => random_val
+    );
   ----------------------------------------------------------------
   -- 2) Pipe movement, now gated by move_enable
   process(clk, reset)
+  
+  variable rand_gap : integer;
+  variable rand_y_gap : integer;
+  
   begin
     if reset = '1' then
       for i in 3 downto 0 loop
-        pipe_x_internal(i) <= std_logic_vector(to_unsigned(640 + i*PIPE_SPACING, 10));
+        pipe_x_internal(i) <= std_logic_vector(to_unsigned(600 + i*PIPE_SPACING, 10));
         pipe_y_internal(i) <= std_logic_vector(to_unsigned(200,               10));  -- initial Y
       end loop;
 
@@ -68,7 +97,9 @@ begin
           if to_integer(unsigned(pipe_x_internal(i))) > 0 then
             pipe_x_internal(i) <= std_logic_vector(unsigned(pipe_x_internal(i)) - 1);
           else
-            pipe_x_internal(i) <= std_logic_vector(to_unsigned(640, 10));
+            rand_gap := to_integer(unsigned(random_val)) mod SPACING_VARIATION;
+            pipe_x_internal(i) <= std_logic_vector(to_unsigned(
+                                          SCREEN_WIDTH + PIPE_WIDTH + rand_gap, 10));
             -- Optional: randomize pipe_y_internal(i) here
           end if;
         end loop;
@@ -85,20 +116,35 @@ begin
 
   ----------------------------------------------------------------
   -- 4) Rendering logic: is this pixel part of any pipe?
-  process(pix_row, pix_col, pipe_x_internal, pipe_y_internal, pipe_gap)
-    variable hit_pipe : std_logic := '0';
-  begin
-    hit_pipe := '0';
-    for i in 3 downto 0 loop
-      if (to_integer(unsigned(pix_col)) >= to_integer(unsigned(pipe_x_internal(i))) and
-          to_integer(unsigned(pix_col)) <  to_integer(unsigned(pipe_x_internal(i))) + 40) and
-         ((to_integer(unsigned(pix_row)) <  to_integer(unsigned(pipe_y_internal(i)))) or
-          (to_integer(unsigned(pix_row)) >  to_integer(unsigned(pipe_y_internal(i))) + 
-                                            to_integer(unsigned(pipe_gap)))) then
+  
+  
+render_pipes: process(pix_row, pix_col, pipe_x_internal, pipe_y_internal, pipe_gap)
+  variable hit_pipe : std_logic := '0';
+  variable x_raw    : integer;
+  variable y_top    : integer;
+  variable y_bot    : integer;
+  variable row      : integer := 0;
+  variable col      : integer := 0;
+begin
+  hit_pipe := '0';
+  row      := to_integer(unsigned(pix_row));
+  col      := to_integer(unsigned(pix_col));
+
+  for i in 3 downto 0 loop
+    x_raw := to_integer(unsigned(pipe_x_internal(i)));
+    y_top := to_integer(unsigned(pipe_y_internal(i)));
+    y_bot := y_top + to_integer(unsigned(pipe_gap));
+
+    -- Only draw when the pipe is actually within the screen window:
+    if (x_raw >= 0) and (x_raw + pipe_width > 0) and (x_raw < screen_width) then
+      if (col >= x_raw and col < x_raw + pipe_width) and
+         (row <  y_top   or row >  y_bot) then
         hit_pipe := '1';
       end if;
-    end loop;
-    green_out <= hit_pipe;
-  end process;
+    end if;
+  end loop;
+
+  green_out <= hit_pipe;
+end process;
 
 end architecture rtl;

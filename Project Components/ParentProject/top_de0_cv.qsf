@@ -513,4 +513,5 @@ set_global_assignment -name VHDL_FILE VHDL_files/char_rom.vhd
 set_global_assignment -name VHDL_FILE VHDL_files/bouncy_ball.vhd
 set_global_assignment -name VHDL_FILE VHDL_files/pipe_generator.vhd
 set_global_assignment -name VHDL_FILE VHDL_files/pipe_types.vhd
+set_global_assignment -name VHDL_FILE lsfr.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
