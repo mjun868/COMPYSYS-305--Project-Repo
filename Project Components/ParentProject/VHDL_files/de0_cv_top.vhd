@@ -3,6 +3,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 use work.ascii_codes.all;  -- ascii_map: character → std_logic_vector(6 downto 0)
+use work.pipe_types.all;
 
 entity de0_cv_top is
   port (
@@ -100,6 +101,24 @@ architecture rtl of de0_cv_top is
       rom_mux_output    : out std_logic
     );
   end component;
+  
+  
+  component pipe_generator is
+    generic (
+      NUM_PIPES    : integer := 4;
+      PIPE_SPACING : integer := 150
+    );
+    port (
+      clk           : in  std_logic;
+      reset         : in  std_logic;
+      pix_row       : in  std_logic_vector(9 downto 0);
+      pix_col       : in  std_logic_vector(9 downto 0);
+      pipe_gap      : in  std_logic_vector(9 downto 0);
+      pipe_x_array  : out pipe_array_type;
+      pipe_y_array  : out pipe_array_type;
+      green_out     : out std_logic
+    );
+  end component;
   ----------------------------------------------------------------
 
   -- Clock & reset
@@ -171,6 +190,14 @@ architecture rtl of de0_cv_top is
   constant S1_PUSH_WIDTH  : integer := S1_PUSH_CHARS * (CHAR_W/2);
   constant S1_PUSH_H_OFF  : integer := (640 - S1_PUSH_WIDTH) / 2;
   constant S1_PUSH_V_OFF  : integer := S1_V_OFF + CHAR_H + 20;
+  
+  -- Pipe Generation
+    -- Pipes
+
+signal pipe_x_array : pipe_array_type;
+signal pipe_y_array : pipe_array_type;
+  signal pipe_gap     : std_logic_vector(9 downto 0) := std_logic_vector(to_unsigned(100, 10)); -- Fixed gap
+  signal pipe_green   : std_logic;
 
 begin
   ----------------------------------------------------------------
@@ -285,6 +312,19 @@ begin
       digit_five   => HEX4,
       digit_six    => HEX5
     );
+	 
+  u_pipe: pipe_generator
+    port map(
+      clk         => clk25,
+      reset       => reset_i,
+      pix_row     => pix_row,
+      pix_col     => pix_col,
+      pipe_x_array => pipe_x_array,
+      pipe_y_array => pipe_y_array,
+      pipe_gap    => pipe_gap,
+      green_out   => pipe_green
+    );
+
 
   ----------------------------------------------------------------
   -- TITLE region
@@ -363,9 +403,14 @@ begin
     );
 
   -- white text over cyan
-  final_r <= '1' when rom_output='1' and (in_title='1' or in_push='1') else wrapped_r;
-  final_g <= '1' when rom_output='1' and (in_title='1' or in_push='1') else wrapped_g;
-  final_b <= '1' when rom_output='1' and (in_title='1' or in_push='1') else wrapped_b;
+  final_r <= '1' when rom_output='1' and (in_title='1' or in_push='1') else
+             '0' when pipe_green='1' else wrapped_r;
+
+  final_g <= '1' when rom_output='1' and (in_title='1' or in_push='1') else
+             '1' when pipe_green='1' else wrapped_g; -- Pipes are green!
+
+  final_b <= '1' when rom_output='1' and (in_title='1' or in_push='1') else
+             '0' when pipe_green='1' else wrapped_b;
 
   -- drive VGA pins
   VGA_VS <= vsync_sig;
