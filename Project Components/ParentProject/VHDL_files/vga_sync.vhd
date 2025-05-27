@@ -5,10 +5,10 @@ use IEEE.numeric_std.all;
 entity VGA_SYNC is
   port(
     clock_25Mhz      : in  std_logic;
-    red, green, blue : in  std_logic;
-    red_out          : out std_logic;
-    green_out        : out std_logic;
-    blue_out         : out std_logic;
+    red, green, blue : in  std_logic_vector(3 downto 0);
+    red_out          : out std_logic_vector(3 downto 0);
+    green_out        : out std_logic_vector(3 downto 0);
+    blue_out         : out std_logic_vector(3 downto 0);
     horiz_sync_out   : out std_logic;
     vert_sync_out    : out std_logic;
     pixel_row        : out std_logic_vector(9 downto 0);
@@ -80,9 +80,9 @@ begin
         green_out <= green;
         blue_out  <= blue;
       else
-        red_out   <= '0';
-        green_out <= '0';
-        blue_out  <= '0';
+        red_out   <= "0000";
+        green_out <= "0000";
+        blue_out  <= "0000";
       end if;
 
       -- Sync outputs

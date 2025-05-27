@@ -1,5 +1,5 @@
 Flow report for top_de0_cv
-Tue May 27 18:57:36 2025
+Tue May 27 19:26:51 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,15 +41,15 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Flow Summary                                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Flow Status                     ; Successful - Tue May 27 18:57:31 2025           ;
+; Flow Status                     ; Successful - Tue May 27 19:26:45 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
 ; Family                          ; Cyclone V                                       ;
 ; Device                          ; 5CEBA4F23C7                                     ;
 ; Timing Models                   ; Final                                           ;
-; Logic utilization (in ALMs)     ; 279 / 18,480 ( 2 % )                            ;
-; Total registers                 ; 218                                             ;
+; Logic utilization (in ALMs)     ; 278 / 18,480 ( 2 % )                            ;
+; Total registers                 ; 224                                             ;
 ; Total pins                      ; 64 / 224 ( 29 % )                               ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 4,096 / 3,153,920 ( < 1 % )                     ;
@@ -68,7 +68,7 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/27/2025 18:55:10 ;
+; Start date & time ; 05/27/2025 19:25:06 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; top_de0_cv          ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ on the Quartus Prime software download page.
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id                        ;
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 165163509629267.174832891050872        ; --            ; --          ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 279585733362003.174833070620568        ; --            ; --          ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_signal_integrity ;
@@ -107,11 +107,11 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 4998 MB             ; 00:00:16                           ;
-; Fitter               ; 00:02:08     ; 1.0                     ; 6928 MB             ; 00:09:24                           ;
+; Analysis & Synthesis ; 00:00:07     ; 1.0                     ; 5022 MB             ; 00:00:17                           ;
+; Fitter               ; 00:01:27     ; 1.0                     ; 7633 MB             ; 00:08:58                           ;
 ; Assembler            ; 00:00:03     ; 1.0                     ; 4987 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:05     ; 1.5                     ; 5326 MB             ; 00:00:05                           ;
-; Total                ; 00:02:24     ; --                      ; --                  ; 00:09:48                           ;
+; Timing Analyzer      ; 00:00:05     ; 1.5                     ; 5351 MB             ; 00:00:06                           ;
+; Total                ; 00:01:42     ; --                      ; --                  ; 00:09:24                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -120,10 +120,10 @@ on the Quartus Prime software download page.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
