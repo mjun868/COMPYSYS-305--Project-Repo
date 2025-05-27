@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_de0_cv
-Tue May 27 16:50:07 2025
+Tue May 27 17:45:58 2025
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -17,22 +17,23 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   9. State Machine - |de0_cv_top|game_state
  10. State Machine - |de0_cv_top|MOUSE:u_mouse|mouse_state
  11. Registers Removed During Synthesis
- 12. General Register Statistics
- 13. Inverted Register Statistics
- 14. Multiplexer Restructuring Statistics (Restructuring Performed)
- 15. Source assignments for char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated
- 16. Parameter Settings for User Entity Instance: pipe_generator:u_pipe
- 17. Parameter Settings for User Entity Instance: char_rom:u_char_rom|altsyncram:altsyncram_component
- 18. Parameter Settings for Inferred Entity Instance: pipe_generator:u_pipe|lpm_divide:Mod0
- 19. altsyncram Parameter Settings by Entity Instance
- 20. Port Connectivity Checks: "pipe_generator:u_pipe"
- 21. Port Connectivity Checks: "SevenSegDisplay:u_seven_seg"
- 22. Port Connectivity Checks: "VGA_SYNC:u_vga_sync"
- 23. Port Connectivity Checks: "bouncy_ball:u_ball"
- 24. Port Connectivity Checks: "MOUSE:u_mouse"
- 25. Post-Synthesis Netlist Statistics for Top Partition
- 26. Elapsed Time Per Partition
- 27. Analysis & Synthesis Messages
+ 12. Removed Registers Triggering Further Register Optimizations
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Source assignments for char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated
+ 17. Parameter Settings for User Entity Instance: pipe_generator:u_pipe
+ 18. Parameter Settings for User Entity Instance: char_rom:u_char_rom|altsyncram:altsyncram_component
+ 19. Parameter Settings for Inferred Entity Instance: pipe_generator:u_pipe|lpm_divide:Mod0
+ 20. altsyncram Parameter Settings by Entity Instance
+ 21. Port Connectivity Checks: "pipe_generator:u_pipe"
+ 22. Port Connectivity Checks: "SevenSegDisplay:u_seven_seg"
+ 23. Port Connectivity Checks: "VGA_SYNC:u_vga_sync"
+ 24. Port Connectivity Checks: "bouncy_ball:u_ball"
+ 25. Port Connectivity Checks: "MOUSE:u_mouse"
+ 26. Post-Synthesis Netlist Statistics for Top Partition
+ 27. Elapsed Time Per Partition
+ 28. Analysis & Synthesis Messages
 
 
 
@@ -58,13 +59,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Tue May 27 16:50:07 2025       ;
+; Analysis & Synthesis Status     ; Successful - Tue May 27 17:45:58 2025       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                  ;
 ; Top-level Entity Name           ; de0_cv_top                                  ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 185                                         ;
+; Total registers                 ; 225                                         ;
 ; Total pins                      ; 64                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 4,096                                       ;
@@ -216,9 +217,10 @@ refer to the applicable agreement for further details.
 ; lpm_divide.tdf                          ; yes             ; Megafunction                           ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_divide.tdf                                                                                                                                     ;         ;
 ; abs_divider.inc                         ; yes             ; Megafunction                           ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/abs_divider.inc                                                                                                                                    ;         ;
 ; sign_div_unsign.inc                     ; yes             ; Megafunction                           ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/sign_div_unsign.inc                                                                                                                                ;         ;
-; db/lpm_divide_u4m.tdf                   ; yes             ; Auto-Generated Megafunction            ; C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_u4m.tdf                   ;         ;
-; db/sign_div_unsign_1nh.tdf              ; yes             ; Auto-Generated Megafunction            ; C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_1nh.tdf              ;         ;
-; db/alt_u_div_82f.tdf                    ; yes             ; Auto-Generated Megafunction            ; C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_82f.tdf                    ;         ;
+; db/lpm_divide_pio.tdf                   ; yes             ; Auto-Generated Megafunction            ; C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_pio.tdf                   ;         ;
+; db/abs_divider_0dg.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/abs_divider_0dg.tdf                  ;         ;
+; db/alt_u_div_g2f.tdf                    ; yes             ; Auto-Generated Megafunction            ; C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_g2f.tdf                    ;         ;
+; db/lpm_abs_2p9.tdf                      ; yes             ; Auto-Generated Megafunction            ; C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_abs_2p9.tdf                      ;         ;
 +-----------------------------------------+-----------------+----------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
@@ -227,16 +229,16 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Estimate of Logic utilization (ALMs needed) ; 281   ;
+; Estimate of Logic utilization (ALMs needed) ; 316   ;
 ;                                             ;       ;
-; Combinational ALUT usage for logic          ; 521   ;
+; Combinational ALUT usage for logic          ; 572   ;
 ;     -- 7 input functions                    ; 4     ;
-;     -- 6 input functions                    ; 31    ;
-;     -- 5 input functions                    ; 109   ;
-;     -- 4 input functions                    ; 56    ;
-;     -- <=3 input functions                  ; 321   ;
+;     -- 6 input functions                    ; 46    ;
+;     -- 5 input functions                    ; 100   ;
+;     -- 4 input functions                    ; 72    ;
+;     -- <=3 input functions                  ; 350   ;
 ;                                             ;       ;
-; Dedicated logic registers                   ; 185   ;
+; Dedicated logic registers                   ; 225   ;
 ;                                             ;       ;
 ; I/O pins                                    ; 64    ;
 ; Total MLAB memory bits                      ; 0     ;
@@ -245,37 +247,37 @@ refer to the applicable agreement for further details.
 ; Total DSP Blocks                            ; 0     ;
 ;                                             ;       ;
 ; Maximum fan-out node                        ; clk25 ;
-; Maximum fan-out                             ; 171   ;
-; Total fan-out                               ; 2533  ;
-; Average fan-out                             ; 3.00  ;
+; Maximum fan-out                             ; 211   ;
+; Total fan-out                               ; 2832  ;
+; Average fan-out                             ; 3.03  ;
 +---------------------------------------------+-------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                         ;
-+------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------------------+--------------+
-; Compilation Hierarchy Node                           ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                               ; Entity Name              ; Library Name ;
-+------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------------------+--------------+
-; |de0_cv_top                                          ; 521 (92)            ; 185 (9)                   ; 4096              ; 0          ; 64   ; 0            ; |de0_cv_top                                                                                                                       ; de0_cv_top               ; work         ;
-;    |MOUSE:u_mouse|                                   ; 42 (42)             ; 50 (50)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|MOUSE:u_mouse                                                                                                         ; MOUSE                    ; work         ;
-;    |SevenSegDisplay:u_seven_seg|                     ; 41 (5)              ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg                                                                                           ; SevenSegDisplay          ; work         ;
-;       |Alphanumeric_to_SevenSeg:digit_five_Counter|  ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter                                               ; Alphanumeric_to_SevenSeg ; work         ;
-;       |Alphanumeric_to_SevenSeg:digit_four_Counter|  ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_four_Counter                                               ; Alphanumeric_to_SevenSeg ; work         ;
-;       |Alphanumeric_to_SevenSeg:digit_one_Counter|   ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter                                                ; Alphanumeric_to_SevenSeg ; work         ;
-;       |Alphanumeric_to_SevenSeg:digit_six_Counter|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_six_Counter                                                ; Alphanumeric_to_SevenSeg ; work         ;
-;       |Alphanumeric_to_SevenSeg:digit_three_Counter| ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_three_Counter                                              ; Alphanumeric_to_SevenSeg ; work         ;
-;       |Alphanumeric_to_SevenSeg:digit_two_Counter|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_two_Counter                                                ; Alphanumeric_to_SevenSeg ; work         ;
-;    |VGA_SYNC:u_vga_sync|                             ; 39 (39)             ; 49 (49)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync                                                                                                   ; VGA_SYNC                 ; work         ;
-;    |char_rom:u_char_rom|                             ; 2 (2)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom                                                                                                   ; char_rom                 ; work         ;
-;       |altsyncram:altsyncram_component|              ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component                                                                   ; altsyncram               ; work         ;
-;          |altsyncram_d5g1:auto_generated|            ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated                                    ; altsyncram_d5g1          ; work         ;
-;    |pipe_generator:u_pipe|                           ; 305 (202)           ; 70 (60)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe                                                                                                 ; pipe_generator           ; work         ;
-;       |lfsr:u_lfsr|                                  ; 10 (10)             ; 10 (10)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lfsr:u_lfsr                                                                                     ; lfsr                     ; work         ;
-;       |lpm_divide:Mod0|                              ; 93 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0                                                                                 ; lpm_divide               ; work         ;
-;          |lpm_divide_u4m:auto_generated|             ; 93 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0|lpm_divide_u4m:auto_generated                                                   ; lpm_divide_u4m           ; work         ;
-;             |sign_div_unsign_1nh:divider|            ; 93 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0|lpm_divide_u4m:auto_generated|sign_div_unsign_1nh:divider                       ; sign_div_unsign_1nh      ; work         ;
-;                |alt_u_div_82f:divider|               ; 93 (93)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0|lpm_divide_u4m:auto_generated|sign_div_unsign_1nh:divider|alt_u_div_82f:divider ; alt_u_div_82f            ; work         ;
-+------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                     ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------+--------------------------+--------------+
+; Compilation Hierarchy Node                           ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                           ; Entity Name              ; Library Name ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------+--------------------------+--------------+
+; |de0_cv_top                                          ; 572 (93)            ; 225 (9)                   ; 4096              ; 0          ; 64   ; 0            ; |de0_cv_top                                                                                                                   ; de0_cv_top               ; work         ;
+;    |MOUSE:u_mouse|                                   ; 42 (42)             ; 50 (50)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|MOUSE:u_mouse                                                                                                     ; MOUSE                    ; work         ;
+;    |SevenSegDisplay:u_seven_seg|                     ; 41 (5)              ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg                                                                                       ; SevenSegDisplay          ; work         ;
+;       |Alphanumeric_to_SevenSeg:digit_five_Counter|  ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter                                           ; Alphanumeric_to_SevenSeg ; work         ;
+;       |Alphanumeric_to_SevenSeg:digit_four_Counter|  ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_four_Counter                                           ; Alphanumeric_to_SevenSeg ; work         ;
+;       |Alphanumeric_to_SevenSeg:digit_one_Counter|   ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter                                            ; Alphanumeric_to_SevenSeg ; work         ;
+;       |Alphanumeric_to_SevenSeg:digit_six_Counter|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_six_Counter                                            ; Alphanumeric_to_SevenSeg ; work         ;
+;       |Alphanumeric_to_SevenSeg:digit_three_Counter| ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_three_Counter                                          ; Alphanumeric_to_SevenSeg ; work         ;
+;       |Alphanumeric_to_SevenSeg:digit_two_Counter|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_two_Counter                                            ; Alphanumeric_to_SevenSeg ; work         ;
+;    |VGA_SYNC:u_vga_sync|                             ; 39 (39)             ; 49 (49)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync                                                                                               ; VGA_SYNC                 ; work         ;
+;    |char_rom:u_char_rom|                             ; 2 (2)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom                                                                                               ; char_rom                 ; work         ;
+;       |altsyncram:altsyncram_component|              ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component                                                               ; altsyncram               ; work         ;
+;          |altsyncram_d5g1:auto_generated|            ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated                                ; altsyncram_d5g1          ; work         ;
+;    |pipe_generator:u_pipe|                           ; 355 (259)           ; 110 (100)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe                                                                                             ; pipe_generator           ; work         ;
+;       |lfsr:u_lfsr|                                  ; 10 (10)             ; 10 (10)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lfsr:u_lfsr                                                                                 ; lfsr                     ; work         ;
+;       |lpm_divide:Mod0|                              ; 86 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0                                                                             ; lpm_divide               ; work         ;
+;          |lpm_divide_pio:auto_generated|             ; 86 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0|lpm_divide_pio:auto_generated                                               ; lpm_divide_pio           ; work         ;
+;             |abs_divider_0dg:divider|                ; 86 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0|lpm_divide_pio:auto_generated|abs_divider_0dg:divider                       ; abs_divider_0dg          ; work         ;
+;                |alt_u_div_g2f:divider|               ; 86 (86)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0|lpm_divide_pio:auto_generated|abs_divider_0dg:divider|alt_u_div_g2f:divider ; alt_u_div_g2f            ; work         ;
++------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------+--------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -321,8 +323,10 @@ Encoding Type:  One-Hot
 +----------------------------------------------------+-------------------------------------------------------------+
 ; Register name                                      ; Reason for Removal                                          ;
 +----------------------------------------------------+-------------------------------------------------------------+
+; pipe_generator:u_pipe|load_lfsr                    ; Stuck at GND due to stuck port data_in                      ;
 ; SevenSegDisplay:u_seven_seg|digit_three_value[1]   ; Stuck at VCC due to stuck port data_in                      ;
 ; SevenSegDisplay:u_seven_seg|digit_one_value[2]     ; Stuck at VCC due to stuck port data_in                      ;
+; pipe_generator:u_pipe|seed_counter[0..9]           ; Lost fanout                                                 ;
 ; MOUSE:u_mouse|CHAROUT[4..7]                        ; Stuck at VCC due to stuck port data_in                      ;
 ; MOUSE:u_mouse|CHAROUT[3]                           ; Stuck at GND due to stuck port data_in                      ;
 ; MOUSE:u_mouse|CHAROUT[2]                           ; Stuck at VCC due to stuck port data_in                      ;
@@ -354,8 +358,21 @@ Encoding Type:  One-Hot
 ; SevenSegDisplay:u_seven_seg|digit_five_value[3]    ; Merged with SevenSegDisplay:u_seven_seg|digit_two_value[0]  ;
 ; SevenSegDisplay:u_seven_seg|digit_six_value[1]     ; Merged with SevenSegDisplay:u_seven_seg|digit_two_value[0]  ;
 ; SevenSegDisplay:u_seven_seg|digit_two_value[4]     ; Merged with SevenSegDisplay:u_seven_seg|digit_two_value[3]  ;
-; Total Number of Removed Registers = 38             ;                                                             ;
+; Total Number of Removed Registers = 49             ;                                                             ;
 +----------------------------------------------------+-------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                 ;
++---------------------------------+---------------------------+-------------------------------------------------------------------------------+
+; Register name                   ; Reason for Removal        ; Registers Removed due to This Register                                        ;
++---------------------------------+---------------------------+-------------------------------------------------------------------------------+
+; pipe_generator:u_pipe|load_lfsr ; Stuck at GND              ; pipe_generator:u_pipe|seed_counter[0], pipe_generator:u_pipe|seed_counter[1], ;
+;                                 ; due to stuck port data_in ; pipe_generator:u_pipe|seed_counter[9], pipe_generator:u_pipe|seed_counter[8], ;
+;                                 ;                           ; pipe_generator:u_pipe|seed_counter[7], pipe_generator:u_pipe|seed_counter[6], ;
+;                                 ;                           ; pipe_generator:u_pipe|seed_counter[5], pipe_generator:u_pipe|seed_counter[4], ;
+;                                 ;                           ; pipe_generator:u_pipe|seed_counter[3], pipe_generator:u_pipe|seed_counter[2]  ;
++---------------------------------+---------------------------+-------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -363,12 +380,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 185   ;
+; Total registers                              ; 225   ;
 ; Number of registers using Synchronous Clear  ; 39    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 118   ;
+; Number of registers using Asynchronous Clear ; 158   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 94    ;
+; Number of registers using Clock Enable       ; 134   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -378,38 +395,47 @@ Encoding Type:  One-Hot
 +-----------------------------------------------+---------+
 ; Inverted Register                             ; Fan out ;
 +-----------------------------------------------+---------+
-; pipe_generator:u_pipe|pipe_x_internal[2][9]   ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[2][7]   ; 5       ;
+; pipe_generator:u_pipe|pipe_x_internal[2][9]   ; 6       ;
+; pipe_generator:u_pipe|pipe_y_internal[2][7]   ; 2       ;
+; pipe_generator:u_pipe|pipe_y_internal[2][6]   ; 2       ;
+; pipe_generator:u_pipe|pipe_y_internal[2][3]   ; 2       ;
+; pipe_generator:u_pipe|pipe_x_internal[2][3]   ; 6       ;
+; pipe_generator:u_pipe|pipe_x_internal[2][2]   ; 4       ;
 ; pipe_generator:u_pipe|pipe_x_internal[2][8]   ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[2][2]   ; 3       ;
-; pipe_generator:u_pipe|pipe_x_internal[1][9]   ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[1][7]   ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[1][2]   ; 3       ;
+; pipe_generator:u_pipe|pipe_x_internal[2][7]   ; 5       ;
+; pipe_generator:u_pipe|pipe_x_internal[2][5]   ; 4       ;
+; pipe_generator:u_pipe|pipe_x_internal[1][9]   ; 6       ;
+; pipe_generator:u_pipe|pipe_y_internal[1][7]   ; 2       ;
+; pipe_generator:u_pipe|pipe_y_internal[1][6]   ; 2       ;
+; pipe_generator:u_pipe|pipe_y_internal[1][3]   ; 2       ;
+; pipe_generator:u_pipe|pipe_x_internal[1][2]   ; 4       ;
 ; pipe_generator:u_pipe|pipe_x_internal[1][1]   ; 3       ;
-; pipe_generator:u_pipe|pipe_x_internal[1][5]   ; 4       ;
-; pipe_generator:u_pipe|pipe_x_internal[1][6]   ; 4       ;
-; pipe_generator:u_pipe|pipe_x_internal[1][3]   ; 4       ;
-; pipe_generator:u_pipe|pipe_x_internal[0][9]   ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[0][6]   ; 4       ;
-; pipe_generator:u_pipe|pipe_x_internal[0][3]   ; 4       ;
-; pipe_generator:u_pipe|pipe_x_internal[0][4]   ; 4       ;
+; pipe_generator:u_pipe|pipe_x_internal[1][8]   ; 5       ;
+; pipe_generator:u_pipe|pipe_x_internal[1][4]   ; 4       ;
+; pipe_generator:u_pipe|pipe_x_internal[0][9]   ; 6       ;
+; pipe_generator:u_pipe|pipe_y_internal[0][7]   ; 2       ;
+; pipe_generator:u_pipe|pipe_y_internal[0][6]   ; 2       ;
+; pipe_generator:u_pipe|pipe_y_internal[0][3]   ; 2       ;
+; pipe_generator:u_pipe|pipe_x_internal[0][7]   ; 5       ;
+; pipe_generator:u_pipe|pipe_y_internal[3][7]   ; 2       ;
+; pipe_generator:u_pipe|pipe_y_internal[3][6]   ; 2       ;
+; pipe_generator:u_pipe|pipe_y_internal[3][3]   ; 2       ;
 ; pipe_generator:u_pipe|pipe_x_internal[3][1]   ; 3       ;
-; pipe_generator:u_pipe|pipe_x_internal[3][3]   ; 4       ;
-; pipe_generator:u_pipe|pipe_x_internal[3][4]   ; 4       ;
+; pipe_generator:u_pipe|pipe_x_internal[3][6]   ; 4       ;
 ; pb1_sync_1                                    ; 4       ;
+; pipe_generator:u_pipe|lfsr:u_lfsr|lfsr_reg[9] ; 4       ;
 ; pipe_generator:u_pipe|lfsr:u_lfsr|lfsr_reg[1] ; 4       ;
-; pb1_sync_0                                    ; 1       ;
-; pipe_generator:u_pipe|lfsr:u_lfsr|lfsr_reg[9] ; 3       ;
 ; pipe_generator:u_pipe|lfsr:u_lfsr|lfsr_reg[7] ; 4       ;
 ; pipe_generator:u_pipe|lfsr:u_lfsr|lfsr_reg[5] ; 4       ;
 ; pipe_generator:u_pipe|lfsr:u_lfsr|lfsr_reg[3] ; 4       ;
+; pb1_sync_0                                    ; 1       ;
 ; MOUSE:u_mouse|send_char                       ; 3       ;
 ; MOUSE:u_mouse|SHIFTOUT[3]                     ; 1       ;
 ; MOUSE:u_mouse|SHIFTOUT[5]                     ; 1       ;
 ; MOUSE:u_mouse|SHIFTOUT[6]                     ; 1       ;
 ; MOUSE:u_mouse|SHIFTOUT[7]                     ; 1       ;
 ; MOUSE:u_mouse|SHIFTOUT[8]                     ; 1       ;
-; Total number of inverted registers = 31       ;         ;
+; Total number of inverted registers = 40       ;         ;
 +-----------------------------------------------+---------+
 
 
@@ -423,12 +449,12 @@ Encoding Type:  One-Hot
 ; 3:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|font_col[2]                                                                             ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_six_Counter|SevenSeg_out     ;
 ; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_three_Counter|SevenSeg_out   ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_four_Counter|SevenSeg_out[2] ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_four_Counter|SevenSeg_out[1] ;
 ; 7:1                ; 6 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter|SevenSeg_out    ;
 ; 9:1                ; 5 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_three_Counter|SevenSeg_out   ;
 ; 9:1                ; 2 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_four_Counter|SevenSeg_out[5] ;
-; 34:1               ; 2 bits    ; 44 LEs        ; 44 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_two_Counter|SevenSeg_out[3]  ;
-; 35:1               ; 5 bits    ; 115 LEs       ; 115 LEs              ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_two_Counter|SevenSeg_out[5]  ;
+; 34:1               ; 2 bits    ; 44 LEs        ; 44 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_two_Counter|SevenSeg_out[0]  ;
+; 35:1               ; 5 bits    ; 115 LEs       ; 115 LEs              ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_two_Counter|SevenSeg_out[6]  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------+
 
 
@@ -519,14 +545,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------------------+----------------+----------------------------------------------+
 ; Parameter Name         ; Value          ; Type                                         ;
 +------------------------+----------------+----------------------------------------------+
-; LPM_WIDTHN             ; 10             ; Untyped                                      ;
-; LPM_WIDTHD             ; 10             ; Untyped                                      ;
-; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                      ;
-; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                      ;
+; LPM_WIDTHN             ; 11             ; Untyped                                      ;
+; LPM_WIDTHD             ; 12             ; Untyped                                      ;
+; LPM_NREPRESENTATION    ; SIGNED         ; Untyped                                      ;
+; LPM_DREPRESENTATION    ; SIGNED         ; Untyped                                      ;
 ; LPM_PIPELINE           ; 0              ; Untyped                                      ;
-; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                      ;
+; LPM_REMAINDERPOSITIVE  ; FALSE          ; Untyped                                      ;
 ; MAXIMIZE_SPEED         ; 5              ; Untyped                                      ;
-; CBXI_PARAMETER         ; lpm_divide_u4m ; Untyped                                      ;
+; CBXI_PARAMETER         ; lpm_divide_pio ; Untyped                                      ;
 ; CARRY_CHAIN            ; MANUAL         ; Untyped                                      ;
 ; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                      ;
 ; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                   ;
@@ -617,38 +643,38 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 185                         ;
+; arriav_ff             ; 225                         ;
 ;     CLR               ; 15                          ;
 ;     CLR SCLR          ; 19                          ;
-;     ENA CLR           ; 84                          ;
+;     ENA CLR           ; 124                         ;
 ;     ENA SCLR          ; 10                          ;
 ;     SCLR              ; 10                          ;
 ;     plain             ; 47                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 526                         ;
-;     arith             ; 186                         ;
-;         0 data inputs ; 13                          ;
-;         1 data inputs ; 137                         ;
-;         2 data inputs ; 8                           ;
+; arriav_lcell_comb     ; 577                         ;
+;     arith             ; 204                         ;
+;         0 data inputs ; 15                          ;
+;         1 data inputs ; 145                         ;
+;         2 data inputs ; 16                          ;
 ;         3 data inputs ; 18                          ;
 ;         4 data inputs ; 10                          ;
 ;     extend            ; 4                           ;
 ;         7 data inputs ; 4                           ;
-;     normal            ; 329                         ;
+;     normal            ; 359                         ;
 ;         1 data inputs ; 22                          ;
-;         2 data inputs ; 42                          ;
-;         3 data inputs ; 79                          ;
-;         4 data inputs ; 46                          ;
-;         5 data inputs ; 109                         ;
-;         6 data inputs ; 31                          ;
-;     shared            ; 7                           ;
-;         0 data inputs ; 1                           ;
-;         1 data inputs ; 6                           ;
+;         2 data inputs ; 80                          ;
+;         3 data inputs ; 49                          ;
+;         4 data inputs ; 62                          ;
+;         5 data inputs ; 100                         ;
+;         6 data inputs ; 46                          ;
+;     shared            ; 10                          ;
+;         0 data inputs ; 3                           ;
+;         1 data inputs ; 7                           ;
 ; boundary_port         ; 64                          ;
 ; stratixv_ram_block    ; 8                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 13.10                       ;
-; Average LUT depth     ; 5.58                        ;
+; Max LUT depth         ; 9.80                        ;
+; Average LUT depth     ; 4.44                        ;
 +-----------------------+-----------------------------+
 
 
@@ -667,7 +693,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Tue May 27 16:49:37 2025
+    Info: Processing started: Tue May 27 17:45:42 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ParentProject -c top_de0_cv
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
@@ -723,8 +749,8 @@ Info (12021): Found 2 design units, including 0 entities, in source file vhdl_fi
     Info (12022): Found design unit 1: pipe_types File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_types.vhd Line: 5
     Info (12022): Found design unit 2: pipe_types-body File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_types.vhd Line: 9
 Info (12021): Found 2 design units, including 1 entities, in source file lsfr.vhd
-    Info (12022): Found design unit 1: lfsr-rtl File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/lsfr.vhd Line: 15
-    Info (12023): Found entity 1: lfsr File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/lsfr.vhd Line: 6
+    Info (12022): Found design unit 1: lfsr-rtl File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/lsfr.vhd Line: 16
+    Info (12023): Found entity 1: lfsr File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/lsfr.vhd Line: 5
 Info (12127): Elaborating entity "de0_cv_top" for the top level hierarchy
 Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(137): object "mouse_row" assigned a value but never read File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 137
 Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(137): object "mouse_col" assigned a value but never read File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 137
@@ -749,48 +775,7 @@ Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" 
 Info (12128): Elaborating entity "SevenSegDisplay" for hierarchy "SevenSegDisplay:u_seven_seg" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 304
 Info (12128): Elaborating entity "Alphanumeric_to_SevenSeg" for hierarchy "SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 172
 Info (12128): Elaborating entity "pipe_generator" for hierarchy "pipe_generator:u_pipe" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 316
-Warning (10631): VHDL Process Statement warning at pipe_generator.vhd(82): inferring latch(es) for signal or variable "pipe_y_internal", which holds its previous value in one or more paths through the process File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[0][0]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[0][1]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[0][2]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[0][3]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[0][4]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[0][5]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[0][6]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[0][7]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[0][8]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[0][9]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[1][0]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[1][1]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[1][2]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[1][3]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[1][4]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[1][5]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[1][6]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[1][7]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[1][8]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[1][9]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[2][0]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[2][1]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[2][2]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[2][3]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[2][4]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[2][5]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[2][6]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[2][7]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[2][8]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[2][9]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[3][0]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[3][1]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[3][2]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[3][3]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[3][4]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[3][5]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[3][6]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[3][7]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[3][8]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (10041): Inferred latch for "pipe_y_internal[3][9]" at pipe_generator.vhd(82) File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 82
-Info (12128): Elaborating entity "lfsr" for hierarchy "pipe_generator:u_pipe|lfsr:u_lfsr" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 73
+Info (12128): Elaborating entity "lfsr" for hierarchy "pipe_generator:u_pipe|lfsr:u_lfsr" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 87
 Info (12128): Elaborating entity "char_rom" for hierarchy "char_rom:u_char_rom" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 396
 Info (12128): Elaborating entity "altsyncram" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
 Info (12130): Elaborated megafunction instantiation "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
@@ -813,36 +798,40 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/alts
     Info (12023): Found entity 1: altsyncram_d5g1 File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_d5g1" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
 Info (278001): Inferred 1 megafunctions from design logic
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "pipe_generator:u_pipe|Mod0" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 99
-Info (12130): Elaborated megafunction instantiation "pipe_generator:u_pipe|lpm_divide:Mod0" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 99
-Info (12133): Instantiated megafunction "pipe_generator:u_pipe|lpm_divide:Mod0" with the following parameter: File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 99
-    Info (12134): Parameter "LPM_WIDTHN" = "10"
-    Info (12134): Parameter "LPM_WIDTHD" = "10"
-    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
-    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_u4m.tdf
-    Info (12023): Found entity 1: lpm_divide_u4m File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_u4m.tdf Line: 24
-Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_1nh.tdf
-    Info (12023): Found entity 1: sign_div_unsign_1nh File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_1nh.tdf Line: 24
-Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_82f.tdf
-    Info (12023): Found entity 1: alt_u_div_82f File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_82f.tdf Line: 22
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "pipe_generator:u_pipe|Mod0" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 120
+Info (12130): Elaborated megafunction instantiation "pipe_generator:u_pipe|lpm_divide:Mod0" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 120
+Info (12133): Instantiated megafunction "pipe_generator:u_pipe|lpm_divide:Mod0" with the following parameter: File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 120
+    Info (12134): Parameter "LPM_WIDTHN" = "11"
+    Info (12134): Parameter "LPM_WIDTHD" = "12"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "LPM_HINT" = "LPM_REMAINDERPOSITIVE=FALSE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_pio.tdf
+    Info (12023): Found entity 1: lpm_divide_pio File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_pio.tdf Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file db/abs_divider_0dg.tdf
+    Info (12023): Found entity 1: abs_divider_0dg File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/abs_divider_0dg.tdf Line: 26
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_g2f.tdf
+    Info (12023): Found entity 1: alt_u_div_g2f File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_g2f.tdf Line: 22
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_abs_2p9.tdf
+    Info (12023): Found entity 1: lpm_abs_2p9 File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_abs_2p9.tdf Line: 22
 Info (13000): Registers with preset signals will power-up high File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 146
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286030): Timing-Driven Synthesis is running
+Info (17049): 10 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "PB2" File: C:/Users/GetMe/OneDrive - The University of Auckland/Uni Work/Part III/Semester One/COMPSYS 305/Group/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 15
-Info (21057): Implemented 641 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 732 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 5 input pins
     Info (21059): Implemented 57 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 569 logic cells
+    Info (21061): Implemented 660 logic cells
     Info (21064): Implemented 8 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 34 warnings
-    Info: Peak virtual memory: 4889 megabytes
-    Info: Processing ended: Tue May 27 16:50:07 2025
-    Info: Elapsed time: 00:00:30
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 33 warnings
+    Info: Peak virtual memory: 4878 megabytes
+    Info: Processing ended: Tue May 27 17:45:58 2025
+    Info: Elapsed time: 00:00:16
     Info: Total CPU time (on all processors): 00:00:07
 
 
