@@ -1,13 +1,13 @@
-Fitter Status : Successful - Wed May 28 21:15:30 2025
+Fitter Status : Successful - Thu May 29 01:53:44 2025
 Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 Revision Name : top_de0_cv
 Top-level Entity Name : de0_cv_top
 Family : Cyclone V
 Device : 5CEBA4F23C7
 Timing Models : Final
-Logic utilization (in ALMs) : 432 / 18,480 ( 2 % )
-Total registers : 299
-Total pins : 64 / 224 ( 29 % )
+Logic utilization (in ALMs) : 439 / 18,480 ( 2 % )
+Total registers : 318
+Total pins : 65 / 224 ( 29 % )
 Total virtual pins : 0
 Total block memory bits : 16,384 / 3,153,920 ( < 1 % )
 Total RAM Blocks : 3 / 308 ( < 1 % )

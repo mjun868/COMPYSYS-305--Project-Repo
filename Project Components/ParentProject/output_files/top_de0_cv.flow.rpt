@@ -1,5 +1,5 @@
 Flow report for top_de0_cv
-Wed May 28 21:15:41 2025
+Thu May 29 01:53:54 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,16 +41,16 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Flow Summary                                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Flow Status                     ; Successful - Wed May 28 21:15:34 2025           ;
+; Flow Status                     ; Successful - Thu May 29 01:53:48 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
 ; Family                          ; Cyclone V                                       ;
 ; Device                          ; 5CEBA4F23C7                                     ;
 ; Timing Models                   ; Final                                           ;
-; Logic utilization (in ALMs)     ; 432 / 18,480 ( 2 % )                            ;
-; Total registers                 ; 299                                             ;
-; Total pins                      ; 64 / 224 ( 29 % )                               ;
+; Logic utilization (in ALMs)     ; 439 / 18,480 ( 2 % )                            ;
+; Total registers                 ; 318                                             ;
+; Total pins                      ; 65 / 224 ( 29 % )                               ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 16,384 / 3,153,920 ( < 1 % )                    ;
 ; Total DSP Blocks                ; 0 / 66 ( 0 % )                                  ;
@@ -68,7 +68,7 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/28/2025 21:11:54 ;
+; Start date & time ; 05/29/2025 01:49:10 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; top_de0_cv          ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ on the Quartus Prime software download page.
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id                        ;
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 279585733362003.174842351437820        ; --            ; --          ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 165163509629267.174844015034464        ; --            ; --          ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_signal_integrity ;
@@ -108,11 +108,11 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:09     ; 1.0                     ; 5008 MB             ; 00:00:18                           ;
-; Fitter               ; 00:03:26     ; 1.0                     ; 7571 MB             ; 00:21:42                           ;
-; Assembler            ; 00:00:02     ; 1.0                     ; 5003 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:06     ; 1.7                     ; 5367 MB             ; 00:00:07                           ;
-; Total                ; 00:03:43     ; --                      ; --                  ; 00:22:10                           ;
+; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 4998 MB             ; 00:00:15                           ;
+; Fitter               ; 00:04:25     ; 1.0                     ; 6935 MB             ; 00:17:45                           ;
+; Assembler            ; 00:00:03     ; 1.0                     ; 4987 MB             ; 00:00:03                           ;
+; Timing Analyzer      ; 00:00:05     ; 1.6                     ; 5326 MB             ; 00:00:07                           ;
+; Total                ; 00:04:41     ; --                      ; --                  ; 00:18:10                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -121,10 +121,10 @@ on the Quartus Prime software download page.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; MIK_SCHCOMP      ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
