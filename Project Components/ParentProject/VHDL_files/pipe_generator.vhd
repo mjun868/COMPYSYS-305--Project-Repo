@@ -7,7 +7,9 @@ entity pipe_generator is
   generic (
     NUM_PIPES     : integer := 4;    -- Matches array range 3 downto 0
     PIPE_SPACING  : integer := 150;
-    MOVE_INTERVAL : integer := 500_000  -- # of clk ticks between moves (25 MHz/500k ≈ 50 moves/sec)
+    MOVE_INTERVAL : integer := 500_000;  -- # of clk ticks between moves (25 MHz/500k ≈ 50 moves/sec)
+    START_OFFSET  : integer := 10;    
+    PIPE_WIDTH : integer := 40  
   );
   port (
     clk           : in  std_logic;
@@ -57,18 +59,20 @@ begin
   process(clk, reset)
   begin
     if reset = '1' then
-      for i in 3 downto 0 loop
-        pipe_x_internal(i) <= std_logic_vector(to_unsigned(640 + i*PIPE_SPACING, 10));
+      for i in NUM_PIPES-1 downto 0 loop
+       pipe_x_internal(i) <= std_logic_vector(
+                        to_unsigned(640 + START_OFFSET + i*PIPE_SPACING, 10)
+                      );
         pipe_y_internal(i) <= std_logic_vector(to_unsigned(200,               10));  -- initial Y
       end loop;
 
     elsif rising_edge(clk) then
       if move_enable = '1' then
-        for i in 3 downto 0 loop
+        for i in NUM_PIPES-1 downto 0 loop
           if to_integer(unsigned(pipe_x_internal(i))) > 0 then
             pipe_x_internal(i) <= std_logic_vector(unsigned(pipe_x_internal(i)) - 1);
           else
-            pipe_x_internal(i) <= std_logic_vector(to_unsigned(640, 10));
+            pipe_x_internal(i) <= std_logic_vector(to_unsigned(640 + START_OFFSET, 10));
             -- Optional: randomize pipe_y_internal(i) here
           end if;
         end loop;
@@ -89,9 +93,9 @@ begin
     variable hit_pipe : std_logic := '0';
   begin
     hit_pipe := '0';
-    for i in 3 downto 0 loop
+    for i in NUM_PIPES-1 downto 0 loop
       if (to_integer(unsigned(pix_col)) >= to_integer(unsigned(pipe_x_internal(i))) and
-          to_integer(unsigned(pix_col)) <  to_integer(unsigned(pipe_x_internal(i))) + 40) and
+          to_integer(unsigned(pix_col)) <  to_integer(unsigned(pipe_x_internal(i))) + PIPE_WIDTH) and
          ((to_integer(unsigned(pix_row)) <  to_integer(unsigned(pipe_y_internal(i)))) or
           (to_integer(unsigned(pix_row)) >  to_integer(unsigned(pipe_y_internal(i))) + 
                                             to_integer(unsigned(pipe_gap)))) then

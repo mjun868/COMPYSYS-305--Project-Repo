@@ -106,22 +106,25 @@ architecture rtl of de0_cv_top is
     );
   end component;
 
-  component pipe_generator is
-    generic(
-      NUM_PIPES    : integer := 4;
-      PIPE_SPACING : integer := 150
-    );
-    port(
-      clk           : in  std_logic;
-      reset         : in  std_logic;
-      pix_row       : in  std_logic_vector(9 downto 0);
-      pix_col       : in  std_logic_vector(9 downto 0);
-      pipe_gap      : in  std_logic_vector(9 downto 0);
-      pipe_x_array  : out pipe_array_type;
-      pipe_y_array  : out pipe_array_type;
-      green_out     : out std_logic
-    );
-  end component;
+ component pipe_generator is
+  generic(
+    NUM_PIPES     : integer := 4;
+    PIPE_SPACING  : integer := 150;
+    MOVE_INTERVAL : integer := 500_000;
+    START_OFFSET  : integer := 10;
+    PIPE_WIDTH    : integer := 40
+  );
+  port(
+    clk           : in  std_logic;
+    reset         : in  std_logic;
+    pix_row       : in  std_logic_vector(9 downto 0);
+    pix_col       : in  std_logic_vector(9 downto 0);
+    pipe_gap      : in  std_logic_vector(9 downto 0);
+    pipe_x_array  : out pipe_array_type;
+    pipe_y_array  : out pipe_array_type;
+    green_out     : out std_logic
+  );
+end component;
 
   -- Signals
   signal clk25, reset_i               : std_logic := '0';
@@ -181,15 +184,18 @@ architecture rtl of de0_cv_top is
   signal display_mode                 : std_logic_vector(2 downto 0);
 
   signal pipe_x_array, pipe_y_array   : pipe_array_type;
-  signal pipe_gap                     : std_logic_vector(9 downto 0) := std_logic_vector(to_unsigned(100,10));
+  signal pipe_gap : std_logic_vector(9 downto 0) := std_logic_vector(to_unsigned(100,10));
+  signal pipe_gap_int : integer;
   signal pipe_green                   : std_logic;
 
   signal ball_on_sig : std_logic;
 
 
   signal collision : std_logic := '0';
+  signal collision_detect : std_logic;
   signal bird_row             : std_logic_vector(9 downto 0);
   signal bird_col             : std_logic_vector(9 downto 0);
+   
 
   
 
@@ -256,18 +262,35 @@ begin
   sw0_stable<=sw0_sync_1; LEDR0<=sw0_stable;
 
   -- FSM
-  fsm: process(clk25, reset_i) begin
-    if reset_i='1' then game_state<=S_TITLE;
-    elsif rising_edge(clk25) then
-      case game_state is
-        when S_TITLE => if btn1_rising='1' then game_state<=S_GS; end if;
-        when S_GS    => if btn1_rising='1' then
-                           if sw0_stable='1' then game_state<=S_PLAY;
-                           else game_state<=S_TRAIN; end if; end if;
-        when others => null;
-      end case;
-    end if;
-  end process;
+ fsm: process(clk25, reset_i) begin
+  if reset_i = '1' then
+    game_state <= S_TITLE;
+  elsif rising_edge(clk25) then
+    case game_state is
+      when S_TITLE =>
+        if btn1_rising = '1' then
+          game_state <= S_GS;
+        end if;
+
+      when S_GS =>
+        if btn1_rising = '1' then
+          if sw0_stable = '1' then
+            game_state <= S_PLAY;
+          else
+            game_state <= S_TRAIN;
+          end if;
+        end if;
+
+      when S_PLAY | S_TRAIN =>
+        if collision = '1' then
+          game_state <= S_TITLE;
+        end if;
+
+      when others =>
+        null;
+    end case;
+  end if;
+end process;
 
   show_pipes<= '1' when (game_state=S_PLAY or game_state=S_TRAIN) else '0';
 
@@ -346,16 +369,23 @@ begin
     digit_six    => HEX5
   );
 
-  u_pipe: pipe_generator port map(
-    clk          => clk25,
-    reset        => reset_i,
-    pix_row      => pix_row,
-    pix_col      => pix_col,
-    pipe_gap     => pipe_gap,
-    pipe_x_array => pipe_x_array,
-    pipe_y_array => pipe_y_array,
-    green_out    => pipe_green
+u_pipe: pipe_generator
+  generic map (
+    START_OFFSET => 10,
+    PIPE_WIDTH   => 40
+  )
+  port map (
+    clk           => clk25,
+    reset         => reset_i,
+    pix_row       => pix_row,
+    pix_col       => pix_col,
+    pipe_gap      => pipe_gap,
+    pipe_x_array  => pipe_x_array,
+    pipe_y_array  => pipe_y_array,
+    green_out     => pipe_green
   );
+
+    pipe_gap_int <= to_integer(unsigned(pipe_gap));
 
   ----------------------------------------------------------------
   -- TITLE overlay region
@@ -567,43 +597,52 @@ font_row <=
 
 
  
-collision_check : process(clk25)
-  variable bird_r_int : integer;
-  variable bird_c_int : integer;
-  variable pipe_x_int : integer;
-  variable pipe_y_int : integer;
+-- combinational detection every pixel
+collision_detect_proc : process(bird_row, bird_col, pipe_x_array, pipe_y_array, pipe_gap_int, ball_on_sig)
+  variable bird_r_int  : integer;
+  variable bird_c_int  : integer;
+  variable px_int      : integer;
+  variable py_int      : integer;
 begin
-  if rising_edge(clk25) then
-    collision <= '0';  -- default
+  -- only check for pipes once the bird is actually being drawn
+  if ball_on_sig = '1' then
+    collision_detect <= '0';
 
     bird_r_int := to_integer(unsigned(bird_row));
     bird_c_int := to_integer(unsigned(bird_col));
 
-    if ball_on_sig = '1' then
-      for i in 0 to NUM_PIPES-1 loop
-        pipe_x_int := to_integer(unsigned(pipe_x_array(i)));
-        pipe_y_int := to_integer(unsigned(pipe_y_array(i)));
+    for i in 0 to NUM_PIPES-1 loop
+      px_int := to_integer(unsigned(pipe_x_array(i)));
+      py_int := to_integer(unsigned(pipe_y_array(i)));
 
-        -- Is the bird within this pipe’s horizontal span?
-        if bird_c_int >= pipe_x_int
-           and bird_c_int <  pipe_x_int + PIPE_WIDTH then
-
-          -- Did it hit the top pipe?
-          if bird_r_int < pipe_y_int then
-            collision <= '1';
-          end if;
-
-          -- Or did it hit the bottom pipe?
-          if bird_r_int > pipe_y_int + GAP_HEIGHT then
-            collision <= '1';
-          end if;
-
+      if (bird_c_int >= px_int and bird_c_int < px_int + PIPE_WIDTH) then
+        if (bird_r_int < py_int) or (bird_r_int > py_int + pipe_gap_int) then
+          collision_detect <= '1';
         end if;
-      end loop;
-    end if;
+      end if;
+    end loop;
+
+  else
+    collision_detect <= '0';
   end if;
 end process;
 
+
+  -- register it so it stays high once set
+ collision_reg : process(clk25, reset_i)
+begin
+  if reset_i = '1' then
+    collision <= '0';
+  elsif rising_edge(clk25) then
+    if game_state /= S_PLAY and game_state /= S_TRAIN then
+      collision <= '0';            -- clear whenever you're not playing
+    elsif collision = '1' then
+      collision <= '1';            -- once set in play/train, it stays
+    else
+      collision <= collision_detect;
+    end if;
+  end if;
+end process;
 
  -- final_r: pink (R=1) for SW0 hints, yellow (R=1) for all other text, pipe, or wrapped
   final_r <=
