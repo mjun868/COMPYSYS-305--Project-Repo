@@ -471,7 +471,7 @@ set_global_assignment -name DEVICE 5CEBA4F23C7
 set_global_assignment -name TOP_LEVEL_ENTITY de0_cv_top
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 24.1STD.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "15:08:35  MAY 11, 2025"
-set_global_assignment -name LAST_QUARTUS_VERSION "24.1std.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -513,4 +513,5 @@ set_global_assignment -name VHDL_FILE VHDL_files/char_rom.vhd
 set_global_assignment -name VHDL_FILE VHDL_files/bouncy_ball.vhd
 set_global_assignment -name VHDL_FILE VHDL_files/pipe_generator.vhd
 set_global_assignment -name VHDL_FILE VHDL_files/pipe_types.vhd
+set_global_assignment -name VHDL_FILE VHDL_files/lsfr.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

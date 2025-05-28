@@ -108,7 +108,7 @@ architecture rtl of de0_cv_top is
 
  component pipe_generator is
   generic(
-    NUM_PIPES     : integer := 4;
+    NUM_PIPES     : integer := 3;
     PIPE_SPACING  : integer := 150;
     MOVE_INTERVAL : integer := 500_000;
     START_OFFSET  : integer := 10;
@@ -233,7 +233,7 @@ end component;
 
   constant PIPE_WIDTH : integer := 50;
   constant GAP_HEIGHT : integer := 100;
-  constant NUM_PIPES : integer := 4;
+  constant NUM_PIPES : integer := 3;
 
 
 begin
