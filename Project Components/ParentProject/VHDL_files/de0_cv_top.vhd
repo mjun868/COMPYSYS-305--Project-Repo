@@ -13,6 +13,7 @@ entity de0_cv_top is
     PS2_CLK   : inout std_logic;
     PS2_DAT   : inout std_logic;
     -- Buttons & Switch
+    PB0       : in  std_logic; -- This is the reset button. 
     PB1       : in  std_logic;
     PB2       : in  std_logic;
     SW0       : in  std_logic;
@@ -133,7 +134,7 @@ end component;
   signal btn1_prev, btn1_rising       : std_logic := '0';
   signal sw0_sync_0, sw0_sync_1       : std_logic := '0';
   signal sw0_stable                   : std_logic;
-  type game_state_t is (S_TITLE, S_GS, S_TRAIN, S_PLAY);
+  type game_state_t is (S_TITLE, S_GS, S_TRAIN, S_PLAY, S_DEATH);
   signal game_state                   : game_state_t := S_TITLE;
   signal show_pipes                   : std_logic;
 
@@ -197,6 +198,14 @@ end component;
   signal bird_col             : std_logic_vector(9 downto 0);
    
 
+
+  signal in_death1           : std_logic;
+signal font_row_d1, font_col_d1 : std_logic_vector(2 downto 0);
+signal ascii_d1            : std_logic_vector(6 downto 0);
+
+signal in_death2           : std_logic;
+signal font_row_d2, font_col_d2 : std_logic_vector(2 downto 0);
+signal ascii_d2            : std_logic_vector(6 downto 0);
   
 
   -- Constants
@@ -235,13 +244,31 @@ end component;
   constant GAP_HEIGHT : integer := 100;
   constant NUM_PIPES : integer := 4;
 
+  constant DEATH_STR     : string(1 to 9)  := "YOU DIED!";
+  constant DEATH2_STR    : string(1 to 29) := "PRESS BUTTON 0 TO PLAY AGAIN.";
+  
+-- pixel widths
+constant DEATH_W       : integer := DEATH_STR'length * CHAR_W;
+constant DEATH2_W      : integer := DEATH2_STR'length * (CHAR_W/2);
+
+-- offsets for centering
+constant DEATH_H_OFF   : integer := (640 - DEATH_W)/2;
+constant DEATH_V_OFF   : integer := (480 -  CHAR_H)/2;
+
+constant DEATH2_H_OFF  : integer := (640 - DEATH2_W)/2;
+constant DEATH2_V_OFF  : integer := DEATH_V_OFF + CHAR_H + 20;
+
+signal char_index_d1       : integer range 0 to DEATH_STR'length-1;
+signal char_index_d2       : integer range 0 to DEATH2_STR'length-1;
+
 
 begin
   -- Clock div & reset
   clk_div: process(CLOCK_50) begin
     if rising_edge(CLOCK_50) then clk25 <= not clk25; end if;
   end process;
-  reset_i <= not reset_n;
+  -- asynchronous reset when either reset_n or PB0 is asserted low
+  reset_i <= (not reset_n) or (not PB0);
 
   -- PB1 debounce & edge
   sync_pb1: process(clk25, reset_i) begin
@@ -283,7 +310,7 @@ begin
 
       when S_PLAY | S_TRAIN =>
         if collision = '1' then
-          game_state <= S_TITLE;
+          game_state <= S_DEATH;
         end if;
 
       when others =>
@@ -552,8 +579,48 @@ ascii_code_sw0_low <= ascii_map(
   OPT2_STR(char_index_sw0_low + OPT2_STR'low)
 ) when in_sw0_low = '1' else (others => '0');
 
+-- DEATH screen line 1
+in_death1 <= '1' when
+  video_on='1' and game_state=S_DEATH and
+  to_integer(unsigned(pix_row)) >= DEATH_V_OFF and
+  to_integer(unsigned(pix_row)) <  DEATH_V_OFF+CHAR_H and
+  to_integer(unsigned(pix_col)) >= DEATH_H_OFF and
+  to_integer(unsigned(pix_col)) <  DEATH_H_OFF+DEATH_W
+else '0';
+
+char_index_d1 <= (to_integer(unsigned(pix_col)) - DEATH_H_OFF) / CHAR_W;
+font_col_d1 <= std_logic_vector(to_unsigned(
+  ((to_integer(unsigned(pix_col)) - DEATH_H_OFF) mod CHAR_W) / S,3))
+  when in_death1='1' else (others=>'0');
+font_row_d1 <= std_logic_vector(to_unsigned(
+  (to_integer(unsigned(pix_row)) - DEATH_V_OFF) / S,3))
+  when in_death1='1' else (others=>'0');
+ascii_d1 <= ascii_map(DEATH_STR(char_index_d1 + DEATH_STR'low))
+  when in_death1='1' else (others=>'0');
+
+-- DEATH screen line 2 (half-scale)
+in_death2 <= '1' when
+  video_on='1' and game_state=S_DEATH and
+  to_integer(unsigned(pix_row)) >= DEATH2_V_OFF and
+  to_integer(unsigned(pix_row)) <  DEATH2_V_OFF+(CHAR_H/2) and
+  to_integer(unsigned(pix_col)) >= DEATH2_H_OFF and
+  to_integer(unsigned(pix_col)) <  DEATH2_H_OFF+DEATH2_W
+else '0';
+
+char_index_d2 <= (to_integer(unsigned(pix_col)) - DEATH2_H_OFF) / (CHAR_W/2);
+font_col_d2 <= std_logic_vector(to_unsigned(
+  ((to_integer(unsigned(pix_col)) - DEATH2_H_OFF) mod (CHAR_W/2)) / (S/2),3))
+  when in_death2='1' else (others=>'0');
+font_row_d2 <= std_logic_vector(to_unsigned(
+  (to_integer(unsigned(pix_row)) - DEATH2_V_OFF) / (S/2),3))
+  when in_death2='1' else (others=>'0');
+ascii_d2 <= ascii_map(DEATH2_STR(char_index_d2 + DEATH2_STR'low))
+  when in_death2='1' else (others=>'0');
+
   ----------------------------------------------------------------
 font_row <= 
+        font_row_d1    when in_death1='1' else
+        font_row_d2    when in_death2='1' else
         font_row_title    when in_title    = '1' else
         font_row_push     when in_push     = '1' else
         font_row_select1  when in_select1  = '1' else
@@ -564,6 +631,8 @@ font_row <=
         (others => '0');
 
   font_col <= 
+        font_col_d1    when in_death1='1' else
+        font_col_d2    when in_death2='1' else
         font_col_title    when in_title    = '1' else
         font_col_push     when in_push     = '1' else
         font_col_select1  when in_select1  = '1' else
@@ -574,6 +643,8 @@ font_row <=
         (others => '0');
 
   ascii_code_final <= 
+        ascii_d1       when in_death1='1' else
+        ascii_d2       when in_death2='1' else
         ascii_code_title    when in_title    = '1' else
         ascii_code_push     when in_push     = '1' else
         ascii_code_select1  when in_select1  = '1' else
@@ -644,35 +715,44 @@ begin
   end if;
 end process;
 
- -- final_r: pink (R=1) for SW0 hints, yellow (R=1) for all other text, pipe, or wrapped
-  final_r <=
-       "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
-       "1111" when (rom_output = '1' and (in_title = '1' or in_push = '1'
-                                       or in_select1 = '1' or in_select2 = '1'
-                                       or in_select3 = '1')) else
-       color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "0000" when (pipe_green = '1' and show_pipes = '1') else
-       (others => wrapped_r);
+ -- final_r: pink for SW0 hints, yellow for title/select/death text, otherwise ball or pipes or wrapped
+final_r <=
+     "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
+     "1111" when (rom_output = '1' and (
+                        in_title   = '1' or in_push    = '1' or
+                        in_select1 = '1' or in_select2 = '1' or
+                        in_select3 = '1' or in_death1  = '1' or
+                        in_death2  = '1'
+                     )) else
+     color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
+     "0000"  when (pipe_green = '1' and show_pipes = '1') else
+     (others => wrapped_r);
 
-  -- final_g: pink (G=0) for SW0 hints, yellow (G=1) for all other text, pipe, or wrapped
-  final_g <=
-       "0000" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
-       "1111" when (rom_output = '1' and (in_title = '1' or in_push = '1'
-                                       or in_select1 = '1' or in_select2 = '1'
-                                       or in_select3 = '1')) else
-       color_g when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "1111" when (pipe_green = '1' and show_pipes = '1') else
-       (others => wrapped_g);
+-- final_g: pink for SW0 hints, yellow for title/select/death text, otherwise ball or pipes or wrapped
+final_g <=
+     "0000" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
+     "1111" when (rom_output = '1' and (
+                        in_title   = '1' or in_push    = '1' or
+                        in_select1 = '1' or in_select2 = '1' or
+                        in_select3 = '1' or in_death1  = '1' or
+                        in_death2  = '1'
+                     )) else
+     color_g when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
+     "1111"  when (pipe_green = '1' and show_pipes = '1') else
+     (others => wrapped_g);
 
-  -- final_b: pink (B=1) for SW0 hints, yellow (B=0) for all other text, pipe, or wrapped
-  final_b <=
-       "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
-       "0000" when (rom_output = '1' and (in_title = '1' or in_push = '1'
-                                       or in_select1 = '1' or in_select2 = '1'
-                                       or in_select3 = '1')) else
-       color_b when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "0000" when (pipe_green = '1' and show_pipes = '1') else
-       (others => wrapped_b);
+-- final_b: pink for SW0 hints, yellow for title/select/death text, otherwise ball or pipes or wrapped
+final_b <=
+     "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
+     "0000" when (rom_output = '1' and (
+                        in_title   = '1' or in_push    = '1' or
+                        in_select1 = '1' or in_select2 = '1' or
+                        in_select3 = '1' or in_death1  = '1' or
+                        in_death2  = '1'
+                     )) else
+     color_b when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
+     "0000"  when (pipe_green = '1' and show_pipes = '1') else
+     (others => wrapped_b);
   -- Drive VGA pins
   VGA_VS <= vsync_sig;
   VGA_R  <= vga_r_sig;

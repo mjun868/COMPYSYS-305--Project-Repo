@@ -1,16 +1,9 @@
 |de0_cv_top
 CLOCK_50 => clk25.CLK
-reset_n => collision.ACLR
-reset_n => sw0_sync_1.ACLR
-reset_n => sw0_sync_0.ACLR
-reset_n => btn1_prev.ACLR
-reset_n => pb1_sync_1.PRESET
-reset_n => pb1_sync_0.PRESET
-reset_n => MOUSE:u_mouse.reset
-reset_n => pipe_generator:u_pipe.reset
-reset_n => game_state~7.DATAIN
+reset_n => reset_i.IN0
 PS2_CLK <> MOUSE:u_mouse.mouse_clk
 PS2_DAT <> MOUSE:u_mouse.mouse_data
+PB0 => reset_i.IN1
 PB1 => pb1_sync_0.DATAIN
 PB2 => bouncy_ball:u_ball.pb2
 SW0 => sw0_sync_0.DATAIN
