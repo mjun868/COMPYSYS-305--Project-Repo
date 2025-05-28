@@ -112,14 +112,14 @@ architecture rtl of de0_cv_top is
     PIPE_SPACING  : integer := 150;
     MOVE_INTERVAL : integer := 500_000;
     START_OFFSET  : integer := 10;
-    PIPE_WIDTH    : integer := 40
+    PIPE_WIDTH    : integer := 40;
+	 PIPE_GAP      : integer := 100 
   );
   port(
     clk           : in  std_logic;
     reset         : in  std_logic;
     pix_row       : in  std_logic_vector(9 downto 0);
     pix_col       : in  std_logic_vector(9 downto 0);
-    pipe_gap      : in  std_logic_vector(9 downto 0);
     pipe_x_array  : out pipe_array_type;
     pipe_y_array  : out pipe_array_type;
     green_out     : out std_logic
@@ -234,6 +234,10 @@ end component;
   constant PIPE_WIDTH : integer := 50;
   constant GAP_HEIGHT : integer := 100;
   constant NUM_PIPES : integer := 3;
+  
+  constant PLAY_DELAY_CYCLES : integer := 125_000_000;  -- 5 s @25 MHz
+  signal play_delay_counter  : integer range 0 to PLAY_DELAY_CYCLES := 0;
+  signal pipes_go            : std_logic := '0';
 
 
 begin
@@ -289,6 +293,26 @@ begin
       when others =>
         null;
     end case;
+  end if;
+end process;
+
+process(clk25, reset_i)
+begin
+  if reset_i = '1' then
+    play_delay_counter <= 0;
+    pipes_go           <= '0';
+  elsif rising_edge(clk25) then
+    if (game_state = S_PLAY or game_state = S_TRAIN) then
+      if play_delay_counter < PLAY_DELAY_CYCLES then
+        play_delay_counter <= play_delay_counter + 1;
+        pipes_go           <= '0';
+      else
+        pipes_go           <= '1';
+      end if;
+    else
+      play_delay_counter <= 0;
+      pipes_go           <= '0';
+    end if;
   end if;
 end process;
 
@@ -372,14 +396,14 @@ end process;
 u_pipe: pipe_generator
   generic map (
     START_OFFSET => 10,
-    PIPE_WIDTH   => 40
+    PIPE_WIDTH   => 40,
+	 PIPE_GAP      => 100 
   )
   port map (
     clk           => clk25,
     reset         => reset_i,
     pix_row       => pix_row,
     pix_col       => pix_col,
-    pipe_gap      => pipe_gap,
     pipe_x_array  => pipe_x_array,
     pipe_y_array  => pipe_y_array,
     green_out     => pipe_green
@@ -605,7 +629,7 @@ collision_detect_proc : process(bird_row, bird_col, pipe_x_array, pipe_y_array, 
   variable py_int      : integer;
 begin
   -- only check for pipes once the bird is actually being drawn
-  if ball_on_sig = '1' then
+  if ball_on_sig = '1' and pipes_go = '1' then
     collision_detect <= '0';
 
     bird_r_int := to_integer(unsigned(bird_row));
@@ -651,7 +675,7 @@ end process;
                                        or in_select1 = '1' or in_select2 = '1'
                                        or in_select3 = '1')) else
        color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "0000" when (pipe_green = '1' and show_pipes = '1') else
+       "0000" when (pipe_green = '1' and pipes_go = '1') else
        (others => wrapped_r);
 
   -- final_g: pink (G=0) for SW0 hints, yellow (G=1) for all other text, pipe, or wrapped
@@ -661,7 +685,7 @@ end process;
                                        or in_select1 = '1' or in_select2 = '1'
                                        or in_select3 = '1')) else
        color_g when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "1111" when (pipe_green = '1' and show_pipes = '1') else
+       "1111" when (pipe_green = '1' and pipes_go = '1') else
        (others => wrapped_g);
 
   -- final_b: pink (B=1) for SW0 hints, yellow (B=0) for all other text, pipe, or wrapped
@@ -671,7 +695,7 @@ end process;
                                        or in_select1 = '1' or in_select2 = '1'
                                        or in_select3 = '1')) else
        color_b when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "0000" when (pipe_green = '1' and show_pipes = '1') else
+       "0000" when (pipe_green = '1' and pipes_go = '1') else
        (others => wrapped_b);
   -- Drive VGA pins
   VGA_VS <= vsync_sig;
