@@ -1,5 +1,5 @@
 Flow report for top_de0_cv
-Thu May 29 22:38:47 2025
+Fri May 30 01:39:01 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,15 +41,15 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Flow Summary                                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Flow Status                     ; Successful - Thu May 29 22:38:39 2025           ;
+; Flow Status                     ; Successful - Fri May 30 01:38:50 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
 ; Family                          ; Cyclone V                                       ;
 ; Device                          ; 5CEBA4F23C7                                     ;
 ; Timing Models                   ; Final                                           ;
-; Logic utilization (in ALMs)     ; 1,084 / 18,480 ( 6 % )                          ;
-; Total registers                 ; 463                                             ;
+; Logic utilization (in ALMs)     ; 1,093 / 18,480 ( 6 % )                          ;
+; Total registers                 ; 478                                             ;
 ; Total pins                      ; 65 / 224 ( 29 % )                               ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 16,384 / 3,153,920 ( < 1 % )                    ;
@@ -68,7 +68,7 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/29/2025 22:32:41 ;
+; Start date & time ; 05/30/2025 01:33:17 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; top_de0_cv          ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ on the Quartus Prime software download page.
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id                        ;
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 59876681335123.174851476107844         ; --            ; --          ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 59876681335123.174852559711052         ; --            ; --          ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_signal_integrity ;
@@ -110,11 +110,11 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:10     ; 1.0                     ; 5007 MB             ; 00:00:18                           ;
-; Fitter               ; 00:05:42     ; 1.0                     ; 6951 MB             ; 00:24:49                           ;
-; Assembler            ; 00:00:03     ; 1.0                     ; 5003 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:07     ; 2.0                     ; 5357 MB             ; 00:00:12                           ;
-; Total                ; 00:06:02     ; --                      ; --                  ; 00:25:22                           ;
+; Analysis & Synthesis ; 00:00:14     ; 1.0                     ; 4999 MB             ; 00:00:24                           ;
+; Fitter               ; 00:05:13     ; 1.0                     ; 6961 MB             ; 00:21:41                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 5003 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:10     ; 1.9                     ; 5357 MB             ; 00:00:16                           ;
+; Total                ; 00:05:41     ; --                      ; --                  ; 00:22:25                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

@@ -276,6 +276,8 @@ architecture rtl of de0_cv_top is
   signal passed_pipe    : std_logic_vector(NUM_PIPES-1 downto 0) := (others=>'0');
   signal prev_bird_col  : integer range 0 to 1023 := 0;
 
+  signal col_det_prev : std_logic := '0';
+
   ----------------------------------------------------------------
   -- Constants for text sizing & positioning
   ----------------------------------------------------------------
@@ -309,6 +311,16 @@ architecture rtl of de0_cv_top is
 
   constant OPT2_H_OFF    : integer := (640 - OPT2_STR'length*(CHAR_W/2))/2;
   constant OPT2_V_OFF    : integer := OPT1_V_OFF + (CHAR_H/2) + 10;
+
+  -- overlay signals for lives.
+  signal lives_left         : integer range 0 to 3 := 3;
+  constant LIVES_STR        : string(1 to 6) := "LIVES ";
+  constant LIVES_MSG_WIDTH  : integer := LIVES_STR'length * CHAR_W;
+  signal in_lives           : std_logic;
+  signal char_index_lives   : integer range 0 to LIVES_STR'length := 0;
+  signal font_row_lives     : std_logic_vector(2 downto 0);
+  signal font_col_lives     : std_logic_vector(2 downto 0);
+  signal ascii_code_lives   : std_logic_vector(6 downto 0);
 
 
   -- Death screen text
@@ -443,44 +455,50 @@ end process;
   -- Main FSM: Title → Game-Select → Play/Train → Death
   ----------------------------------------------------------------
   fsm: process(clk25, reset_i) begin
-    if reset_i = '1' then
-      game_state <= S_TITLE;         -- initial state
-    elsif rising_edge(clk25) then
-      if pb0_rising = '1' then       -- universal reset
-        game_state <= S_TITLE;
-      else
-        case game_state is
-          when S_TITLE =>
-            if btn1_rising = '1' then
-              game_state <= S_GS;    -- go to select screen
-            end if;
+  if reset_i = '1' then
+    game_state <= S_TITLE;         -- initial state
+  elsif rising_edge(clk25) then
+    if pb0_rising = '1' then       -- universal reset
+      game_state <= S_TITLE;
+    else
+      case game_state is
+        when S_TITLE =>
+          if btn1_rising = '1' then
+            game_state <= S_GS;    -- go to select screen
+          end if;
 
-          when S_GS =>
-            if btn1_rising = '1' then
-              if sw0_stable = '1' then
-                game_state <= S_PLAY;  -- choose Play
-              else
-                game_state <= S_TRAIN; -- choose Train
-              end if;
+        when S_GS =>
+          if btn1_rising = '1' then
+            if sw0_stable = '1' then
+              game_state <= S_PLAY;  -- choose Play
+            else
+              game_state <= S_TRAIN; -- choose Train
             end if;
+          end if;
 
-          when S_PLAY | S_TRAIN =>
-            if collision = '1' then
-              game_state <= S_DEATH;  -- on collision → death
-            elsif pass_score >= 18 then -- Game over condition using integer cast
-              game_state <= S_TITLE;  -- return to title after 18 pipes
-            end if;
+        when S_PLAY =>
+          if collision = '1' then
+            game_state <= S_DEATH;
+          elsif pass_score >= 18 then
+            game_state <= S_TITLE;  -- win condition
+          end if;
 
-          when S_DEATH =>
-            if pb2_rising = '1' then
-              game_state <= S_GS;    -- retry → select
-            end if;
-          when others =>
-            null;
-        end case;
-      end if;
+        when S_TRAIN =>
+          if lives_left = 0 then
+            game_state <= S_DEATH;
+          end if;
+
+        when S_DEATH =>
+          if pb2_rising = '1' then
+            game_state <= S_GS;    -- retry → select
+          end if;
+
+        when others =>
+          null;
+      end case;
     end if;
-  end process fsm;
+  end if;
+end process fsm;
 
   ----------------------------------------------------------------
   -- PLAY delay & pipe-start gating
@@ -914,49 +932,79 @@ ascii_code_score <= ascii_score_h when char_index_score = 0 else
   ascii_d2      <= ascii_map(DEATH2_STR(char_index_d2 + DEATH2_STR'low))
                     when in_death2 = '1' else (others => '0');
 
+ ----------------------------------------------------------------
+  -- Lives‐overlay region (replaces score region in TRAIN mode)
   ----------------------------------------------------------------
+ in_lives <= '1' when
+    video_on = '1' and game_state = S_TRAIN and
+    to_integer(unsigned(pix_row)) >= SCORE_V_OFF and
+    to_integer(unsigned(pix_row)) <  SCORE_V_OFF + CHAR_H and
+    to_integer(unsigned(pix_col)) >= SCORE_H_OFF and
+    to_integer(unsigned(pix_col)) <  SCORE_H_OFF + (LIVES_STR'length+1)*CHAR_W
+  else '0';
+
+ char_index_lives <= (to_integer(unsigned(pix_col)) - SCORE_H_OFF) / CHAR_W;
+
+ font_col_lives <= std_logic_vector(to_unsigned(
+    ((to_integer(unsigned(pix_col)) - SCORE_H_OFF) mod CHAR_W) / S, 3))
+    when in_lives = '1' else (others => '0');
+
+ font_row_lives <= std_logic_vector(to_unsigned(
+    (to_integer(unsigned(pix_row)) - SCORE_V_OFF) / S, 3))
+   when in_lives = '1' else (others => '0');
+
+ascii_code_lives <=
+     ascii_map( LIVES_STR(char_index_lives + LIVES_STR'low) )    when char_index_lives < LIVES_STR'length else
+     ascii_map( character'val(character'pos('0') + lives_left) ) when char_index_lives = LIVES_STR'length else
+     (others => '0');
+
+   ----------------------------------------------------------------
   -- Font MUX: choose which overlay's row/col/ascii to feed ROM
   ----------------------------------------------------------------
   font_row <=
-        font_row_score    when in_score        = '1' else  
-        font_row_d1       when in_death1      = '1' else
-        font_row_d2       when in_death2      = '1' else
-        font_row_title    when in_title       = '1' else
-        font_row_push     when in_push        = '1' else
-        font_row_select1  when in_select1     = '1' else
-        font_row_select2  when in_select2     = '1' else
-        font_row_select3  when in_select3     = '1' else
-        font_row_sw0_high when in_sw0_high    = '1' else
-        font_row_sw0_low  when in_sw0_low     = '1' else
+        font_row_lives    when in_lives         = '1' else  -- new lives overlay
+        font_row_score    when in_score         = '1' else
+        font_row_d1       when in_death1        = '1' else
+        font_row_d2       when in_death2        = '1' else
+        font_row_title    when in_title         = '1' else
+        font_row_push     when in_push          = '1' else
+        font_row_select1  when in_select1       = '1' else
+        font_row_select2  when in_select2       = '1' else
+        font_row_select3  when in_select3       = '1' else
+        font_row_sw0_high when in_sw0_high      = '1' else
+        font_row_sw0_low  when in_sw0_low       = '1' else
         (others => '0');
 
   font_col <=
-        font_col_score    when in_score        = '1' else  
-        font_col_d1       when in_death1      = '1' else
-        font_col_d2       when in_death2      = '1' else
-        font_col_title    when in_title       = '1' else
-        font_col_push     when in_push        = '1' else
-        font_col_select1  when in_select1     = '1' else
-        font_col_select2  when in_select2     = '1' else
-        font_col_select3  when in_select3     = '1' else
-        font_col_sw0_high when in_sw0_high    = '1' else
-        font_col_sw0_low  when in_sw0_low     = '1' else
+        font_col_lives    when in_lives         = '1' else  -- new lives overlay
+        font_col_score    when in_score         = '1' else
+        font_col_d1       when in_death1        = '1' else
+        font_col_d2       when in_death2        = '1' else
+        font_col_title    when in_title         = '1' else
+        font_col_push     when in_push          = '1' else
+        font_col_select1  when in_select1       = '1' else
+        font_col_select2  when in_select2       = '1' else
+        font_col_select3  when in_select3       = '1' else
+        font_col_sw0_high when in_sw0_high      = '1' else
+        font_col_sw0_low  when in_sw0_low       = '1' else
         (others => '0');
 
   ascii_code_final <=
-        ascii_code_score  when in_score        = '1' else 
-        ascii_d1          when in_death1      = '1' else
-        ascii_d2          when in_death2      = '1' else
-        ascii_code_title  when in_title       = '1' else
-        ascii_code_push   when in_push        = '1' else
-        ascii_code_select1 when in_select1    = '1' else
-        ascii_code_select2 when in_select2    = '1' else
-        ascii_code_select3 when in_select3    = '1' else
-        ascii_code_sw0_high when in_sw0_high  = '1' else
-        ascii_code_sw0_low  when in_sw0_low   = '1' else
+        ascii_code_lives  when in_lives         = '1' else  -- new lives overlay
+        ascii_code_score  when in_score         = '1' else
+        ascii_d1          when in_death1        = '1' else
+        ascii_d2          when in_death2        = '1' else
+        ascii_code_title  when in_title         = '1' else
+        ascii_code_push   when in_push          = '1' else
+        ascii_code_select1 when in_select1      = '1' else
+        ascii_code_select2 when in_select2      = '1' else
+        ascii_code_select3 when in_select3      = '1' else
+        ascii_code_sw0_high when in_sw0_high    = '1' else
+        ascii_code_sw0_low  when in_sw0_low     = '1' else
         (others => '0');
 
   char_address <= ascii_code_final(5 downto 0);  -- feed ROM address
+
 
   ----------------------------------------------------------------
   -- Character ROM lookup
@@ -972,104 +1020,133 @@ ascii_code_score <= ascii_score_h when char_index_score = 0 else
 
 
 
+----------------------------------------------------------------
+-- Per-pixel collision detection 
+----------------------------------------------------------------
+collision_detect_proc : process(bird_row,
+                                bird_col,
+                                pipe_x_array,
+                                pipe_y_array,
+                                pipe_gap_int,
+                                ball_on_sig,
+                                pipes_go)
+  variable bird_r_int  : integer;
+  variable bird_c_int  : integer;
+  variable px_int      : integer;
+  variable py_int      : integer;
+begin
+  -- If we’re not actually in PLAY or TRAIN (pipes not moving),
+  -- force no collision
+  if ball_on_sig = '1' and pipes_go = '1' then
+    -- start by clearing the flag
+    collision_detect <= '0';
+
+    bird_r_int := to_integer(unsigned(bird_row));
+    bird_c_int := to_integer(unsigned(bird_col));
+
+    for i in 0 to NUM_PIPES-1 loop
+      px_int := to_integer(unsigned(pipe_x_array(i)));
+      py_int := to_integer(unsigned(pipe_y_array(i)));
+
+      -- If bird overlaps a pipe column…
+      if bird_c_int >= px_int and bird_c_int < px_int + PIPE_WIDTH then
+        -- …and its row is outside the gap, flag a collision
+        if bird_r_int < py_int or bird_r_int > py_int + pipe_gap_int then
+          collision_detect <= '1';
+        end if;
+      end if;
+    end loop;
+
+  else
+    -- whenever pipes_are_stopped or the bird isn’t on-screen
+    collision_detect <= '0';
+  end if;
+end process collision_detect_proc;
+
   ----------------------------------------------------------------
-  -- Per-pixel collision detection (combinational)
+  -- Collision register: edge‐detect collision_detect
   ----------------------------------------------------------------
-  collision_detect_proc : process(bird_row, bird_col, pipe_x_array, pipe_y_array, pipe_gap_int, ball_on_sig)
-    variable bird_r_int  : integer;
-    variable bird_c_int  : integer;
-    variable px_int      : integer;
-    variable py_int      : integer;
-  begin
-    -- Only check once the bird is visible and pipes are moving
-    if ball_on_sig = '1' and pipes_go = '1' then
-      collision_detect <= '0';  -- clear each cycle before checking
+ collision_reg : process(clk25, reset_i)
+begin
+  if reset_i = '1' then
+    collision      <= '0';
+    train_bg_white <= '1';
+    lives_left     <= 3;
+    col_det_prev   <= '0';
 
-      bird_r_int := to_integer(unsigned(bird_row));
-      bird_c_int := to_integer(unsigned(bird_col));
+  elsif rising_edge(clk25) then
+    col_det_prev <= collision_detect;
 
-      for i in 0 to NUM_PIPES-1 loop
-        px_int := to_integer(unsigned(pipe_x_array(i)));
-        py_int := to_integer(unsigned(pipe_y_array(i)));
+    case game_state is
+      when S_TITLE =>
+        collision      <= '0';
+        train_bg_white <= '1';
+        lives_left     <= 3;
 
-        -- If bird's X overlaps a pipe
-        if bird_c_int >= px_int and bird_c_int < px_int + PIPE_WIDTH then
-          -- If bird's Y is outside the pipe gap → collision
-          if bird_r_int < py_int or bird_r_int > py_int + pipe_gap_int then
-            collision_detect <= '1';
+      when S_TRAIN =>
+        collision <= '0';  -- explicitly prevent collision from setting in TRAIN mode
+        if collision_detect = '1' and col_det_prev = '0' then
+          if lives_left > 0 then
+            lives_left <= lives_left - 1;
+            train_bg_white <= not train_bg_white;
           end if;
         end if;
-      end loop;
 
-    else
-      collision_detect <= '0';
-    end if;
-  end process collision_detect_proc;
-
-  ----------------------------------------------------------------
-  -- Collision register: latches a collision until reset or restart
-  ----------------------------------------------------------------
-  collision_reg : process(clk25, reset_i)
-  begin
-    if reset_i = '1' then
-      collision <= '0';
-      train_bg_white <= '1';  -- Reset to white background
-    elsif rising_edge(clk25) then
-      if game_state = S_TITLE then
-        collision <= '0';      -- clear on title screen
-        train_bg_white <= '1'; -- Reset to white background
-      elsif game_state = S_TRAIN then
+      when S_PLAY =>
         if collision_detect = '1' then
-          train_bg_white <= not train_bg_white;  -- Toggle background color
-          collision <= '0';  -- Don't trigger death screen
+          collision <= '1';
         end if;
-      elsif game_state /= S_PLAY and game_state /= S_TRAIN then
-        collision <= '0';      -- clear off-play/training
-      elsif collision = '1' then
-        collision <= '1';      -- hold once set
-      else
-        collision <= collision_detect;  -- else update from detector
-      end if;
-    end if;
-  end process collision_reg;
- ----------------------------------------------------------------
+
+      when S_DEATH =>
+        collision      <= '0';
+        lives_left     <= 3;  -- Reset lives when transitioning from death screen
+
+      when others =>
+        collision <= '0';
+    end case;
+  end if;
+end process collision_reg;
+  ----------------------------------------------------------------
   -- Final RGB mux: choose between text, ball, pipes, background
   ----------------------------------------------------------------
   final_r <=
-       "1111" when (rom_output = '1' and in_score = '1')          else  -- yellow score digits
-       "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else  -- pink hints
+       "1111" when (rom_output = '1' and in_lives = '1')        else  -- draw lives overlay (white)
+       "1111" when (rom_output = '1' and in_score = '1')       else  -- yellow score digits
+       "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
        "1111" when (rom_output = '1' and 
                     ( in_title = '1' or in_push  = '1' or 
                       in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
-                      in_death1  = '1' or in_death2  = '1' )) else                      -- yellow text + death
+                      in_death1  = '1' or in_death2  = '1' ))   else
        color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "0000"  when (pipe_green = '1' and pipes_go = '1') else
+       "0000"  when (pipe_green = '1' and pipes_go = '1')        else
        "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
        "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_r);
 
   final_g <=
-       "1111" when (rom_output = '1' and in_score = '1')          else
-       "0000" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else  -- pink
+       "1111" when (rom_output = '1' and in_lives = '1')        else  -- lives overlay
+       "1111" when (rom_output = '1' and in_score = '1')       else
+       "0000" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
        "1111" when (rom_output = '1' and 
                     ( in_title = '1' or in_push  = '1' or 
                       in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
-                      in_death1  = '1' or in_death2  = '1' )) else                      -- yellow + death
+                      in_death1  = '1' or in_death2  = '1' ))   else
        color_g when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "1111"  when (pipe_green = '1' and pipes_go = '1') else
+       "1111"  when (pipe_green = '1' and pipes_go = '1')        else
        "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
        "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_g);
 
   final_b <=
-       "0000" when (rom_output = '1' and in_score = '1')          else
-       "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else  -- pink
+       "0000" when (rom_output = '1' and in_lives = '1')        else  -- lives overlay
+       "0000" when (rom_output = '1' and in_score = '1')       else
+       "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
        "0000" when (rom_output = '1' and 
                     ( in_title = '1' or in_push  = '1' or 
                       in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
-                      in_death1  = '1' or in_death2  = '1' )) else                      -- yellow + death
+                      in_death1  = '1' or in_death2  = '1' ))   else
        color_b when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "0000"  when (pipe_green = '1' and pipes_go = '1') else
+       "0000"  when (pipe_green = '1' and pipes_go = '1')        else
        "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
        "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_b);
