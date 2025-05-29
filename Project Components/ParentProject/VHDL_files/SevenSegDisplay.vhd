@@ -21,12 +21,12 @@ architecture Behavioral of SevenSegDisplay is
     type string_array is array (0 to 5) of std_logic_vector(5 downto 0);
 
     constant TEXT_START  : string_array := (
-        "100011", -- S
-        "011101", -- T
-        "001010", -- A
-        "100010", -- R
-        "011101", -- T
-        "100100"  -- _
+         "010001", -- H
+         "001110", -- E 
+         "010101", -- L
+         "010101", -- L
+         "011000", -- O
+         "100100"  -- _ (blank)
     );
 
     constant TEXT_TRAIN  : string_array := (

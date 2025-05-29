@@ -132,6 +132,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "HEX3[3]",
+					"strict" : false
+				},
+				{
 					"name" : "HEX3[4]",
 					"strict" : false
 				},

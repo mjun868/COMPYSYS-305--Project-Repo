@@ -142,6 +142,7 @@ architecture rtl of de0_cv_top is
       pix_col       : in  std_logic_vector(9 downto 0);
       pipe_x_array  : out pipe_array_type;
       pipe_y_array  : out pipe_array_type;
+      number_of_pipe : out std_logic_vector(5 downto 0);
       green_out     : out std_logic
     );
   end component;
@@ -656,7 +657,6 @@ end process;
     generic map (
       START_OFFSET => 10,             -- initial off-screen offset
       PIPE_WIDTH   => 40,
-		PIPE_SPACING => 185,
       PIPE_GAP     => 100
     )
     port map (
@@ -667,6 +667,7 @@ end process;
       pix_col      => pix_col,
       pipe_x_array => pipe_x_array,   -- X positions
       pipe_y_array => pipe_y_array,   -- gap Y positions
+      number_of_pipe => number_of_pipe, -- Connect the number of passed pipes
       green_out    => pipe_green      -- pipe pixel flag
     );
 

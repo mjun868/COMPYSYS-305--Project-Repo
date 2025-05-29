@@ -31,7 +31,7 @@ begin
         "0000110" when BCD_digit = "001110" else -- E
         "0001110" when BCD_digit = "001111" else -- F
         "0010000" when BCD_digit = "010000" else -- G (? 9)
-        "0001011" when BCD_digit = "010001" else -- H
+        "0001001" when BCD_digit = "010001" else -- H
         "1111001" when BCD_digit = "010010" else -- I (? 1)
         "1110001" when BCD_digit = "010011" else -- J
         "0001011" when BCD_digit = "010100" else -- K (? H)

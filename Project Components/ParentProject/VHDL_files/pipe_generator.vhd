@@ -20,7 +20,8 @@ entity pipe_generator is
     game_on      : in  std_logic;
     pipe_x_array : out pipe_array_type;
     pipe_y_array : out pipe_array_type;
-    green_out    : out std_logic
+    green_out    : out std_logic;
+    number_of_pipe : out std_logic_vector(5 downto 0)
   );
 end entity;
 
