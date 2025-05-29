@@ -137,6 +137,7 @@ architecture rtl of de0_cv_top is
       reset         : in  std_logic;
       pix_row       : in  std_logic_vector(9 downto 0);
       pix_col       : in  std_logic_vector(9 downto 0);
+      pipes_go      : in  std_logic;
       pipe_x_array  : out pipe_array_type;
       pipe_y_array  : out pipe_array_type;
       green_out     : out std_logic
@@ -586,6 +587,7 @@ begin
       reset        => reset_i,
       pix_row      => pix_row,
       pix_col      => pix_col,
+      pipes_go     => pipes_go,
       pipe_x_array => pipe_x_array,   -- X positions
       pipe_y_array => pipe_y_array,   -- gap Y positions
       green_out    => pipe_green      -- pipe pixel flag
