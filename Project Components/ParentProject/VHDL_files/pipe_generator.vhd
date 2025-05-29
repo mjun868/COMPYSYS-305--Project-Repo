@@ -20,6 +20,7 @@ entity pipe_generator is
 	 game_on    : in  std_logic;
     pipe_x_array  : out pipe_array_type;
     pipe_y_array  : out pipe_array_type;
+    number_of_pipe : out std_logic_vector(5 downto 0);
     green_out     : out std_logic
   );
 end entity;
@@ -40,6 +41,15 @@ signal initializing : std_logic := '1';
   signal pipe_x_internal : pipe_array_type;
   signal pipe_y_internal : pipe_array_type;
 
+  signal number_of_passed_pipe : std_logic_vector(5 downto 0) := (others => '0');
+  
+  -- Difficulty levels
+  constant DIFFICULTY_1 : integer := 6;   -- First difficulty increase
+  constant DIFFICULTY_2 : integer := 12;  -- Second difficulty increase
+  constant GAME_OVER    : integer := 18;  -- Game over threshold
+  
+  -- Movement speed based on difficulty
+  signal current_move_interval : integer := MOVE_INTERVAL;
  
    -- total pixels between successive spawns
   constant SPAWN_INTERVAL : integer := PIPE_SPACING + PIPE_WIDTH;
@@ -94,8 +104,18 @@ begin
     if reset = '1' then
       move_counter <= 0;
       move_enable  <= '0';
+      current_move_interval <= MOVE_INTERVAL;
     elsif rising_edge(clk) then
-      if move_counter = MOVE_INTERVAL then
+      -- Adjust speed based on number of passed pipes
+      if to_integer(unsigned(number_of_passed_pipe)) >= DIFFICULTY_2 then
+        current_move_interval <= MOVE_INTERVAL / 2;  -- Double speed
+      elsif to_integer(unsigned(number_of_passed_pipe)) >= DIFFICULTY_1 then
+        current_move_interval <= MOVE_INTERVAL * 2 / 3;  -- 1.5x speed
+      else
+        current_move_interval <= MOVE_INTERVAL;  -- Normal speed
+      end if;
+
+      if move_counter = current_move_interval then
         move_counter <= 0;
         move_enable  <= '1';
       else
@@ -106,7 +126,7 @@ begin
   end process;
 
   ----------------------------------------------------------------
-process(clk, reset)
+process(clk, reset, game_on, move_enable)
     variable rand_y      : integer;
     constant SPAWN_DIST  : integer := PIPE_SPACING + PIPE_WIDTH;
   begin
@@ -114,6 +134,7 @@ process(clk, reset)
     if reset = '1' or game_on = '0' then
       spawn_counter <= 0;
       next_pipe_idx <= 0;
+      number_of_passed_pipe <= (others => '0');
 
       -- stagger all pipes well off the right edge
       for i in pipe_x_internal'range loop
@@ -144,7 +165,7 @@ process(clk, reset)
       -- 2) on every SPAWN_DIST-th tick, respawn one pipe at the far right
       if spawn_counter = SPAWN_DIST-1 then
         spawn_counter <= 0;
-
+        number_of_passed_pipe <= std_logic_vector(unsigned(number_of_passed_pipe) + 1);
         -- put pipe[next_pipe_idx] at SCREEN_WIDTH + START_OFFSET
         pipe_x_internal(next_pipe_idx) <= std_logic_vector(
           to_unsigned(
@@ -193,5 +214,7 @@ process(clk, reset)
     end loop;
     green_out <= hit_pipe;
   end process;
+
+  number_of_pipe <= number_of_passed_pipe;
 
 end architecture;

@@ -135,11 +135,12 @@ architecture rtl of de0_cv_top is
     port(
       clk           : in  std_logic;
       reset         : in  std_logic;
-		game_on       : in  std_logic; 
+		game_on       : in  std_logic;
       pix_row       : in  std_logic_vector(9 downto 0);
       pix_col       : in  std_logic_vector(9 downto 0);
       pipe_x_array  : out pipe_array_type;
       pipe_y_array  : out pipe_array_type;
+      number_of_pipe : out std_logic_vector(5 downto 0);
       green_out     : out std_logic
     );
   end component;
@@ -305,6 +306,8 @@ architecture rtl of de0_cv_top is
   signal play_delay_counter  : integer range 0 to PLAY_DELAY_CYCLES := 0;
   signal pipes_go            : std_logic := '0';      -- true once delay expires
 
+  signal number_of_pipe       : std_logic_vector(5 downto 0); -- Corrected declaration
+
 begin
   ----------------------------------------------------------------
   -- Clock div & reset
@@ -439,6 +442,8 @@ end process;
           when S_PLAY | S_TRAIN =>
             if collision = '1' then
               game_state <= S_DEATH;  -- on collision → death
+            elsif to_integer(unsigned(number_of_pipe)) >= 18 then -- Game over condition using integer cast
+              game_state <= S_TITLE;  -- return to title after 18 pipes
             end if;
 
           when S_DEATH =>
@@ -593,6 +598,7 @@ end process;
       pix_col      => pix_col,
       pipe_x_array => pipe_x_array,   -- X positions
       pipe_y_array => pipe_y_array,   -- gap Y positions
+      number_of_pipe => number_of_pipe, -- Connect the number of passed pipes
       green_out    => pipe_green      -- pipe pixel flag
     );
 
