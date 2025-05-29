@@ -6,9 +6,6 @@ use work.ascii_codes.all;  -- ascii_map: character → std_logic_vector(6 downto
 use work.pipe_types.all;   -- pipe_array_type
                                               --   defines array type for pipe positions
 
-----------------------------------------------------------------
--- Entity declaration
-----------------------------------------------------------------
 entity de0_cv_top is
   port (
     -- Clock & Reset
@@ -43,14 +40,9 @@ entity de0_cv_top is
   );
 end entity de0_cv_top;
 
-----------------------------------------------------------------
--- Architecture: rtl
-----------------------------------------------------------------
+
 architecture rtl of de0_cv_top is
 
-  ----------------------------------------------------------------
-  -- Component declarations
-  ----------------------------------------------------------------
 
   component MOUSE                         -- PS/2 mouse controller
     port(
@@ -137,7 +129,8 @@ architecture rtl of de0_cv_top is
     port(
       clk           : in  std_logic;
       reset         : in  std_logic;
-		game_on       : in  std_logic;
+		  game_on       : in  std_logic;
+      game_state    : in  game_state_t;
       pix_row       : in  std_logic_vector(9 downto 0);
       pix_col       : in  std_logic_vector(9 downto 0);
       pipe_x_array  : out pipe_array_type;
@@ -146,9 +139,6 @@ architecture rtl of de0_cv_top is
     );
   end component;
 
-  ----------------------------------------------------------------
-  -- Signal declarations
-  ----------------------------------------------------------------
   signal clk25, reset_i               : std_logic := '0';      -- 25 MHz clock & reset
   signal pb1_sync_0, pb1_sync_1       : std_logic := '1';      -- PB1 debounce
   signal btn1_stable, btn1            : std_logic;              -- stable + inverted PB1
@@ -165,9 +155,6 @@ architecture rtl of de0_cv_top is
   signal sw0_sync_0, sw0_sync_1       : std_logic := '0';      -- SW0 debounce
   signal sw0_stable                   : std_logic;              -- stable SW0
 
-  type game_state_t is (                   -- FSM states
-    S_TITLE, S_GS, S_TRAIN, S_PLAY, S_DEATH
-  );
   signal game_state                   : game_state_t := S_TITLE;
  
 
@@ -191,9 +178,6 @@ architecture rtl of de0_cv_top is
 
   signal final_r, final_g, final_b    : std_logic_vector(3 downto 0); -- final RGB
 
-  ----------------------------------------------------------------
-  -- Text-overlay region signals
-  ----------------------------------------------------------------
   signal in_title, in_push            : std_logic;              -- when drawing title or "push" text
   signal in_select1, in_select2, in_select3 : std_logic;        -- when drawing "select mode" & options
 
@@ -247,9 +231,7 @@ architecture rtl of de0_cv_top is
   signal ascii_code_score    : std_logic_vector(6 downto 0);
 
 
-  ----------------------------------------------------------------
-  -- Pipe geometry signals
-  ----------------------------------------------------------------
+
   signal pipe_x_array, pipe_y_array   : pipe_array_type;        -- arrays of pipe positions
   signal pipe_gap : std_logic_vector(9 downto 0) := std_logic_vector(to_unsigned(100,10));
   signal pipe_gap_int : integer;                          -- integer gap height
@@ -257,22 +239,18 @@ architecture rtl of de0_cv_top is
   
 
 
-    ----------------------------------------------------------------
-  -- Signals to hold your true “pass‐through” score and per‐pipe flags
+ 
 
   constant PIPE_WIDTH    : integer := 50;
   constant GAP_HEIGHT    : integer := 100;
   constant NUM_PIPES     : integer := 3;
   signal prev_pipe_x : pipe_array_type := (others => (others => '0'));
   constant ZERO_OVERLAP : std_logic_vector(NUM_PIPES-1 downto 0) := (others => '0');
-  ----------------------------------------------------------------
+
   signal pass_score     : integer range 0 to 999 := 0;
   signal passed_pipe    : std_logic_vector(NUM_PIPES-1 downto 0) := (others=>'0');
   
 
-    ----------------------------------------------------------------
-  -- Collision & bird outputs
-  ----------------------------------------------------------------
   signal ball_on_sig                  : std_logic;              -- bird drawn?
   signal collision                    : std_logic;     -- latched collision flag
   signal collision_detect             : std_logic;              -- combinational detect
@@ -292,9 +270,7 @@ architecture rtl of de0_cv_top is
 
 
 
-  ----------------------------------------------------------------
-  -- Constants for text sizing & positioning
-  ----------------------------------------------------------------
+
   constant S      : integer := 4;                     -- text scale factor
   constant CHAR_W : integer := S*8;                   -- character width in pixels
   constant CHAR_H : integer := S*8;                   -- character height
@@ -359,9 +335,7 @@ architecture rtl of de0_cv_top is
   constant SCORE_V_OFF : integer := 10;            -- 10px from top
 
 begin
-  ----------------------------------------------------------------
-  -- Clock div & reset
-  ----------------------------------------------------------------
+
   clk_div: process(CLOCK_50) begin
     if rising_edge(CLOCK_50) then
       clk25 <= not clk25;            -- divide 50 MHz to ~25 MHz
@@ -369,9 +343,7 @@ begin
   end process;
   reset_i <= not reset_n or not pb0_stable;           -- active-high reset internally
 
-  ----------------------------------------------------------------
-  -- PB1 ("enter") debounce & rising-edge detection
-  ----------------------------------------------------------------
+
   sync_pb1: process(clk25, reset_i) begin
     if reset_i = '1' then
       pb1_sync_0 <= '1';             -- reset shift-register
@@ -396,9 +368,6 @@ begin
   btn1_rising <= '1' when (btn1 = '1' and btn1_prev = '0') else '0';  
                                      -- detect rising edge
 
-  ----------------------------------------------------------------
-  -- PB0 (universal exit) debounce & rising-edge detection
-  ----------------------------------------------------------------
   sync_pb0: process(clk25, reset_n) begin
   if reset_n = '0' then
     pb0_sync_0 <= '1';
@@ -422,9 +391,7 @@ end process;
   pb0_rising <= '1' when (pb0_stable = '1' and pb0_prev = '0') else '0';
                                      -- detect rising edge
 
-  ----------------------------------------------------------------
-  -- PB2 ("retry on death") debounce & rising-edge detection
-  ----------------------------------------------------------------
+
   sync_pb2: process(clk25, reset_i) begin
     if reset_i = '1' then
       pb2_sync_0 <= '1';
@@ -448,9 +415,7 @@ end process;
   pb2_rising <= '1' when (pb2_stable = '1' and pb2_prev = '0') else '0';
                                      -- detect rising edge
 
-  ----------------------------------------------------------------
-  -- SW0 debounce & LED indicator
-  ----------------------------------------------------------------
+
   sync_sw0: process(clk25, reset_i) begin
     if reset_i = '1' then
       sw0_sync_0 <= '0';
@@ -464,9 +429,7 @@ end process;
   sw0_stable <= sw0_sync_1;          -- debounced SW0
   LEDR0      <= sw0_stable;          -- mirror on LED
 
-  ----------------------------------------------------------------
-  -- Main FSM: Title → Game-Select → Play/Train → Death
-  ----------------------------------------------------------------
+
   fsm: process(clk25, reset_i) begin
   if reset_i = '1' then
     game_state <= S_TITLE;         -- initial state
@@ -492,7 +455,7 @@ end process;
         when S_PLAY =>
           if collision = '1' then
             game_state <= S_DEATH;
-          elsif pass_score >= 18 then
+          elsif pass_score >= 999 then
             game_state <= S_TITLE;  -- win condition
           end if;
 
@@ -513,9 +476,6 @@ end process;
   end if;
 end process fsm;
 
-  ----------------------------------------------------------------
-  -- PLAY delay & pipe-start gating
-  ----------------------------------------------------------------
   process(clk25, reset_i) begin
     if reset_i = '1' then
       play_delay_counter <= 0;
@@ -535,9 +495,6 @@ end process fsm;
     end if;
   end process;
 
-  ----------------------------------------------------------------
-  -- Seven-segment display mapping by mode
-  ----------------------------------------------------------------
   sevenseg: process(game_state, sw0_stable) begin
     case game_state is
       when S_TITLE =>
@@ -561,9 +518,7 @@ end process fsm;
     end case;
   end process;
 
-   ----------------------------------------------------------------
-  -- B) Synchronous process that watches each pipe & the bird
-  ----------------------------------------------------------------
+
 score_detect : process(clk25, reset_i)
   variable bird_r_int : integer;
   variable pipe_x_int : integer;
@@ -619,9 +574,6 @@ begin
 end process score_detect;
 
 
-  ----------------------------------------------------------------
-  -- Mouse interface
-  ----------------------------------------------------------------
   u_mouse: MOUSE
     port map(
       clock_25Mhz         => clk25,          -- 25 MHz clock
@@ -634,9 +586,7 @@ end process score_detect;
       mouse_cursor_column => mouse_col       -- cursor X
     );
 
-  ----------------------------------------------------------------
-  -- Bouncy-ball (player) logic
-  ----------------------------------------------------------------
+
   u_ball: bouncy_ball
     port map(
       pb1                     => btn1,          -- jump/reset button
@@ -654,9 +604,6 @@ end process score_detect;
       bird_col                => bird_col       -- tracked sprite col
     );
 
-  ----------------------------------------------------------------
-  -- VGA synchronizer & video-on
-  ----------------------------------------------------------------
   u_vga_sync: VGA_SYNC
     port map(
       clock_25Mhz    => clk25,
@@ -673,9 +620,7 @@ end process score_detect;
       video_on_out   => video_on       -- active video region
     );
 
-  ----------------------------------------------------------------
-  -- Seven-segment display
-  ----------------------------------------------------------------
+
   u_seven_seg: SevenSegDisplay
     port map(
       clk          => clk25,
@@ -689,9 +634,7 @@ end process score_detect;
       digit_six    => HEX5
     );
 
-  ----------------------------------------------------------------
-  -- Pipe generator
-  ----------------------------------------------------------------
+
   u_pipe: pipe_generator
     generic map (
       START_OFFSET => 10,             -- initial off-screen offset
@@ -699,10 +642,11 @@ end process score_detect;
       PIPE_SPACING => 185,
       PIPE_GAP     => 100
     )
-    port map (
+port map (
       clk          => clk25,
       reset        => reset_i,
-		game_on      => pipes_go,
+        game_on      => pipes_go,
+        game_state   => game_state,
       pix_row      => pix_row,
       pix_col      => pix_col,
       pipe_x_array => pipe_x_array,   -- X positions
@@ -715,9 +659,7 @@ end process score_detect;
 
                               
                                     
-----------------------------------------------------------------
---  Convert your 6-bit pipe count into three ASCII digits
-----------------------------------------------------------------
+
   score_proc: process(pass_score)
     variable h, t, u : integer;
   begin
@@ -729,9 +671,7 @@ end process score_detect;
     ascii_score_u <= ascii_map(character'val(character'pos('0') + u));
   end process;
 
-  ----------------------------------------------------------------
-  -- TITLE overlay region
-  ----------------------------------------------------------------
+
   in_title <= '1' when
      video_on = '1' and game_state = S_TITLE and
      to_integer(unsigned(pix_row)) >= S1_V_OFF and
@@ -751,9 +691,7 @@ end process score_detect;
                        TITLE_STR(char_index_title + TITLE_STR'low)
                      ) when in_title = '1' else (others => '0');
 
-  ----------------------------------------------------------------
-  -- PUSH overlay (half-scale)
-  ----------------------------------------------------------------
+
   in_push <= '1' when
     video_on = '1' and game_state = S_TITLE and
     to_integer(unsigned(pix_row)) >= S1_PUSH_V_OFF and
@@ -774,9 +712,7 @@ end process score_detect;
                        PUSH_STR(char_index_push + PUSH_STR'low)
                      ) when in_push = '1' else (others => '0');
 
-  ----------------------------------------------------------------
-  -- SELECT header & options overlay
-  ----------------------------------------------------------------
+
   in_select1 <= '1' when
     video_on = '1' and game_state = S_GS and
     to_integer(unsigned(pix_row)) >= S2_V_OFF and
@@ -836,9 +772,7 @@ end process score_detect;
                          OPT2_STR(char_index_select3 + OPT2_STR'low)
                        ) when in_select3 = '1' else (others => '0');
 
-  ----------------------------------------------------------------
-  -- SW0-HIGH / LOW hints color overlays
-  ----------------------------------------------------------------
+
   in_sw0_high <= '1' when
     video_on = '1' and game_state = S_GS and sw0_stable = '1' and
     to_integer(unsigned(pix_row)) >= OPT1_V_OFF and
@@ -877,9 +811,7 @@ end process score_detect;
                          OPT2_STR(char_index_sw0_low + OPT2_STR'low)
                        ) when in_sw0_low = '1' else (others => '0');
 
-----------------------------------------------------------------
--- 3) Score‐overlay region 
-----------------------------------------------------------------
+
 in_score <= '1' when
      video_on = '1' and game_state = S_PLAY and
      to_integer(unsigned(pix_row)) >= SCORE_V_OFF and
@@ -902,9 +834,7 @@ ascii_code_score <= ascii_score_h when char_index_score = 0 else
                     (others => '0');
 
 
-  ----------------------------------------------------------------
-  -- Death-screen overlays
-  ----------------------------------------------------------------
+
   in_death1 <= '1' when
     video_on = '1' and game_state = S_DEATH and
     to_integer(unsigned(pix_row)) >= DEATH_V_OFF and
@@ -940,9 +870,8 @@ ascii_code_score <= ascii_score_h when char_index_score = 0 else
   ascii_d2      <= ascii_map(DEATH2_STR(char_index_d2 + DEATH2_STR'low))
                     when in_death2 = '1' else (others => '0');
 
- ----------------------------------------------------------------
-  -- Lives‐overlay region (replaces score region in TRAIN mode)
-  ----------------------------------------------------------------
+ 
+
  in_lives <= '1' when
     video_on = '1' and game_state = S_TRAIN and
     to_integer(unsigned(pix_row)) >= SCORE_V_OFF and
@@ -966,9 +895,6 @@ ascii_code_lives <=
      ascii_map( character'val(character'pos('0') + lives_left) ) when char_index_lives = LIVES_STR'length else
      (others => '0');
 
-   ----------------------------------------------------------------
-  -- Font MUX: choose which overlay's row/col/ascii to feed ROM
-  ----------------------------------------------------------------
   font_row <=
         font_row_lives    when in_lives         = '1' else  -- new lives overlay
         font_row_score    when in_score         = '1' else
@@ -1013,10 +939,6 @@ ascii_code_lives <=
 
   char_address <= ascii_code_final(5 downto 0);  -- feed ROM address
 
-
-  ----------------------------------------------------------------
-  -- Character ROM lookup
-  ----------------------------------------------------------------
   u_char_rom: char_rom
     port map(
       character_address => char_address,
@@ -1026,9 +948,7 @@ ascii_code_lives <=
       rom_mux_output    => rom_output   -- pixel on/off for text
     );
 
-------------------------------------------------------------------------
--- 1) collision_detect_proc  (combinational)
-------------------------------------------------------------------------
+
 collision_detect_proc : process(bird_row,
                                 bird_col,
                                 pipe_x_array,
@@ -1066,9 +986,7 @@ begin
   end if;
 
 end process collision_detect_proc;
-------------------------------------------------------------------------
--- 2) collision_reg (clocked, TRAIN exit-detect)
-------------------------------------------------------------------------
+
 collision_reg : process(clk25, reset_i)
 begin
   if reset_i = '1' then
@@ -1112,9 +1030,7 @@ begin
   end if;
 end process collision_reg;
 
- ----------------------------------------------------------------
-  -- 3) pipe_visible_pixel (combinational): only drive visible
-  ----------------------------------------------------------------
+
  pipe_vis_proc : process(pipe_green, overlap_pipe, game_state, pix_col, pipe_x_array)
   variable show : std_logic := '0';
 begin
@@ -1135,9 +1051,7 @@ begin
 
   pipe_visible_pixel <= show;
 end process pipe_vis_proc;
-  ----------------------------------------------------------------
-  -- Final RGB mux: choose between text, ball, pipes, background
-  ----------------------------------------------------------------
+
   final_r <= (others => '0') when video_on = '0' else
        "1111" when (rom_output = '1' and in_lives = '1')        else  -- draw lives overlay (white)
        "1111" when (rom_output = '1' and in_score = '1')       else  -- yellow score digits
@@ -1180,9 +1094,6 @@ end process pipe_vis_proc;
        "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_b);
 
-  ----------------------------------------------------------------
-  -- Drive physical VGA pins
-  ----------------------------------------------------------------
   VGA_VS <= vsync_sig;   -- vertical sync
   VGA_R  <= vga_r_sig;   -- red DAC
   VGA_G  <= vga_g_sig;   -- green DAC
