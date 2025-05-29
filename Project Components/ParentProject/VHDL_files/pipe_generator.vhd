@@ -5,19 +5,18 @@ use work.pipe_types.all;  -- brings in: type pipe_array_type is array(3 downto 0
 
 entity pipe_generator is
   generic (
-    NUM_PIPES     : integer := 3;        -- 管道数量
-    PIPE_SPACING  : integer := 200;      -- 增加管道间距，因为屏幕较小
-    MOVE_INTERVAL : integer := 500_000;  -- 移动间隔时钟周期
-    START_OFFSET  : integer := 50;       -- 增加起始偏移，让管道从更远的地方开始
-    PIPE_WIDTH    : integer := 30;       -- 减小管道宽度，适应屏幕
-    PIPE_GAP      : integer := 100       -- 调整间隙高度
+    NUM_PIPES     : integer := 3;        -- Matches array range 3 downto 0
+    PIPE_SPACING  : integer := 150;
+    MOVE_INTERVAL : integer := 500_000;  -- # of clk ticks between moves (25 MHz/500k ≈ 50 moves/sec)
+    START_OFFSET  : integer := 10;
+    PIPE_WIDTH    : integer := 40;
+    PIPE_GAP      : integer := 120       -- vertical size of the gap between pipes
   );
   port (
     clk           : in  std_logic;
     reset         : in  std_logic;
     pix_row       : in  std_logic_vector(9 downto 0);
     pix_col       : in  std_logic_vector(9 downto 0);
-    pipes_go      : in  std_logic;       -- control signal to start pipe movement
     pipe_x_array  : out pipe_array_type;
     pipe_y_array  : out pipe_array_type;
     green_out     : out std_logic
@@ -26,10 +25,10 @@ end entity;
 
 architecture rtl of pipe_generator is
   -- Constants for screen layout
-  constant SCREEN_WIDTH  : integer := 640;   -- 实际VGA显示宽度
-  constant SCREEN_HEIGHT : integer := 480;   -- 实际VGA显示高度
-  constant MIN_Y         : integer := 40;    -- 最小Y坐标，确保管道不会太靠近顶部
-  constant MAX_Y         : integer := SCREEN_HEIGHT - PIPE_GAP - MIN_Y;  -- 最大Y坐标，确保管道不会太靠近底部
+  constant SCREEN_WIDTH  : integer := 640;
+  constant SCREEN_HEIGHT : integer := 480;
+  constant MIN_Y         : integer := 40;
+  constant MAX_Y         : integer := SCREEN_HEIGHT - PIPE_GAP - MIN_Y;
 
   -- Throttle counter & enable pulse
   signal move_counter : integer range 0 to MOVE_INTERVAL := 0;
@@ -81,7 +80,7 @@ begin
   -- 3) Generate a one-cycle move_enable pulse every MOVE_INTERVAL ticks
   process(clk, reset)
   begin
-    if reset = '1' or pipes_go = '0' then
+    if reset = '1' then
       move_counter <= 0;
       move_enable  <= '0';
     elsif rising_edge(clk) then
@@ -98,21 +97,23 @@ begin
   ----------------------------------------------------------------
   -- 4) Pipe movement & gap assignment
   process(clk, reset)
-    variable rand_idx : integer;
+    -- variable rand_idx : integer;
     variable rand_y   : integer;
   begin
-    if reset = '1' or pipes_go = '0' then
-      load_seed <= '0';
+    if reset = '1' then
+      -- load_seed <= '0';
       for i in NUM_PIPES-1 downto 0 loop
         -- X position staggered off-screen
         pipe_x_internal(i) <= std_logic_vector(
           to_unsigned(SCREEN_WIDTH + START_OFFSET + i * (PIPE_SPACING + PIPE_WIDTH), 10)
         );
         -- Y position randomized within [MIN_Y, MAX_Y]
-        rand_idx := to_integer(unsigned(seed_counter)) mod (MAX_Y - MIN_Y + 1);
-        rand_y   := MIN_Y + rand_idx;
-        pipe_y_internal(i) <= std_logic_vector(to_unsigned(rand_y, 10));
+       -- rand_idx := to_integer(unsigned(seed_counter)) mod (MAX_Y - MIN_Y + 1);
+        --rand_y   := MIN_Y + rand_idx;
+        pipe_y_internal(i) <= std_logic_vector(to_unsigned(200, 10));
       end loop;
+		
+		load_seed <= '0';
 
     elsif rising_edge(clk) then
       load_seed <= '0';
@@ -127,8 +128,8 @@ begin
               to_unsigned(SCREEN_WIDTH + START_OFFSET + i * (PIPE_SPACING + PIPE_WIDTH), 10)
             );
             load_seed <= '1';
-            rand_idx := to_integer(unsigned(lfsr_random)) mod (MAX_Y - MIN_Y + 1);
-            rand_y   := MIN_Y + rand_idx;
+            -- rand_idx := to_integer(unsigned(lfsr_random)) mod (MAX_Y - MIN_Y + 1);
+                rand_y := to_integer(unsigned(lfsr_random)) mod (480 - pipe_gap);
             pipe_y_internal(i) <= std_logic_vector(to_unsigned(rand_y, 10));
           end if;
         end loop;
@@ -143,28 +144,21 @@ begin
 
   ----------------------------------------------------------------
   -- 6) Pipe rendering logic: draws pipes above and below the gap
-  process(pix_row, pix_col, pipe_x_internal, pipe_y_internal, pipes_go)
+  process(pix_row, pix_col, pipe_x_internal, pipe_y_internal)
     variable hit_pipe : std_logic := '0';
     variable row      : integer := to_integer(unsigned(pix_row));
     variable col      : integer := to_integer(unsigned(pix_col));
-    variable pipe_y   : integer;
-    variable pipe_x   : integer;
   begin
     hit_pipe := '0';
-    if pipes_go = '1' then  -- only render pipes when pipes_go is active
-      for i in NUM_PIPES-1 downto 0 loop
-        pipe_x := to_integer(unsigned(pipe_x_internal(i)));
-        pipe_y := to_integer(unsigned(pipe_y_internal(i)));
-        
-        -- Check if current pixel is within pipe's horizontal range
-        if (col >= pipe_x and col < pipe_x + PIPE_WIDTH) then
-          -- Check if pixel is in the pipe (above or below the gap)
-          if (row < pipe_y) or (row >= pipe_y + PIPE_GAP) then
-            hit_pipe := '1';
-          end if;
+    for i in NUM_PIPES-1 downto 0 loop
+      if (col >= to_integer(unsigned(pipe_x_internal(i))) and
+          col <  to_integer(unsigned(pipe_x_internal(i))) + PIPE_WIDTH) then
+        if (row <  to_integer(unsigned(pipe_y_internal(i))) or
+            row >= to_integer(unsigned(pipe_y_internal(i))) + PIPE_GAP) then
+          hit_pipe := '1';
         end if;
-      end loop;
-    end if;
+      end if;
+    end loop;
     green_out <= hit_pipe;
   end process;
 
