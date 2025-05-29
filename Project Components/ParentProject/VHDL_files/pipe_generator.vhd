@@ -17,6 +17,7 @@ entity pipe_generator is
     reset         : in  std_logic;
     pix_row       : in  std_logic_vector(9 downto 0);
     pix_col       : in  std_logic_vector(9 downto 0);
+    pipes_go      : in  std_logic;
     pipe_x_array  : out pipe_array_type;
     pipe_y_array  : out pipe_array_type;
     green_out     : out std_logic
@@ -80,7 +81,7 @@ begin
   -- 3) Generate a one-cycle move_enable pulse every MOVE_INTERVAL ticks
   process(clk, reset)
   begin
-    if reset = '1' then
+    if reset = '1' or pipes_go = '0' then
       move_counter <= 0;
       move_enable  <= '0';
     elsif rising_edge(clk) then
@@ -100,7 +101,7 @@ begin
     -- variable rand_idx : integer;
     variable rand_y   : integer;
   begin
-    if reset = '1' then
+    if reset = '1' or pipes_go = '0' then
       -- load_seed <= '0';
       for i in NUM_PIPES-1 downto 0 loop
         -- X position staggered off-screen
