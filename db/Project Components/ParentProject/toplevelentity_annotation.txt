@@ -1,0 +1,438 @@
+-- Deeply Annotated VHDL for DE0-CV VGA Game Top-Level
+-- Filename: de0_cv_top_annotated.vhd
+
+------------------------------------------------------------------
+-- Library imports: bring in standard definitions and helper packages
+library IEEE;
+use IEEE.std_logic_1164.all;   -- Provides std_logic type and basic logic operators
+use IEEE.numeric_std.all;      -- Supports signed/unsigned types and conversions
+use work.ascii_codes.all;      -- Defines ascii_map: maps ASCII characters to 7-bit font codes
+
+------------------------------------------------------------------
+-- Entity: define external interface of top-level module
+entity de0_cv_top is
+  port (
+    -- Clock & Reset
+    CLOCK_50   : in  std_logic;      -- 50 MHz input clock from FPGA board
+    reset_n    : in  std_logic;      -- Active-low reset input (KEY0)
+
+    -- PS/2 Mouse Interface
+    -- Bidirectional pins: drive and sample for PS/2 protocol
+    PS2_CLK    : inout std_logic;    -- PS/2 clock line (driven by mouse)
+    PS2_DAT    : inout std_logic;    -- PS/2 data line
+
+    -- User Controls
+    PB1        : in  std_logic;      -- Push-button 1 (KEY1), used to advance FSM states
+    PB2        : in  std_logic;      -- Push-button 2 (KEY2), optional input to game logic
+    SW0        : in  std_logic;      -- Slide switch 0, toggles background color
+
+    -- VGA Video Outputs
+    VGA_R      : out std_logic_vector(3 downto 0);  -- 4-bit red channel for DAC
+    VGA_G      : out std_logic_vector(3 downto 0);  -- 4-bit green channel
+    VGA_B      : out std_logic_vector(3 downto 0);  -- 4-bit blue channel
+    VGA_HS     : out std_logic;      -- Horizontal sync pulse
+    VGA_VS     : out std_logic;      -- Vertical sync pulse
+
+    -- On-board Indicators
+    LEDR0      : out std_logic;      -- LEDR[0] mirrors SW0 state
+    HEX0       : out std_logic_vector(6 downto 0);  -- Seven-seg digit 0
+    HEX1       : out std_logic_vector(6 downto 0);  -- Digit 1
+    HEX2       : out std_logic_vector(6 downto 0);  -- Digit 2
+    HEX3       : out std_logic_vector(6 downto 0);  -- Digit 3
+    HEX4       : out std_logic_vector(6 downto 0);  -- Digit 4
+    HEX5       : out std_logic_vector(6 downto 0)   -- Digit 5
+  );
+end entity de0_cv_top;
+
+------------------------------------------------------------------
+-- Architecture: internal workings of the top-level module
+architecture rtl of de0_cv_top is
+
+  -- ----------------------------------------------------------------
+  -- Component declarations: define interfaces of submodules
+  -- 1) MOUSE: handles PS/2 protocol, outputs cursor position and buttons
+  component MOUSE
+    port(
+      clock_25Mhz         : in  std_logic;            -- Pixel clock for PS/2 sampling
+      reset               : in  std_logic;            -- Active-high reset for mouse logic
+      mouse_data          : inout std_logic;          -- PS/2 data line (bidirectional)
+      mouse_clk           : inout std_logic;          -- PS/2 clock line (bidirectional)
+      left_button         : out std_logic;            -- High when left mouse button pressed
+      right_button        : out std_logic;            -- Same for right button
+      mouse_cursor_row    : out std_logic_vector(9 downto 0); -- Y coordinate on 0..479
+      mouse_cursor_column : out std_logic_vector(9 downto 0)  -- X coordinate on 0..639
+    );
+  end component;
+
+  -- 2) bouncy_ball: game logic for the player-controlled object
+  component bouncy_ball
+    port(
+      pb1                     : in  std_logic;         -- Flap trigger input (active-high)
+      pb2                     : in  std_logic;         -- Additional control input, unused here
+      clk                     : in  std_logic;         -- 25 MHz pixel clock
+      vert_sync               : in  std_logic;         -- Vertical sync for frame sync
+      current_left_btn_status : in  std_logic;         -- Mouse button status integrated into game
+      pixel_row               : in  std_logic_vector(9 downto 0); -- Current scanline number
+      pixel_column            : in  std_logic_vector(9 downto 0); -- Current pixel column
+      red                     : out std_logic;         -- Output red bit for ball at given pixel
+      green                   : out std_logic;         -- Output green bit
+      blue                    : out std_logic          -- Output blue bit
+    );
+  end component;
+
+  -- 3) VGA_SYNC: generates sync pulses, tracks pixel coords, and outputs video data
+  component VGA_SYNC
+    port(
+      clock_25Mhz    : in  std_logic;    -- 25 MHz clock for VGA timing
+      red            : in  std_logic;    -- Final red bit per pixel after overlay
+      green          : in  std_logic;    -- Final green bit
+      blue           : in  std_logic;    -- Final blue bit
+      red_out        : out std_logic;    -- PWM for DAC red channel
+      green_out      : out std_logic;    -- PWM for DAC green channel
+      blue_out       : out std_logic;    -- PWM for DAC blue channel
+      horiz_sync_out : out std_logic;    -- Horizontal sync output
+      vert_sync_out  : out std_logic;    -- Vertical sync output
+      pixel_row      : out std_logic_vector(9 downto 0); -- Exposes current row to parent
+      pixel_column   : out std_logic_vector(9 downto 0); -- Exposes current col
+      video_on_out   : out std_logic     -- High when in active video region (not blanking)
+    );
+  end component;
+
+  -- 4) SevenSegDisplay: multiplexes six 7-seg displays to show game_state as a number
+  component SevenSegDisplay
+    port(
+      clk          : in  std_logic;            -- Driving clock for multiplexing frequency
+      display_mode : in  std_logic_vector(2 downto 0); -- Encoded game state (0-3)
+      digit_one    : out std_logic_vector(6 downto 0);  -- Segment outputs for HEX0
+      digit_two    : out std_logic_vector(6 downto 0);  -- through HEX5
+      digit_three  : out std_logic_vector(6 downto 0);
+      digit_four   : out std_logic_vector(6 downto 0);
+      digit_five   : out std_logic_vector(6 downto 0);
+      digit_six    : out std_logic_vector(6 downto 0)
+    );
+  end component;
+
+  -- 5) char_rom: font ROM storing 8x8 bitmaps for ASCII characters
+  component char_rom
+    port(
+      character_address : in  std_logic_vector(5 downto 0); -- Lower 6 bits of ASCII code
+      font_row          : in  std_logic_vector(2 downto 0); -- Row index within character (0-7)
+      font_col          : in  std_logic_vector(2 downto 0); -- Column index within character (0-7)
+      clock             : in  std_logic;                    -- Sync clock for ROM read
+      rom_mux_output    : out std_logic                     -- Single bit: pixel on/off
+    );
+  end component;
+  -- ----------------------------------------------------------------
+
+  -- Internal signals:
+  signal clk25            : std_logic := '0'; -- 25 MHz clock after division
+  signal reset_i          : std_logic := '0'; -- Active-high reset for all logic
+
+  -- FSM for game states: Title, Game Start, Training, and Play
+  type game_state_t is (S_TITLE, S_GS, S_TRAIN, S_PLAY);
+  signal game_state : game_state_t := S_TITLE;
+
+  -- VGA timing outputs: pixel coordinates, blanking, and sync
+  signal pix_row, pix_col       : std_logic_vector(9 downto 0);
+  signal video_on               : std_logic;
+  signal vsync_sig              : std_logic;
+  signal vga_r_sig, vga_g_sig, vga_b_sig : std_logic;
+
+  -- Mouse interface signals
+  signal mouse_row, mouse_col   : std_logic_vector(9 downto 0);
+  signal current_left_btn, right_btn : std_logic;
+
+  -- Bouncy ball rendering outputs
+  signal color_r, color_g, color_b : std_logic;
+
+  -- Background color set via switch SW0: toggles between cyan and magenta if desired
+  signal wrapped_r, wrapped_g, wrapped_b : std_logic := '0'; -- default all zero
+
+  -- Final pixel color after overlaying text and ball
+  signal final_r, final_g, final_b : std_logic;
+
+  -- Text overlay control signals
+  signal in_title, in_push        : std_logic; -- flags indicating draw regions
+  signal char_index_title         : integer range 0 to 31 := 0; -- picks letter
+  signal char_index_push          : integer range 0 to 31 := 0;
+  signal font_row_title, font_col_title : std_logic_vector(2 downto 0);
+  signal font_row_push,  font_col_push  : std_logic_vector(2 downto 0);
+  signal font_row, font_col       : std_logic_vector(2 downto 0);
+  signal rom_output               : std_logic; -- pixel on/off from ROM
+
+  -- ASCII codes driving the char_rom
+  signal ascii_code_title         : std_logic_vector(6 downto 0);
+  signal ascii_code_push          : std_logic_vector(6 downto 0);
+  signal ascii_code_final         : std_logic_vector(6 downto 0);
+  signal char_address             : std_logic_vector(5 downto 0);
+
+  -- Debounce and synchronize PB1 and SW0 to clk25 domain
+  signal pb1_sync_0, pb1_sync_1   : std_logic := '1';
+  signal btn1_stable, btn1        : std_logic;
+  signal sw0_sync_0, sw0_sync_1   : std_logic := '0';
+  signal sw0_stable               : std_logic;
+
+  -- Seven-segment display mode: binary of current FSM state index
+  signal display_mode             : std_logic_vector(2 downto 0);
+
+  -- Text layout constants: scale, char size, positions
+  constant S        : integer := 4;   -- Scale up each pixel by S
+  constant CHAR_W   : integer := S*8; -- Character cell width
+  constant CHAR_H   : integer := S*8; -- Character cell height
+
+  -- Title text: "DEATH BY PIPE", centered on 640x480 screen
+  constant TITLE_STR    : string(1 to 13) := "DEATH BY PIPE";
+  constant S1_NUM_CHARS : integer := TITLE_STR'length;
+  constant S1_MSG_WIDTH : integer := S1_NUM_CHARS * CHAR_W; -- total message width
+  constant S1_H_OFF     : integer := (640 - S1_MSG_WIDTH)/2; -- horizontal offset to center
+  constant S1_V_OFF     : integer := (480 - CHAR_H)/2;       -- vertical centering
+
+  -- Prompt text: half-size "PUSH BUTTON 1 TO START" below title
+  constant PUSH_STR     : string(1 to 22) := "PUSH BUTTON 1 TO START";
+  constant S1_PUSH_CHARS: integer := PUSH_STR'length;
+  constant S1_PUSH_WIDTH: integer := S1_PUSH_CHARS * (CHAR_W/2);
+  constant S1_PUSH_H_OFF: integer := (640 - S1_PUSH_WIDTH)/2;
+  constant S1_PUSH_V_OFF: integer := S1_V_OFF + CHAR_H + 20; -- space 20 px below title
+
+begin  -- Begin architecture implementation
+
+  ----------------------------------------------------------------
+  -- Clock division: generate a 25 MHz clock by toggling on each rising edge of 50 MHz
+  clk_div: process(CLOCK_50) begin
+    if rising_edge(CLOCK_50) then
+      clk25 <= not clk25;          -- divide by 2
+    end if;
+  end process;
+
+  -- Reset inversion: convert active-low reset_n to active-high reset_i
+  reset_i <= not reset_n;
+
+  ----------------------------------------------------------------
+  -- FSM process: transitions on btn1 rising edges in clk25 domain
+  fsm_proc: process(clk25, reset_i) begin
+    if reset_i = '1' then
+      game_state <= S_TITLE;        -- On reset, go to Title screen
+    elsif rising_edge(clk25) then
+      case game_state is
+        when S_TITLE =>                 -- Title state
+          if btn1 = '1' then           -- When button pressed, advance
+            game_state <= S_GS;        -- Go to Game Start screen
+          end if;
+        when S_GS =>                    -- Game Start
+          if btn1 = '1' then
+            game_state <= S_TRAIN;     -- Go to Training screen
+          end if;
+        when S_TRAIN =>                 -- Training state
+          if btn1 = '1' then
+            game_state <= S_PLAY;      -- Go to Play state
+          end if;
+        when S_PLAY =>                  -- Playing state: remain
+          null;
+      end case;
+    end if;
+  end process;
+
+  ----------------------------------------------------------------
+  -- Debounce and synchronize PB1 (active-low button) to create btn1 (active-high)
+  sync_pb1: process(clk25, reset_i) begin
+    if reset_i = '1' then
+      pb1_sync_0 <= '1';           -- reset registers to unpressed state
+      pb1_sync_1 <= '1';
+    elsif rising_edge(clk25) then
+      pb1_sync_0 <= PB1;           -- first stage: sample raw input
+      pb1_sync_1 <= pb1_sync_0;    -- second stage: avoid metastability
+    end if;
+  end process;
+  btn1_stable <= pb1_sync_1;       -- synchronized input still active-low
+  btn1        <= not btn1_stable;  -- invert to get active-high 1 when pressed
+
+  ----------------------------------------------------------------
+  -- Debounce and synchronize SW0 to drive LEDR0
+  sync_sw0: process(clk25, reset_i) begin
+    if reset_i = '1' then
+      sw0_sync_0 <= '0';
+      sw0_sync_1 <= '0';
+    elsif rising_edge(clk25) then
+      sw0_sync_0 <= SW0;
+      sw0_sync_1 <= sw0_sync_0;
+    end if;
+  end process;
+  sw0_stable <= sw0_sync_1;        -- stable switch state
+  LEDR0      <= sw0_stable;        -- reflect on LED0
+
+  ----------------------------------------------------------------
+  -- Drive seven-seg display driver with current FSM state encoded as integer
+  display_mode <= std_logic_vector(
+                    to_unsigned(
+                      game_state'pos(game_state), 3)
+                  );         -- 3 bits represent values 0-3
+
+  ----------------------------------------------------------------
+  -- Instantiate peripheral components with port mapping
+
+  -- PS/2 mouse handler
+  u_mouse: MOUSE
+    port map(
+      clock_25Mhz         => clk25,
+      reset               => reset_i,
+      mouse_data          => PS2_DAT,
+      mouse_clk           => PS2_CLK,
+      left_button         => current_left_btn,
+      right_button        => right_btn,
+      mouse_cursor_row    => mouse_row,
+      mouse_cursor_column => mouse_col
+    );
+
+  -- Bouncy ball game logic: computes pixel colors for ball based on position & input
+  u_ball: bouncy_ball
+    port map(
+      pb1                     => btn1,
+      pb2                     => PB2,
+      clk                     => clk25,
+      vert_sync               => vsync_sig,
+      current_left_btn_status => current_left_btn,
+      pixel_row               => pix_row,
+      pixel_column            => pix_col,
+      red                     => color_r,
+      green                   => color_g,
+      blue                    => color_b
+    );
+
+  -- VGA sync & mixing: outputs final signals to VGA connector
+  u_vga_sync: VGA_SYNC
+    port map(
+      clock_25Mhz    => clk25,
+      red            => final_r,
+      green          => final_g,
+      blue           => final_b,
+      red_out        => vga_r_sig,
+      green_out      => vga_g_sig,
+      blue_out       => vga_b_sig,
+      horiz_sync_out => VGA_HS,
+      vert_sync_out  => vsync_sig,
+      pixel_row      => pix_row,
+      pixel_column   => pix_col,
+      video_on_out   => video_on
+    );
+
+  -- Seven-seg display multiplexer
+  u_seven_seg: SevenSegDisplay
+    port map(
+      clk          => clk25,
+      display_mode => display_mode,
+      digit_one    => HEX0,
+      digit_two    => HEX1,
+      digit_three  => HEX2,
+      digit_four   => HEX3,
+      digit_five   => HEX4,
+      digit_six    => HEX5
+    );
+
+  ----------------------------------------------------------------
+  -- TITLE SCREEN OVERLAY LOGIC
+  -- Determine if current pixel falls within title text region
+  in_title <= '1' when (
+     video_on='1' and game_state=S_TITLE and
+     to_integer(unsigned(pix_row)) >= S1_V_OFF and
+     to_integer(unsigned(pix_row)) <  S1_V_OFF + CHAR_H and
+     to_integer(unsigned(pix_col)) >= S1_H_OFF and
+     to_integer(unsigned(pix_col)) <  S1_H_OFF + S1_MSG_WIDTH
+    ) else '0';
+
+  -- Compute which character (0..12) based on horizontal pixel position
+  char_index_title <= (
+    to_integer(unsigned(pix_col)) - S1_H_OFF
+  ) / CHAR_W;
+
+  -- Font column within selected character: scale factor S applied
+  font_col_title <= std_logic_vector(
+    to_unsigned(
+      ((to_integer(unsigned(pix_col)) - S1_H_OFF) mod CHAR_W) / S,
+      3
+    )
+  ) when in_title='1' else (others=>'0');
+
+  -- Font row within selected character
+  font_row_title <= std_logic_vector(
+    to_unsigned(
+      (to_integer(unsigned(pix_row)) - S1_V_OFF) / S,
+      3
+    )
+  ) when in_title='1' else (others=>'0');
+
+  -- Map character index to ASCII code using ascii_map lookup
+  ascii_code_title <= ascii_map(
+    TITLE_STR(char_index_title + TITLE_STR'low)
+  ) when in_title='1' else (others=>'0');
+
+  ----------------------------------------------------------------
+  -- PUSH-BUTTON PROMPT OVERLAY LOGIC (half-scale)
+  in_push <= '1' when (
+     video_on='1' and game_state=S_TITLE and
+     to_integer(unsigned(pix_row)) >= S1_PUSH_V_OFF and
+     to_integer(unsigned(pix_row)) <  S1_PUSH_V_OFF + (CHAR_H/2) and
+     to_integer(unsigned(pix_col)) >= S1_PUSH_H_OFF and
+     to_integer(unsigned(pix_col)) <  S1_PUSH_H_OFF + S1_PUSH_WIDTH
+    ) else '0';
+
+  char_index_push <= (
+    to_integer(unsigned(pix_col)) - S1_PUSH_H_OFF
+  ) / (CHAR_W/2);
+
+  font_col_push <= std_logic_vector(
+    to_unsigned(
+      ((to_integer(unsigned(pix_col)) - S1_PUSH_H_OFF) mod (CHAR_W/2)) / (S/2),
+      3
+    )
+  ) when in_push='1' else (others=>'0');
+
+  font_row_push <= std_logic_vector(
+    to_unsigned(
+      (to_integer(unsigned(pix_row)) - S1_PUSH_V_OFF) / (S/2),
+      3
+    )
+  ) when in_push='1' else (others=>'0');
+
+  ascii_code_push <= ascii_map(
+    PUSH_STR(char_index_push + PUSH_STR'low)
+  ) when in_push='1' else (others=>'0');
+
+  ----------------------------------------------------------------
+  -- SELECT FINAL FONT COORDINATES AND ASCII CODE FOR CHAR_ROM
+  font_row       <= font_row_title when in_title='1' else
+                    font_row_push  when in_push = '1' else
+                    (others=>'0');
+  font_col       <= font_col_title when in_title='1' else
+                    font_col_push  when in_push = '1' else
+                    (others=>'0');
+
+  ascii_code_final <= ascii_code_title when in_title='1' else
+                      ascii_code_push  when in_push  = '1' else
+                      (others=>'0');
+
+  -- Drop MSB of ASCII code (unused) to form 6-bit ROM address
+  char_address <= ascii_code_final(5 downto 0);
+
+  ----------------------------------------------------------------
+  -- CHAR ROM: fetch pixel on/off for current text overlay pixel
+  u_char_rom: char_rom
+    port map(
+      character_address => char_address,
+      font_row          => font_row,
+      font_col          => font_col,
+      clock             => clk25,
+      rom_mux_output    => rom_output
+    );
+
+  -- PIXEL MUXING: overlay text (white) or ball on background color
+  final_r <= '1' when (rom_output='1' and (in_title='1' or in_push='1')) else color_r or wrapped_r;
+  final_g <= '1' when (rom_output='1' and (in_title='1' or in_push='1')) else color_g or wrapped_g;
+  final_b <= '1' when (rom_output='1' and (in_title='1' or in_push='1')) else color_b or wrapped_b;
+
+  -- Drive VGA outputs: sync and video outputs
+  VGA_VS <= vsync_sig;
+  VGA_R  <= (others => vga_r_sig);
+  VGA_G  <= (others => vga_g_sig);
+  VGA_B  <= (others => vga_b_sig);
+
+end architecture rtl;
