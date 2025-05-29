@@ -1,4 +1,3 @@
-
 library IEEE;                               
 use IEEE.std_logic_1164.all;                
 use IEEE.numeric_std.all;                  
@@ -21,8 +20,8 @@ entity de0_cv_top is
     PS2_DAT   : inout std_logic;             -- PS/2 data line (mouse)
 
     -- Buttons & Switch
-    PB0       : in std_logic;                -- universal reset (“exit”)
-    PB1       : in  std_logic;               -- “enter” / start pushbutton
+    PB0       : in std_logic;                -- universal reset ("exit")
+    PB1       : in  std_logic;               -- "enter" / start pushbutton
     PB2       : in  std_logic;               -- retry on death pushbutton
     SW0       : in  std_logic;               -- mode select switch
 
@@ -66,7 +65,7 @@ architecture rtl of de0_cv_top is
     );
   end component;
 
-  component bouncy_ball                   -- the main “bird+pipes” game logic
+  component bouncy_ball                   -- the main "bird+pipes" game logic
     port(
       pb1                     : in  std_logic;
       pb2                     : in  std_logic;
@@ -131,13 +130,14 @@ architecture rtl of de0_cv_top is
       MOVE_INTERVAL : integer := 500_000;
       START_OFFSET  : integer := 10;
       PIPE_WIDTH    : integer := 40;
-      PIPE_GAP      : integer := 100
+      PIPE_GAP      : integer := 150
     );
     port(
       clk           : in  std_logic;
       reset         : in  std_logic;
       pix_row       : in  std_logic_vector(9 downto 0);
       pix_col       : in  std_logic_vector(9 downto 0);
+      pipes_go      : in  std_logic;
       pipe_x_array  : out pipe_array_type;
       pipe_y_array  : out pipe_array_type;
       green_out     : out std_logic
@@ -188,8 +188,8 @@ architecture rtl of de0_cv_top is
   ----------------------------------------------------------------
   -- Text-overlay region signals
   ----------------------------------------------------------------
-  signal in_title, in_push            : std_logic;              -- when drawing title or “push” text
-  signal in_select1, in_select2, in_select3 : std_logic;        -- when drawing “select mode” & options
+  signal in_title, in_push            : std_logic;              -- when drawing title or "push" text
+  signal in_select1, in_select2, in_select3 : std_logic;        -- when drawing "select mode" & options
 
   signal char_index_title             : integer range 0 to 31 := 0; -- which character cell in title
   signal char_index_select1, char_index_select2, char_index_select3 : integer range 0 to 31 := 0;
@@ -208,7 +208,7 @@ architecture rtl of de0_cv_top is
   signal font_row_d2, font_col_d2           : std_logic_vector(2 downto 0);
   signal ascii_d1, ascii_d2                 : std_logic_vector(6 downto 0);
 
-  -- “PUSH BUTTON 1 TO START” half-scale overlay
+  -- "PUSH BUTTON 1 TO START" half-scale overlay
   signal char_index_push               : integer range 0 to 31 := 0;
   signal font_row_push, font_col_push  : std_logic_vector(2 downto 0);
   signal ascii_code_push               : std_logic_vector(6 downto 0);
@@ -221,7 +221,7 @@ architecture rtl of de0_cv_top is
   signal ascii_code_sw0_high, ascii_code_sw0_low       : std_logic_vector(6 downto 0);
   
 
-  -- Muxed ASCII code and font‐address signals
+  -- Muxed ASCII code and font-address signals
   signal ascii_code_title             : std_logic_vector(6 downto 0);
   signal ascii_code_select1, ascii_code_select2, ascii_code_select3 : std_logic_vector(6 downto 0);
   signal ascii_code_final             : std_logic_vector(6 downto 0);
@@ -314,7 +314,7 @@ begin
   reset_i <= not reset_n;            -- active-high reset internally
 
   ----------------------------------------------------------------
-  -- PB1 (“enter”) debounce & rising-edge detection
+  -- PB1 ("enter") debounce & rising-edge detection
   ----------------------------------------------------------------
   sync_pb1: process(clk25, reset_i) begin
     if reset_i = '1' then
@@ -341,7 +341,7 @@ begin
                                      -- detect rising edge
 
   ----------------------------------------------------------------
-  -- PB0 (“universal exit”) debounce & rising-edge detection
+  -- PB0 ("universal exit") debounce & rising-edge detection
   ----------------------------------------------------------------
   sync_pb0: process(clk25, reset_i) begin
     if reset_i = '1' then
@@ -367,7 +367,7 @@ begin
                                      -- detect rising edge
 
   ----------------------------------------------------------------
-  -- PB2 (“retry on death”) debounce & rising-edge detection
+  -- PB2 ("retry on death") debounce & rising-edge detection
   ----------------------------------------------------------------
   sync_pb2: process(clk25, reset_i) begin
     if reset_i = '1' then
@@ -409,7 +409,7 @@ begin
   LEDR0      <= sw0_stable;          -- mirror on LED
 
   ----------------------------------------------------------------
-  -- Main FSM: Title → Game‐Select → Play/Train → Death
+  -- Main FSM: Title → Game-Select → Play/Train → Death
   ----------------------------------------------------------------
   fsm: process(clk25, reset_i) begin
     if reset_i = '1' then
@@ -450,7 +450,7 @@ begin
   end process fsm;
 
   ----------------------------------------------------------------
-  -- PLAY delay & pipe‐start gating
+  -- PLAY delay & pipe-start gating
   ----------------------------------------------------------------
   process(clk25, reset_i) begin
     if reset_i = '1' then
@@ -520,7 +520,7 @@ begin
     );
 
   ----------------------------------------------------------------
-  -- Bouncy‐ball (player) logic
+  -- Bouncy-ball (player) logic
   ----------------------------------------------------------------
   u_ball: bouncy_ball
     port map(
@@ -578,18 +578,19 @@ begin
   ----------------------------------------------------------------
   u_pipe: pipe_generator
     generic map (
-      START_OFFSET => 10,             -- initial off‐screen offset
+      START_OFFSET => 10,
       PIPE_WIDTH   => 40,
-      PIPE_GAP     => 100
+      PIPE_GAP     => 150
     )
     port map (
-      clk          => clk25,
-      reset        => reset_i,
-      pix_row      => pix_row,
-      pix_col      => pix_col,
-      pipe_x_array => pipe_x_array,   -- X positions
-      pipe_y_array => pipe_y_array,   -- gap Y positions
-      green_out    => pipe_green      -- pipe pixel flag
+      clk           => clk25,
+      reset         => reset_i,
+      pix_row       => pix_row,
+      pix_col       => pix_col,
+      pipes_go      => pipes_go,
+      pipe_x_array  => pipe_x_array,
+      pipe_y_array  => pipe_y_array,
+      green_out     => pipe_green
     );
 
   pipe_gap_int <= to_integer(unsigned(pipe_gap));  
@@ -744,7 +745,7 @@ begin
                        ) when in_sw0_low = '1' else (others => '0');
 
   ----------------------------------------------------------------
-  -- Death‐screen overlays
+  -- Death-screen overlays
   ----------------------------------------------------------------
   in_death1 <= '1' when
     video_on = '1' and game_state = S_DEATH and
@@ -782,7 +783,7 @@ begin
                     when in_death2 = '1' else (others => '0');
 
   ----------------------------------------------------------------
-  -- Font MUX: choose which overlay’s row/col/ascii to feed ROM
+  -- Font MUX: choose which overlay's row/col/ascii to feed ROM
   ----------------------------------------------------------------
   font_row <= 
         font_row_d1    when in_death1 = '1' else
@@ -837,7 +838,7 @@ begin
 
 
   ----------------------------------------------------------------
-  -- Per‐pixel collision detection (combinational)
+  -- Per-pixel collision detection (combinational)
   ----------------------------------------------------------------
   collision_detect_proc : process(bird_row, bird_col, pipe_x_array, pipe_y_array, pipe_gap_int, ball_on_sig)
     variable bird_r_int  : integer;
@@ -856,9 +857,9 @@ begin
         px_int := to_integer(unsigned(pipe_x_array(i)));
         py_int := to_integer(unsigned(pipe_y_array(i)));
 
-        -- If bird’s X overlaps a pipe
+        -- If bird's X overlaps a pipe
         if bird_c_int >= px_int and bird_c_int < px_int + PIPE_WIDTH then
-          -- If bird’s Y is outside the pipe gap → collision
+          -- If bird's Y is outside the pipe gap → collision
           if bird_r_int < py_int or bird_r_int > py_int + pipe_gap_int then
             collision_detect <= '1';
           end if;
@@ -881,7 +882,7 @@ begin
       if game_state = S_TITLE then
         collision <= '0';      -- clear on title screen
       elsif game_state /= S_PLAY and game_state /= S_TRAIN then
-        collision <= '0';      -- clear off‐play/training
+        collision <= '0';      -- clear off-play/training
       elsif collision = '1' then
         collision <= '1';      -- hold once set
       else
