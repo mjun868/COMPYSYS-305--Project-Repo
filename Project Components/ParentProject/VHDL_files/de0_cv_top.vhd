@@ -154,7 +154,11 @@ architecture rtl of de0_cv_top is
 
   signal pb0_sync_0, pb0_sync_1       : std_logic := '1';      -- PB0 debounce
   signal pb0_stable                   : std_logic;              -- stable PB0
-  signal pb0_prev, pb0_rising         : std_logic := '0';      -- PB0 edge detect
+
+   signal btn0        : std_logic;    -- inverted PB0
+  signal btn0_prev   : std_logic := '0';
+  signal btn0_rising : std_logic;
+
 
   signal pb2_sync_0, pb2_sync_1       : std_logic := '1';      -- PB2 debounce
   signal pb2_stable                   : std_logic;              -- stable PB2
@@ -340,8 +344,8 @@ begin
   btn1_rising <= '1' when (btn1 = '1' and btn1_prev = '0') else '0';  
                                      -- detect rising edge
 
-  ----------------------------------------------------------------
-  -- PB0 (“universal exit”) debounce & rising-edge detection
+ ----------------------------------------------------------------
+  -- PB0 (“universal exit”) debounce & rising‐edge detection
   ----------------------------------------------------------------
   sync_pb0: process(clk25, reset_i) begin
     if reset_i = '1' then
@@ -349,23 +353,23 @@ begin
       pb0_sync_1 <= '1';
     elsif rising_edge(clk25) then
       pb0_sync_0 <= PB0;             -- sample raw PB0
-      pb0_sync_1 <= pb0_sync_0;      -- two-stage synchronizer
+      pb0_sync_1 <= pb0_sync_0;      -- two‐stage synchronizer
     end if;
   end process;
 
-  pb0_stable <= pb0_sync_1;          -- debounced PB0
+  pb0_stable <= pb0_sync_1;          -- debounced (active‐low) PB0
+  btn0       <= not pb0_stable;      -- invert so press → '1'
 
   edge_pb0: process(clk25, reset_i) begin
     if reset_i = '1' then
-      pb0_prev <= '0';
+      btn0_prev <= '0';
     elsif rising_edge(clk25) then
-      pb0_prev <= pb0_stable;        -- latch previous
+      btn0_prev <= btn0;             -- register previous
     end if;
   end process;
 
-  pb0_rising <= '1' when (pb0_stable = '1' and pb0_prev = '0') else '0';
-                                     -- detect rising edge
-
+  btn0_rising <= '1' when (btn0 = '1' and btn0_prev = '0') else '0';
+                                     -- detect the press
   ----------------------------------------------------------------
   -- PB2 (“retry on death”) debounce & rising-edge detection
   ----------------------------------------------------------------
@@ -415,7 +419,7 @@ begin
     if reset_i = '1' then
       game_state <= S_TITLE;         -- initial state
     elsif rising_edge(clk25) then
-      if pb0_rising = '1' then       -- universal reset
+      if btn0_rising = '1' then      -- universal reset on PB0 press
         game_state <= S_TITLE;
       else
         case game_state is
@@ -442,6 +446,7 @@ begin
             if pb2_rising = '1' then
               game_state <= S_GS;    -- retry → select
             end if;
+
           when others =>
             null;
         end case;
@@ -891,39 +896,38 @@ begin
     end if;
   end process collision_reg;
 
-  ----------------------------------------------------------------
+    ----------------------------------------------------------------
   -- Final RGB mux: choose between text, ball, pipes, background
   ----------------------------------------------------------------
-  -- final_r: pink for SW0 hints, yellow for other text, ball color, pipe, or wrap
   final_r <=
-       "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else  -- pink text
-       "1111" when (rom_output = '1' and (in_title = '1' or in_push = '1'
-                                       or in_select1 = '1' or in_select2 = '1'
-                                       or in_select3 = '1')) else                           -- yellow text
-       color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else  -- ball
-       "0000"  when (pipe_green = '1' and pipes_go = '1') else                                 -- pipe green
-       (others => wrapped_r);  -- background wrap color
+       "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else  -- pink hints
+       "1111" when (rom_output = '1' and 
+                    ( in_title = '1' or in_push  = '1' or 
+                      in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
+                      in_death1  = '1' or in_death2  = '1' )) else                      -- yellow text + death
+       color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
+       "0000"  when (pipe_green = '1' and pipes_go = '1') else
+       (others => wrapped_r);
 
-  -- final_g: similar plan (0 for pink, 1 for yellow, ball, pipe, wrap)
   final_g <=
        "0000" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else  -- pink
-       "1111" when (rom_output = '1' and (in_title = '1' or in_push = '1'
-                                       or in_select1 = '1' or in_select2 = '1'
-                                       or in_select3 = '1')) else                           -- yellow
+       "1111" when (rom_output = '1' and 
+                    ( in_title = '1' or in_push  = '1' or 
+                      in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
+                      in_death1  = '1' or in_death2  = '1' )) else                      -- yellow + death
        color_g when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
        "1111"  when (pipe_green = '1' and pipes_go = '1') else
        (others => wrapped_g);
 
-  -- final_b: (1 for pink, 0 for yellow, ball, pipe, wrap)
   final_b <=
        "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else  -- pink
-       "0000" when (rom_output = '1' and (in_title = '1' or in_push = '1'
-                                       or in_select1 = '1' or in_select2 = '1'
-                                       or in_select3 = '1')) else                           -- yellow
+       "0000" when (rom_output = '1' and 
+                    ( in_title = '1' or in_push  = '1' or 
+                      in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
+                      in_death1  = '1' or in_death2  = '1' )) else                      -- yellow + death
        color_b when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
        "0000"  when (pipe_green = '1' and pipes_go = '1') else
        (others => wrapped_b);
-
   ----------------------------------------------------------------
   -- Drive physical VGA pins
   ----------------------------------------------------------------
