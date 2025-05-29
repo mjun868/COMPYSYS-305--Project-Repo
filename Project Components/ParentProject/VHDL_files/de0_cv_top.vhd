@@ -235,6 +235,16 @@ architecture rtl of de0_cv_top is
 
   signal display_mode                 : std_logic_vector(2 downto 0); -- controls seven-segment
 
+  signal in_score            : std_logic;          -- are we in the 3-digit score region?
+  signal char_index_score    : integer range 0 to 2 := 0;
+  signal font_row_score      : std_logic_vector(2 downto 0);
+  signal font_col_score      : std_logic_vector(2 downto 0);
+
+  -- holds the three ASCII codes for hundreds, tens, units
+  signal ascii_score_h, ascii_score_t, ascii_score_u : std_logic_vector(6 downto 0);
+  signal ascii_code_score    : std_logic_vector(6 downto 0);
+
+
   ----------------------------------------------------------------
   -- Pipe geometry signals
   ----------------------------------------------------------------
@@ -307,6 +317,9 @@ architecture rtl of de0_cv_top is
   signal pipes_go            : std_logic := '0';      -- true once delay expires
 
   signal number_of_pipe       : std_logic_vector(5 downto 0); -- Corrected declaration
+
+   constant SCORE_H_OFF : integer := 10;            -- 10px from left
+  constant SCORE_V_OFF : integer := 10;            -- 10px from top
 
 begin
   ----------------------------------------------------------------
@@ -604,6 +617,23 @@ end process;
 
   pipe_gap_int <= to_integer(unsigned(pipe_gap));  
                                      -- convert std_logic_vector to int
+                                     
+----------------------------------------------------------------
+--  Convert your 6-bit pipe count into three ASCII digits
+----------------------------------------------------------------
+  score_proc: process(number_of_pipe)
+  variable score_int : integer;
+  variable h, t, u   : integer;
+begin
+  score_int := to_integer(unsigned(number_of_pipe));
+  h := score_int / 100;
+  t := (score_int / 10) mod 10;
+  u := score_int mod 10;
+
+  ascii_score_h <= ascii_map(character'val(character'pos('0') + h));
+  ascii_score_t <= ascii_map(character'val(character'pos('0') + t));
+  ascii_score_u <= ascii_map(character'val(character'pos('0') + u));
+end process;
 
   ----------------------------------------------------------------
   -- TITLE overlay region
@@ -753,6 +783,31 @@ end process;
                          OPT2_STR(char_index_sw0_low + OPT2_STR'low)
                        ) when in_sw0_low = '1' else (others => '0');
 
+----------------------------------------------------------------
+-- 3) Score‐overlay region 
+----------------------------------------------------------------
+in_score <= '1' when
+     video_on = '1' and game_state = S_PLAY and
+     to_integer(unsigned(pix_row)) >= SCORE_V_OFF and
+     to_integer(unsigned(pix_row)) <  SCORE_V_OFF + CHAR_H and
+     to_integer(unsigned(pix_col)) >= SCORE_H_OFF and
+     to_integer(unsigned(pix_col)) <  SCORE_H_OFF + 3*CHAR_W
+  else '0';
+
+char_index_score <= (to_integer(unsigned(pix_col)) - SCORE_H_OFF) / CHAR_W;
+font_col_score   <= std_logic_vector(to_unsigned(
+                       ((to_integer(unsigned(pix_col)) - SCORE_H_OFF) mod CHAR_W) / S, 3))
+                       when in_score = '1' else (others => '0');
+font_row_score   <= std_logic_vector(to_unsigned(
+                       (to_integer(unsigned(pix_row)) - SCORE_V_OFF) / S, 3))
+                       when in_score = '1' else (others => '0');
+
+ascii_code_score <= ascii_score_h when char_index_score = 0 else
+                    ascii_score_t when char_index_score = 1 else
+                    ascii_score_u when char_index_score = 2 else
+                    (others => '0');
+
+
   ----------------------------------------------------------------
   -- Death-screen overlays
   ----------------------------------------------------------------
@@ -794,43 +849,46 @@ end process;
   ----------------------------------------------------------------
   -- Font MUX: choose which overlay's row/col/ascii to feed ROM
   ----------------------------------------------------------------
-  font_row <= 
-        font_row_d1    when in_death1 = '1' else
-        font_row_d2    when in_death2 = '1' else
-        font_row_title when in_title  = '1' else
-        font_row_push  when in_push   = '1' else
-        font_row_select1 when in_select1 = '1' else
-        font_row_select2 when in_select2 = '1' else
-        font_row_select3 when in_select3 = '1' else
-        font_row_sw0_high when in_sw0_high = '1' else
-        font_row_sw0_low  when in_sw0_low  = '1' else
+  font_row <=
+        font_row_score    when in_score        = '1' else  
+        font_row_d1       when in_death1      = '1' else
+        font_row_d2       when in_death2      = '1' else
+        font_row_title    when in_title       = '1' else
+        font_row_push     when in_push        = '1' else
+        font_row_select1  when in_select1     = '1' else
+        font_row_select2  when in_select2     = '1' else
+        font_row_select3  when in_select3     = '1' else
+        font_row_sw0_high when in_sw0_high    = '1' else
+        font_row_sw0_low  when in_sw0_low     = '1' else
         (others => '0');
 
-  font_col <= 
-        font_col_d1    when in_death1='1' else
-        font_col_d2    when in_death2='1' else
-        font_col_title when in_title ='1' else
-        font_col_push  when in_push  ='1' else
-        font_col_select1 when in_select1='1' else
-        font_col_select2 when in_select2='1' else
-        font_col_select3 when in_select3='1' else
-        font_col_sw0_high when in_sw0_high='1' else
-        font_col_sw0_low  when in_sw0_low ='1' else
+  font_col <=
+        font_col_score    when in_score        = '1' else  
+        font_col_d1       when in_death1      = '1' else
+        font_col_d2       when in_death2      = '1' else
+        font_col_title    when in_title       = '1' else
+        font_col_push     when in_push        = '1' else
+        font_col_select1  when in_select1     = '1' else
+        font_col_select2  when in_select2     = '1' else
+        font_col_select3  when in_select3     = '1' else
+        font_col_sw0_high when in_sw0_high    = '1' else
+        font_col_sw0_low  when in_sw0_low     = '1' else
         (others => '0');
 
-  ascii_code_final <= 
-        ascii_d1       when in_death1='1' else
-        ascii_d2       when in_death2='1' else
-        ascii_code_title    when in_title  ='1' else
-        ascii_code_push     when in_push   ='1' else
-        ascii_code_select1  when in_select1='1' else
-        ascii_code_select2  when in_select2='1' else
-        ascii_code_select3  when in_select3='1' else
-        ascii_code_sw0_high when in_sw0_high='1' else
-        ascii_code_sw0_low  when in_sw0_low ='1' else
+  ascii_code_final <=
+        ascii_code_score  when in_score        = '1' else 
+        ascii_d1          when in_death1      = '1' else
+        ascii_d2          when in_death2      = '1' else
+        ascii_code_title  when in_title       = '1' else
+        ascii_code_push   when in_push        = '1' else
+        ascii_code_select1 when in_select1    = '1' else
+        ascii_code_select2 when in_select2    = '1' else
+        ascii_code_select3 when in_select3    = '1' else
+        ascii_code_sw0_high when in_sw0_high  = '1' else
+        ascii_code_sw0_low  when in_sw0_low   = '1' else
         (others => '0');
 
-  char_address <= ascii_code_final(5 downto 0);   -- feed ROM address
+  char_address <= ascii_code_final(5 downto 0);  -- feed ROM address
 
   ----------------------------------------------------------------
   -- Character ROM lookup
@@ -906,11 +964,11 @@ end process;
       end if;
     end if;
   end process collision_reg;
-
-  ----------------------------------------------------------------
+ ----------------------------------------------------------------
   -- Final RGB mux: choose between text, ball, pipes, background
   ----------------------------------------------------------------
   final_r <=
+       "1111" when (rom_output = '1' and in_score = '1')          else  -- yellow score digits
        "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else  -- pink hints
        "1111" when (rom_output = '1' and 
                     ( in_title = '1' or in_push  = '1' or 
@@ -918,11 +976,12 @@ end process;
                       in_death1  = '1' or in_death2  = '1' )) else                      -- yellow text + death
        color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
        "0000"  when (pipe_green = '1' and pipes_go = '1') else
-       "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else  -- White background for training
-       "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else  -- Black background for training
+       "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
+       "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_r);
 
   final_g <=
+       "1111" when (rom_output = '1' and in_score = '1')          else
        "0000" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else  -- pink
        "1111" when (rom_output = '1' and 
                     ( in_title = '1' or in_push  = '1' or 
@@ -930,11 +989,12 @@ end process;
                       in_death1  = '1' or in_death2  = '1' )) else                      -- yellow + death
        color_g when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
        "1111"  when (pipe_green = '1' and pipes_go = '1') else
-       "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else  -- White background for training
-       "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else  -- Black background for training
+       "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
+       "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_g);
 
   final_b <=
+       "0000" when (rom_output = '1' and in_score = '1')          else
        "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else  -- pink
        "0000" when (rom_output = '1' and 
                     ( in_title = '1' or in_push  = '1' or 
@@ -942,8 +1002,8 @@ end process;
                       in_death1  = '1' or in_death2  = '1' )) else                      -- yellow + death
        color_b when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
        "0000"  when (pipe_green = '1' and pipes_go = '1') else
-       "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else  -- White background for training
-       "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else  -- Black background for training
+       "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
+       "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_b);
 
   ----------------------------------------------------------------
