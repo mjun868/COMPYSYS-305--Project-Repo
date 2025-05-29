@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_de0_cv
-Thu May 29 18:57:55 2025
+Thu May 29 20:08:15 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -29,16 +29,17 @@ Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
  21. Parameter Settings for Inferred Entity Instance: pipe_generator:u_pipe|lpm_divide:Mod1
  22. Parameter Settings for Inferred Entity Instance: pipe_generator:u_pipe|lpm_divide:Mod0
  23. Parameter Settings for Inferred Entity Instance: pipe_generator:u_pipe|lpm_divide:Mod2
- 24. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod1
- 25. Parameter Settings for Inferred Entity Instance: lpm_divide:Div1
- 26. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0
- 27. altsyncram Parameter Settings by Entity Instance
- 28. Port Connectivity Checks: "pipe_generator:u_pipe|lfsr:lfsr_inst"
- 29. Port Connectivity Checks: "pipe_generator:u_pipe"
- 30. Port Connectivity Checks: "MOUSE:u_mouse"
- 31. Post-Synthesis Netlist Statistics for Top Partition
- 32. Elapsed Time Per Partition
- 33. Analysis & Synthesis Messages
+ 24. Parameter Settings for Inferred Entity Instance: lpm_divide:Div0
+ 25. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod1
+ 26. Parameter Settings for Inferred Entity Instance: lpm_divide:Div1
+ 27. Parameter Settings for Inferred Entity Instance: lpm_divide:Mod0
+ 28. altsyncram Parameter Settings by Entity Instance
+ 29. Port Connectivity Checks: "pipe_generator:u_pipe|lfsr:lfsr_inst"
+ 30. Port Connectivity Checks: "pipe_generator:u_pipe"
+ 31. Port Connectivity Checks: "MOUSE:u_mouse"
+ 32. Post-Synthesis Netlist Statistics for Top Partition
+ 33. Elapsed Time Per Partition
+ 34. Analysis & Synthesis Messages
 
 
 
@@ -65,13 +66,13 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu May 29 18:57:55 2025           ;
+; Analysis & Synthesis Status     ; Successful - Thu May 29 20:08:15 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
 ; Family                          ; Cyclone V                                       ;
 ; Logic utilization (in ALMs)     ; N/A                                             ;
-; Total registers                 ; 335                                             ;
+; Total registers                 ; 381                                             ;
 ; Total pins                      ; 65                                              ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 16,384                                          ;
@@ -185,9 +186,9 @@ on the Quartus Prime software download page.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processor 3            ;   0.0%      ;
-;     Processor 4            ;   0.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.1%      ;
+;     Processor 4            ;   0.1%      ;
 ;     Processor 5            ;   0.0%      ;
 ;     Processor 6            ;   0.0%      ;
 ;     Processor 7            ;   0.0%      ;
@@ -235,12 +236,12 @@ on the Quartus Prime software download page.
 ; db/lpm_divide_22m.tdf                   ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_22m.tdf                   ;         ;
 ; db/sign_div_unsign_5kh.tdf              ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_5kh.tdf              ;         ;
 ; db/alt_u_div_gse.tdf                    ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_gse.tdf                    ;         ;
-; db/lpm_divide_82m.tdf                   ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_82m.tdf                   ;         ;
-; db/sign_div_unsign_bkh.tdf              ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_bkh.tdf              ;         ;
-; db/alt_u_div_sse.tdf                    ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_sse.tdf                    ;         ;
-; db/lpm_divide_3am.tdf                   ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_3am.tdf                   ;         ;
-; db/sign_div_unsign_9kh.tdf              ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_9kh.tdf              ;         ;
-; db/alt_u_div_ose.tdf                    ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_ose.tdf                    ;         ;
+; db/lpm_divide_hbm.tdf                   ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_hbm.tdf                   ;         ;
+; db/sign_div_unsign_nlh.tdf              ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_nlh.tdf              ;         ;
+; db/alt_u_div_kve.tdf                    ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_kve.tdf                    ;         ;
+; db/lpm_divide_ebm.tdf                   ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_ebm.tdf                   ;         ;
+; db/sign_div_unsign_klh.tdf              ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_klh.tdf              ;         ;
+; db/alt_u_div_eve.tdf                    ; yes             ; Auto-Generated Megafunction            ; C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_eve.tdf                    ;         ;
 +-----------------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
@@ -249,16 +250,16 @@ on the Quartus Prime software download page.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Estimate of Logic utilization (ALMs needed) ; 663   ;
+; Estimate of Logic utilization (ALMs needed) ; 874   ;
 ;                                             ;       ;
-; Combinational ALUT usage for logic          ; 1133  ;
-;     -- 7 input functions                    ; 5     ;
-;     -- 6 input functions                    ; 177   ;
-;     -- 5 input functions                    ; 221   ;
-;     -- 4 input functions                    ; 125   ;
-;     -- <=3 input functions                  ; 605   ;
+; Combinational ALUT usage for logic          ; 1575  ;
+;     -- 7 input functions                    ; 8     ;
+;     -- 6 input functions                    ; 150   ;
+;     -- 5 input functions                    ; 274   ;
+;     -- 4 input functions                    ; 191   ;
+;     -- <=3 input functions                  ; 952   ;
 ;                                             ;       ;
-; Dedicated logic registers                   ; 335   ;
+; Dedicated logic registers                   ; 381   ;
 ;                                             ;       ;
 ; I/O pins                                    ; 65    ;
 ; Total MLAB memory bits                      ; 0     ;
@@ -267,9 +268,9 @@ on the Quartus Prime software download page.
 ; Total DSP Blocks                            ; 0     ;
 ;                                             ;       ;
 ; Maximum fan-out node                        ; clk25 ;
-; Maximum fan-out                             ; 307   ;
-; Total fan-out                               ; 5459  ;
-; Average fan-out                             ; 3.37  ;
+; Maximum fan-out                             ; 353   ;
+; Total fan-out                               ; 6826  ;
+; Average fan-out                             ; 3.24  ;
 +---------------------------------------------+-------+
 
 
@@ -278,34 +279,38 @@ on the Quartus Prime software download page.
 +------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------------------+--------------+
 ; Compilation Hierarchy Node                           ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                               ; Entity Name              ; Library Name ;
 +------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------------------+--------------+
-; |de0_cv_top                                          ; 1133 (441)          ; 335 (47)                  ; 16384             ; 0          ; 65   ; 0            ; |de0_cv_top                                                                                                                       ; de0_cv_top               ; work         ;
+; |de0_cv_top                                          ; 1575 (612)          ; 381 (93)                  ; 16384             ; 0          ; 65   ; 0            ; |de0_cv_top                                                                                                                       ; de0_cv_top               ; work         ;
 ;    |MOUSE:u_mouse|                                   ; 49 (49)             ; 63 (63)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|MOUSE:u_mouse                                                                                                         ; MOUSE                    ; work         ;
 ;    |SevenSegDisplay:u_seven_seg|                     ; 34 (6)              ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg                                                                                           ; SevenSegDisplay          ; work         ;
 ;       |Alphanumeric_to_SevenSeg:digit_five_Counter|  ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter                                               ; Alphanumeric_to_SevenSeg ; work         ;
 ;       |Alphanumeric_to_SevenSeg:digit_six_Counter|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_six_Counter                                                ; Alphanumeric_to_SevenSeg ; work         ;
 ;       |Alphanumeric_to_SevenSeg:digit_three_Counter| ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_three_Counter                                              ; Alphanumeric_to_SevenSeg ; work         ;
 ;       |Alphanumeric_to_SevenSeg:digit_two_Counter|   ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_two_Counter                                                ; Alphanumeric_to_SevenSeg ; work         ;
-;    |VGA_SYNC:u_vga_sync|                             ; 67 (67)             ; 58 (58)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync                                                                                                   ; VGA_SYNC                 ; work         ;
-;    |bouncy_ball:u_ball|                              ; 44 (44)             ; 33 (33)                   ; 12288             ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball                                                                                                    ; bouncy_ball              ; work         ;
+;    |VGA_SYNC:u_vga_sync|                             ; 59 (59)             ; 58 (58)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|VGA_SYNC:u_vga_sync                                                                                                   ; VGA_SYNC                 ; work         ;
+;    |bouncy_ball:u_ball|                              ; 43 (43)             ; 33 (33)                   ; 12288             ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball                                                                                                    ; bouncy_ball              ; work         ;
 ;       |Main_Char_ROM:sprite_rom|                     ; 0 (0)               ; 0 (0)                     ; 12288             ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball|Main_Char_ROM:sprite_rom                                                                           ; Main_Char_ROM            ; work         ;
 ;          |altsyncram:altsyncram_component|           ; 0 (0)               ; 0 (0)                     ; 12288             ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball|Main_Char_ROM:sprite_rom|altsyncram:altsyncram_component                                           ; altsyncram               ; work         ;
 ;             |altsyncram_j034:auto_generated|         ; 0 (0)               ; 0 (0)                     ; 12288             ; 0          ; 0    ; 0            ; |de0_cv_top|bouncy_ball:u_ball|Main_Char_ROM:sprite_rom|altsyncram:altsyncram_component|altsyncram_j034:auto_generated            ; altsyncram_j034          ; work         ;
 ;    |char_rom:u_char_rom|                             ; 2 (2)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom                                                                                                   ; char_rom                 ; work         ;
 ;       |altsyncram:altsyncram_component|              ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component                                                                   ; altsyncram               ; work         ;
 ;          |altsyncram_d5g1:auto_generated|            ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_top|char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated                                    ; altsyncram_d5g1          ; work         ;
-;    |lpm_divide:Div1|                                 ; 27 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div1                                                                                                       ; lpm_divide               ; work         ;
-;       |lpm_divide_3am:auto_generated|                ; 27 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div1|lpm_divide_3am:auto_generated                                                                         ; lpm_divide_3am           ; work         ;
-;          |sign_div_unsign_9kh:divider|               ; 27 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div1|lpm_divide_3am:auto_generated|sign_div_unsign_9kh:divider                                             ; sign_div_unsign_9kh      ; work         ;
-;             |alt_u_div_ose:divider|                  ; 27 (27)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div1|lpm_divide_3am:auto_generated|sign_div_unsign_9kh:divider|alt_u_div_ose:divider                       ; alt_u_div_ose            ; work         ;
-;    |lpm_divide:Mod0|                                 ; 20 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod0                                                                                                       ; lpm_divide               ; work         ;
-;       |lpm_divide_82m:auto_generated|                ; 20 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod0|lpm_divide_82m:auto_generated                                                                         ; lpm_divide_82m           ; work         ;
-;          |sign_div_unsign_bkh:divider|               ; 20 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod0|lpm_divide_82m:auto_generated|sign_div_unsign_bkh:divider                                             ; sign_div_unsign_bkh      ; work         ;
-;             |alt_u_div_sse:divider|                  ; 20 (20)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod0|lpm_divide_82m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_sse:divider                       ; alt_u_div_sse            ; work         ;
-;    |lpm_divide:Mod1|                                 ; 34 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod1                                                                                                       ; lpm_divide               ; work         ;
-;       |lpm_divide_82m:auto_generated|                ; 34 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod1|lpm_divide_82m:auto_generated                                                                         ; lpm_divide_82m           ; work         ;
-;          |sign_div_unsign_bkh:divider|               ; 34 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod1|lpm_divide_82m:auto_generated|sign_div_unsign_bkh:divider                                             ; sign_div_unsign_bkh      ; work         ;
-;             |alt_u_div_sse:divider|                  ; 34 (34)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod1|lpm_divide_82m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_sse:divider                       ; alt_u_div_sse            ; work         ;
-;    |pipe_generator:u_pipe|                           ; 415 (319)           ; 125 (115)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe                                                                                                 ; pipe_generator           ; work         ;
+;    |lpm_divide:Div0|                                 ; 60 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div0                                                                                                       ; lpm_divide               ; work         ;
+;       |lpm_divide_hbm:auto_generated|                ; 60 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div0|lpm_divide_hbm:auto_generated                                                                         ; lpm_divide_hbm           ; work         ;
+;          |sign_div_unsign_nlh:divider|               ; 60 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div0|lpm_divide_hbm:auto_generated|sign_div_unsign_nlh:divider                                             ; sign_div_unsign_nlh      ; work         ;
+;             |alt_u_div_kve:divider|                  ; 60 (60)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div0|lpm_divide_hbm:auto_generated|sign_div_unsign_nlh:divider|alt_u_div_kve:divider                       ; alt_u_div_kve            ; work         ;
+;    |lpm_divide:Div1|                                 ; 71 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div1                                                                                                       ; lpm_divide               ; work         ;
+;       |lpm_divide_ebm:auto_generated|                ; 71 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div1|lpm_divide_ebm:auto_generated                                                                         ; lpm_divide_ebm           ; work         ;
+;          |sign_div_unsign_klh:divider|               ; 71 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div1|lpm_divide_ebm:auto_generated|sign_div_unsign_klh:divider                                             ; sign_div_unsign_klh      ; work         ;
+;             |alt_u_div_eve:divider|                  ; 71 (71)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Div1|lpm_divide_ebm:auto_generated|sign_div_unsign_klh:divider|alt_u_div_eve:divider                       ; alt_u_div_eve            ; work         ;
+;    |lpm_divide:Mod0|                                 ; 102 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod0                                                                                                       ; lpm_divide               ; work         ;
+;       |lpm_divide_u4m:auto_generated|                ; 102 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod0|lpm_divide_u4m:auto_generated                                                                         ; lpm_divide_u4m           ; work         ;
+;          |sign_div_unsign_1nh:divider|               ; 102 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod0|lpm_divide_u4m:auto_generated|sign_div_unsign_1nh:divider                                             ; sign_div_unsign_1nh      ; work         ;
+;             |alt_u_div_82f:divider|                  ; 102 (102)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod0|lpm_divide_u4m:auto_generated|sign_div_unsign_1nh:divider|alt_u_div_82f:divider                       ; alt_u_div_82f            ; work         ;
+;    |lpm_divide:Mod1|                                 ; 118 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod1                                                                                                       ; lpm_divide               ; work         ;
+;       |lpm_divide_u4m:auto_generated|                ; 118 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod1|lpm_divide_u4m:auto_generated                                                                         ; lpm_divide_u4m           ; work         ;
+;          |sign_div_unsign_1nh:divider|               ; 118 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod1|lpm_divide_u4m:auto_generated|sign_div_unsign_1nh:divider                                             ; sign_div_unsign_1nh      ; work         ;
+;             |alt_u_div_82f:divider|                  ; 118 (118)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod1|lpm_divide_u4m:auto_generated|sign_div_unsign_1nh:divider|alt_u_div_82f:divider                       ; alt_u_div_82f            ; work         ;
+;    |pipe_generator:u_pipe|                           ; 425 (329)           ; 125 (115)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe                                                                                                 ; pipe_generator           ; work         ;
 ;       |lfsr:lfsr_inst|                               ; 10 (10)             ; 10 (10)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lfsr:lfsr_inst                                                                                  ; lfsr                     ; work         ;
 ;       |lpm_divide:Mod0|                              ; 39 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0                                                                                 ; lpm_divide               ; work         ;
 ;          |lpm_divide_u4m:auto_generated|             ; 39 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0|lpm_divide_u4m:auto_generated                                                   ; lpm_divide_u4m           ; work         ;
@@ -394,12 +399,12 @@ Encoding Type:  One-Hot
 ; pipe_generator:u_pipe|current_move_interval[5,8]      ; Merged with pipe_generator:u_pipe|current_move_interval[13]  ;
 ; pipe_generator:u_pipe|current_move_interval[4]        ; Merged with pipe_generator:u_pipe|current_move_interval[12]  ;
 ; pipe_generator:u_pipe|current_move_interval[0,2,9]    ; Merged with pipe_generator:u_pipe|current_move_interval[10]  ;
+; SevenSegDisplay:u_seven_seg|digit_two_value[1]        ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[1]  ;
+; SevenSegDisplay:u_seven_seg|digit_five_value[4]       ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[0]  ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[1]        ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[5]   ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[3]        ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[4]   ;
 ; SevenSegDisplay:u_seven_seg|digit_four_value[3]       ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]   ;
 ; SevenSegDisplay:u_seven_seg|digit_one_value[5]        ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[0]   ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[5]        ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[1]   ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[4]        ; Merged with SevenSegDisplay:u_seven_seg|digit_six_value[3]   ;
-; SevenSegDisplay:u_seven_seg|digit_five_value[4]       ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[0]  ;
-; SevenSegDisplay:u_seven_seg|digit_two_value[1]        ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[1]  ;
 ; SevenSegDisplay:u_seven_seg|digit_one_value[0,4]      ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[5]  ;
 ; SevenSegDisplay:u_seven_seg|digit_four_value[5]       ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0]  ;
 ; SevenSegDisplay:u_seven_seg|digit_three_value[2,3]    ; Merged with SevenSegDisplay:u_seven_seg|digit_four_value[0]  ;
@@ -411,7 +416,7 @@ Encoding Type:  One-Hot
 ; SevenSegDisplay:u_seven_seg|digit_four_value[0,2]     ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[5]  ;
 ; SevenSegDisplay:u_seven_seg|digit_two_value[4]        ; Merged with SevenSegDisplay:u_seven_seg|digit_two_value[0]   ;
 ; SevenSegDisplay:u_seven_seg|digit_five_value[3]       ; Merged with SevenSegDisplay:u_seven_seg|digit_two_value[0]   ;
-; SevenSegDisplay:u_seven_seg|digit_six_value[1]        ; Merged with SevenSegDisplay:u_seven_seg|digit_two_value[3]   ;
+; SevenSegDisplay:u_seven_seg|digit_six_value[5]        ; Merged with SevenSegDisplay:u_seven_seg|digit_two_value[3]   ;
 ; SevenSegDisplay:u_seven_seg|digit_six_value[2]        ; Merged with SevenSegDisplay:u_seven_seg|digit_three_value[4] ;
 ; SevenSegDisplay:u_seven_seg|digit_three_value[4]      ; Merged with SevenSegDisplay:u_seven_seg|digit_five_value[1]  ;
 ; pipe_generator:u_pipe|current_move_interval[10]       ; Merged with pipe_generator:u_pipe|current_move_interval[17]  ;
@@ -425,12 +430,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 335   ;
+; Total registers                              ; 381   ;
 ; Number of registers using Synchronous Clear  ; 83    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 204   ;
+; Number of registers using Asynchronous Clear ; 250   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 184   ;
+; Number of registers using Clock Enable       ; 194   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -440,18 +445,18 @@ Encoding Type:  One-Hot
 +--------------------------------------------------+---------+
 ; Inverted Register                                ; Fan out ;
 +--------------------------------------------------+---------+
-; pipe_generator:u_pipe|pipe_x_internal[2][2]      ; 4       ;
-; pipe_generator:u_pipe|pipe_x_internal[2][1]      ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[2][10]     ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[1][3]      ; 6       ;
-; pipe_generator:u_pipe|pipe_x_internal[1][9]      ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[1][8]      ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[1][6]      ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[0][3]      ; 6       ;
-; pipe_generator:u_pipe|pipe_x_internal[0][1]      ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[0][9]      ; 5       ;
-; pipe_generator:u_pipe|pipe_x_internal[0][7]      ; 5       ;
 ; train_bg_white                                   ; 7       ;
+; pipe_generator:u_pipe|pipe_x_internal[2][10]     ; 7       ;
+; pipe_generator:u_pipe|pipe_x_internal[2][2]      ; 6       ;
+; pipe_generator:u_pipe|pipe_x_internal[2][1]      ; 6       ;
+; pipe_generator:u_pipe|pipe_x_internal[1][9]      ; 7       ;
+; pipe_generator:u_pipe|pipe_x_internal[1][8]      ; 7       ;
+; pipe_generator:u_pipe|pipe_x_internal[1][6]      ; 7       ;
+; pipe_generator:u_pipe|pipe_x_internal[1][3]      ; 8       ;
+; pipe_generator:u_pipe|pipe_x_internal[0][9]      ; 7       ;
+; pipe_generator:u_pipe|pipe_x_internal[0][7]      ; 7       ;
+; pipe_generator:u_pipe|pipe_x_internal[0][3]      ; 8       ;
+; pipe_generator:u_pipe|pipe_x_internal[0][1]      ; 6       ;
 ; pb0_sync_1                                       ; 8       ;
 ; pb1_sync_1                                       ; 2       ;
 ; pb2_sync_1                                       ; 4       ;
@@ -464,9 +469,9 @@ Encoding Type:  One-Hot
 ; pipe_generator:u_pipe|current_move_interval[18]  ; 1       ;
 ; MOUSE:u_mouse|send_char                          ; 3       ;
 ; pipe_generator:u_pipe|lfsr:lfsr_inst|lfsr_reg[9] ; 3       ;
-; pipe_generator:u_pipe|lfsr:lfsr_inst|lfsr_reg[3] ; 3       ;
 ; pipe_generator:u_pipe|lfsr:lfsr_inst|lfsr_reg[7] ; 3       ;
 ; pipe_generator:u_pipe|lfsr:lfsr_inst|lfsr_reg[5] ; 3       ;
+; pipe_generator:u_pipe|lfsr:lfsr_inst|lfsr_reg[3] ; 3       ;
 ; bouncy_ball:u_ball|previous_left_status          ; 2       ;
 ; MOUSE:u_mouse|SHIFTOUT[3]                        ; 1       ;
 ; MOUSE:u_mouse|SHIFTOUT[5]                        ; 1       ;
@@ -482,24 +487,25 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------+
-; 3:1                ; 27 bits   ; 54 LEs        ; 0 LEs                ; 54 LEs                 ; Yes        ; |de0_cv_top|play_delay_counter[10]                                                                  ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|red_out[2]                                                          ;
+; 3:1                ; 27 bits   ; 54 LEs        ; 0 LEs                ; 54 LEs                 ; Yes        ; |de0_cv_top|play_delay_counter[18]                                                                  ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |de0_cv_top|pass_score[9]                                                                           ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|blue_out[3]                                                         ;
 ; 7:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|green_out[0]                                                        ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_four_Counter|SevenSeg_out    ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter|SevenSeg_out     ;
 ; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_four_Counter|SevenSeg_out    ;
-; 6:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; No         ; |de0_cv_top|font_row[1]                                                                             ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; No         ; |de0_cv_top|font_row[2]                                                                             ;
 ; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_three_Counter|SevenSeg_out   ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_six_Counter|SevenSeg_out[4]  ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_six_Counter|SevenSeg_out[3]  ;
 ; 8:1                ; 3 bits    ; 15 LEs        ; 6 LEs                ; 9 LEs                  ; No         ; |de0_cv_top|font_col[2]                                                                             ;
 ; 9:1                ; 5 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_three_Counter|SevenSeg_out   ;
-; 9:1                ; 5 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_six_Counter|SevenSeg_out[1]  ;
+; 9:1                ; 5 bits    ; 30 LEs        ; 30 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_six_Counter|SevenSeg_out[5]  ;
 ; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; No         ; |de0_cv_top|game_state                                                                              ;
-; 10:1               ; 3 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; No         ; |de0_cv_top|Add8                                                                                    ;
+; 10:1               ; 3 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; No         ; |de0_cv_top|Add18                                                                                   ;
 ; 10:1               ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |de0_cv_top|game_state                                                                              ;
 ; 14:1               ; 5 bits    ; 45 LEs        ; 45 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_two_Counter|SevenSeg_out     ;
-; 14:1               ; 2 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter|SevenSeg_out[2] ;
-; 14:1               ; 6 bits    ; 54 LEs        ; 54 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|char_address[0]                                                                         ;
+; 14:1               ; 2 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter|SevenSeg_out[1] ;
+; 14:1               ; 6 bits    ; 54 LEs        ; 54 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|char_address[2]                                                                         ;
 ; 17:1               ; 2 bits    ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter|SevenSeg_out[5] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------+
 
@@ -729,18 +735,41 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod1 ;
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Div0 ;
 +------------------------+----------------+------------------------+
 ; Parameter Name         ; Value          ; Type                   ;
 +------------------------+----------------+------------------------+
-; LPM_WIDTHN             ; 6              ; Untyped                ;
-; LPM_WIDTHD             ; 6              ; Untyped                ;
+; LPM_WIDTHN             ; 10             ; Untyped                ;
+; LPM_WIDTHD             ; 7              ; Untyped                ;
 ; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                ;
 ; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                ;
 ; LPM_PIPELINE           ; 0              ; Untyped                ;
 ; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                ;
 ; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
-; CBXI_PARAMETER         ; lpm_divide_82m ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_hbm ; Untyped                ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE         ;
++------------------------+----------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_divide:Mod1 ;
++------------------------+----------------+------------------------+
+; Parameter Name         ; Value          ; Type                   ;
++------------------------+----------------+------------------------+
+; LPM_WIDTHN             ; 10             ; Untyped                ;
+; LPM_WIDTHD             ; 10             ; Untyped                ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                ;
+; LPM_PIPELINE           ; 0              ; Untyped                ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_u4m ; Untyped                ;
 ; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
 ; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
 ; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
@@ -756,14 +785,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------------------+----------------+------------------------+
 ; Parameter Name         ; Value          ; Type                   ;
 +------------------------+----------------+------------------------+
-; LPM_WIDTHN             ; 6              ; Untyped                ;
+; LPM_WIDTHN             ; 10             ; Untyped                ;
 ; LPM_WIDTHD             ; 4              ; Untyped                ;
 ; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                ;
 ; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                ;
 ; LPM_PIPELINE           ; 0              ; Untyped                ;
 ; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                ;
 ; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
-; CBXI_PARAMETER         ; lpm_divide_3am ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_ebm ; Untyped                ;
 ; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
 ; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
 ; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
@@ -779,14 +808,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------------------+----------------+------------------------+
 ; Parameter Name         ; Value          ; Type                   ;
 +------------------------+----------------+------------------------+
-; LPM_WIDTHN             ; 6              ; Untyped                ;
-; LPM_WIDTHD             ; 6              ; Untyped                ;
+; LPM_WIDTHN             ; 10             ; Untyped                ;
+; LPM_WIDTHD             ; 10             ; Untyped                ;
 ; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                ;
 ; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                ;
 ; LPM_PIPELINE           ; 0              ; Untyped                ;
 ; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                ;
 ; MAXIMIZE_SPEED         ; 5              ; Untyped                ;
-; CBXI_PARAMETER         ; lpm_divide_82m ; Untyped                ;
+; CBXI_PARAMETER         ; lpm_divide_u4m ; Untyped                ;
 ; CARRY_CHAIN            ; MANUAL         ; Untyped                ;
 ; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                ;
 ; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY             ;
@@ -844,6 +873,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------+--------+----------+-------------------------------------------------------------------------------------+
 ; pipe_x_array[3] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 ; pipe_y_array[3] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; number_of_pipe  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
 +-----------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
@@ -863,42 +893,42 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 335                         ;
-;     CLR               ; 39                          ;
+; arriav_ff             ; 381                         ;
+;     CLR               ; 75                          ;
 ;     CLR SCLR          ; 20                          ;
 ;     ENA               ; 29                          ;
-;     ENA CLR           ; 110                         ;
+;     ENA CLR           ; 120                         ;
 ;     ENA CLR SCLR      ; 35                          ;
 ;     ENA SCLR          ; 10                          ;
 ;     SCLR              ; 18                          ;
 ;     plain             ; 74                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 1136                        ;
-;     arith             ; 388                         ;
-;         0 data inputs ; 32                          ;
-;         1 data inputs ; 283                         ;
-;         2 data inputs ; 43                          ;
-;         3 data inputs ; 25                          ;
-;         4 data inputs ; 5                           ;
-;     extend            ; 5                           ;
-;         7 data inputs ; 5                           ;
-;     normal            ; 717                         ;
+; arriav_lcell_comb     ; 1578                        ;
+;     arith             ; 603                         ;
+;         0 data inputs ; 68                          ;
+;         1 data inputs ; 365                         ;
+;         2 data inputs ; 46                          ;
+;         3 data inputs ; 84                          ;
+;         4 data inputs ; 40                          ;
+;     extend            ; 8                           ;
+;         7 data inputs ; 8                           ;
+;     normal            ; 933                         ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 26                          ;
-;         2 data inputs ; 97                          ;
-;         3 data inputs ; 75                          ;
-;         4 data inputs ; 120                         ;
-;         5 data inputs ; 221                         ;
-;         6 data inputs ; 177                         ;
-;     shared            ; 26                          ;
-;         0 data inputs ; 6                           ;
-;         1 data inputs ; 10                          ;
+;         1 data inputs ; 37                          ;
+;         2 data inputs ; 193                         ;
+;         3 data inputs ; 127                         ;
+;         4 data inputs ; 151                         ;
+;         5 data inputs ; 274                         ;
+;         6 data inputs ; 150                         ;
+;     shared            ; 34                          ;
+;         0 data inputs ; 7                           ;
+;         1 data inputs ; 17                          ;
 ;         2 data inputs ; 10                          ;
 ; boundary_port         ; 65                          ;
 ; stratixv_ram_block    ; 20                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 14.00                       ;
-; Average LUT depth     ; 6.50                        ;
+; Max LUT depth         ; 17.70                       ;
+; Average LUT depth     ; 8.66                        ;
 +-----------------------+-----------------------------+
 
 
@@ -907,7 +937,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:09     ;
 +----------------+--------------+
 
 
@@ -917,7 +947,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Thu May 29 18:57:45 2025
+    Info: Processing started: Thu May 29 20:07:57 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ParentProject -c top_de0_cv
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
@@ -941,7 +971,7 @@ Info (12021): Found 1 design units, including 0 entities, in source file vhdl_fi
     Info (12022): Found design unit 1: ascii_codes File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/ascii_codes.vhd Line: 5
 Info (12021): Found 0 design units, including 0 entities, in source file vhdl_files/screen_ram.vhd
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/sevensegdisplay.vhd
-    Info (12022): Found design unit 1: SevenSegDisplay-Behavioral File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 18
+    Info (12022): Found design unit 1: SevenSegDisplay-Behavioral File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 19
     Info (12023): Found entity 1: SevenSegDisplay File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file vhdl_files/alphanumeric_to_sevenseg.vhd
     Info (12022): Found design unit 1: Alphanumeric_to_SevenSeg-arc1 File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/Alphanumeric_to_SevenSeg.vhd Line: 11
@@ -979,22 +1009,24 @@ Info (12021): Found 2 design units, including 1 entities, in source file main_ch
     Info (12022): Found design unit 1: main_char_rom-SYN File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/Main_Char_ROM.vhd Line: 53
     Info (12023): Found entity 1: Main_Char_ROM File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/Main_Char_ROM.vhd Line: 43
 Info (12127): Elaborating entity "de0_cv_top" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(171): object "show_pipes" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 171
-Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(177): object "mouse_row" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 177
-Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(177): object "mouse_col" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 177
-Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(179): object "right_btn" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 179
-Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(183): used explicit default value for signal "wrapped_r" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 183
-Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(184): used explicit default value for signal "wrapped_g" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 184
-Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(185): used explicit default value for signal "wrapped_b" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 185
-Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(252): used explicit default value for signal "pipe_gap" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 252
-Warning (10492): VHDL Process Statement warning at de0_cv_top.vhd(917): signal "pipes_go" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 917
-Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 531
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(173): object "show_pipes" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 173
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(179): object "mouse_row" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 179
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(179): object "mouse_col" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 179
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(181): object "right_btn" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 181
+Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(185): used explicit default value for signal "wrapped_r" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 185
+Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(186): used explicit default value for signal "wrapped_g" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 186
+Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(187): used explicit default value for signal "wrapped_b" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 187
+Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(254): used explicit default value for signal "pipe_gap" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 254
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(331): object "number_of_pipe" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 331
+Warning (10631): VHDL Process Statement warning at de0_cv_top.vhd(542): inferring latch(es) for signal or variable "prev_pipe_x", which holds its previous value in one or more paths through the process File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 542
+Warning (10492): VHDL Process Statement warning at de0_cv_top.vhd(970): signal "pipes_go" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 970
+Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 586
 Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 25
 Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 151
 Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 155
 Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 156
 Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 157
-Info (12128): Elaborating entity "bouncy_ball" for hierarchy "bouncy_ball:u_ball" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 546
+Info (12128): Elaborating entity "bouncy_ball" for hierarchy "bouncy_ball:u_ball" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 601
 Info (12128): Elaborating entity "Main_Char_ROM" for hierarchy "bouncy_ball:u_ball|Main_Char_ROM:sprite_rom" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/bouncy_ball.vhd Line: 95
 Info (12128): Elaborating entity "altsyncram" for hierarchy "bouncy_ball:u_ball|Main_Char_ROM:sprite_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/Main_Char_ROM.vhd Line: 60
 Info (12130): Elaborated megafunction instantiation "bouncy_ball:u_ball|Main_Char_ROM:sprite_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/Main_Char_ROM.vhd Line: 60
@@ -1052,10 +1084,10 @@ Info (12133): Instantiated megafunction "bouncy_ball:u_ball|Main_Char_ROM:sprite
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_j034.tdf
     Info (12023): Found entity 1: altsyncram_j034 File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_j034.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_j034" for hierarchy "bouncy_ball:u_ball|Main_Char_ROM:sprite_rom|altsyncram:altsyncram_component|altsyncram_j034:auto_generated" File: c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 566
-Info (12128): Elaborating entity "SevenSegDisplay" for hierarchy "SevenSegDisplay:u_seven_seg" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 585
-Info (12128): Elaborating entity "Alphanumeric_to_SevenSeg" for hierarchy "SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 152
-Info (12128): Elaborating entity "pipe_generator" for hierarchy "pipe_generator:u_pipe" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 600
+Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:u_vga_sync" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 621
+Info (12128): Elaborating entity "SevenSegDisplay" for hierarchy "SevenSegDisplay:u_seven_seg" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 640
+Info (12128): Elaborating entity "Alphanumeric_to_SevenSeg" for hierarchy "SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/SevenSegDisplay.vhd Line: 153
+Info (12128): Elaborating entity "pipe_generator" for hierarchy "pipe_generator:u_pipe" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 656
 Warning (10540): VHDL Signal Declaration warning at pipe_generator.vhd(75): used explicit default value for signal "load_seed" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 75
 Warning (10492): VHDL Process Statement warning at pipe_generator.vhd(148): signal "seed_counter" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 148
 Warning (10631): VHDL Process Statement warning at pipe_generator.vhd(129): inferring latch(es) for signal or variable "pipe_y_internal", which holds its previous value in one or more paths through the process File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 129
@@ -1073,7 +1105,7 @@ Info (10041): Inferred latch for "pipe_y_internal[3][8]" at pipe_generator.vhd(1
 Info (10041): Inferred latch for "pipe_y_internal[3][9]" at pipe_generator.vhd(129) File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 129
 Info (10041): Inferred latch for "pipe_y_internal[3][10]" at pipe_generator.vhd(129) File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 129
 Info (12128): Elaborating entity "lfsr" for hierarchy "pipe_generator:u_pipe|lfsr:lfsr_inst" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 90
-Info (12128): Elaborating entity "char_rom" for hierarchy "char_rom:u_char_rom" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 896
+Info (12128): Elaborating entity "char_rom" for hierarchy "char_rom:u_char_rom" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 949
 Info (12128): Elaborating entity "altsyncram" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
 Info (12130): Elaborated megafunction instantiation "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
 Info (12133): Instantiated megafunction "char_rom:u_char_rom|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
@@ -1094,13 +1126,14 @@ Info (12133): Instantiated megafunction "char_rom:u_char_rom|altsyncram:altsyncr
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_d5g1.tdf
     Info (12023): Found entity 1: altsyncram_d5g1 File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/altsyncram_d5g1.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_d5g1" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated" File: c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (278001): Inferred 6 megafunctions from design logic
+Info (278001): Inferred 7 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "pipe_generator:u_pipe|Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 178
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "pipe_generator:u_pipe|Mod0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 148
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "pipe_generator:u_pipe|Mod2" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 185
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 631
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 630
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 630
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 683
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 685
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 684
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 684
 Info (12130): Elaborated megafunction instantiation "pipe_generator:u_pipe|lpm_divide:Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 178
 Info (12133): Instantiated megafunction "pipe_generator:u_pipe|lpm_divide:Mod1" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 178
     Info (12134): Parameter "LPM_WIDTHN" = "10"
@@ -1125,30 +1158,36 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/sign
     Info (12023): Found entity 1: sign_div_unsign_5kh File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_5kh.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_gse.tdf
     Info (12023): Found entity 1: alt_u_div_gse File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_gse.tdf Line: 23
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 631
-Info (12133): Instantiated megafunction "lpm_divide:Mod1" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 631
-    Info (12134): Parameter "LPM_WIDTHN" = "6"
-    Info (12134): Parameter "LPM_WIDTHD" = "6"
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 683
+Info (12133): Instantiated megafunction "lpm_divide:Div0" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 683
+    Info (12134): Parameter "LPM_WIDTHN" = "10"
+    Info (12134): Parameter "LPM_WIDTHD" = "7"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_82m.tdf
-    Info (12023): Found entity 1: lpm_divide_82m File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_82m.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_bkh.tdf
-    Info (12023): Found entity 1: sign_div_unsign_bkh File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_bkh.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_sse.tdf
-    Info (12023): Found entity 1: alt_u_div_sse File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_sse.tdf Line: 23
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 630
-Info (12133): Instantiated megafunction "lpm_divide:Div1" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 630
-    Info (12134): Parameter "LPM_WIDTHN" = "6"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_hbm.tdf
+    Info (12023): Found entity 1: lpm_divide_hbm File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_hbm.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_nlh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_nlh File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_nlh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_kve.tdf
+    Info (12023): Found entity 1: alt_u_div_kve File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_kve.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 685
+Info (12133): Instantiated megafunction "lpm_divide:Mod1" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 685
+    Info (12134): Parameter "LPM_WIDTHN" = "10"
+    Info (12134): Parameter "LPM_WIDTHD" = "10"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 684
+Info (12133): Instantiated megafunction "lpm_divide:Div1" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 684
+    Info (12134): Parameter "LPM_WIDTHN" = "10"
     Info (12134): Parameter "LPM_WIDTHD" = "4"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_3am.tdf
-    Info (12023): Found entity 1: lpm_divide_3am File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_3am.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_9kh.tdf
-    Info (12023): Found entity 1: sign_div_unsign_9kh File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_9kh.tdf Line: 25
-Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_ose.tdf
-    Info (12023): Found entity 1: alt_u_div_ose File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_ose.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_ebm.tdf
+    Info (12023): Found entity 1: lpm_divide_ebm File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/lpm_divide_ebm.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_klh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_klh File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_klh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_eve.tdf
+    Info (12023): Found entity 1: alt_u_div_eve File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_eve.tdf Line: 23
 Info (13000): Registers with preset signals will power-up high File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 146
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
@@ -1197,16 +1236,16 @@ Warning (13024): Output pins are stuck at VCC or GND
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1330 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1794 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 6 input pins
     Info (21059): Implemented 57 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 1245 logic cells
+    Info (21061): Implemented 1709 logic cells
     Info (21064): Implemented 20 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 76 warnings
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 78 warnings
     Info: Peak virtual memory: 5007 megabytes
-    Info: Processing ended: Thu May 29 18:57:55 2025
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:18
+    Info: Processing ended: Thu May 29 20:08:15 2025
+    Info: Elapsed time: 00:00:18
+    Info: Total CPU time (on all processors): 00:00:27
 
 

@@ -104,12 +104,14 @@ architecture rtl of de0_cv_top is
     port(
       clk          : in  std_logic;
       display_mode : in  std_logic_vector(2 downto 0);
+      score_in     : in  integer range 0 to 999; 
       digit_one    : out std_logic_vector(6 downto 0);
       digit_two    : out std_logic_vector(6 downto 0);
       digit_three  : out std_logic_vector(6 downto 0);
       digit_four   : out std_logic_vector(6 downto 0);
       digit_five   : out std_logic_vector(6 downto 0);
       digit_six    : out std_logic_vector(6 downto 0)
+      
     );
   end component;
 
@@ -252,6 +254,7 @@ architecture rtl of de0_cv_top is
   signal pipe_gap : std_logic_vector(9 downto 0) := std_logic_vector(to_unsigned(100,10));
   signal pipe_gap_int : integer;                          -- integer gap height
   signal pipe_green                   : std_logic;              -- pipe pixel flag
+  
 
   ----------------------------------------------------------------
   -- Collision & bird outputs
@@ -260,6 +263,18 @@ architecture rtl of de0_cv_top is
   signal collision                    : std_logic;     -- latched collision flag
   signal collision_detect             : std_logic;              -- combinational detect
   signal bird_row, bird_col           : std_logic_vector(9 downto 0); -- bird position
+
+    ----------------------------------------------------------------
+  -- Signals to hold your true “pass‐through” score and per‐pipe flags
+
+  constant PIPE_WIDTH    : integer := 50;
+  constant GAP_HEIGHT    : integer := 100;
+  constant NUM_PIPES     : integer := 3;
+  signal prev_pipe_x : pipe_array_type := (others => (others => '0'));
+  ----------------------------------------------------------------
+  signal pass_score     : integer range 0 to 999 := 0;
+  signal passed_pipe    : std_logic_vector(NUM_PIPES-1 downto 0) := (others=>'0');
+  signal prev_bird_col  : integer range 0 to 1023 := 0;
 
   ----------------------------------------------------------------
   -- Constants for text sizing & positioning
@@ -295,9 +310,6 @@ architecture rtl of de0_cv_top is
   constant OPT2_H_OFF    : integer := (640 - OPT2_STR'length*(CHAR_W/2))/2;
   constant OPT2_V_OFF    : integer := OPT1_V_OFF + (CHAR_H/2) + 10;
 
-  constant PIPE_WIDTH    : integer := 50;
-  constant GAP_HEIGHT    : integer := 100;
-  constant NUM_PIPES     : integer := 3;
 
   -- Death screen text
   constant DEATH_STR    : string(1 to  9) := "YOU DIED!";
@@ -455,7 +467,7 @@ end process;
           when S_PLAY | S_TRAIN =>
             if collision = '1' then
               game_state <= S_DEATH;  -- on collision → death
-            elsif to_integer(unsigned(number_of_pipe)) >= 18 then -- Game over condition using integer cast
+            elsif pass_score >= 18 then -- Game over condition using integer cast
               game_state <= S_TITLE;  -- return to title after 18 pipes
             end if;
 
@@ -524,6 +536,49 @@ end process;
     end case;
   end process;
 
+   ----------------------------------------------------------------
+  -- B) Synchronous process that watches each pipe & the bird
+  ----------------------------------------------------------------
+ score_detect : process(clk25, reset_i)
+  variable bird_r_int : integer;
+  variable pipe_x_int : integer;
+  variable pipe_y_int : integer;
+begin
+  if reset_i = '1' then
+    pass_score    <= 0;
+    passed_pipe   <= (others => '0');
+    prev_pipe_x   <= (others => (others => '0'));
+  elsif rising_edge(clk25) then
+    bird_r_int := to_integer(unsigned(bird_row));
+
+    for i in 0 to NUM_PIPES-1 loop
+      pipe_x_int := to_integer(unsigned(pipe_x_array(i)));
+      pipe_y_int := to_integer(unsigned(pipe_y_array(i)));
+
+      -- Did pipe i’s trailing edge just sweep past the bird’s fixed column?
+      if passed_pipe(i) = '0' and
+         to_integer(unsigned(prev_pipe_x(i))) + PIPE_WIDTH >= to_integer(unsigned(bird_col)) and
+         pipe_x_int           + PIPE_WIDTH <  to_integer(unsigned(bird_col)) then
+
+        -- Only score if bird’s center is inside the gap vertically
+        if bird_r_int >= pipe_y_int and
+           bird_r_int <= pipe_y_int + pipe_gap_int then
+          pass_score <= pass_score + 1;
+        end if;
+        passed_pipe(i) <= '1';
+      end if;
+
+      -- clear flag when this pipe wraps from left back to the right
+      if pipe_x_int > to_integer(unsigned(prev_pipe_x(i))) then
+        passed_pipe(i) <= '0';
+      end if;
+
+      -- remember this cycle’s X for next time
+      prev_pipe_x(i) <= std_logic_vector(to_unsigned(pipe_x_int, prev_pipe_x(i)'length));
+    end loop;
+  end if;
+end process;
+
 
   ----------------------------------------------------------------
   -- Mouse interface
@@ -586,6 +641,7 @@ end process;
     port map(
       clk          => clk25,
       display_mode => display_mode,   -- selected above
+      score_in     => pass_score,    
       digit_one    => HEX0,
       digit_two    => HEX1,
       digit_three  => HEX2,
@@ -621,19 +677,16 @@ end process;
 ----------------------------------------------------------------
 --  Convert your 6-bit pipe count into three ASCII digits
 ----------------------------------------------------------------
-  score_proc: process(number_of_pipe)
-  variable score_int : integer;
-  variable h, t, u   : integer;
-begin
-  score_int := to_integer(unsigned(number_of_pipe));
-  h := score_int / 100;
-  t := (score_int / 10) mod 10;
-  u := score_int mod 10;
-
-  ascii_score_h <= ascii_map(character'val(character'pos('0') + h));
-  ascii_score_t <= ascii_map(character'val(character'pos('0') + t));
-  ascii_score_u <= ascii_map(character'val(character'pos('0') + u));
-end process;
+  score_proc: process(pass_score)
+    variable h, t, u : integer;
+  begin
+    h := pass_score / 100;
+    t := (pass_score / 10) mod 10;
+    u := pass_score mod 10;
+    ascii_score_h <= ascii_map(character'val(character'pos('0') + h));
+    ascii_score_t <= ascii_map(character'val(character'pos('0') + t));
+    ascii_score_u <= ascii_map(character'val(character'pos('0') + u));
+  end process;
 
   ----------------------------------------------------------------
   -- TITLE overlay region

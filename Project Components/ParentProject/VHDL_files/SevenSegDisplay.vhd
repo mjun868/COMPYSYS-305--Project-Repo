@@ -6,6 +6,7 @@ entity SevenSegDisplay is
     Port (
         clk          : in  std_logic;  
         display_mode : in  std_logic_vector(2 downto 0);
+        score_in     : in  integer range 0 to 999; 
         digit_one    : out std_logic_vector(6 downto 0);
         digit_two    : out std_logic_vector(6 downto 0);
         digit_three  : out std_logic_vector(6 downto 0);
