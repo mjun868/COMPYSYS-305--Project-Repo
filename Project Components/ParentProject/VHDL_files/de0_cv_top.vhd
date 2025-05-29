@@ -142,7 +142,6 @@ architecture rtl of de0_cv_top is
       pix_col       : in  std_logic_vector(9 downto 0);
       pipe_x_array  : out pipe_array_type;
       pipe_y_array  : out pipe_array_type;
-      number_of_pipe : out std_logic_vector(5 downto 0);
       green_out     : out std_logic
     );
   end component;
@@ -170,7 +169,8 @@ architecture rtl of de0_cv_top is
     S_TITLE, S_GS, S_TRAIN, S_PLAY, S_DEATH
   );
   signal game_state                   : game_state_t := S_TITLE;
-  signal show_pipes                   : std_logic;              -- gate for pipe drawing
+ 
+
 
   signal pix_row, pix_col             : std_logic_vector(9 downto 0); -- VGA pixel coords
   signal video_on, vsync_sig          : std_logic;              -- VGA video on & vsync
@@ -256,13 +256,6 @@ architecture rtl of de0_cv_top is
   signal pipe_green                   : std_logic;              -- pipe pixel flag
   
 
-  ----------------------------------------------------------------
-  -- Collision & bird outputs
-  ----------------------------------------------------------------
-  signal ball_on_sig                  : std_logic;              -- bird drawn?
-  signal collision                    : std_logic;     -- latched collision flag
-  signal collision_detect             : std_logic;              -- combinational detect
-  signal bird_row, bird_col           : std_logic_vector(9 downto 0); -- bird position
 
     ----------------------------------------------------------------
   -- Signals to hold your true “pass‐through” score and per‐pipe flags
@@ -271,12 +264,33 @@ architecture rtl of de0_cv_top is
   constant GAP_HEIGHT    : integer := 100;
   constant NUM_PIPES     : integer := 3;
   signal prev_pipe_x : pipe_array_type := (others => (others => '0'));
+  constant ZERO_OVERLAP : std_logic_vector(NUM_PIPES-1 downto 0) := (others => '0');
   ----------------------------------------------------------------
   signal pass_score     : integer range 0 to 999 := 0;
   signal passed_pipe    : std_logic_vector(NUM_PIPES-1 downto 0) := (others=>'0');
-  signal prev_bird_col  : integer range 0 to 1023 := 0;
+  
 
-  signal col_det_prev : std_logic := '0';
+    ----------------------------------------------------------------
+  -- Collision & bird outputs
+  ----------------------------------------------------------------
+  signal ball_on_sig                  : std_logic;              -- bird drawn?
+  signal collision                    : std_logic;     -- latched collision flag
+  signal collision_detect             : std_logic;              -- combinational detect
+  signal bird_row, bird_col           : std_logic_vector(9 downto 0); -- bird position
+
+ 
+   signal overlap_pipe                 : std_logic_vector(NUM_PIPES-1 downto 0) := (others => '0');
+  signal prev_overlap_pipe            : std_logic_vector(NUM_PIPES-1 downto 0) := (others => '0');
+  
+  signal prev_collision_detect : std_logic := '0';
+  
+  
+  signal dead_pipe : std_logic_vector(NUM_PIPES-1 downto 0) := (others => '0');
+  signal pipe_visible_pixel : std_logic;
+  constant ALL_DEAD : std_logic_vector(NUM_PIPES-1 downto 0) := (others => '1');
+
+
+
 
   ----------------------------------------------------------------
   -- Constants for text sizing & positioning
@@ -340,7 +354,6 @@ architecture rtl of de0_cv_top is
   signal play_delay_counter  : integer range 0 to PLAY_DELAY_CYCLES := 0;
   signal pipes_go            : std_logic := '0';      -- true once delay expires
 
-  signal number_of_pipe       : std_logic_vector(5 downto 0); -- Corrected declaration
 
    constant SCORE_H_OFF : integer := 10;            -- 10px from left
   constant SCORE_V_OFF : integer := 10;            -- 10px from top
@@ -483,10 +496,10 @@ end process;
             game_state <= S_TITLE;  -- win condition
           end if;
 
-        when S_TRAIN =>
-          if lives_left = 0 then
-            game_state <= S_DEATH;
-          end if;
+       -- when S_TRAIN =>
+         -- if lives_left = 0 then
+           -- game_state <= S_DEATH;
+          -- end if;
 
         when S_DEATH =>
           if pb2_rising = '1' then
@@ -521,12 +534,6 @@ end process fsm;
       end if;
     end if;
   end process;
-
-  ----------------------------------------------------------------
-  -- Pipe visibility control
-  ----------------------------------------------------------------
-  show_pipes <= '1' when (game_state = S_PLAY or game_state = S_TRAIN)
-                else '0';
 
   ----------------------------------------------------------------
   -- Seven-segment display mapping by mode
@@ -700,13 +707,14 @@ end process score_detect;
       pix_col      => pix_col,
       pipe_x_array => pipe_x_array,   -- X positions
       pipe_y_array => pipe_y_array,   -- gap Y positions
-      number_of_pipe => number_of_pipe, -- Connect the number of passed pipes
       green_out    => pipe_green      -- pipe pixel flag
     );
 
   pipe_gap_int <= to_integer(unsigned(pipe_gap));  
                                      -- convert std_logic_vector to int
-                                     
+
+                              
+                                    
 ----------------------------------------------------------------
 --  Convert your 6-bit pipe count into three ASCII digits
 ----------------------------------------------------------------
@@ -1018,11 +1026,9 @@ ascii_code_lives <=
       rom_mux_output    => rom_output   -- pixel on/off for text
     );
 
-
-
-----------------------------------------------------------------
--- Per-pixel collision detection 
-----------------------------------------------------------------
+------------------------------------------------------------------------
+-- 1) collision_detect_proc  (combinational)
+------------------------------------------------------------------------
 collision_detect_proc : process(bird_row,
                                 bird_col,
                                 pipe_x_array,
@@ -1030,86 +1036,109 @@ collision_detect_proc : process(bird_row,
                                 pipe_gap_int,
                                 ball_on_sig,
                                 pipes_go)
-  variable bird_r_int  : integer;
-  variable bird_c_int  : integer;
-  variable px_int      : integer;
-  variable py_int      : integer;
+  -- variables must go *here*, before the “begin”
+  variable bird_r_int : integer;
+  variable bird_c_int : integer;
+  variable px_int     : integer;
+  variable py_int     : integer;
 begin
-  -- If we’re not actually in PLAY or TRAIN (pipes not moving),
-  -- force no collision
-  if ball_on_sig = '1' and pipes_go = '1' then
-    -- start by clearing the flag
+  -- compute once
+  bird_r_int := to_integer(unsigned(bird_row));
+  bird_c_int := to_integer(unsigned(bird_col));
+
+  for i in 0 to NUM_PIPES-1 loop
+    px_int := to_integer(unsigned(pipe_x_array(i)));
+    py_int := to_integer(unsigned(pipe_y_array(i)));
+
+    if ball_on_sig = '1' and pipes_go = '1' and
+       bird_c_int >= px_int and bird_c_int < px_int + PIPE_WIDTH and
+       (bird_r_int < py_int or bird_r_int > py_int + pipe_gap_int) then
+      overlap_pipe(i) <= '1';
+    else
+      overlap_pipe(i) <= '0';
+    end if;
+  end loop;
+
+  if overlap_pipe /= ZERO_OVERLAP then
+    collision_detect <= '1';
+  else
     collision_detect <= '0';
+  end if;
 
-    bird_r_int := to_integer(unsigned(bird_row));
-    bird_c_int := to_integer(unsigned(bird_col));
+end process collision_detect_proc;
+------------------------------------------------------------------------
+-- 2) collision_reg (clocked, TRAIN exit-detect)
+------------------------------------------------------------------------
+collision_reg : process(clk25, reset_i)
+begin
+  if reset_i = '1' then
+    lives_left            <= 3;
+    train_bg_white        <= '1';
+    prev_collision_detect <= '0';
+    collision             <= '0';
+    dead_pipe             <= (others => '0');  -- ① clear dead flags on reset
+    prev_overlap_pipe     <= (others => '0');  -- ① init previous overlaps
+  elsif rising_edge(clk25) then
 
-    for i in 0 to NUM_PIPES-1 loop
-      px_int := to_integer(unsigned(pipe_x_array(i)));
-      py_int := to_integer(unsigned(pipe_y_array(i)));
-
-      -- If bird overlaps a pipe column…
-      if bird_c_int >= px_int and bird_c_int < px_int + PIPE_WIDTH then
-        -- …and its row is outside the gap, flag a collision
-        if bird_r_int < py_int or bird_r_int > py_int + pipe_gap_int then
-          collision_detect <= '1';
+    -- 1) In TRAIN mode: on new collision, decrement & kill that pipe
+    if game_state = S_TRAIN then
+      for i in 0 to NUM_PIPES-1 loop
+        if prev_overlap_pipe(i) = '0' and overlap_pipe(i) = '1' then
+          if lives_left > 0 then
+            lives_left     <= lives_left - 1;
+            train_bg_white <= not train_bg_white;
+          end if;
+          dead_pipe(i) <= '1';              -- ② mark this pipe dead
         end if;
+      end loop;
+    end if;
+
+    -- 2) PLAY‐mode collision latch
+    if game_state = S_PLAY and collision_detect = '1' then
+      collision <= '1';
+    end if;
+
+    -- 3) Clear dead flag when a pipe wraps around (re-enters on right)
+    --    You need access to the previous X from your pipe generator; for example:
+    for i in 0 to NUM_PIPES-1 loop
+      if to_integer(unsigned(pipe_x_array(i))) > to_integer(unsigned(prev_pipe_x(i))) then
+        dead_pipe(i) <= '0';              -- revive pipe on wrap
       end if;
     end loop;
 
-  else
-    -- whenever pipes_are_stopped or the bird isn’t on-screen
-    collision_detect <= '0';
-  end if;
-end process collision_detect_proc;
-
-  ----------------------------------------------------------------
-  -- Collision register: edge‐detect collision_detect
-  ----------------------------------------------------------------
- collision_reg : process(clk25, reset_i)
-begin
-  if reset_i = '1' then
-    collision      <= '0';
-    train_bg_white <= '1';
-    lives_left     <= 3;
-    col_det_prev   <= '0';
-
-  elsif rising_edge(clk25) then
-    col_det_prev <= collision_detect;
-
-    case game_state is
-      when S_TITLE =>
-        collision      <= '0';
-        train_bg_white <= '1';
-        lives_left     <= 3;
-
-      when S_TRAIN =>
-        collision <= '0';  -- explicitly prevent collision from setting in TRAIN mode
-        if collision_detect = '1' and col_det_prev = '0' then
-          if lives_left > 0 then
-            lives_left <= lives_left - 1;
-            train_bg_white <= not train_bg_white;
-          end if;
-        end if;
-
-      when S_PLAY =>
-        if collision_detect = '1' then
-          collision <= '1';
-        end if;
-
-      when S_DEATH =>
-        collision      <= '0';
-        lives_left     <= 3;  -- Reset lives when transitioning from death screen
-
-      when others =>
-        collision <= '0';
-    end case;
+    -- 4) Remember last collision detect and overlaps
+    prev_collision_detect <= collision_detect;
+    prev_overlap_pipe     <= overlap_pipe;
   end if;
 end process collision_reg;
+
+ ----------------------------------------------------------------
+  -- 3) pipe_visible_pixel (combinational): only drive visible
+  ----------------------------------------------------------------
+ pipe_vis_proc : process(pipe_green, overlap_pipe, game_state, pix_col, pipe_x_array)
+  variable show : std_logic := '0';
+begin
+  show := '0';
+  if pipe_green = '1' then
+    -- See which pipe this pixel belongs to
+    for i in 0 to NUM_PIPES-1 loop
+      if unsigned(pix_col) >= unsigned(pipe_x_array(i)) and
+         unsigned(pix_col) <  unsigned(pipe_x_array(i)) + PIPE_WIDTH then
+
+        -- In TRAIN mode, if we just overlapped pipe i, blank it for this frame
+        if not (game_state = S_TRAIN and overlap_pipe(i) = '1') then
+          show := '1';
+        end if;
+      end if;
+    end loop;
+  end if;
+
+  pipe_visible_pixel <= show;
+end process pipe_vis_proc;
   ----------------------------------------------------------------
   -- Final RGB mux: choose between text, ball, pipes, background
   ----------------------------------------------------------------
-  final_r <=
+  final_r <= (others => '0') when video_on = '0' else
        "1111" when (rom_output = '1' and in_lives = '1')        else  -- draw lives overlay (white)
        "1111" when (rom_output = '1' and in_score = '1')       else  -- yellow score digits
        "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
@@ -1118,12 +1147,12 @@ end process collision_reg;
                       in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
                       in_death1  = '1' or in_death2  = '1' ))   else
        color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "0000"  when (pipe_green = '1' and pipes_go = '1')        else
+       "0000"  when (pipe_visible_pixel = '1' and pipes_go = '1')        else
        "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
        "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_r);
 
-  final_g <=
+  final_g <= (others => '0') when video_on = '0' else
        "1111" when (rom_output = '1' and in_lives = '1')        else  -- lives overlay
        "1111" when (rom_output = '1' and in_score = '1')       else
        "0000" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
@@ -1132,12 +1161,12 @@ end process collision_reg;
                       in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
                       in_death1  = '1' or in_death2  = '1' ))   else
        color_g when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "1111"  when (pipe_green = '1' and pipes_go = '1')        else
+       "1111"  when (pipe_visible_pixel = '1' and pipes_go = '1')        else
        "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
        "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_g);
 
-  final_b <=
+  final_b <= (others => '0') when video_on = '0' else
        "0000" when (rom_output = '1' and in_lives = '1')        else  -- lives overlay
        "0000" when (rom_output = '1' and in_score = '1')       else
        "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
@@ -1146,7 +1175,7 @@ end process collision_reg;
                       in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
                       in_death1  = '1' or in_death2  = '1' ))   else
        color_b when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "0000"  when (pipe_green = '1' and pipes_go = '1')        else
+       "0000"  when (pipe_visible_pixel = '1' and pipes_go = '1')        else
        "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
        "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_b);

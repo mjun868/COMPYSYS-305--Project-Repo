@@ -1,5 +1,5 @@
 Assembler report for top_de0_cv
-Fri May 30 01:38:50 2025
+Fri May 30 11:29:01 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -39,7 +39,7 @@ on the Quartus Prime software download page.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Fri May 30 01:38:50 2025 ;
+; Assembler Status      ; Successful - Fri May 30 11:29:01 2025 ;
 ; Revision Name         ; top_de0_cv                            ;
 ; Top-level Entity Name ; de0_cv_top                            ;
 ; Family                ; Cyclone V                             ;
@@ -69,8 +69,8 @@ on the Quartus Prime software download page.
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Option         ; Setting                                                                                                                                                       ;
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x007E99F8                                                                                                                                                    ;
-; Checksum       ; 0x007E99F8                                                                                                                                                    ;
+; JTAG usercode  ; 0x007D66AA                                                                                                                                                    ;
+; Checksum       ; 0x007D66AA                                                                                                                                                    ;
 +----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
@@ -80,7 +80,7 @@ on the Quartus Prime software download page.
 ; Option             ; Setting                                                                                                                                                   ;
 +--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; JTAG usercode      ; 0x00000000                                                                                                                                                ;
-; Checksum           ; 0x7440E62D                                                                                                                                                ;
+; Checksum           ; 0x747145C2                                                                                                                                                ;
 ; Compression Ratio  ; 3                                                                                                                                                         ;
 +--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
@@ -91,7 +91,7 @@ on the Quartus Prime software download page.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Fri May 30 01:38:46 2025
+    Info: Processing started: Fri May 30 11:28:57 2025
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off ParentProject -c top_de0_cv
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
@@ -113,8 +113,8 @@ Warning (18236): Number of processors has not been specified which may cause ove
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 9 warnings
     Info: Peak virtual memory: 5004 megabytes
-    Info: Processing ended: Fri May 30 01:38:50 2025
+    Info: Processing ended: Fri May 30 11:29:01 2025
     Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Total CPU time (on all processors): 00:00:03
 
 

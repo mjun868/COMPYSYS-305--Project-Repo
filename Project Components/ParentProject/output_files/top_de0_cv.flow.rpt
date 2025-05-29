@@ -1,5 +1,5 @@
 Flow report for top_de0_cv
-Fri May 30 01:39:01 2025
+Fri May 30 11:29:11 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -41,15 +41,15 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Flow Summary                                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Flow Status                     ; Successful - Fri May 30 01:38:50 2025           ;
+; Flow Status                     ; Successful - Fri May 30 11:29:01 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
 ; Family                          ; Cyclone V                                       ;
 ; Device                          ; 5CEBA4F23C7                                     ;
 ; Timing Models                   ; Final                                           ;
-; Logic utilization (in ALMs)     ; 1,093 / 18,480 ( 6 % )                          ;
-; Total registers                 ; 478                                             ;
+; Logic utilization (in ALMs)     ; 1,150 / 18,480 ( 6 % )                          ;
+; Total registers                 ; 428                                             ;
 ; Total pins                      ; 65 / 224 ( 29 % )                               ;
 ; Total virtual pins              ; 0                                               ;
 ; Total block memory bits         ; 16,384 / 3,153,920 ( < 1 % )                    ;
@@ -68,41 +68,45 @@ on the Quartus Prime software download page.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/30/2025 01:33:17 ;
+; Start date & time ; 05/30/2025 11:23:55 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; top_de0_cv          ;
 +-------------------+---------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                               ;
-+-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
-; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id                        ;
-+-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 59876681335123.174852559711052         ; --            ; --          ; --                                ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_timing           ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_boundary_scan    ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_signal_integrity ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_symbol           ;
-; FITTER_EFFORT                       ; Standard Fit                           ; Auto Fit      ; --          ; --                                ;
-; FLOW_ENABLE_RTL_VIEWER              ; On                                     ; Off           ; --          ; --                                ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --                                ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --                                ;
-; MISC_FILE                           ; Main_Char_ROM.cmp                      ; --            ; --          ; --                                ;
-; OPTIMIZATION_TECHNIQUE              ; Speed                                  ; Balanced      ; --          ; --                                ;
-; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                      ; --            ; --          ; --                                ;
-; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                      ; --            ; --          ; --                                ;
-; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                             ; --            ; --          ; --                                ;
-; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                             ; --            ; --          ; --                                ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; de0_cv_top  ; Top                               ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; de0_cv_top  ; Top                               ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; de0_cv_top  ; Top                               ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --            ; --          ; --                                ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --            ; --          ; --                                ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --                                ;
-; SMART_RECOMPILE                     ; On                                     ; Off           ; --          ; --                                ;
-; TOP_LEVEL_ENTITY                    ; de0_cv_top                             ; top_de0_cv    ; --          ; --                                ;
-+-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                           ;
++--------------------------------------------+----------------------------------------+--------------------+-------------+-----------------------------------+
+; Assignment Name                            ; Value                                  ; Default Value      ; Entity Name ; Section Id                        ;
++--------------------------------------------+----------------------------------------+--------------------+-------------+-----------------------------------+
+; COMPILER_SIGNATURE_ID                      ; 59876681335123.174856103515952         ; --                 ; --          ; --                                ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST            ; Off                                    ; --                 ; --          ; eda_board_design_timing           ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST            ; Off                                    ; --                 ; --          ; eda_board_design_boundary_scan    ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST            ; Off                                    ; --                 ; --          ; eda_board_design_signal_integrity ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST            ; Off                                    ; --                 ; --          ; eda_board_design_symbol           ;
+; FINAL_PLACEMENT_OPTIMIZATION               ; Never                                  ; Automatically      ; --          ; --                                ;
+; FITTER_AGGRESSIVE_ROUTABILITY_OPTIMIZATION ; Never                                  ; Automatically      ; --          ; --                                ;
+; FITTER_EFFORT                              ; Fast Fit                               ; Auto Fit           ; --          ; --                                ;
+; FLOW_ENABLE_RTL_VIEWER                     ; On                                     ; Off                ; --          ; --                                ;
+; MAX_CORE_JUNCTION_TEMP                     ; 85                                     ; --                 ; --          ; --                                ;
+; MIN_CORE_JUNCTION_TEMP                     ; 0                                      ; --                 ; --          ; --                                ;
+; MISC_FILE                                  ; Main_Char_ROM.cmp                      ; --                 ; --          ; --                                ;
+; OPTIMIZATION_TECHNIQUE                     ; Speed                                  ; Balanced           ; --          ; --                                ;
+; OPTIMIZE_MULTI_CORNER_TIMING               ; Off                                    ; On                 ; --          ; --                                ;
+; OPTIMIZE_TIMING                            ; Off                                    ; Normal compilation ; --          ; --                                ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS             ; Half Signal Swing                      ; --                 ; --          ; --                                ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS             ; Half Signal Swing                      ; --                 ; --          ; --                                ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS            ; Half Vccio                             ; --                 ; --          ; --                                ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS            ; Half Vccio                             ; --                 ; --          ; --                                ;
+; PARTITION_COLOR                            ; -- (Not supported for targeted family) ; --                 ; de0_cv_top  ; Top                               ;
+; PARTITION_FITTER_PRESERVATION_LEVEL        ; -- (Not supported for targeted family) ; --                 ; de0_cv_top  ; Top                               ;
+; PARTITION_NETLIST_TYPE                     ; -- (Not supported for targeted family) ; --                 ; de0_cv_top  ; Top                               ;
+; POWER_BOARD_THERMAL_MODEL                  ; None (CONSERVATIVE)                    ; --                 ; --          ; --                                ;
+; POWER_PRESET_COOLING_SOLUTION              ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --                 ; --          ; --                                ;
+; PROJECT_OUTPUT_DIRECTORY                   ; output_files                           ; --                 ; --          ; --                                ;
+; SMART_RECOMPILE                            ; On                                     ; Off                ; --          ; --                                ;
+; TOP_LEVEL_ENTITY                           ; de0_cv_top                             ; top_de0_cv         ; --          ; --                                ;
++--------------------------------------------+----------------------------------------+--------------------+-------------+-----------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -110,11 +114,11 @@ on the Quartus Prime software download page.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:14     ; 1.0                     ; 4999 MB             ; 00:00:24                           ;
-; Fitter               ; 00:05:13     ; 1.0                     ; 6961 MB             ; 00:21:41                           ;
-; Assembler            ; 00:00:04     ; 1.0                     ; 5003 MB             ; 00:00:04                           ;
-; Timing Analyzer      ; 00:00:10     ; 1.9                     ; 5357 MB             ; 00:00:16                           ;
-; Total                ; 00:05:41     ; --                      ; --                  ; 00:22:25                           ;
+; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 4999 MB             ; 00:00:19                           ;
+; Fitter               ; 00:04:49     ; 1.0                     ; 6621 MB             ; 00:18:51                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 5003 MB             ; 00:00:03                           ;
+; Timing Analyzer      ; 00:00:10     ; 2.2                     ; 5421 MB             ; 00:00:16                           ;
+; Total                ; 00:05:14     ; --                      ; --                  ; 00:19:29                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
