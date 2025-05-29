@@ -1,6 +1,6 @@
 Flow report for top_de0_cv
-Thu May 29 15:26:08 2025
-Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+Thu May 29 16:32:06 2025
+Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
 ---------------------
@@ -21,45 +21,46 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2018  Intel Corporation. All rights reserved.
-Your use of Intel Corporation's design tools, logic functions 
-and other software and tools, and its AMPP partner logic 
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
-to the terms and conditions of the Intel Program License 
-Subscription Agreement, the Intel Quartus Prime License Agreement,
-the Intel FPGA IP License Agreement, or other applicable license
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
 agreement, including, without limitation, that your use is for
 the sole purpose of programming logic devices manufactured by
-Intel and sold by Intel or its authorized distributors.  Please
-refer to the applicable agreement for further details.
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
 
 
 
-+-------------------------------------------------------------------------------+
-; Flow Summary                                                                  ;
-+---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Thu May 29 15:25:54 2025       ;
-; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
-; Revision Name                   ; top_de0_cv                                  ;
-; Top-level Entity Name           ; de0_cv_top                                  ;
-; Family                          ; Cyclone V                                   ;
-; Device                          ; 5CEBA4F23C7                                 ;
-; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 593 / 18,480 ( 3 % )                        ;
-; Total registers                 ; 374                                         ;
-; Total pins                      ; 65 / 224 ( 29 % )                           ;
-; Total virtual pins              ; 0                                           ;
-; Total block memory bits         ; 16,384 / 3,153,920 ( < 1 % )                ;
-; Total DSP Blocks                ; 0 / 66 ( 0 % )                              ;
-; Total HSSI RX PCSs              ; 0                                           ;
-; Total HSSI PMA RX Deserializers ; 0                                           ;
-; Total HSSI TX PCSs              ; 0                                           ;
-; Total HSSI PMA TX Serializers   ; 0                                           ;
-; Total PLLs                      ; 0 / 4 ( 0 % )                               ;
-; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
-+---------------------------------+---------------------------------------------+
++-----------------------------------------------------------------------------------+
+; Flow Summary                                                                      ;
++---------------------------------+-------------------------------------------------+
+; Flow Status                     ; Successful - Thu May 29 16:31:57 2025           ;
+; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
+; Revision Name                   ; top_de0_cv                                      ;
+; Top-level Entity Name           ; de0_cv_top                                      ;
+; Family                          ; Cyclone V                                       ;
+; Device                          ; 5CEBA4F23C7                                     ;
+; Timing Models                   ; Final                                           ;
+; Logic utilization (in ALMs)     ; 548 / 18,480 ( 3 % )                            ;
+; Total registers                 ; 360                                             ;
+; Total pins                      ; 65 / 224 ( 29 % )                               ;
+; Total virtual pins              ; 0                                               ;
+; Total block memory bits         ; 16,384 / 3,153,920 ( < 1 % )                    ;
+; Total DSP Blocks                ; 0 / 66 ( 0 % )                                  ;
+; Total HSSI RX PCSs              ; 0                                               ;
+; Total HSSI PMA RX Deserializers ; 0                                               ;
+; Total HSSI TX PCSs              ; 0                                               ;
+; Total HSSI PMA TX Serializers   ; 0                                               ;
+; Total PLLs                      ; 0 / 4 ( 0 % )                                   ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                                   ;
++---------------------------------+-------------------------------------------------+
 
 
 +-----------------------------------------+
@@ -67,7 +68,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/29/2025 15:23:37 ;
+; Start date & time ; 05/29/2025 16:25:34 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; top_de0_cv          ;
 +-------------------+---------------------+
@@ -78,7 +79,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id                        ;
 +-------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 9190536260444.174848901612164          ; --            ; --          ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 279585733362003.174849273419804        ; --            ; --          ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --            ; --          ; eda_board_design_signal_integrity ;
@@ -107,11 +108,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:23     ; 1.0                     ; 4890 MB             ; 00:00:12                           ;
-; Fitter               ; 00:01:42     ; 1.1                     ; 6489 MB             ; 00:01:15                           ;
-; Assembler            ; 00:00:08     ; 1.0                     ; 4821 MB             ; 00:00:02                           ;
-; Timing Analyzer      ; 00:00:13     ; 1.5                     ; 5128 MB             ; 00:00:08                           ;
-; Total                ; 00:02:26     ; --                      ; --                  ; 00:01:37                           ;
+; Analysis & Synthesis ; 00:00:11     ; 1.0                     ; 5008 MB             ; 00:00:22                           ;
+; Fitter               ; 00:06:06     ; 1.0                     ; 7632 MB             ; 00:37:23                           ;
+; Assembler            ; 00:00:03     ; 1.0                     ; 5003 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:08     ; 1.6                     ; 5367 MB             ; 00:00:09                           ;
+; Total                ; 00:06:28     ; --                      ; --                  ; 00:37:58                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -120,10 +121,10 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; LAPTOP-LU9DVR71  ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; LAPTOP-LU9DVR71  ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; LAPTOP-LU9DVR71  ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; LAPTOP-LU9DVR71  ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; TonnyLenovo      ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
