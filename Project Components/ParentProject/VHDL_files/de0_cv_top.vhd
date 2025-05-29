@@ -671,6 +671,7 @@ end process score_detect;
     generic map (
       START_OFFSET => 10,             -- initial off-screen offset
       PIPE_WIDTH   => 40,
+      PIPE_SPACING => 185,
       PIPE_GAP     => 100
     )
     port map (

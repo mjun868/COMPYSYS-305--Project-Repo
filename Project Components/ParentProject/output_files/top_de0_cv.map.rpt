@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_de0_cv
-Thu May 29 22:22:19 2025
+Thu May 29 22:32:51 2025
 Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
 
 
@@ -64,7 +64,7 @@ on the Quartus Prime software download page.
 +-----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                      ;
 +---------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu May 29 22:22:19 2025           ;
+; Analysis & Synthesis Status     ; Successful - Thu May 29 22:32:51 2025           ;
 ; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
 ; Revision Name                   ; top_de0_cv                                      ;
 ; Top-level Entity Name           ; de0_cv_top                                      ;
@@ -190,7 +190,8 @@ on the Quartus Prime software download page.
 ;     Processor 5            ;   0.0%      ;
 ;     Processor 6            ;   0.0%      ;
 ;     Processor 7            ;   0.0%      ;
-;     Processors 8-10        ;   0.0%      ;
+;     Processor 8            ;   0.0%      ;
+;     Processors 9-10        ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -244,14 +245,14 @@ on the Quartus Prime software download page.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Estimate of Logic utilization (ALMs needed) ; 1085  ;
+; Estimate of Logic utilization (ALMs needed) ; 1088  ;
 ;                                             ;       ;
-; Combinational ALUT usage for logic          ; 1929  ;
+; Combinational ALUT usage for logic          ; 1935  ;
 ;     -- 7 input functions                    ; 8     ;
 ;     -- 6 input functions                    ; 219   ;
-;     -- 5 input functions                    ; 235   ;
+;     -- 5 input functions                    ; 234   ;
 ;     -- 4 input functions                    ; 194   ;
-;     -- <=3 input functions                  ; 1273  ;
+;     -- <=3 input functions                  ; 1280  ;
 ;                                             ;       ;
 ; Dedicated logic registers                   ; 423   ;
 ;                                             ;       ;
@@ -263,7 +264,7 @@ on the Quartus Prime software download page.
 ;                                             ;       ;
 ; Maximum fan-out node                        ; clk25 ;
 ; Maximum fan-out                             ; 395   ;
-; Total fan-out                               ; 7944  ;
+; Total fan-out                               ; 7948  ;
 ; Average fan-out                             ; 3.17  ;
 +---------------------------------------------+-------+
 
@@ -273,7 +274,7 @@ on the Quartus Prime software download page.
 +------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------------------+--------------+
 ; Compilation Hierarchy Node                           ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                               ; Entity Name              ; Library Name ;
 +------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------------------+--------------------------+--------------+
-; |de0_cv_top                                          ; 1929 (630)          ; 423 (93)                  ; 16384             ; 0          ; 65   ; 0            ; |de0_cv_top                                                                                                                       ; de0_cv_top               ; work         ;
+; |de0_cv_top                                          ; 1935 (631)          ; 423 (93)                  ; 16384             ; 0          ; 65   ; 0            ; |de0_cv_top                                                                                                                       ; de0_cv_top               ; work         ;
 ;    |MOUSE:u_mouse|                                   ; 49 (49)             ; 63 (63)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|MOUSE:u_mouse                                                                                                         ; MOUSE                    ; work         ;
 ;    |SevenSegDisplay:u_seven_seg|                     ; 35 (5)              ; 7 (7)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg                                                                                           ; SevenSegDisplay          ; work         ;
 ;       |Alphanumeric_to_SevenSeg:digit_five_Counter|  ; 6 (6)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter                                               ; Alphanumeric_to_SevenSeg ; work         ;
@@ -305,7 +306,7 @@ on the Quartus Prime software download page.
 ;       |lpm_divide_u4m:auto_generated|                ; 120 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod1|lpm_divide_u4m:auto_generated                                                                         ; lpm_divide_u4m           ; work         ;
 ;          |sign_div_unsign_1nh:divider|               ; 120 (0)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod1|lpm_divide_u4m:auto_generated|sign_div_unsign_1nh:divider                                             ; sign_div_unsign_1nh      ; work         ;
 ;             |alt_u_div_82f:divider|                  ; 120 (120)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|lpm_divide:Mod1|lpm_divide_u4m:auto_generated|sign_div_unsign_1nh:divider|alt_u_div_82f:divider                       ; alt_u_div_82f            ; work         ;
-;    |pipe_generator:u_pipe|                           ; 758 (675)           ; 169 (159)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe                                                                                                 ; pipe_generator           ; work         ;
+;    |pipe_generator:u_pipe|                           ; 763 (680)           ; 169 (159)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe                                                                                                 ; pipe_generator           ; work         ;
 ;       |lfsr:lfsr_inst|                               ; 5 (5)               ; 10 (10)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lfsr:lfsr_inst                                                                                  ; lfsr                     ; work         ;
 ;       |lpm_divide:Mod0|                              ; 39 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0                                                                                 ; lpm_divide               ; work         ;
 ;          |lpm_divide_u4m:auto_generated|             ; 39 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_top|pipe_generator:u_pipe|lpm_divide:Mod0|lpm_divide_u4m:auto_generated                                                   ; lpm_divide_u4m           ; work         ;
@@ -479,7 +480,7 @@ Encoding Type:  One-Hot
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
 ; Total registers                              ; 423   ;
-; Number of registers using Synchronous Clear  ; 195   ;
+; Number of registers using Synchronous Clear  ; 193   ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 294   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -494,13 +495,17 @@ Encoding Type:  One-Hot
 ; Inverted Register                                ; Fan out ;
 +--------------------------------------------------+---------+
 ; train_bg_white                                   ; 7       ;
+; pipe_generator:u_pipe|pipe_x_int[2][6]           ; 8       ;
+; pipe_generator:u_pipe|pipe_x_int[2][3]           ; 8       ;
 ; pipe_generator:u_pipe|pipe_x_int[2][2]           ; 7       ;
-; pipe_generator:u_pipe|pipe_x_int[2][1]           ; 7       ;
 ; pipe_generator:u_pipe|pipe_x_int[2][10]          ; 7       ;
 ; pipe_generator:u_pipe|pipe_x_int[1][6]           ; 8       ;
+; pipe_generator:u_pipe|pipe_x_int[1][5]           ; 9       ;
 ; pipe_generator:u_pipe|pipe_x_int[1][9]           ; 9       ;
 ; pipe_generator:u_pipe|pipe_x_int[1][8]           ; 8       ;
 ; pipe_generator:u_pipe|pipe_x_int[1][3]           ; 8       ;
+; pipe_generator:u_pipe|pipe_x_int[1][0]           ; 8       ;
+; pipe_generator:u_pipe|pipe_x_int[1][1]           ; 7       ;
 ; pipe_generator:u_pipe|pipe_x_int[0][9]           ; 9       ;
 ; pipe_generator:u_pipe|pipe_x_int[0][7]           ; 8       ;
 ; pipe_generator:u_pipe|pipe_x_int[0][3]           ; 8       ;
@@ -523,7 +528,7 @@ Encoding Type:  One-Hot
 ; MOUSE:u_mouse|SHIFTOUT[6]                        ; 1       ;
 ; MOUSE:u_mouse|SHIFTOUT[7]                        ; 1       ;
 ; MOUSE:u_mouse|SHIFTOUT[8]                        ; 1       ;
-; Total number of inverted registers = 30          ;         ;
+; Total number of inverted registers = 34          ;         ;
 +--------------------------------------------------+---------+
 
 
@@ -534,8 +539,8 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------+
 ; 3:1                ; 27 bits   ; 54 LEs        ; 0 LEs                ; 54 LEs                 ; Yes        ; |de0_cv_top|play_delay_counter[6]                                                                    ;
 ; 5:1                ; 10 bits   ; 30 LEs        ; 0 LEs                ; 30 LEs                 ; Yes        ; |de0_cv_top|pass_score[0]                                                                            ;
-; 6:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|blue_out[2]                                                          ;
-; 7:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|green_out[0]                                                         ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|blue_out[3]                                                          ;
+; 7:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |de0_cv_top|VGA_SYNC:u_vga_sync|green_out[3]                                                         ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_one_Counter|SevenSeg_out      ;
 ; 6:1                ; 3 bits    ; 12 LEs        ; 3 LEs                ; 9 LEs                  ; No         ; |de0_cv_top|font_row[2]                                                                              ;
 ; 7:1                ; 3 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |de0_cv_top|SevenSegDisplay:u_seven_seg|Alphanumeric_to_SevenSeg:digit_five_Counter|SevenSeg_out[6]  ;
@@ -640,7 +645,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Parameter Name ; Value  ; Type                                     ;
 +----------------+--------+------------------------------------------+
 ; num_pipes      ; 3      ; Signed Integer                           ;
-; pipe_spacing   ; 150    ; Signed Integer                           ;
+; pipe_spacing   ; 185    ; Signed Integer                           ;
 ; move_interval  ; 500000 ; Signed Integer                           ;
 ; start_offset   ; 10     ; Signed Integer                           ;
 ; pipe_width     ; 40     ; Signed Integer                           ;
@@ -908,13 +913,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     CLR               ; 31                          ;
 ;     CLR SCLR          ; 56                          ;
 ;     ENA               ; 29                          ;
-;     ENA CLR           ; 96                          ;
-;     ENA CLR SCLR      ; 111                         ;
+;     ENA CLR           ; 98                          ;
+;     ENA CLR SCLR      ; 109                         ;
 ;     ENA SCLR          ; 10                          ;
 ;     SCLR              ; 18                          ;
 ;     plain             ; 72                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 1933                        ;
+; arriav_lcell_comb     ; 1939                        ;
 ;     arith             ; 869                         ;
 ;         0 data inputs ; 123                         ;
 ;         1 data inputs ; 582                         ;
@@ -923,13 +928,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;         4 data inputs ; 38                          ;
 ;     extend            ; 8                           ;
 ;         7 data inputs ; 8                           ;
-;     normal            ; 1022                        ;
+;     normal            ; 1028                        ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 33                          ;
-;         2 data inputs ; 243                         ;
-;         3 data inputs ; 135                         ;
+;         1 data inputs ; 37                          ;
+;         2 data inputs ; 245                         ;
+;         3 data inputs ; 136                         ;
 ;         4 data inputs ; 156                         ;
-;         5 data inputs ; 235                         ;
+;         5 data inputs ; 234                         ;
 ;         6 data inputs ; 219                         ;
 ;     shared            ; 34                          ;
 ;         0 data inputs ; 7                           ;
@@ -939,7 +944,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; stratixv_ram_block    ; 20                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 17.70                       ;
-; Average LUT depth     ; 9.08                        ;
+; Average LUT depth     ; 9.06                        ;
 +-----------------------+-----------------------------+
 
 
@@ -958,7 +963,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
-    Info: Processing started: Thu May 29 22:22:09 2025
+    Info: Processing started: Thu May 29 22:32:41 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ParentProject -c top_de0_cv
 Warning (125092): Tcl Script File V/img_index.qip not found
     Info (125063): set_global_assignment -name QIP_FILE V/img_index.qip
@@ -1029,7 +1034,7 @@ Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(186): used ex
 Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(187): used explicit default value for signal "wrapped_b" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 187
 Warning (10540): VHDL Signal Declaration warning at de0_cv_top.vhd(254): used explicit default value for signal "pipe_gap" because signal was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 254
 Warning (10036): Verilog HDL or VHDL warning at de0_cv_top.vhd(331): object "number_of_pipe" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 331
-Warning (10492): VHDL Process Statement warning at de0_cv_top.vhd(984): signal "pipes_go" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 984
+Warning (10492): VHDL Process Statement warning at de0_cv_top.vhd(985): signal "pipes_go" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 985
 Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:u_mouse" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 600
 Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 25
 Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/mouse.vhd Line: 151
@@ -1106,7 +1111,7 @@ Warning (10492): VHDL Process Statement warning at pipe_generator.vhd(119): sign
 Warning (10542): VHDL Variable Declaration warning at pipe_generator.vhd(149): used initial value expression for variable "row" because variable was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 149
 Warning (10542): VHDL Variable Declaration warning at pipe_generator.vhd(150): used initial value expression for variable "col" because variable was never assigned a value File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 150
 Info (12128): Elaborating entity "lfsr" for hierarchy "pipe_generator:u_pipe|lfsr:lfsr_inst" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 72
-Info (12128): Elaborating entity "char_rom" for hierarchy "char_rom:u_char_rom" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 963
+Info (12128): Elaborating entity "char_rom" for hierarchy "char_rom:u_char_rom" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 964
 Info (12128): Elaborating entity "altsyncram" for hierarchy "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
 Info (12130): Elaborated megafunction instantiation "char_rom:u_char_rom|altsyncram:altsyncram_component" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
 Info (12133): Instantiated megafunction "char_rom:u_char_rom|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/char_rom.vhd Line: 51
@@ -1130,10 +1135,10 @@ Info (12128): Elaborating entity "altsyncram_d5g1" for hierarchy "char_rom:u_cha
 Info (278001): Inferred 6 megafunctions from design logic
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "pipe_generator:u_pipe|Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 127
     Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "pipe_generator:u_pipe|Mod0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 112
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 697
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 699
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 698
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 698
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 698
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 700
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Div1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 699
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 699
 Info (12130): Elaborated megafunction instantiation "pipe_generator:u_pipe|lpm_divide:Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 127
 Info (12133): Instantiated megafunction "pipe_generator:u_pipe|lpm_divide:Mod1" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 127
     Info (12134): Parameter "LPM_WIDTHN" = "10"
@@ -1146,8 +1151,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/sign
     Info (12023): Found entity 1: sign_div_unsign_1nh File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_1nh.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_82f.tdf
     Info (12023): Found entity 1: alt_u_div_82f File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_82f.tdf Line: 23
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 697
-Info (12133): Instantiated megafunction "lpm_divide:Div0" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 697
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div0" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 698
+Info (12133): Instantiated megafunction "lpm_divide:Div0" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 698
     Info (12134): Parameter "LPM_WIDTHN" = "10"
     Info (12134): Parameter "LPM_WIDTHD" = "7"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -1158,14 +1163,14 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/sign
     Info (12023): Found entity 1: sign_div_unsign_nlh File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/sign_div_unsign_nlh.tdf Line: 25
 Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_kve.tdf
     Info (12023): Found entity 1: alt_u_div_kve File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/db/alt_u_div_kve.tdf Line: 23
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 699
-Info (12133): Instantiated megafunction "lpm_divide:Mod1" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 699
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 700
+Info (12133): Instantiated megafunction "lpm_divide:Mod1" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 700
     Info (12134): Parameter "LPM_WIDTHN" = "10"
     Info (12134): Parameter "LPM_WIDTHD" = "10"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Div1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 698
-Info (12133): Instantiated megafunction "lpm_divide:Div1" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 698
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Div1" File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 699
+Info (12133): Instantiated megafunction "lpm_divide:Div1" with the following parameter: File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/de0_cv_top.vhd Line: 699
     Info (12134): Parameter "LPM_WIDTHN" = "10"
     Info (12134): Parameter "LPM_WIDTHD" = "4"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -1223,11 +1228,12 @@ Warning (13024): Output pins are stuck at VCC or GND
 Info (286030): Timing-Driven Synthesis is running
 Critical Warning (18061): Ignored Power-Up Level option on the following registers
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_y_int[1][31] will power up to Low File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
-    Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[1][0] will power up to Low File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
+    Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[1][1] will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[1][31] will power up to Low File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[1][9] will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[1][8] will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[1][6] will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
+    Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[1][5] will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[1][3] will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_y_int[0][31] will power up to Low File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[0][0] will power up to Low File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
@@ -1239,21 +1245,22 @@ Critical Warning (18061): Ignored Power-Up Level option on the following registe
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_y_int[2][31] will power up to Low File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[2][2] will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[2][0] will power up to Low File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
-    Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[2][1] will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[2][31] will power up to Low File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
     Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[2][10] will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
+    Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[2][6] will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
+    Critical Warning (18010): Register pipe_generator:u_pipe|pipe_x_int[2][3] will power up to High File: C:/Users/mikae/Documents/School_documents/Year_3/COMPSYS_305/COMPYSYS-305--Project-Repo/Project Components/ParentProject/VHDL_files/pipe_generator.vhd Line: 106
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 2141 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2143 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 6 input pins
     Info (21059): Implemented 57 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 2056 logic cells
+    Info (21061): Implemented 2058 logic cells
     Info (21064): Implemented 20 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 99 warnings
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 101 warnings
     Info: Peak virtual memory: 5007 megabytes
-    Info: Processing ended: Thu May 29 22:22:19 2025
+    Info: Processing ended: Thu May 29 22:32:51 2025
     Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:17
+    Info: Total CPU time (on all processors): 00:00:18
 
 
