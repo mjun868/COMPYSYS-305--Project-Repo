@@ -248,7 +248,7 @@ set_location_assignment PIN_W19 -to seven_seg_six[6]
 #============================================================
 # KEY
 #============================================================
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PB0
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PB1
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to PB2
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[3]
@@ -500,7 +500,7 @@ set_location_assignment PIN_C1   -to seven_seg_six[4]
 set_location_assignment PIN_C2   -to seven_seg_six[5]
 set_location_assignment PIN_W19  -to seven_seg_six[6]
 
-set_location_assignment PIN_U7 -to KEY[0]
+set_location_assignment PIN_U7 -to PB0
 set_location_assignment PIN_W9 -to PB1
 set_location_assignment PIN_M7 -to PB2
 set_location_assignment PIN_M6 -to KEY[3]

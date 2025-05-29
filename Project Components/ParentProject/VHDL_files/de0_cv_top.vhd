@@ -314,7 +314,7 @@ begin
       clk25 <= not clk25;            -- divide 50 MHz to ~25 MHz
     end if;
   end process;
-  reset_i <= not reset_n;            -- active-high reset internally
+  reset_i <= not reset_n or not pb0_stable;           -- active-high reset internally
 
   ----------------------------------------------------------------
   -- PB1 ("enter") debounce & rising-edge detection
@@ -346,15 +346,15 @@ begin
   ----------------------------------------------------------------
   -- PB0 (universal exit) debounce & rising-edge detection
   ----------------------------------------------------------------
-  sync_pb0: process(clk25, reset_i) begin
-    if reset_i = '1' then
-      pb0_sync_0 <= '1';
-      pb0_sync_1 <= '1';
-    elsif rising_edge(clk25) then
-      pb0_sync_0 <= PB0;             -- sample raw PB0
-      pb0_sync_1 <= pb0_sync_0;      -- two-stage synchronizer
-    end if;
-  end process;
+  sync_pb0: process(clk25, reset_n) begin
+  if reset_n = '0' then
+    pb0_sync_0 <= '1';
+    pb0_sync_1 <= '1';
+  elsif rising_edge(clk25) then
+    pb0_sync_0 <= PB0;  
+    pb0_sync_1 <= pb0_sync_0;  
+  end if;
+end process;
 
   pb0_stable <= pb0_sync_1;          -- debounced PB0
 

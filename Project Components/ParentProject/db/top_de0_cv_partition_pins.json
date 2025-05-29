@@ -220,11 +220,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "PB1",
+					"name" : "PB0",
 					"strict" : false
 				},
 				{
-					"name" : "PB0",
+					"name" : "PB1",
 					"strict" : false
 				},
 				{
