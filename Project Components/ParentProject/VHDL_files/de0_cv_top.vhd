@@ -183,6 +183,9 @@ architecture rtl of de0_cv_top is
   signal wrapped_g : std_logic := '1';
   signal wrapped_b : std_logic := '1';
 
+  -- Training mode background color state
+  signal train_bg_white : std_logic := '1';  -- '1' for white, '0' for black background
+
   signal final_r, final_g, final_b    : std_logic_vector(3 downto 0); -- final RGB
 
   ----------------------------------------------------------------
@@ -878,9 +881,16 @@ begin
   begin
     if reset_i = '1' then
       collision <= '0';
+      train_bg_white <= '1';  -- Reset to white background
     elsif rising_edge(clk25) then
       if game_state = S_TITLE then
         collision <= '0';      -- clear on title screen
+        train_bg_white <= '1'; -- Reset to white background
+      elsif game_state = S_TRAIN then
+        if collision_detect = '1' then
+          train_bg_white <= not train_bg_white;  -- Toggle background color
+          collision <= '0';  -- Don't trigger death screen
+        end if;
       elsif game_state /= S_PLAY and game_state /= S_TRAIN then
         collision <= '0';      -- clear off-play/training
       elsif collision = '1' then
@@ -902,6 +912,8 @@ begin
                       in_death1  = '1' or in_death2  = '1' )) else                      -- yellow text + death
        color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
        "0000"  when (pipe_green = '1' and pipes_go = '1') else
+       "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else  -- White background for training
+       "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else  -- Black background for training
        (others => wrapped_r);
 
   final_g <=
@@ -912,6 +924,8 @@ begin
                       in_death1  = '1' or in_death2  = '1' )) else                      -- yellow + death
        color_g when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
        "1111"  when (pipe_green = '1' and pipes_go = '1') else
+       "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else  -- White background for training
+       "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else  -- Black background for training
        (others => wrapped_g);
 
   final_b <=
@@ -922,6 +936,8 @@ begin
                       in_death1  = '1' or in_death2  = '1' )) else                      -- yellow + death
        color_b when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
        "0000"  when (pipe_green = '1' and pipes_go = '1') else
+       "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else  -- White background for training
+       "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else  -- Black background for training
        (others => wrapped_b);
 
   ----------------------------------------------------------------

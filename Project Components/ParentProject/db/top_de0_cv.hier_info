@@ -1,5 +1,6 @@
 |de0_cv_top
 CLOCK_50 => clk25.CLK
+reset_n => train_bg_white.PRESET
 reset_n => collision.ACLR
 reset_n => pipes_go.ACLR
 reset_n => play_delay_counter[0].ACLR
