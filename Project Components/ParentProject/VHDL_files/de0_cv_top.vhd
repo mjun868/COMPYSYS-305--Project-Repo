@@ -539,45 +539,59 @@ end process;
    ----------------------------------------------------------------
   -- B) Synchronous process that watches each pipe & the bird
   ----------------------------------------------------------------
- score_detect : process(clk25, reset_i)
+score_detect : process(clk25, reset_i)
   variable bird_r_int : integer;
   variable pipe_x_int : integer;
   variable pipe_y_int : integer;
 begin
   if reset_i = '1' then
-    pass_score    <= 0;
-    passed_pipe   <= (others => '0');
-    prev_pipe_x   <= (others => (others => '0'));
+    pass_score  <= 0;
+    passed_pipe <= (others => '0');
+    prev_pipe_x <= (others => (others => '0'));
+
   elsif rising_edge(clk25) then
-    bird_r_int := to_integer(unsigned(bird_row));
 
-    for i in 0 to NUM_PIPES-1 loop
-      pipe_x_int := to_integer(unsigned(pipe_x_array(i)));
-      pipe_y_int := to_integer(unsigned(pipe_y_array(i)));
+    -- reset score & flags whenever we're not actively playing
+    if game_state /= S_PLAY then
+      pass_score  <= 0;
+      passed_pipe <= (others => '0');
+      prev_pipe_x <= (others => (others => '0'));
 
-      -- Did pipe i’s trailing edge just sweep past the bird’s fixed column?
-      if passed_pipe(i) = '0' and
-         to_integer(unsigned(prev_pipe_x(i))) + PIPE_WIDTH >= to_integer(unsigned(bird_col)) and
-         pipe_x_int           + PIPE_WIDTH <  to_integer(unsigned(bird_col)) then
+    else
+      -- only count when in PLAY
+      bird_r_int := to_integer(unsigned(bird_row));
 
-        -- Only score if bird’s center is inside the gap vertically
-        if bird_r_int >= pipe_y_int and
-           bird_r_int <= pipe_y_int + pipe_gap_int then
-          pass_score <= pass_score + 1;
+      for i in 0 to NUM_PIPES-1 loop
+        pipe_x_int := to_integer(unsigned(pipe_x_array(i)));
+        pipe_y_int := to_integer(unsigned(pipe_y_array(i)));
+
+        -- trailing edge swept past bird?
+        if passed_pipe(i) = '0' and
+           to_integer(unsigned(prev_pipe_x(i))) + PIPE_WIDTH >= to_integer(unsigned(bird_col)) and
+           pipe_x_int + PIPE_WIDTH < to_integer(unsigned(bird_col)) then
+
+          -- inside gap?
+          if bird_r_int >= pipe_y_int and
+             bird_r_int <= pipe_y_int + pipe_gap_int then
+            pass_score <= pass_score + 1;
+          end if;
+          passed_pipe(i) <= '1';
         end if;
-        passed_pipe(i) <= '1';
-      end if;
 
-      -- clear flag when this pipe wraps from left back to the right
-      if pipe_x_int > to_integer(unsigned(prev_pipe_x(i))) then
-        passed_pipe(i) <= '0';
-      end if;
+        -- clear flag when this pipe wraps around
+        if pipe_x_int > to_integer(unsigned(prev_pipe_x(i))) then
+          passed_pipe(i) <= '0';
+        end if;
 
-      -- remember this cycle’s X for next time
-      prev_pipe_x(i) <= std_logic_vector(to_unsigned(pipe_x_int, prev_pipe_x(i)'length));
-    end loop;
+        -- remember for next cycle
+        prev_pipe_x(i) <= std_logic_vector(
+                            to_unsigned(pipe_x_int, prev_pipe_x(i)'length)
+                          );
+      end loop;
+    end if;
+
   end if;
-end process;
+end process score_detect;
 
 
   ----------------------------------------------------------------
