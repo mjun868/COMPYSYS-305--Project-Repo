@@ -317,7 +317,7 @@ signal pass_event : std_logic := '0';
 
   -- Death screen text
   constant DEATH_STR    : string(1 to  9) := "YOU DIED!";
-  constant DEATH2_STR   : string(1 to 18) := "PRESS PB2 TO RETRY";
+  constant DEATH2_STR   : string(1 to 18) := "PRESS PB0 TO RETRY";
 
   constant DEATH_MSG1_W : integer := DEATH_STR'length * CHAR_W;
   constant DEATH_MSG2_W : integer := DEATH2_STR'length * (CHAR_W/2);
@@ -999,7 +999,7 @@ end process collision_detect_proc;
 collision_reg : process(clk25, reset_i)
 begin
   if reset_i = '1' then
-    -- global reset clears everything
+    -- on global reset, clear everything
     lives_left            <= 3;
     train_bg_white        <= '1';
     prev_collision_detect <= '0';
@@ -1009,35 +1009,22 @@ begin
     hit_flag              <= '0';
 
   elsif rising_edge(clk25) then
-    -- 1) TRAIN-mode collisions (unchanged)
-    if game_state = S_TRAIN then
-      for i in 0 to NUM_PIPES-1 loop
-        if prev_overlap_pipe(i) = '0'
-           and overlap_pipe(i) = '1' then
-          if lives_left > 0 then
-            lives_left     <= lives_left - 1;
-            train_bg_white <= not train_bg_white;
-          end if;
-          dead_pipe(i) <= '1';
-        end if;
-      end loop;
-    end if;
 
-    -- 2) Clear collide-inhibit and latched collision on pass_event
+    -- 1) Clear collide-inhibit and latched collision on pass_event
     if game_state = S_PLAY and pass_event = '1' then
       hit_flag  <= '0';
       collision <= '0';
     end if;
 
-    -- 3) PLAY-mode collision latch, only if not yet inhibited
+    -- 2) PLAY-mode collision latch, only if not yet inhibited
     if game_state = S_PLAY
        and collision_detect = '1'
        and hit_flag = '0' then
       collision <= '1';
-      hit_flag  <= '1';                   -- inhibit further hits
+      hit_flag  <= '1';
     end if;
 
-    -- 4) Revive “dead” pipes on wrap
+    -- 3) Revive “dead” pipes on wrap
     for i in 0 to NUM_PIPES-1 loop
       if to_integer(unsigned(pipe_x_array(i)))
          > to_integer(unsigned(prev_pipe_x(i))) then
@@ -1045,12 +1032,11 @@ begin
       end if;
     end loop;
 
-    -- 5) Remember detect/overlap for next cycle
+    -- 4) Remember detect/overlap for next cycle
     prev_collision_detect <= collision_detect;
     prev_overlap_pipe     <= overlap_pipe;
   end if;
 end process collision_reg;
-
 
   final_r <= (others => '0') when video_on = '0' else
        "1111" when (rom_output = '1' and in_lives = '1')        else  -- draw lives overlay (white)
