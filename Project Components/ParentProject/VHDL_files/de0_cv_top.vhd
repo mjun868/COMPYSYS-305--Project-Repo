@@ -157,6 +157,7 @@ architecture rtl of de0_cv_top is
 
   signal game_state                   : game_state_t := S_TITLE;
  
+  
 
 
   signal pix_row, pix_col             : std_logic_vector(9 downto 0); -- VGA pixel coords
@@ -237,8 +238,9 @@ architecture rtl of de0_cv_top is
   signal pipe_gap_int : integer;                          -- integer gap height
   signal pipe_green                   : std_logic;              -- pipe pixel flag
   
+signal hit_flag : std_logic := '0';  -- '1' means “we’ve just hit, inhibit further hits until we score”
 
-
+signal pass_event : std_logic := '0';
  
 
   constant PIPE_WIDTH    : integer := 50;
@@ -344,15 +346,17 @@ begin
   reset_i <= not reset_n or not pb0_stable;           -- active-high reset internally
 
 
-  sync_pb1: process(clk25, reset_i) begin
-    if reset_i = '1' then
-      pb1_sync_0 <= '1';             -- reset shift-register
-      pb1_sync_1 <= '1';
-    elsif rising_edge(clk25) then
-      pb1_sync_0 <= PB1;             -- sample raw PB1
-      pb1_sync_1 <= pb1_sync_0;      -- two-stage synchronizer
-    end if;
-  end process;
+sync_pb1: process(clk25, reset_i) begin
+  if reset_i = '1'
+     or (game_state = S_DEATH and pb2_rising = '1') then
+    -- also flush on retry button
+    pb1_sync_0 <= '1';
+    pb1_sync_1 <= '1';
+  elsif rising_edge(clk25) then
+    pb1_sync_0 <= PB1;             -- sample raw PB1
+    pb1_sync_1 <= pb1_sync_0;      -- two‐stage synchronizer
+  end if;
+end process;
 
   btn1_stable <= pb1_sync_1;         -- debounced PB1
   btn1        <= not btn1_stable;    -- invert if active-low
@@ -430,7 +434,7 @@ end process;
   LEDR0      <= sw0_stable;          -- mirror on LED
 
 
-  fsm: process(clk25, reset_i) begin
+fsm: process(clk25, reset_i) begin
   if reset_i = '1' then
     game_state <= S_TITLE;         -- initial state
   elsif rising_edge(clk25) then
@@ -458,11 +462,6 @@ end process;
           elsif pass_score >= 999 then
             game_state <= S_TITLE;  -- win condition
           end if;
-
-       -- when S_TRAIN =>
-         -- if lives_left = 0 then
-           -- game_state <= S_DEATH;
-          -- end if;
 
         when S_DEATH =>
           if pb2_rising = '1' then
@@ -517,25 +516,33 @@ end process fsm;
         display_mode <= "000";   -- blank
     end case;
   end process;
-
-
+-- =================================================================
+-- Process: score_detect
+-- Generates pass_event as a one‐shot when the bird successfully
+-- flies through a pipe gap, and increments pass_score.
+-- =================================================================
 score_detect : process(clk25, reset_i)
   variable bird_r_int : integer;
   variable pipe_x_int : integer;
   variable pipe_y_int : integer;
 begin
   if reset_i = '1' then
-    pass_score  <= 0;
-    passed_pipe <= (others => '0');
-    prev_pipe_x <= (others => (others => '0'));
+    pass_score   <= 0;
+    passed_pipe  <= (others => '0');
+    prev_pipe_x  <= (others => (others => '0'));
+    pass_event   <= '0';                     -- clear one‐shot
 
   elsif rising_edge(clk25) then
+    -- clear one‐shot at start of cycle
+    if pass_event = '1' then
+      pass_event <= '0';
+    end if;
 
-    -- reset score & flags whenever we're not actively playing
+    -- if not playing, reset all scoring state
     if game_state /= S_PLAY then
-      pass_score  <= 0;
-      passed_pipe <= (others => '0');
-      prev_pipe_x <= (others => (others => '0'));
+      pass_score   <= 0;
+      passed_pipe  <= (others => '0');
+      prev_pipe_x  <= (others => (others => '0'));
 
     else
       -- only count when in PLAY
@@ -546,15 +553,19 @@ begin
         pipe_y_int := to_integer(unsigned(pipe_y_array(i)));
 
         -- trailing edge swept past bird?
-        if passed_pipe(i) = '0' and
-           to_integer(unsigned(prev_pipe_x(i))) + PIPE_WIDTH >= to_integer(unsigned(bird_col)) and
-           pipe_x_int + PIPE_WIDTH < to_integer(unsigned(bird_col)) then
+        if passed_pipe(i) = '0'
+           and to_integer(unsigned(prev_pipe_x(i))) + PIPE_WIDTH
+               >= to_integer(unsigned(bird_col))
+           and pipe_x_int + PIPE_WIDTH
+               < to_integer(unsigned(bird_col)) then
 
           -- inside gap?
-          if bird_r_int >= pipe_y_int and
-             bird_r_int <= pipe_y_int + pipe_gap_int then
+          if bird_r_int >= pipe_y_int
+             and bird_r_int <= pipe_y_int + pipe_gap_int then
             pass_score <= pass_score + 1;
+            pass_event <= '1';              -- raise one‐shot
           end if;
+
           passed_pipe(i) <= '1';
         end if;
 
@@ -565,14 +576,13 @@ begin
 
         -- remember for next cycle
         prev_pipe_x(i) <= std_logic_vector(
-                            to_unsigned(pipe_x_int, prev_pipe_x(i)'length)
-                          );
+                             to_unsigned(pipe_x_int,
+                                        prev_pipe_x(i)'length)
+                           );
       end loop;
     end if;
-
   end if;
 end process score_detect;
-
 
   u_mouse: MOUSE
     port map(
@@ -813,7 +823,8 @@ port map (
 
 
 in_score <= '1' when
-     video_on = '1' and game_state = S_PLAY and
+     video_on = '1' and
+     (game_state = S_PLAY or game_state = S_DEATH) and
      to_integer(unsigned(pix_row)) >= SCORE_V_OFF and
      to_integer(unsigned(pix_row)) <  SCORE_V_OFF + CHAR_H and
      to_integer(unsigned(pix_col)) >= SCORE_H_OFF and
@@ -979,82 +990,72 @@ begin
     end if;
   end loop;
 
-  if overlap_pipe /= ZERO_OVERLAP then
+    if overlap_pipe /= ZERO_OVERLAP and hit_flag = '0' then
     collision_detect <= '1';
   else
     collision_detect <= '0';
   end if;
-
 end process collision_detect_proc;
-
 collision_reg : process(clk25, reset_i)
 begin
   if reset_i = '1' then
+    -- global reset clears everything
     lives_left            <= 3;
     train_bg_white        <= '1';
     prev_collision_detect <= '0';
     collision             <= '0';
-    dead_pipe             <= (others => '0');  -- ① clear dead flags on reset
-    prev_overlap_pipe     <= (others => '0');  -- ① init previous overlaps
-  elsif rising_edge(clk25) then
+    dead_pipe             <= (others => '0');
+    prev_overlap_pipe     <= (others => '0');
+    hit_flag              <= '0';
 
-    -- 1) In TRAIN mode: on new collision, decrement & kill that pipe
+  elsif rising_edge(clk25) then
+    -- 1) TRAIN-mode collisions (unchanged)
     if game_state = S_TRAIN then
       for i in 0 to NUM_PIPES-1 loop
-        if prev_overlap_pipe(i) = '0' and overlap_pipe(i) = '1' then
+        if prev_overlap_pipe(i) = '0'
+           and overlap_pipe(i) = '1' then
           if lives_left > 0 then
             lives_left     <= lives_left - 1;
             train_bg_white <= not train_bg_white;
           end if;
-          dead_pipe(i) <= '1';              -- ② mark this pipe dead
+          dead_pipe(i) <= '1';
         end if;
       end loop;
     end if;
 
-    -- 2) PLAY‐mode collision latch
-    if game_state = S_PLAY and collision_detect = '1' then
-      collision <= '1';
+    -- 2) Clear collide-inhibit and latched collision on pass_event
+    if game_state = S_PLAY and pass_event = '1' then
+      hit_flag  <= '0';
+      collision <= '0';
     end if;
 
-    -- 3) Clear dead flag when a pipe wraps around (re-enters on right)
-    --    You need access to the previous X from your pipe generator; for example:
+    -- 3) PLAY-mode collision latch, only if not yet inhibited
+    if game_state = S_PLAY
+       and collision_detect = '1'
+       and hit_flag = '0' then
+      collision <= '1';
+      hit_flag  <= '1';                   -- inhibit further hits
+    end if;
+
+    -- 4) Revive “dead” pipes on wrap
     for i in 0 to NUM_PIPES-1 loop
-      if to_integer(unsigned(pipe_x_array(i))) > to_integer(unsigned(prev_pipe_x(i))) then
-        dead_pipe(i) <= '0';              -- revive pipe on wrap
+      if to_integer(unsigned(pipe_x_array(i)))
+         > to_integer(unsigned(prev_pipe_x(i))) then
+        dead_pipe(i) <= '0';
       end if;
     end loop;
 
-    -- 4) Remember last collision detect and overlaps
+    -- 5) Remember detect/overlap for next cycle
     prev_collision_detect <= collision_detect;
     prev_overlap_pipe     <= overlap_pipe;
   end if;
 end process collision_reg;
 
 
- pipe_vis_proc : process(pipe_green, overlap_pipe, game_state, pix_col, pipe_x_array)
-  variable show : std_logic := '0';
-begin
-  show := '0';
-  if pipe_green = '1' then
-    -- See which pipe this pixel belongs to
-    for i in 0 to NUM_PIPES-1 loop
-      if unsigned(pix_col) >= unsigned(pipe_x_array(i)) and
-         unsigned(pix_col) <  unsigned(pipe_x_array(i)) + PIPE_WIDTH then
-
-        -- In TRAIN mode, if we just overlapped pipe i, blank it for this frame
-        if not (game_state = S_TRAIN and overlap_pipe(i) = '1') then
-          show := '1';
-        end if;
-      end if;
-    end loop;
-  end if;
-
-  pipe_visible_pixel <= show;
-end process pipe_vis_proc;
-
   final_r <= (others => '0') when video_on = '0' else
        "1111" when (rom_output = '1' and in_lives = '1')        else  -- draw lives overlay (white)
-       "1111" when (rom_output = '1' and in_score = '1')       else  -- yellow score digits
+          "1111" when (rom_output = '1' and in_score = '1' 
+                    and (game_state = S_PLAY or game_state = S_DEATH)) else    -- yellow score digits
        "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
        "1111" when (rom_output = '1' and 
                     ( in_title = '1' or in_push  = '1' or 
@@ -1068,7 +1069,8 @@ end process pipe_vis_proc;
 
   final_g <= (others => '0') when video_on = '0' else
        "1111" when (rom_output = '1' and in_lives = '1')        else  -- lives overlay
-       "1111" when (rom_output = '1' and in_score = '1')       else
+          "1111" when (rom_output = '1' and in_score = '1' 
+                    and (game_state = S_PLAY or game_state = S_DEATH)) else     
        "0000" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
        "1111" when (rom_output = '1' and 
                     ( in_title = '1' or in_push  = '1' or 
@@ -1082,7 +1084,8 @@ end process pipe_vis_proc;
 
   final_b <= (others => '0') when video_on = '0' else
        "0000" when (rom_output = '1' and in_lives = '1')        else  -- lives overlay
-       "0000" when (rom_output = '1' and in_score = '1')       else
+        "0000" when (rom_output = '1' and in_score = '1' 
+                    and (game_state = S_PLAY or game_state = S_DEATH)) else   
        "1111" when (rom_output = '1' and (in_sw0_high = '1' or in_sw0_low = '1')) else
        "0000" when (rom_output = '1' and 
                     ( in_title = '1' or in_push  = '1' or 
