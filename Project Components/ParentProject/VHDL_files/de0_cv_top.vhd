@@ -1061,7 +1061,7 @@ end process pipe_vis_proc;
                       in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
                       in_death1  = '1' or in_death2  = '1' ))   else
        color_r when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "0000"  when (pipe_visible_pixel = '1' and pipes_go = '1')        else
+       "0000"  when (pipe_green = '1' and pipes_go = '1')        else
        "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
        "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_r);
@@ -1075,7 +1075,7 @@ end process pipe_vis_proc;
                       in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
                       in_death1  = '1' or in_death2  = '1' ))   else
        color_g when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "1111"  when (pipe_visible_pixel = '1' and pipes_go = '1')        else
+       "1111"  when (pipe_green = '1' and pipes_go = '1')        else
        "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
        "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_g);
@@ -1089,7 +1089,7 @@ end process pipe_vis_proc;
                       in_select1 = '1' or in_select2 = '1' or in_select3 = '1' or
                       in_death1  = '1' or in_death2  = '1' ))   else
        color_b when (ball_on_sig = '1' and (game_state = S_PLAY or game_state = S_TRAIN)) else
-       "0000"  when (pipe_visible_pixel = '1' and pipes_go = '1')        else
+       "0000"  when (pipe_green = '1' and pipes_go = '1')        else
        "1111"  when (game_state = S_TRAIN and train_bg_white = '1') else
        "0000"  when (game_state = S_TRAIN and train_bg_white = '0') else
        (others => wrapped_b);
