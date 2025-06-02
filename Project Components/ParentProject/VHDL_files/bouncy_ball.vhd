@@ -118,7 +118,7 @@ begin
       if ('0' & ball_y_pos >= conv_std_logic_vector(479, 10) - SPRITE_HEIGHT) then
         ball_y_motion <= conv_std_logic_vector(0, 10); -- freeze at the bottom
       else
-        ball_y_motion <= conv_std_logic_vector(2, 10);
+        ball_y_motion <= conv_std_logic_vector(1, 10);
       end if;
 
       -- Jump on click
